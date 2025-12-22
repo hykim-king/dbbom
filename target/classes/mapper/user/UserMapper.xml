@@ -23,7 +23,7 @@
 		         '이상무'||level AS name,                    
 		         '4321a' AS password,                     
 		         MOD(level,50)+1 AS login,                
-		         MOD(level,30)+1 AS recommand,            
+		         MOD(level,30)+1 AS recommend,            
 		         'jamesol'||level||'@paran.com' AS email, 
 		         MOD(level,3)+1 AS grade,                 
 		         SYSDATE - level AS reg_dt                

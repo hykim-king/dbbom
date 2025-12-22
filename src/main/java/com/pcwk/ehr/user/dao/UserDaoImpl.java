@@ -17,8 +17,9 @@ import com.pcwk.ehr.user.domain.UserVO;
 public class UserDaoImpl implements UserDao {
 	Logger log = LoggerFactory.getLogger(getClass());
 
-	final String NAMESPACE = "com.pcwk.ehr.user";
-	final String DOT = ".";
+	// ✅ mapper xml namespace로 맞춤
+    final String NAMESPACE = "com.pcwk.ehr.mapper.UserMapper";
+    final String DOT = ".";
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
