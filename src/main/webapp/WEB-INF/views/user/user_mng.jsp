@@ -11,6 +11,12 @@
 <script>
   $(document).ready(function(){
 	  console.log("document ready");
+	  
+	  //수정
+	  $('#btnUpdate').on('click',function(){
+		  console.log('btnUpdate click');
+	  });
+	  
 	  $('#btnDelete').on('click',function() {
 		  console.log('btnDelete click');
 		  
@@ -19,6 +25,10 @@
 		  }
 		  
 		  console.log("userId:"+param.userId);
+		  
+		  if(confirm('삭제하시겠습니까?')===false) {
+			  return;
+		  }
 		  
 		  $.ajax({
 		        url: "/ehr/user/doDelete.do",  //Server URL
