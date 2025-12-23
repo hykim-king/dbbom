@@ -122,13 +122,14 @@
 <body>
 
     <div class="container">
-        
-        <div class="header-top">
-            <div class="text-left">내면의 흔적</div>
-            <div class="header-top-right">회원가입/로그인/마이페이지</div>
-        </div>
 
-        <div class="blue-box main-menu">
+		<!-- (대표님 기존 레이아웃 그대로 두고) -->
+		<div style="text-align: center; margin: 20px;">
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/user/portal.do'">
+				회원가입/로그인/마이페이지</button>
+		</div>
+		<div class="blue-box main-menu">
             <div>메뉴</div>
             <div class="menu-group">
                 <a href="summaryPage.jsp" class="menu-link">개요</a> / 
