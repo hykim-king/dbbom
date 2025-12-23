@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 | 내면의 흔적</title>
+    <link rel="stylesheet" href="../css/signin.css" />
+    <script src="../javascript/signin.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="box">
+            <h1>회원가입</h1>
+            <p class="desc">
+                간단한 정보 입력으로
+                내면의 흔적을 시작해보세요.
+            </p>
+
+            <form id="signupForm">
+
+                <!-- 닉네임 -->
+                <div class="form-row">
+                    <label>닉네임</label>
+                    <div class="input-inline">
+                        <input type="text" id="nickname" placeholder="닉네임 입력" />
+                        <button type="button" class="check-btn" onclick="checkNickname()">중복확인</button>
+                    </div>
+                    <p class="msg" id="nicknameMsg"></p>
+                </div>
+
+                <!-- 이름 -->
+                <div class="form-row">
+                    <label>이름</label>
+                    <input type="text" id="username" placeholder="이름 입력" />
+                </div>
+
+                <!-- 아이디 -->
+                <div class="form-row">
+                    <label>아이디</label>
+                    <div class="input-inline">
+                        <input type="text" id="userid" placeholder="아이디 입력" />
+                        <button type="button" class="check-btn" onclick="checkUserId()">중복확인</button>
+                    </div>
+                    <p class="msg" id="useridMsg"></p>
+                </div>
+
+
+                <!-- 비밀번호 -->
+                <div class="form-row">
+                    <label>비밀번호</label>
+                    <input type="password" id="userpw" placeholder="비밀번호 입력" />
+                </div>
+
+                <!-- 비밀번호 확인 -->
+                <div class="form-row">
+                    <label>비밀번호 확인</label>
+                    <input type="password" id="userpw_confirm" placeholder="비밀번호 재입력"  onkeyup="checkPasswordMatch()" />
+                    <p class="msg" id="pwMsg"></p>
+                    
+                    
+        </div>
+
+        
+        
+
+        <!-- 이메일 -->
+        <div class="form-row">
+            <label>이메일</label>
+            <div class="email-row">
+                <input type="text" id="email_id" placeholder="이메일" />
+                <span>@</span>
+                <input type="text" id="email_domain" placeholder="도메인" />
+            </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="btn-group">
+            <button type="button" class="submit-btn" onclick="submitForm()">가입하기</button>
+            <button type="button" class="cancel-btn" onclick="location.href='../html/login_page.html'">취소</button>
+        </div>
+
+        </form>
+    </div>
+    </div>
+
+</body>
+
+</html>
