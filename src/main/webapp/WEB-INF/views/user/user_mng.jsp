@@ -11,6 +11,51 @@
 
 <script>
   $(document).ready(function(){
+
+	  console.log("document ready");
+	  
+	  //수정
+	  $('#btnUpdate').on('click',function(){
+		  console.log('btnUpdate click');
+	  });
+	  
+	  $('#btnDelete').on('click',function() {
+		  console.log('btnDelete click');
+		  
+		  let param = {
+				  userId : $('#userId').val()
+		  }
+		  
+		  console.log("userId:"+param.userId);
+		  
+		  if(confirm('삭제하시겠습니까?')===false) {
+			  return;
+		  }
+		  
+		  $.ajax({
+		        url: "/ehr/user/doDelete.do",  //Server URL
+		        type: "POST",            //호출방식
+		        data: param,             //전송 데이터
+		        dataType: "json",        //Controller에서 Json으로 반환
+		        success: function(res) { //통신 성공시처리
+		          if(res.flag === 1) { //데이터 타입까지 비교
+		            console.log('res.message:'+res.message)
+		            alert("성공! "+res.message);
+		            //목록으로 이동 
+		            location.href = "/ehr/user/doRetrieve.do";
+		          }else{
+		            alert("실패"+res.message);
+		          }
+		          console.log("성공", res);
+		        },
+		        error: function() {      //실패 
+		          console.log("실패");
+		        }
+		      }); 
+		  
+		  
+	  });
+
     console.log("user_mng ready");
 
     // 목록
@@ -68,6 +113,7 @@
         }
       });
     });
+>>>>>>> e7f5c21994b8b141cb47d797bdc495a8ba2b336b
   });
 </script>
 </head>

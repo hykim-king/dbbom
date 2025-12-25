@@ -1,39 +1,24 @@
 package com.pcwk.ehr.mapper;
-import java.sql.SQLException;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.pcwk.ehr.cmn.WorkDiv;
 import com.pcwk.ehr.user.domain.UserVO;
-/**
- *
- * @author user
- *
- */
-@Mapper
+
+@Mapper // 스프링이 이 인터페이스를 Mapper로 인식하게 함
 public interface UserMapper extends WorkDiv<UserVO> {
-	/**
-	 * 전체 조회:O
-	 *
-	 * @return
-	 */
-	List<UserVO> getAll();
-	/**
-	 * 전체 데이터 건수 조회:O
-	 *
-	 * @return
-	 */
-	int getCount();
-	/**
-	 * 다건 입력 : O
-	 *
-	 * @return
-	 */
-	int saveAll();
-	/**
-	 * 전체삭제: 변경 없음 :O
-	 *
-	 * @return
-	 * @throws SQLException
-	 */
-	int deleteAll();
+    
+    // WorkDiv에 정의된 doSave, doDelete, doUpdate, doSelectOne, doRetrieve는 자동 포함됨
+    
+    /** 전체 조회 */
+    List<UserVO> getAll();
+
+    /** 전체 건수 조회 */
+    int getCount();
+
+    /** 전체 삭제 */
+    int deleteAll();
+    
+    /** 다건 입력 테스트용 */
+    int saveAll();
 }

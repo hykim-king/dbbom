@@ -3,186 +3,73 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ehr.mapper.UserMapper">
 
- <!-- 컬럼 →Value Object와 매핑 --> 
   <resultMap type="UserVO" id="userMap">
-    <id column="user_id" property="userId"/>
-    <result column="name" property="name"/>
-    <result column="password" property="password"/>
-    <result column="login" property="login"/>
-    <result column="recommend" property="recommend"/>
-    <result column="email" property="email"/>
-    <result column="grade" property="grade"/>
-    <result column="reg_dt" property="regDt"/>
-    
-  </resultMap> 
-
-  <insert id="saveAll">
-     <![CDATA[
-		 INSERT INTO member                               
-		 SELECT  'pcwk'||level AS user_id,                
-		         '이상무'||level AS name,                    
-		         '4321a' AS password,                     
-		         MOD(level,50)+1 AS login,                
-		         MOD(level,30)+1 AS recommend,            
-		         'jamesol'||level||'@paran.com' AS email, 
-		         MOD(level,3)+1 AS grade,                 
-		         SYSDATE - level AS reg_dt                
-		   FROM dual                                      
-		 CONNECT BY LEVEL <=1002                            
-     ]]>
-  </insert>
-
-  <sql id="memberWhere">
-    <where> 
-      <choose>
-         <when test="searchDiv != null and  searchDiv == '10'">
-           user_id LIKE #{searchWord}||'%'
-         </when>
-         <when test="searchDiv != null and  searchDiv == '20'">
-           name LIKE #{searchWord}||'%'
-         </when> 
-         <when test="searchDiv != null and  searchDiv == '30'">
-           email LIKE #{searchWord}||'%'
-         </when>
-         <when test="searchDiv != null and  searchDiv == '40'">
-           (user_id LIKE #{searchWord}||'%'
-                 OR
-                name LIKE #{searchWord}||'%')
-           
-         </when>                                
-         <otherwise>
-         
-         </otherwise>                                                           
-      </choose>
-      </where>  
-  </sql>
-
-	<select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultType="UserVO">
-		 SELECT A.*, B.*                                                         
-		   FROM (                                                                
-		         SELECT tt1.rnum AS no,                                          
-		                tt1.user_id,                                             
-		                tt1.name,                                                
-		                tt1.password,                                            
-		                tt1.login,                                               
-		                tt1.recommend,                                           
-		                tt1.email,       
-		                DECODE(tt1.grade,1,'BASIC',2,'SILVER',3,'GOLD','UNKNOWN') AS  grade,                                               
-		                TO_CHAR(tt1.reg_dt,'YYYY/MM/DD') reg_dt                  
-		           FROM (                                                        
-		                 SELECT ROWNUM AS rnum,t1.*                              
-		                   FROM (                                                
-		                         SELECT *                                        
-		                           FROM member                                   
-		                         --검색조건   
-		                         -- searchDiv == 10 회원ID,
-		                         -- searchDiv == 20 이름,
-		                         -- searchDiv == 30 이메일
-		                         -- searchDiv == 40 회원ID + 이름 
-                             <include refid="memberWhere"></include>   
-		                         ORDER BY reg_dt DESC                            
-		                 )t1  
-		                 <![CDATA[                                                    
-		                 WHERE ROWNUM<=#{pageSize} * (#{pageNo} - 1) + #{pageSize}                     	                                                                         
-		         )tt1                                                            
-		         WHERE rnum >=#{pageSize} * (#{pageNo} - 1) + 1                                      	                                                                        
-		         ]]>                                                                
-		   ) A CROSS JOIN (                                                      
-		         SELECT COUNT(*) total_cnt                                       
-		           FROM member                                                   
-		           --검색조건       
-              <include refid="memberWhere"></include>                                                        
-		   ) B                                                                   	 
-	 
-	</select>
-
-  <select id="getAll" resultMap="userMap">
-		 SELECT                                                 
-		     user_id,                                           
-		     name,                                              
-		     password,                                          
-		     login,                                             
-		     recommend,                                         
-		     email,                                             
-		     DECODE(grade,1,'BASIC',2,'SILVER',3,'GOLD','UNKNOWN') AS  grade,                                            
-		     TO_CHAR(reg_dt,'YYYY/MM/DD HH24:MI:SS')  AS reg_dt 
-		 FROM                                                   
-		     member                                             
-		 ORDER BY reg_dt                                          
-  </select>
-  
-  
-   
-  <delete id="doDelete" parameterType="UserVO">
-		DELETE FROM member 
-		WHERE user_id = #{userId}    
-  </delete> 
-  
-  <update id="doUpdate" parameterType="UserVO">
-		UPDATE member            
-		SET                      
-		    name      = #{name},       
-		    password  = #{password},       
-		    login     = #{login},       
-		    recommend = #{recommend},       
-		    email     = #{email},       
-		    grade     = DECODE(#{grade},'BASIC' ,1
-                                   ,'SILVER',2
-                                   ,'GOLD'  ,3),       
-		    reg_dt    = SYSDATE  
-		WHERE                    
-		        user_id = #{userId}        
-  
-  </update>
-  
-  <select id="doSelectOne" parameterType="UserVO" resultType="UserVO">
-		SELECT                                                   
-		    user_id AS userId,                                             
-		    name,                                                
-		    password,                                            
-		    login,                                               
-		    recommend,                                           
-		    email,                                               
-		    DECODE(grade,1,  'BASIC', 2,'SILVER', 3,'GOLD') grade,                                             
-		    TO_CHAR(reg_dt,'YYYY/MM/DD HH24:MI:SS')  AS regDt   
-		FROM                                                     
-		    member                                               
-    WHERE  user_id = #{userId}                                        
-  </select>
-
-  <!-- MyBatis에서 SQL 실행 결과가 “정수 1건”일 때 사용하는 결과 매핑 설정 -->
-  <select id="getCount" resultType="java.lang.Integer">
-    SELECT COUNT(*) AS CNT FROM member  
-  </select>
-
-  <delete id="deleteAll">
-		DELETE FROM member  
-  </delete>
+    <id     column="user_id"          property="userId"/>
+    <result column="user_name"        property="userName"/>
+    <result column="user_pw"          property="userPw"/>
+    <result column="user_tel"         property="userTel"/>
+    <result column="user_email"       property="userEmail"/>
+    <result column="nickname"         property="nickname"/>
+    <result column="user_intro"       property="userIntro"/>
+    <result column="last_rec_time"    property="lastRecTime"/>
+    <result column="last_report_time" property="lastReportTime"/>
+    <result column="admin_chk"        property="adminChk"/>
+  </resultMap>
 
   <insert id="doSave" parameterType="UserVO">
-		INSERT INTO member ( 
-		    user_id,         
-		    name,            
-		    password,        
-		    login,           
-		    recommend,       
-		    email,           
-		    grade,           
-		    reg_dt           
-		) VALUES (           
-		    #{userId},               
-		    #{name},               
-		    #{password},               
-		    #{login},               
-		    #{recommend},               
-		    #{email},               
-		    DECODE(#{grade},'BASIC',1
-		                   ,'SILVER',2
-		                   ,'GOLD',3),               
-		    SYSDATE          
-		)                      
+    INSERT INTO users (
+        user_id,
+        user_name,
+        user_pw,
+        user_tel,
+        user_email,
+        nickname,
+        user_intro,
+        last_rec_time,
+        last_report_time,
+        admin_chk
+    ) VALUES (
+        #{userId},
+        #{userName},
+        #{userPw},
+        #{userTel},
+        #{userEmail},
+        #{nickname},
+        #{userIntro},
+        SYSDATE,
+        SYSDATE,
+        #{adminChk}
+    )
   </insert>
 
+  <select id="doSelectOne" parameterType="UserVO" resultMap="userMap">
+    SELECT * FROM users
+    WHERE user_id = #{userId}
+  </select>
 
+  <update id="doUpdate" parameterType="UserVO">
+    UPDATE users
+    SET user_name   = #{userName},
+        user_pw     = #{userPw},
+        user_tel    = #{userTel},
+        user_email  = #{userEmail},
+        nickname    = #{nickname},
+        user_intro  = #{userIntro},
+        admin_chk   = #{adminChk}
+    WHERE user_id   = #{userId}
+  </update>
+
+  <delete id="doDelete" parameterType="UserVO">
+    DELETE FROM users
+    WHERE user_id = #{userId}
+  </delete>
+
+  <delete id="deleteAll">
+    DELETE FROM users
+  </delete>
+
+  <select id="getCount" resultType="int">
+    SELECT COUNT(*) FROM users
+  </select>
 
 </mapper>

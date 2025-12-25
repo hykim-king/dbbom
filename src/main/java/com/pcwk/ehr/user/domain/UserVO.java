@@ -1,118 +1,80 @@
 package com.pcwk.ehr.user.domain;
 
 import java.io.Serializable;
-
 import com.pcwk.ehr.cmn.DTO;
 
 public class UserVO extends DTO implements Serializable {
-   
-	private static final long serialVersionUID = 6376437571460344493L;
-	
-	private String userId; // 사용자ID
-	private String name; // 이름
-	private String password;// 비밀번호
-	// -------------------------------
-	private int login;// 로그인
-	private int recommend;// 추천
-	private String email;// 이메일
-	private Grade grade;// 등급
 
-	private String regDt; // 등록일
+    private static final long serialVersionUID = 6376437571460344493L;
 
-	// 전역변수
-	// Default 생성자
-	// 인자있는 생성자
-	// get/setters
-	// toString()
+    private String userId;          // 아이디 (user_id)
+    private String userName;        // 이름 (user_name)
+    private String userPw;          // 비밀번호 (user_pw)
+    private String userTel;         // 전화번호 (user_tel)
+    private String userEmail;       // 이메일 (user_email)
+    private String nickname;        // 닉네임 (nickname)
+    private String userIntro;       // 자기소개 (user_intro, NULL 허용)
+    private String lastRecTime;     // 마지막 추천 시간 (last_rec_time)
+    private String lastReportTime;  // 마지막 신고 시간 (last_report_time)
+    private String adminChk;        // 관리자확인 (admin_chk, CHAR(1))
 
-	public UserVO() {
-		super();
-	}
+    // Default 생성자
+    public UserVO() {
+        super();
+    }
 
-	public UserVO(String userId, String name, String password, int login, int recommend, String email, Grade grade,
-			String regDt) {
-		super();
-		this.userId = userId;
-		this.name = name;
-		this.password = password;
-		this.login = login;
-		this.recommend = recommend;
-		this.email = email;
-		this.grade = grade;
-		this.regDt = regDt;
-	}
+    // 모든 인자를 가진 생성자
+    public UserVO(String userId, String userName, String userPw, String userTel, String userEmail, 
+                  String nickname, String userIntro, String lastRecTime, String lastReportTime, String adminChk) {
+        super();
+        this.userId = userId;
+        this.userName = userName;
+        this.userPw = userPw;
+        this.userTel = userTel;
+        this.userEmail = userEmail;
+        this.nickname = nickname;
+        this.userIntro = userIntro;
+        this.lastRecTime = lastRecTime;
+        this.lastReportTime = lastReportTime;
+        this.adminChk = adminChk;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    // Getter / Setter
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
 
-	public String getName() {
-		return name;
-	}
+    public String getUserPw() { return userPw; }
+    public void setUserPw(String userPw) { this.userPw = userPw; }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getUserTel() { return userTel; }
+    public void setUserTel(String userTel) { this.userTel = userTel; }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUserEmail() { return userEmail; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getNickname() { return nickname; }
+    public void setNickname(String nickname) { this.nickname = nickname; }
 
-	public String getRegDt() {
-		return regDt;
-	}
+    public String getUserIntro() { return userIntro; }
+    public void setUserIntro(String userIntro) { this.userIntro = userIntro; }
 
-	public void setRegDt(String regDt) {
-		this.regDt = regDt;
-	}
+    public String getLastRecTime() { return lastRecTime; }
+    public void setLastRecTime(String lastRecTime) { this.lastRecTime = lastRecTime; }
 
-	public int getLogin() {
-		return login;
-	}
+    public String getLastReportTime() { return lastReportTime; }
+    public void setLastReportTime(String lastReportTime) { this.lastReportTime = lastReportTime; }
 
-	public void setLogin(int login) {
-		this.login = login;
-	}
+    public String getAdminChk() { return adminChk; }
+    public void setAdminChk(String adminChk) { this.adminChk = adminChk; }
 
-	public int getRecommend() {
-		return recommend;
-	}
-
-	public void setRecommend(int recommend) {
-		this.recommend = recommend;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Grade getGrade() {
-		return grade;
-	}
-
-	public void setGrade(Grade grade) {
-		this.grade = grade;
-	}
-
-	@Override
-	public String toString() {
-		return "UserVO [userId=" + userId + ", name=" + name + ", password=" + password + ", login=" + login
-				+ ", recommend=" + recommend + ", email=" + email + ", grade=" + grade + ", regDt=" + regDt
-				+ ", toString()=" + super.toString() + "]";
-	}
-
-
-
+    @Override
+    public String toString() {
+        return "UserVO [userId=" + userId + ", userName=" + userName + ", userPw=" + userPw + ", userTel=" + userTel
+                + ", userEmail=" + userEmail + ", nickname=" + nickname + ", userIntro=" + userIntro
+                + ", lastRecTime=" + lastRecTime + ", lastReportTime=" + lastReportTime + ", adminChk=" + adminChk
+                + ", toString()=" + super.toString() + "]";
+    }
 }
