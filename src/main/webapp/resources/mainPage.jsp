@@ -134,7 +134,8 @@
             <div class="menu-group">
                 <a href="summaryPage.jsp" class="menu-link">개요</a> / 
                 <span class="menu-link">공지사항</span> / 
-                <span class="menu-link">게시판</span> / 
+                <a href="<%=request.getContextPath()%>/board/view.do?diarySid=1" class="menu-link">게시판</a>
+                
                 <span class="menu-link">나의 내면</span>
             </div>
         </div>
