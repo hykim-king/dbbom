@@ -1,6 +1,6 @@
 package com.pcwk.ehr.diary.domain;
 
-import java.io.Serializable;
+
 import com.pcwk.ehr.cmn.DTO;
 
 public class DiaryVO extends DTO {

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pcwk.ehr.mapper.ReportMapper">
+
+    <insert id="doSave" parameterType="ReportVO">
+            <selectKey keyProperty="reportSid" order="AFTER" resultType="int">
+                select REPORT_SEQ.CURRVAL from dual
+            </selectKey>
+
+            INSERT INTO REPORT
+            (REPORT_SID,
+             REPORT_CONTENT,
+             REPORT_CATEGORY,
+             FAMOUS_SID,
+             COMMENT_SID,
+             DIARY_SID,
+             REG_ID)
+            VALUES (
+                REPORT_SEQ.NEXTVAL,
+                #{reportContent},
+                #{reportCategory},
+                <choose>
+                    <when test="famousSid != null">
+                        #{famousSid}, NULL, NULL
+                    </when>
+                    <when test="commentSid != null">
+                        NULL, #{commentSid}, NULL
+                    </when>
+                    <when test="diarySid != null">
+                        NULL, NULL, #{diarySid}
+                    </when>
+                    <otherwise>
+                        NULL, NULL, NULL
+                    </otherwise>
+                </choose>,
+                #{regId}
+            )
+    </insert>
+
+    <delete id ="deleteAll">
+    DELETE FROM report
+    </delete>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM report
+    </select>
+
+    <select id="doSelectOne" parameterType="ReportVO" resultType="ReportVO">
+        SELECT report_sid       AS reportSid,
+               report_content   AS reportContent,
+               report_category  AS reportCategory,
+               famous_sid       AS famousSid,
+               comment_sid      AS commentSid,
+               diary_sid        AS diarySid,
+               reg_id           AS regId
+        FROM report
+        WHERE report_sid = #{reportSid}
+    </select>
+    
+
+</mapper>

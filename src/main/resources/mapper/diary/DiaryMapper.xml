@@ -5,8 +5,8 @@
 
 
     <insert id="doSave" parameterType="DiaryVO">
-        <selectKey keyProperty= "diarySid" order="BEFORE" resultType="int">
-            select DIARY_SEQ.NEXTVAL from dual
+        <selectKey keyProperty="diarySid" order="AFTER" resultType="int">
+            select DIARY_SEQ.CURRVAL from dual
         </selectKey>
 
         INSERT INTO DIARY
@@ -36,9 +36,111 @@
     DELETE FROM diary
     </delete>
 
-<select id="getCount" resultType="int">
-    SELECT COUNT(*) FROM diary
-</select>
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM diary
+    </select>
+
+    <update id="doUpdate" parameterType="DiaryVO">
+        UPDATE diary
+        SET diary_title = #{diaryTitle},
+            diary_content = #{diaryContent},
+            diary_status = #{diaryStatus},
+            diary_category = #{diaryCategory}
+        WHERE diary_sid = #{diarySid}
+    </update>
+
+    <select id="doSelectOne" parameterType="DiaryVO" resultType="DiaryVO">
+        SELECT diary_sid       AS diarySid,
+               diary_title     AS diaryTitle,
+               diary_content   AS diaryContent,
+               diary_viewcount AS diaryViewcount,
+               diary_reccount  AS diaryReccount,
+               diary_status    AS diaryStatus,
+               diary_category  AS diaryCategory,
+               TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate,
+               reg_id          AS regId
+        FROM diary
+        WHERE diary_sid = #{diarySid}
+    </select>
+
+    <insert id="saveAll">
+        INSERT INTO DIARY (
+            DIARY_SID,
+            DIARY_TITLE,
+            DIARY_CONTENT,
+            DIARY_VIEWCOUNT,
+            DIARY_RECCOUNT,
+            DIARY_STATUS,
+            DIARY_CATEGORY,
+            DIARY_UPLOADDATE,
+            REG_ID
+        )
+        SELECT
+            DIARY_SEQ.NEXTVAL AS diary_sid,
+            '제목' || LEVEL AS diary_title,
+            '내용' || LEVEL AS diary_content,
+            LEVEL AS diary_viewcount,
+            0 AS diary_reccount,
+            'Y' AS diary_status,
+            10 AS diary_category,
+            (SYSDATE - LEVEL) AS diary_uploaddate,
+            'user01' AS reg_id
+        FROM dual
+        CONNECT BY LEVEL <![CDATA[ <=  ]]> 1002
+    </insert>
+
+    <sql id="diaryWhere">
+        <choose>
+            <when test="'10' == searchDiv">
+                AND diary_title LIKE #{searchWord}||'%'
+            </when>
+            <when test="'20' == searchDiv">
+                AND diary_content LIKE #{searchWord}||'%'
+            </when>
+            <when test="'30' == searchDiv">
+                AND (diary_title LIKE #{searchWord}||'%' OR diary_content LIKE #{searchWord}||'%')
+            </when>
+        </choose>
+    </sql>
+
+    
+
+    <select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultType="DiaryVO">
+        SELECT A.*, B.*
+        FROM (
+            SELECT tt1.rnum AS no,
+                   tt1.diary_sid,
+                   tt1.diary_title,
+                   tt1.diary_content,
+                   tt1.diary_viewcount,
+                   tt1.diary_reccount,
+                   tt1.diary_status,
+                   tt1.diary_category,
+                   tt1.diary_uploaddate,
+                   tt1.reg_id
+            FROM (
+                SELECT ROWNUM AS rnum, t1.*
+                FROM (
+                    SELECT *
+                    FROM diary
+                    WHERE 1=1
+                    <include refid="diaryWhere"></include>
+                    ORDER BY diary_uploaddate DESC
+                ) t1
+                WHERE ROWNUM <![CDATA[ <= ]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
+            ) tt1
+            WHERE tt1.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNo} - 1) + 1)
+        ) A
+        CROSS JOIN (
+            SELECT COUNT(*) total_cnt
+            FROM diary
+            WHERE 1=1
+            <include refid="diaryWhere"></include>
+        ) B
+    </select>
+
+
+
     
 
 </mapper>

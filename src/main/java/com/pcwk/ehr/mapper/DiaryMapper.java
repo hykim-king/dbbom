@@ -21,4 +21,6 @@ public interface DiaryMapper extends WorkDiv<DiaryVO> {
     
     /** 다건 입력 테스트용 */
     int saveAll();
+
+    
 }
