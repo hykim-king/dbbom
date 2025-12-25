@@ -48,7 +48,8 @@ class ReportDaoTest {
         int seq = 0;
 
         // diary만 값, 나머지는 null (제약조건 준수)
-        report01 = new ReportVO(seq, "신고내용1", 10, null, null, 4046, "user01");
+        // 테스트할떄 시퀀스 값 조정 필요
+        report01 = new ReportVO(seq, "신고내용1", 10, null, null, 18, "user01");
 
         dto = new DTO();      
     }
@@ -60,7 +61,7 @@ class ReportDaoTest {
 		log.debug("└──────────────────────────┘");			
 	}
 
-    @Disabled
+    //@Disabled
     @Test
     void doSave() {
         log.debug("┌──────────────────────────┐");
@@ -75,7 +76,7 @@ class ReportDaoTest {
         log.debug("doSave() 성공: " + report01);
     }
 
-    //@Disabled
+    @Disabled
     @Test
     void doSelectOne() {
         log.debug("┌──────────────────────────┐");
