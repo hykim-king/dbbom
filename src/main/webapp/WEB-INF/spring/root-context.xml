@@ -83,7 +83,7 @@
 		<!-- 보통 서비스명 방식: //host:port/serviceName -->
 		<!-- 대표님 DB가 XE일 가능성이 높아 아래처럼 우선 적용 권장 -->
 		<property name="jdbcUrl"
-			value="jdbc:oracle:thin:@//192.168.100.30:1522/xe" />
+			value="jdbc:oracle:thin:@//218.144.130.138:1522/xe" />
 
 		<property name="username" value="dbbom" />
 		<property name="password" value="1216" />
