@@ -46,8 +46,8 @@ class DiaryDaoTest {
 		
         int seq = 0;
 
-		diary01 = new DiaryVO(seq, "제목1", "내용1", 0, 0, "Y", 10, "임시reg_dt", "11");
-        diary02 = new DiaryVO(seq, "제목2", "내용2", 0, 0, "Y", 10, "임시reg_dt", "11");
+		diary01 = new DiaryVO(seq, "제목1", "내용1", 0, 0, "Y", 10, "임시reg_dt", "user01");
+        diary02 = new DiaryVO(seq, "제목2", "내용2", 0, 0, "Y", 10, "임시reg_dt", "user01");
 
 
 		dto = new DTO();		
@@ -79,5 +79,20 @@ class DiaryDaoTest {
 		assertEquals(2, count);
 		
 	}
+
+	@Test
+	void doUpdate() {
+		//1.
+		diaryMapper.deleteAll();
+		diaryMapper.doSave(diary01);
+
+		//2.
+		diary01.setDiaryTitle("수정된 제목");
+		diary01.setDiaryContent("수정된 내용");
+
+		int flag = diaryMapper.doUpdate(diary01);
+		assertEquals(1, flag);
+	}
+
     
 }
