@@ -7,15 +7,18 @@ public class NoticeVO extends DTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int noticeSid;          // 공지사항 식별번호 notice_sid
-    private String noticeTitle;    // 제목 notice_title
-    private String noticeContent;  // 내용 notice_content
-    private String noticeUpdate;       // 수정일 notice_update
-    private String noticeTime;          // 등록시간 notice_time
-    private String regId;       // 등록자 아이디 reg_id
+    private int noticeSid;               // 공지사항 식별번호 notice_sid
+    private String noticeTitle;          // 제목 notice_title
+    private String noticeContent;        // 내용 notice_content
+    private String noticeUpdate;         // 수정일 notice_update
+    private String noticeTime;           // 등록시간 notice_time
+    private String regId;                // 등록자 아이디 reg_id
+    private int totalCnt;                // 검색 조건
     
     // default 생성자
-    
+    public NoticeVO() {
+        super();
+    }
 
     public int getNoticeSid() {
         return noticeSid;
@@ -29,6 +32,14 @@ public class NoticeVO extends DTO implements Serializable {
         this.noticeUpdate = noticeUpdate;
         this.noticeTime = noticeTime;
         this.regId = regId;
+    }
+
+    public int getTotalCnt() {
+        return totalCnt;
+    }
+
+    public void setTotalCnt(int totalCnt) {
+        this.totalCnt = totalCnt;
     }
 
     public void setNoticeSid(int noticeSid) {
@@ -76,11 +87,11 @@ public class NoticeVO extends DTO implements Serializable {
     }
 
     @Override
-        public String toString() {
-            return "NoticeVO [noticeSid=" + noticeSid + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-                    + ", noticeUpdate=" + noticeUpdate + ", noticeTime=" + noticeTime + ", regId=" + regId + ", toString()="
-                    + super.toString() + "]";
-        }
+    public String toString() {
+        return "NoticeVO [noticeSid=" + noticeSid + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
+                + ", noticeUpdate=" + noticeUpdate + ", noticeTime=" + noticeTime + ", regId=" + regId + ", totalCnt="
+                + totalCnt + "]";
+    }
 
     
 }

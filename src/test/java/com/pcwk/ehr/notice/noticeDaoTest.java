@@ -67,6 +67,39 @@ class NoticeDaoTest {
     }
 
     @Test
+    void doRetrieve() {
+        // [1. 전체 삭제]
+        noticeMapper.deleteAll();
+        assertEquals(0, noticeMapper.getCount());
+        
+        // [2. 대량 등록 (1002건)]
+        // 자바 반복문 없이 SQL 한 방으로 해결!
+        int count = noticeMapper.saveAll(); 
+        assertEquals(1002, count);  // 1002개가 잘 들어갔는지 확인
+        
+        // [3. 페이징 조회 설정]
+        NoticeVO searchVO = new NoticeVO();
+        searchVO.setPageNo(1);        // 1페이지
+        searchVO.setPageSize(10);     // 10개씩
+        searchVO.setSearchDiv("10");  // 제목 검색
+        searchVO.setSearchWord("공지제목_1"); // 검색어
+        
+        // [4. 실행]
+        List<NoticeVO> list = noticeMapper.doRetrieve(searchVO);
+        
+        // [5. 결과 확인]
+        for(NoticeVO vo : list) {
+            log.debug(vo);
+        }
+        
+        assertEquals(10, list.size());
+        
+        // 첫 번째 데이터의 전체 건수 확인 (1002건 중 '공지제목_1' 검색 조건에 맞는 건수)
+        // '공지제목_1', '공지제목_10', '공지제목_100'... 등등이 포함되므로 0보다 커야 함
+        log.debug("검색된 전체 건수: " + list.get(0).getTotalCnt());
+    }
+
+    @Test
     void doSave() {
         // 1. 기존 데이터 삭제 (setUp에서 했지만 안전장치)
         noticeMapper.deleteAll();

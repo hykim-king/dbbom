@@ -1284,3 +1284,188 @@ java.sql.SQLException: ORA-01017: invalid username/password; logon denied
 [2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
 [2025-12-26 10:48:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [2025-12-26 10:48:56] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - │──setup───────────────────│
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - 3.message:등록 되었습니다
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - 4.jsonString:{"flag":1,"message":"등록 되었습니다","no":0,"totalCnt":0,"pageSize":0,"pageNo":0}
+:{}
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - │─tearDown─────────────────│
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 18:47:59] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 18:47:59] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@18025ced, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@13cf7d52, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3a3e4aff, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5d2a4eed, org.springframework.test.context.support.DirtiesContextTestExecutionListener@57459491, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3f0846c6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@77a98a6a, org.springframework.test.context.event.EventPublishingTestExecutionListener@78fbff54]
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 18:47:59] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │──setup───────────────────│
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─getDateTime()            │
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 18:48:00] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 18:48:00] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 18:48:00] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==>  Preparing: SELECT SYSDATE FROM dual
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - dateTime:2025-12-26 09:48:00
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─tearDown─────────────────│
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 18:48:00] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 18:48:00] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5a05dd30, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1b52699c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@dbed7fd, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@250d440, org.springframework.test.context.support.DirtiesContextTestExecutionListener@76c86567, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7e5efcab, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5a4dda2, org.springframework.test.context.event.EventPublishingTestExecutionListener@1d2fb82]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT * FROM users WHERE user_id = ?
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 18:48:00] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 18:48:00] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@41e9f86, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@66f5b8fe, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@233f52f8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@69ec93c2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@19fec3d6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5287ba5f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@b768a65, org.springframework.test.context.event.EventPublishingTestExecutionListener@6897a4a]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.saveAll - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) SELECT NOTICE_SEQ.NEXTVAL, -- 시퀀스로 고유 번호 생성 '공지제목_' || LEVEL, -- '공지제목_1', '공지제목_2' ... 로 들어감 '공지내용_' || LEVEL, -- '공지내용_1' ... SYSDATE, SYSDATE, 'admin01' -- 등록자는 'admin01'로 고정 FROM DUAL CONNECT BY LEVEL <= 1002
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.saveAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.saveAll - <==    Updates: 1002
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doRetrieve - ==>  Preparing: SELECT A.*, B.* FROM ( SELECT TT1.NOTICE_SID, TT1.NOTICE_TITLE, TT1.NOTICE_CONTENT, TO_CHAR(TT1.NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(TT1.NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, TT1.REG_ID, -- 전체 건수 (페이징 처리를 위해 모든 행에 전체 개수를 같이 가져옴) COUNT(*) OVER() AS TOTAL_CNT, -- 번호 매기기 (최신글이 1번이 되도록 정렬) ROW_NUMBER() OVER(ORDER BY TT1.NOTICE_SID DESC) AS RNUM FROM NOTICE TT1 WHERE 1=1 AND NOTICE_TITLE LIKE ? || '%' ) A CROSS JOIN (SELECT 'x' FROM DUAL) B -- 조인 부분은 형식 맞추기용 (생략 가능하나 구조 유지) WHERE RNUM BETWEEN (? * (? - 1) + 1) AND (? * ?)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doRetrieve - ==> Parameters: 공지제목_1(String), 10(Integer), 1(Integer), 10(Integer), 1(Integer)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doRetrieve - <==      Total: 10
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=1024, noticeTitle=공지제목_1002, noticeContent=공지내용_1002, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=1023, noticeTitle=공지제목_1001, noticeContent=공지내용_1001, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=1022, noticeTitle=공지제목_1000, noticeContent=공지내용_1000, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=221, noticeTitle=공지제목_199, noticeContent=공지내용_199, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=220, noticeTitle=공지제목_198, noticeContent=공지내용_198, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=219, noticeTitle=공지제목_197, noticeContent=공지내용_197, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=218, noticeTitle=공지제목_196, noticeContent=공지내용_196, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=217, noticeTitle=공지제목_195, noticeContent=공지내용_195, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=216, noticeTitle=공지제목_194, noticeContent=공지내용_194, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - NoticeVO [noticeSid=215, noticeTitle=공지제목_193, noticeContent=공지내용_193, noticeUpdate=2025-12-26 09:48:00, noticeTime=2025-12-26 09:48:00, regId=admin01, totalCnt=114]
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - 검색된 전체 건수: 114
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 1002
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_02(String), 공지내용_02(String), admin01(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_03(String), 공지내용_03(String), admin01(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 3
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 3
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==>  Preparing: DELETE FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==> Parameters: 1029(Integer)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 18:48:00] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==>  Preparing: UPDATE NOTICE SET NOTICE_TITLE = ?, NOTICE_CONTENT = ?, NOTICE_UPDATE = SYSDATE WHERE NOTICE_SID = ?
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==> Parameters: 공지제목_01_수정(String), 공지내용_01_내용수정(String), 1030(Integer)
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - <==    Updates: 1
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==> Parameters: 1030(Integer)
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - <==      Total: 1
+[2025-12-26 18:48:01] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 18:48:01] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 18:48:01] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

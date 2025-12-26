@@ -3,6 +3,60 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ehr.mapper.NoticeMapper">
 
+  <insert id="saveAll">
+    INSERT INTO NOTICE (
+        NOTICE_SID,
+        NOTICE_TITLE,
+        NOTICE_CONTENT,
+        NOTICE_UPDATE,
+        NOTICE_TIME,
+        REG_ID
+    )
+    SELECT 
+        NOTICE_SEQ.NEXTVAL,      -- 시퀀스로 고유 번호 생성
+        '공지제목_' || LEVEL,    -- '공지제목_1', '공지제목_2' ... 로 들어감
+        '공지내용_' || LEVEL,    -- '공지내용_1' ...
+        SYSDATE,
+        SYSDATE,
+        'admin01'                -- 등록자는 'admin01'로 고정
+    FROM DUAL
+    CONNECT BY LEVEL <![CDATA[ <= ]]> 1002  </insert>
+
+<sql id="searchCondition">
+    <choose>
+        <when test="searchDiv == '10'">
+            AND NOTICE_TITLE LIKE #{searchWord} || '%'
+        </when>
+        <when test="searchDiv == '20'">
+            AND NOTICE_CONTENT LIKE #{searchWord} || '%'
+        </when>
+        <when test="searchDiv == '30'">
+            AND REG_ID LIKE #{searchWord} || '%'
+        </when>
+    </choose>
+  </sql>
+
+  <select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="noticeMap">
+    SELECT A.*, B.*
+    FROM (
+        SELECT 
+            TT1.NOTICE_SID,
+            TT1.NOTICE_TITLE,
+            TT1.NOTICE_CONTENT,
+            TO_CHAR(TT1.NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE,
+            TO_CHAR(TT1.NOTICE_TIME,   'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME,
+            TT1.REG_ID,
+            -- 전체 건수 (페이징 처리를 위해 모든 행에 전체 개수를 같이 가져옴)
+            COUNT(*) OVER() AS TOTAL_CNT,
+            -- 번호 매기기 (최신글이 1번이 되도록 정렬)
+            ROW_NUMBER() OVER(ORDER BY TT1.NOTICE_SID DESC) AS RNUM
+        FROM NOTICE TT1
+        WHERE 1=1
+        <include refid="searchCondition"/>
+    ) A CROSS JOIN (SELECT 'x' FROM DUAL) B -- 조인 부분은 형식 맞추기용 (생략 가능하나 구조 유지)
+    WHERE RNUM BETWEEN (#{pageSize} * (#{pageNo} - 1) + 1) AND (#{pageSize} * #{pageNo})
+  </select>
+
   <resultMap type="com.pcwk.ehr.notice.NoticeVO" id="noticeMap">
     <id     column="NOTICE_SID"      property="noticeSid"/>
     <result column="NOTICE_TITLE"    property="noticeTitle"/>
