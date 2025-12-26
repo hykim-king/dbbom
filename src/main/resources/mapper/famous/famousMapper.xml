@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcwk.ehr.mapper.FamousMapper">
+
+    <resultMap type="com.pcwk.ehr.famous.domain.FamousVO" id="famousMap">
+	    <id     column="famous_sid"          property="famousSid"/>
+	    <result column="famous_author"        property="famousAuthor"/>
+	    <result column="famous_content"          property="famousContent"/>
+	    <result column="famous_emotion"         property="famousEmotion"/>
+	    <result column="famous_viewcount"       property="famousViewcount"/>
+	    <result column="famous_reccount"         property="famousReccount"/>
+	    <result column="famous_time"       property="famousTime"/>
+	    <result column="reg_id"    property="regId"/>
+  </resultMap>
+
+ <!-- 현재 들어 가있는 SQL: (없는 것: getALL)
+    doSave / doSelectOne / getCount / doUpdate 
+    / doDelete / deleteAll / updateViewCount / updateReCount / saveFromDiary -->
+
+    <!-- 1건 저장 -->
+    <insert id="doSave" parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+        INSERT INTO famous_collection (
+            famous_sid,
+            famous_author,
+            famous_content,
+            famous_emotion,
+            famous_viewcount,
+            famous_reccount,
+            famous_time,
+            reg_id
+        ) VALUES (
+            seq_famous.NEXTVAL,
+            #{famousAuthor},
+            #{famousContent},
+            #{famousEmotion},
+            0,
+            0,
+            SYSDATE,
+            #{regId}
+        )
+    </insert>
+    
+   <!-- famousSid로 특정 명언 1건 조회 -->
+     <select id="doSelectOne"
+            parameterType="com.pcwk.ehr.famous.domain.FamousVO"
+            resultMap="famousMap">
+        SELECT
+			  famous_sid,
+			  famous_author,
+			  famous_content,
+			  famous_emotion,
+			  famous_viewcount,
+			  famous_reccount,
+			  famous_time,
+			  reg_id
+       FROM famous_collection
+        WHERE famous_sid = #{famousSid}
+    </select>
+    
+    <!-- 명언 전체 건수(숫자) 조회 -->
+    <select id="getCount"
+            resultType="int">
+        SELECT COUNT(*) FROM famous_collection
+    </select>
+    
+        <!-- 명언 전체 목록 조회(전체 데이터)_최신 명언 위로 -->
+    <select id="getAll" resultMap="famousMap">
+        SELECT
+            famous_sid,
+            famous_author,
+            famous_content,
+            famous_emotion,
+            famous_viewcount,
+            famous_reccount,
+            famous_time,
+            reg_id
+        FROM famous_collection
+        ORDER BY famous_sid DESC
+    </select>
+    
+    
+     <!-- 명언 1건 수정 -->
+     <update id="doUpdate"
+            parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+        UPDATE famous_collection
+        SET
+            famous_content = #{famousContent},
+            famous_emotion = #{famousEmotion}
+        WHERE famous_sid = #{famousSid}
+    </update>
+    
+   
+    
+    <!-- 조회수 증가 -->
+    <update id="updateViewCount"
+        parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+    UPDATE famous_collection
+    SET famous_viewcount = famous_viewcount + 1
+    WHERE famous_sid = #{famousSid}
+    </update>
+    
+    <!-- 추천수 증가 -->
+    <update id="updateReCount"
+        parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+    UPDATE famous_collection
+    SET famous_reccount = famous_reccount + 1
+    WHERE famous_sid = #{famousSid}
+    </update>
+    
+    <!-- 공개 일기등록 시, 명언 자동 등록 -->
+    <insert id="saveFromDiary"
+        parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+    INSERT INTO famous_collection (
+	        famous_sid,
+	        famous_author,
+	        famous_content,
+	        famous_emotion,
+	        famous_viewcount,
+	        famous_reccount,
+	        famous_time,
+	        reg_id
+	    ) VALUES (
+	        seq_famous.NEXTVAL,
+	        #{famousAuthor},
+	        #{famousContent},
+	        #{famousEmotion},
+	        0,
+	        0,
+	        SYSDATE,
+	        #{regId}
+	    )
+    </insert>
+    
+     <!-- 명언 1건 삭제 -->
+    <delete id="doDelete"
+            parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+        DELETE FROM famous_collection
+        WHERE famous_sid = #{famousSid}
+    </delete>
+    
+    <!-- 전체 삭제 _테스트용-->
+    <delete id="deleteAll">
+    DELETE FROM famous_collection
+    </delete>
+    
+
+    
+
+</mapper>
