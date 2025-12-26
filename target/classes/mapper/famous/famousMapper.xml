@@ -29,14 +29,16 @@
             famous_viewcount,
             famous_reccount,
             famous_time,
+            famous_update,
             reg_id
         ) VALUES (
-            seq_famous.NEXTVAL,
+            famous_seq.NEXTVAL,
             #{famousAuthor},
             #{famousContent},
             #{famousEmotion},
             0,
             0,
+            SYSDATE,
             SYSDATE,
             #{regId}
         )

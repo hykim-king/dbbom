@@ -12,6 +12,7 @@ public class FamousVO {
     private int 	famousViewcount; //조회수
     private int 	famousReccount;	 //추천수
     private String 	famousTime;		 //게시글 생성된 시간
+	private String 	famousUpdate;		 //게시글 생성된 날짜
     private String 	regId;			 //등록자 ID
     
     //Default 생성자: 빈 객체 생성 / Spring, MyBatis가 객체를 만들 때 필수!
@@ -22,7 +23,7 @@ public class FamousVO {
 	//모든 인자를 가진 생성자: 객체 생성과 동시에 모든 값을 한 번에 세팅할 때 사용!
 	//this.변수 = 생성자 매개 변수 -> 객체의 필드에 값을 저장!
 	public FamousVO(int famousSid, String famousAuthor, String famousContent, String famousEmotion, int famousViewcount,
-			int famousReccount, String famousTime, String regId) {
+			int famousReccount, String famousTime, String famousUpdate, String regId) {
 		super();
 		this.famousSid = famousSid;
 		this.famousAuthor = famousAuthor;
@@ -31,6 +32,7 @@ public class FamousVO {
 		this.famousViewcount = famousViewcount;
 		this.famousReccount = famousReccount;
 		this.famousTime = famousTime;
+		this.famousUpdate = famousUpdate;
 		this.regId = regId;
 	}
 
@@ -93,6 +95,12 @@ public class FamousVO {
 	public void setFamousTime(String famousTime) {
 		this.famousTime = famousTime;
 	}
+	public String getFamousUpdate() {
+		return famousUpdate;
+	}
+	public void setFamousUpdate(String famousUpdate) {
+		this.famousUpdate = famousUpdate;
+	}
 
 	public String getRegId() {
 		return regId;
@@ -106,12 +114,9 @@ public class FamousVO {
 	//-> 디버깅/로그 출력 시, 매우 중요!
 	@Override
 	public String toString() {
-		return "FamousVO [famousSid=" + famousSid + ", famousAuthor=" + famousAuthor + ", famousContent="
-				+ famousContent + ", famousEmotion=" + famousEmotion + ", famousViewcount=" + famousViewcount
-				+ ", famousReccount=" + famousReccount + ", famousTime=" + famousTime + ", regId=" + regId
-				+ ", toString()=" + super.toString() + "]";
-	}
-    
-    
+		return "FamousVO [famousSid=" + famousSid + ", famousAuthor=" + famousAuthor + ", famousContent=" + famousContent
+				+ ", famousEmotion=" + famousEmotion + ", famousViewcount=" + famousViewcount + ", famousReccount="
+				+ famousReccount + ", famousTime=" + famousTime + ", famousUpdate=" + famousUpdate + ", regId=" + regId + "]";
+	}	
 
 }

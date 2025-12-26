@@ -80,3 +80,280 @@
 [2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
 [2025-12-22 12:46:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [2025-12-22 12:46:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 13:57:55] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 13:57:55] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-26 13:57:57] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 13:57:57] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 13:57:57] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 13:57:57] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 13:57:57] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 13:57:57] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 13:57:58] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 13:57:58] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 13:57:58] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 13:57:58] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 13:57:59] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id ) VALUES ( seq_famous.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, ? )
+[2025-12-26 13:57:59] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 홍길동(String), 시작이 반이다.(String), 행복(String), admin(String)
+[2025-12-26 13:57:59] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 13:57:59] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 13:57:59] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 13:57:59] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 13:57:59] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 14:01:28] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 14:01:28] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3cce5371, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@17bffc17, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6e535154, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@15a34df2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5b38c1ec, org.springframework.test.context.transaction.TransactionalTestExecutionListener@338fc1d8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4722ef0c, org.springframework.test.context.event.EventPublishingTestExecutionListener@48e1f6c7]
+[2025-12-26 14:01:30] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 14:01:30] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 14:01:30] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 14:01:30] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 14:01:30] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 14:01:30] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 14:01:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT * FROM users WHERE user_id = ?
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2025-12-26 14:01:31] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 14:01:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 14:01:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 14:01:45] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 14:01:45] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-26 14:01:47] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 14:01:47] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 14:01:47] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 14:01:47] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 14:01:47] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 14:01:47] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 14:01:48] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id ) VALUES ( seq_famous.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, ? )
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 홍길동(String), 시작이 반이다.(String), 행복(String), admin(String)
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 14:01:48] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 14:01:48] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 14:01:48] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 14:05:40] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 14:05:40] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-26 14:05:41] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 14:05:41] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 14:05:41] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 14:05:41] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 14:05:41] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 14:05:41] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 14:05:43] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, ? )
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 홍길동(String), 시작이 반이다.(String), 행복(String), admin(String)
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 14:05:43] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 14:05:43] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 14:05:43] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 14:06:15] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 14:06:15] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-26 14:06:17] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 14:06:17] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 14:06:17] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 14:06:17] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 14:06:17] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 14:06:17] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 14:06:19] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, ? )
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 홍길동(String), 시작이 반이다.(String), P(String), admin(String)
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 14:06:19] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 14:06:19] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 14:06:19] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:12:04] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:12:04] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-26 17:12:06] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:12:06] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:12:06] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:12:06] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:12:06] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:12:06] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:12:07] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:12:07] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, ? )
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 홍길동(String), 시작이 반이다.(String), P(String), admin(String)
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:12:08] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:12:08] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:12:08] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:21:22] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:21:22] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@338fc1d8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4722ef0c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55cb6996, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807e3f6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@480d3575, org.springframework.test.context.event.EventPublishingTestExecutionListener@f1da57d]
+[2025-12-26 17:21:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:21:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:21:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:21:24] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:21:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:21:24] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:21:25] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:21:25] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:21:25] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:21:25] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:21:52] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:21:52] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@338fc1d8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4722ef0c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55cb6996, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807e3f6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@480d3575, org.springframework.test.context.event.EventPublishingTestExecutionListener@f1da57d]
+[2025-12-26 17:21:53] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:21:53] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:21:53] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:21:53] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:21:53] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:21:53] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:21:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:21:55] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:21:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:21:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:22:14] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:22:14] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@338fc1d8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4722ef0c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55cb6996, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807e3f6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@480d3575, org.springframework.test.context.event.EventPublishingTestExecutionListener@f1da57d]
+[2025-12-26 17:22:15] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:22:15] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:22:15] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:22:15] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:22:15] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:22:15] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:22:17] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), 긍정(String), user01(String)
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:22:17] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:22:17] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:22:17] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:22:52] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:22:52] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@338fc1d8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4722ef0c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55cb6996, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807e3f6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@480d3575, org.springframework.test.context.event.EventPublishingTestExecutionListener@f1da57d]
+[2025-12-26 17:22:53] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:22:53] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:22:53] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:22:53] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:22:53] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:22:53] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:22:54] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:22:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:22:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:22:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 17:22:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 17:22:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:22:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSelectOne - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection WHERE famous_sid = ?
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSelectOne - ==> Parameters: 0(Integer)
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSelectOne - <==      Total: 0
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:22:55] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:22:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:22:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:23:23] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:23:23] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@338fc1d8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4722ef0c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55cb6996, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807e3f6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@480d3575, org.springframework.test.context.event.EventPublishingTestExecutionListener@f1da57d]
+[2025-12-26 17:23:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:23:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:23:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:23:24] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:23:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:23:24] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:23:26] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:23:26] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:23:26] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:23:26] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 17:42:17] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 17:42:17] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@338fc1d8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4722ef0c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55cb6996, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807e3f6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@480d3575, org.springframework.test.context.event.EventPublishingTestExecutionListener@f1da57d]
+[2025-12-26 17:42:19] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 17:42:19] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 17:42:19] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 17:42:19] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 17:42:19] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 17:42:19] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 17:42:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - ┌───────────────────────┐
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - │tearDown 테스트 종료               │
+[2025-12-26 17:42:20] [DEBUG] com.pcwk.ehr.famous.famousDaoTest - └───────────────────────┘
+[2025-12-26 17:42:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 17:42:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
