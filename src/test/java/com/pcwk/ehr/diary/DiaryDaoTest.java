@@ -20,6 +20,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.mapper.DiaryMapper;
+import com.pcwk.ehr.mapper.UserMapper;
+import com.pcwk.ehr.user.domain.UserVO;
 
 @ExtendWith(SpringExtension.class) // JUnit 5와 Spring 연동
 @ContextConfiguration(locations = {
@@ -36,8 +38,13 @@ class DiaryDaoTest {
 	@Autowired
 	DiaryMapper diaryMapper; // 테스트 대상 Mapper
 
+	@Autowired
+	UserMapper userMapper; // 테스트 대상 Mappe
+
     DiaryVO diary01;
     DiaryVO diary02;
+
+	UserVO user01;
 
     DTO dto;
 
@@ -46,9 +53,10 @@ class DiaryDaoTest {
 		log.debug("setup: 테스트 데이터 초기화");	
 		
         int seq = 0;
-
-		diary01 = new DiaryVO(seq, "제목1", "내용1", 0, 0, "Y", 10, "임시reg_dt", "user01");
-        diary02 = new DiaryVO(seq, "제목2", "내용2", 0, 0, "Y", 10, "임시reg_dt", "user01");
+		user01 = new UserVO("user01", "홍길동", "1234", "010-1111-1111", "hong@gmail.com", "홍홍", "반가워요", null, null, "N");
+		
+		diary01 = new DiaryVO(seq, "제목1", "내용1", 0, 0, "Y", 10, "임시reg_dt", "임시update","user01");
+        diary02 = new DiaryVO(seq, "제목2", "내용2", 0, 0, "Y", 10, "임시reg_dt", "임시update", "user01");
 
 
 		dto = new DTO();		
@@ -67,6 +75,11 @@ class DiaryDaoTest {
         
 		//1.
 		diaryMapper.deleteAll();
+		userMapper.deleteAll();
+		int flag1 = userMapper.doSave(user01);
+		assertEquals(1, flag1, "등록 실패!"); // 결과가 1인지 확인
+
+		
 		
 		//2.
 		int flag = diaryMapper.doSave(diary01);
@@ -81,11 +94,15 @@ class DiaryDaoTest {
 		
 	}
 
-	@Disabled
+	//@Disabled
 	@Test
 	void doUpdate() {
 
 		diaryMapper.deleteAll();
+		userMapper.deleteAll();
+		int flag1 = userMapper.doSave(user01);
+		assertEquals(1, flag1, "등록 실패!"); // 결과가 1인지 확인
+
 		
 		int count = diaryMapper.getCount();
 		assertEquals(0, count);

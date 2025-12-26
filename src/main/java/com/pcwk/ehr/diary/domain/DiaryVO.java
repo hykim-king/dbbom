@@ -13,6 +13,7 @@ public class DiaryVO extends DTO {
     private String diaryStatus;
     private int diaryCategory;
     private String diaryUploadDate;
+    private String diaryUpdate;
     private String regId;
 
 
@@ -21,7 +22,7 @@ public class DiaryVO extends DTO {
     }
 
     public DiaryVO(int diarySid, String diaryTitle, String diaryContent, int diaryViewCount, int diaryRecCount,
-                   String diaryStatus, int diaryCategory, String diaryUploadDate, String regId) {
+                   String diaryStatus, int diaryCategory, String diaryUploadDate, String diaryUpdate, String regId) {
         super();
         this.diarySid = diarySid;
         this.diaryTitle = diaryTitle;
@@ -31,6 +32,7 @@ public class DiaryVO extends DTO {
         this.diaryStatus = diaryStatus;
         this.diaryCategory = diaryCategory;
         this.diaryUploadDate = diaryUploadDate;
+        this.diaryUpdate = diaryUpdate;
         this.regId = regId;
     }
 
@@ -100,6 +102,13 @@ public class DiaryVO extends DTO {
         this.diaryUploadDate = diaryUploadDate;
     }
 
+    public String getDiaryUpdate() {
+        return this.diaryUpdate;
+    }
+    public void setDiaryUpdate(String diaryUpdate) {
+        this.diaryUpdate = diaryUpdate;
+    }
+
     public String getRegId() {
         return this.regId;
     }
@@ -111,7 +120,7 @@ public class DiaryVO extends DTO {
     public String toString() {
         return "diaryVO [diarySid=" + diarySid + ", diaryTitle=" + diaryTitle + ", diaryContent=" + diaryContent
                 + ", diaryViewCount=" + diaryViewCount + ", diaryRecCount=" + diaryRecCount + ", diaryStatus="
-                + diaryStatus + ", diaryCategory=" + diaryCategory + ", diaryUploadDate=" + diaryUploadDate
+                + diaryStatus + ", diaryCategory=" + diaryCategory + ", diaryUploadDate=" + diaryUploadDate + ", diaryUpdate=" + diaryUpdate
                 + ", regId=" + regId + ", toString()=" + super.toString() + "]";
     }
 

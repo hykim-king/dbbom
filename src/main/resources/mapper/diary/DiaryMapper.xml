@@ -18,6 +18,7 @@
         DIARY_STATUS,
         DIARY_CATEGORY,
         DIARY_UPLOADDATE,
+        DIARY_UPDATE,
         REG_ID
        ) VALUES (
         DIARY_SEQ.NEXTVAL,
@@ -27,6 +28,7 @@
         0,
         #{diaryStatus},
         #{diaryCategory},
+        sysdate,
         sysdate,
         #{regId}
     )
@@ -117,6 +119,7 @@
                    tt1.diary_status,
                    tt1.diary_category,
                    tt1.diary_uploaddate,
+                   tt1.diary_update,
                    tt1.reg_id
             FROM (
                 SELECT ROWNUM AS rnum, t1.*
