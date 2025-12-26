@@ -18,8 +18,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.pcwk.ehr.cmn.DTO;
+import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.report.domain.ReportVO;
+import com.pcwk.ehr.user.domain.UserVO;
+import com.pcwk.ehr.mapper.DiaryMapper;
 import com.pcwk.ehr.mapper.ReportMapper;
+import com.pcwk.ehr.mapper.UserMapper;
 
 @ExtendWith(SpringExtension.class) // JUnit 5와 Spring 연동
 @ContextConfiguration(locations = {
@@ -36,6 +40,15 @@ class ReportDaoTest {
 	@Autowired
 	ReportMapper reportMapper; // 테스트 대상 Mapper
 
+    @Autowired
+    UserMapper userMapper; // 테스트 대상 Mapper
+
+    @Autowired
+    DiaryMapper diaryMapper; // 테스트 대상 Mapper
+
+    UserVO user01;
+    DiaryVO diary01;
+
     ReportVO report01;
     ReportVO report02;
 
@@ -44,12 +57,18 @@ class ReportDaoTest {
     @BeforeEach
     void setUp() throws Exception {
         log.debug("setup: 테스트 데이터 초기화");  
-        
         int seq = 0;
 
-        // diary만 값, 나머지는 null (제약조건 준수)
-        // 테스트할떄 시퀀스 값 조정 필요
-        report01 = new ReportVO(seq, "신고내용1", 10, null, null, 18, "user01");
+        user01 = new UserVO("user01", "홍길동", "1234", "010-1111-1111", "hong@gmail.com", "홍홍", "반가워요", null, null, "N");
+        diary01 = new DiaryVO(seq, "제목1", "내용1", 0, 0, "Y", 10, "임시reg_dt", "임시update","user01");
+
+        // 다이어리 저장 후 시퀀스 값 할당
+        diaryMapper.deleteAll();
+        int flag2 = diaryMapper.doSave(diary01);
+        assertEquals(1, flag2, "다이어리 등록 실패!");
+
+        // 실제 시퀀스 값으로 ReportVO 생성
+        report01 = new ReportVO(seq, "신고내용1", 10, null, null, diary01.getDiarySid(), "user01");
 
         dto = new DTO();      
     }
@@ -59,9 +78,18 @@ class ReportDaoTest {
 		log.debug("┌──────────────────────────┐");
 		log.debug("│─tearDown()               │");
 		log.debug("└──────────────────────────┘");			
+
+        userMapper.deleteAll();
+        diaryMapper.deleteAll();
+
+        int flag1 = userMapper.doSave(user01);
+        assertEquals(1, flag1, "등록 실패!"); // 결과가 1
+
+        int flag2 = diaryMapper.doSave(diary01);
+        assertEquals(1, flag2, "등록 실패!"); // 결과가 1
 	}
 
-    //@Disabled
+    @Disabled
     @Test
     void doSave() {
         log.debug("┌──────────────────────────┐");
@@ -70,13 +98,16 @@ class ReportDaoTest {
 
         reportMapper.deleteAll();
 
+        
+
+
         int flag = reportMapper.doSave(report01);
         assertEquals(1, flag, "doSave() 실패");
 
         log.debug("doSave() 성공: " + report01);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void doSelectOne() {
         log.debug("┌──────────────────────────┐");

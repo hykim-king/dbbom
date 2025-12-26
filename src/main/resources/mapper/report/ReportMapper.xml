@@ -5,38 +5,38 @@
 <mapper namespace="com.pcwk.ehr.mapper.ReportMapper">
 
     <insert id="doSave" parameterType="ReportVO">
-            <selectKey keyProperty="reportSid" order="AFTER" resultType="int">
-                select REPORT_SEQ.CURRVAL from dual
-            </selectKey>
+        <selectKey keyProperty="reportSid" order="BEFORE" resultType="int">
+            SELECT REPORT_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
 
-            INSERT INTO REPORT
-            (REPORT_SID,
-             REPORT_CONTENT,
-             REPORT_CATEGORY,
-             FAMOUS_SID,
-             COMMENT_SID,
-             DIARY_SID,
-             REG_ID)
-            VALUES (
-                REPORT_SEQ.NEXTVAL,
-                #{reportContent},
-                #{reportCategory},
-                <choose>
-                    <when test="famousSid != null">
-                        #{famousSid}, NULL, NULL
-                    </when>
-                    <when test="commentSid != null">
-                        NULL, #{commentSid}, NULL
-                    </when>
-                    <when test="diarySid != null">
-                        NULL, NULL, #{diarySid}
-                    </when>
-                    <otherwise>
-                        NULL, NULL, NULL
-                    </otherwise>
-                </choose>,
-                #{regId}
-            )
+        INSERT INTO REPORT
+        (REPORT_SID,
+         REPORT_CONTENT,
+         REPORT_CATEGORY,
+         FAMOUS_SID,
+         COMMENT_SID,
+         DIARY_SID,
+         REG_ID)
+        VALUES (
+            #{reportSid},
+            #{reportContent},
+            #{reportCategory},
+            <choose>
+                <when test="famousSid != null">
+                    #{famousSid}, NULL, NULL
+                </when>
+                <when test="commentSid != null">
+                    NULL, #{commentSid}, NULL
+                </when>
+                <when test="diarySid != null">
+                    NULL, NULL, #{diarySid}
+                </when>
+                <otherwise>
+                    NULL, NULL, NULL
+                </otherwise>
+            </choose>,
+            #{regId}
+        )
     </insert>
 
     <delete id ="deleteAll">

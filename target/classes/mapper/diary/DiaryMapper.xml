@@ -5,8 +5,8 @@
 
 
     <insert id="doSave" parameterType="DiaryVO">
-        <selectKey keyProperty="diarySid" order="AFTER" resultType="int">
-            select DIARY_SEQ.CURRVAL from dual
+        <selectKey keyProperty="diarySid" order="BEFORE" resultType="int">
+            SELECT DIARY_SEQ.NEXTVAL FROM DUAL
         </selectKey>
 
         INSERT INTO DIARY
@@ -21,7 +21,7 @@
         DIARY_UPDATE,
         REG_ID
        ) VALUES (
-        DIARY_SEQ.NEXTVAL,
+        #{diarySid},
         #{diaryTitle},
         #{diaryContent},
         0,
