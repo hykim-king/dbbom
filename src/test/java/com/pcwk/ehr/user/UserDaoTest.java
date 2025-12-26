@@ -99,7 +99,7 @@ public class UserDaoTest {
         assertTrue(found);
     }
    
-	@Disabled // 테스트 실행 시 제외하고 싶을 때 사용
+	//@Disabled // 테스트 실행 시 제외하고 싶을 때 사용
 	@Test
 	void doSave() {
 		// 1. 기존 데이터 전체 삭제
