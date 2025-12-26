@@ -1,82 +1,1286 @@
-[2025-12-22 12:36:04] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-[2025-12-22 12:36:04] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@475c9c31, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5c86a017, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5c7bfdc1, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276d6ee, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71687585, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1807f5a7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1b919693, org.springframework.test.context.event.EventPublishingTestExecutionListener@7fb4f2a9]
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController──────────│
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - ┌──────────────────────────┐
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - │──UserServiceImpl─────────│
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - └──────────────────────────┘
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │──setup───────────────────│
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.dao.UserDaoImpl - 1. parameter: none
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.dao.UserDaoImpl - 2. statement:com.pcwk.ehr.user.deleteAll
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │─tearDown()               │
-[2025-12-22 12:36:05] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:36:28] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-[2025-12-22 12:36:28] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@446a1e84, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4f0f2942, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2657d4dd, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5340477f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@47caedad, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7139992f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@69504ae9, org.springframework.test.context.event.EventPublishingTestExecutionListener@387a8303]
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController──────────│
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - ┌──────────────────────────┐
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - │──UserServiceImpl─────────│
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - └──────────────────────────┘
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │──setup───────────────────│
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.dao.UserDaoImpl - 1. parameter: none
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.dao.UserDaoImpl - 2. statement:com.pcwk.ehr.user.deleteAll
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │─tearDown()               │
-[2025-12-22 12:36:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:41:23] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-[2025-12-22 12:41:23] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@446a1e84, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4f0f2942, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2657d4dd, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5340477f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@47caedad, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7139992f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@69504ae9, org.springframework.test.context.event.EventPublishingTestExecutionListener@387a8303]
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController──────────│
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - ┌──────────────────────────┐
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - │──UserServiceImpl─────────│
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - └──────────────────────────┘
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │──setup───────────────────│
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.dao.UserDaoImpl - 1. parameter: none
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.dao.UserDaoImpl - 2. statement:com.pcwk.ehr.user.deleteAll
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │─tearDown()               │
-[2025-12-22 12:41:24] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:46:19] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-[2025-12-22 12:46:19] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@446a1e84, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4f0f2942, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2657d4dd, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5340477f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@47caedad, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7139992f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@69504ae9, org.springframework.test.context.event.EventPublishingTestExecutionListener@387a8303]
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController──────────│
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - ┌──────────────────────────┐
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - │──UserServiceImpl─────────│
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.service.UserServiceImpl - └──────────────────────────┘
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │──setup───────────────────│
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:46:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-[2025-12-22 12:46:20] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-[2025-12-22 12:46:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM member
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 0
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) AS CNT FROM member
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.saveAll - ==>  Preparing: INSERT INTO member SELECT 'pcwk'||level AS user_id, '이상무'||level AS name, '4321a' AS password, MOD(level,50)+1 AS login, MOD(level,30)+1 AS recommand, 'jamesol'||level||'@paran.com' AS email, MOD(level,3)+1 AS grade, SYSDATE - level AS reg_dt FROM dual CONNECT BY LEVEL <=1002
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.saveAll - ==> Parameters: 
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.saveAll - <==    Updates: 1002
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) AS CNT FROM member
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doRetrieve - ==>  Preparing: SELECT A.*, B.* FROM ( SELECT tt1.rnum AS no, tt1.user_id, tt1.name, tt1.password, tt1.login, tt1.recommend, tt1.email, DECODE(tt1.grade,1,'BASIC',2,'SILVER',3,'GOLD','UNKNOWN') AS grade, TO_CHAR(tt1.reg_dt,'YYYY/MM/DD') reg_dt FROM ( SELECT ROWNUM AS rnum,t1.* FROM ( SELECT * FROM member --검색조건 -- searchDiv == 10 회원ID, -- searchDiv == 20 이름, -- searchDiv == 30 이메일 -- searchDiv == 40 회원ID + 이름 WHERE user_id LIKE ?||'%' ORDER BY reg_dt DESC )t1 WHERE ROWNUM<=? * (? - 1) + ? )tt1 WHERE rnum >=? * (? - 1) + 1 ) A CROSS JOIN ( SELECT COUNT(*) total_cnt FROM member --검색조건 WHERE user_id LIKE ?||'%' ) B
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doRetrieve - ==> Parameters: pcwk1(String), 20(Integer), 1(Integer), 20(Integer), 20(Integer), 1(Integer), pcwk1(String)
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doRetrieve - <==      Total: 20
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - ┌──────────────────────────┐
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - │─tearDown()               │
-[2025-12-22 12:46:20] [DEBUG] com.pcwk.ehr.user.UserDaoTest - └──────────────────────────┘
-[2025-12-22 12:46:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-[2025-12-22 12:46:20] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - │──setup───────────────────│
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - 3.message:등록 되었습니다
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - 4.jsonString:{"flag":1,"message":"등록 되었습니다","no":0,"totalCnt":0,"pageSize":0,"pageNo":0}
+:{}
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - │─tearDown─────────────────│
+[2025-12-26 10:37:26] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:37:26] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:37:26] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@686449f9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@665df3c6, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@68b6f0d6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4044fb95, org.springframework.test.context.support.DirtiesContextTestExecutionListener@aa549e5, org.springframework.test.context.transaction.TransactionalTestExecutionListener@36f48b4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5c00384f, org.springframework.test.context.event.EventPublishingTestExecutionListener@3b7ff809]
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │──setup───────────────────│
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─getDateTime()            │
+[2025-12-26 10:37:27] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:37:27] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:37:27] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:37:29] [ERROR] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: ORA-01017: invalid username/password; logon denied
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:557) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:552) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.processError(T4CTTIfun.java:1312) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.processError(T4CTTIoauthenticate.java:699) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:389) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTHWithO5Logon(T4CTTIoauthenticate.java:1455) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1219) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1173) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.authenticateUserForLogon(T4CConnection.java:1030) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:646) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1032) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:90) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:681) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:602) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-4.0.3.jar:?]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:75) ~[mybatis-3.5.16.jar:3.5.16]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at jdk.proxy2/jdk.proxy2.$Proxy42.selectOne(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.16.jar:3.5.16]
+	at jdk.proxy2/jdk.proxy2.$Proxy58.getDateTime(Unknown Source) ~[?:?]
+	at com.pcwk.ehr.time.TimeDaoTest.getDateTime(TimeDaoTest.java:53) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:766) ~[junit-platform-commons-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) [.cp/:?]
+[2025-12-26 10:37:29] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:37:29] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─tearDown─────────────────│
+[2025-12-26 10:37:29] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:37:29] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:37:29] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@691124ee, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@38d80d65, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5403799b, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5a0e0886, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3ad8717d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4293e066, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@d13960e, org.springframework.test.context.event.EventPublishingTestExecutionListener@27f3f512]
+[2025-12-26 10:37:29] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:37:29] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:37:29] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:37:31] [ERROR] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: ORA-01017: invalid username/password; logon denied
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:557) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:552) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.processError(T4CTTIfun.java:1312) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.processError(T4CTTIoauthenticate.java:699) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:389) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTHWithO5Logon(T4CTTIoauthenticate.java:1455) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1219) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1173) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.authenticateUserForLogon(T4CConnection.java:1030) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:646) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1032) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:90) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:681) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:602) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-4.0.3.jar:?]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.delete(DefaultSqlSession.java:212) ~[mybatis-3.5.16.jar:3.5.16]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at jdk.proxy2/jdk.proxy2.$Proxy42.delete(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.delete(SqlSessionTemplate.java:304) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:72) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.16.jar:3.5.16]
+	at jdk.proxy2/jdk.proxy2.$Proxy57.deleteAll(Unknown Source) ~[?:?]
+	at com.pcwk.ehr.user.UserDaoTest.doSave(UserDaoTest.java:60) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:766) ~[junit-platform-commons-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) [.cp/:?]
+[2025-12-26 10:37:31] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:37:31] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:37:31] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@322e49ee, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4aeb0e2b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@648c5fb3, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@47b33e07, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7126e26, org.springframework.test.context.transaction.TransactionalTestExecutionListener@151ab2b9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@13ed066e, org.springframework.test.context.event.EventPublishingTestExecutionListener@4d705112]
+[2025-12-26 10:37:31] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:37:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:37:31] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:37:34] [ERROR] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: ORA-01017: invalid username/password; logon denied
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:557) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:552) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.processError(T4CTTIfun.java:1312) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.processError(T4CTTIoauthenticate.java:699) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:389) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTHWithO5Logon(T4CTTIoauthenticate.java:1455) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1219) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1173) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.authenticateUserForLogon(T4CConnection.java:1030) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:646) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1032) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:90) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:681) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:602) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-4.0.3.jar:?]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.delete(DefaultSqlSession.java:212) ~[mybatis-3.5.16.jar:3.5.16]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at jdk.proxy2/jdk.proxy2.$Proxy42.delete(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.delete(SqlSessionTemplate.java:304) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:72) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.16.jar:3.5.16]
+	at jdk.proxy2/jdk.proxy2.$Proxy59.deleteAll(Unknown Source) ~[?:?]
+	at com.pcwk.ehr.notice.NoticeDaoTest.doSave(noticeDaoTest.java:54) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:766) ~[junit-platform-commons-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) [.cp/:?]
+[2025-12-26 10:37:34] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:37:34] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:37:34] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:37:34] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:37:36] [ERROR] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: ORA-01017: invalid username/password; logon denied
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:557) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:552) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.processError(T4CTTIfun.java:1312) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.processError(T4CTTIoauthenticate.java:699) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:389) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTHWithO5Logon(T4CTTIoauthenticate.java:1455) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1219) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1173) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.authenticateUserForLogon(T4CConnection.java:1030) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:646) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1032) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:90) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:681) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:602) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-4.0.3.jar:?]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.delete(DefaultSqlSession.java:212) ~[mybatis-3.5.16.jar:3.5.16]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at jdk.proxy2/jdk.proxy2.$Proxy42.delete(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.delete(SqlSessionTemplate.java:304) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:72) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.16.jar:3.5.16]
+	at jdk.proxy2/jdk.proxy2.$Proxy59.deleteAll(Unknown Source) ~[?:?]
+	at com.pcwk.ehr.notice.NoticeDaoTest.getAll(noticeDaoTest.java:122) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:766) ~[junit-platform-commons-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) [.cp/:?]
+[2025-12-26 10:37:36] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:37:36] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:37:36] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:37:36] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:37:38] [ERROR] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: ORA-01017: invalid username/password; logon denied
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:557) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:552) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.processError(T4CTTIfun.java:1312) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.processError(T4CTTIoauthenticate.java:699) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:389) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTHWithO5Logon(T4CTTIoauthenticate.java:1455) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1219) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1173) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.authenticateUserForLogon(T4CConnection.java:1030) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:646) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1032) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:90) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:681) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:602) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-4.0.3.jar:?]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.delete(DefaultSqlSession.java:212) ~[mybatis-3.5.16.jar:3.5.16]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at jdk.proxy2/jdk.proxy2.$Proxy42.delete(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.delete(SqlSessionTemplate.java:304) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:72) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.16.jar:3.5.16]
+	at jdk.proxy2/jdk.proxy2.$Proxy59.deleteAll(Unknown Source) ~[?:?]
+	at com.pcwk.ehr.notice.NoticeDaoTest.doDelete(noticeDaoTest.java:104) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:766) ~[junit-platform-commons-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) [.cp/:?]
+[2025-12-26 10:37:38] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:37:38] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:37:38] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:37:38] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:37:40] [ERROR] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: ORA-01017: invalid username/password; logon denied
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:557) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:552) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.processError(T4CTTIfun.java:1312) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.processError(T4CTTIoauthenticate.java:699) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:389) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTHWithO5Logon(T4CTTIoauthenticate.java:1455) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1219) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoauthenticate.doOAUTH(T4CTTIoauthenticate.java:1173) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.authenticateUserForLogon(T4CConnection.java:1030) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:646) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1032) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:90) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:681) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:602) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-4.0.3.jar:?]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.delete(DefaultSqlSession.java:212) ~[mybatis-3.5.16.jar:3.5.16]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at jdk.proxy2/jdk.proxy2.$Proxy42.delete(Unknown Source) ~[?:?]
+	at org.mybatis.spring.SqlSessionTemplate.delete(SqlSessionTemplate.java:304) ~[mybatis-spring-2.1.1.jar:2.1.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:72) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.16.jar:3.5.16]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.16.jar:3.5.16]
+	at jdk.proxy2/jdk.proxy2.$Proxy59.deleteAll(Unknown Source) ~[?:?]
+	at com.pcwk.ehr.notice.NoticeDaoTest.doUpdate(noticeDaoTest.java:79) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:766) ~[junit-platform-commons-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.0.jar:5.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) [junit-platform-launcher-1.11.0.jar:1.11.0]
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) [.cp/:?]
+[2025-12-26 10:37:40] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - │──setup───────────────────│
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - 3.message:등록 되었습니다
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - 4.jsonString:{"flag":1,"message":"등록 되었습니다","no":0,"totalCnt":0,"pageSize":0,"pageNo":0}
+:{}
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - │─tearDown─────────────────│
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:39:48] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:39:48] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6da00fb9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@a202ccb, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@20f12539, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@75b25825, org.springframework.test.context.support.DirtiesContextTestExecutionListener@18025ced, org.springframework.test.context.transaction.TransactionalTestExecutionListener@13cf7d52, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3a3e4aff, org.springframework.test.context.event.EventPublishingTestExecutionListener@5d2a4eed]
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │──setup───────────────────│
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─getDateTime()            │
+[2025-12-26 10:39:48] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:39:48] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:39:48] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:39:49] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==>  Preparing: SELECT SYSDATE FROM dual
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - <==      Total: 1
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - dateTime:2025-12-26 01:39:49
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─tearDown─────────────────│
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:39:49] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:39:49] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@22d477c2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5e85c21b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@41def031, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@38e83838, org.springframework.test.context.support.DirtiesContextTestExecutionListener@39832280, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4966bab1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7f0f84d4, org.springframework.test.context.event.EventPublishingTestExecutionListener@6df4af5]
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT * FROM users WHERE user_id = ?
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:39:49] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:39:49] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@435e416c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6af310c7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4aed311e, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c38cd16, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7ddcb0dc, org.springframework.test.context.transaction.TransactionalTestExecutionListener@f5bf288, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2c1d57bc, org.springframework.test.context.event.EventPublishingTestExecutionListener@26c77f54]
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:39:49] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:39:49] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 10:39:49] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - │──setup───────────────────│
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - 3.message:등록 되었습니다
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - 4.jsonString:{"flag":1,"message":"등록 되었습니다","no":0,"totalCnt":0,"pageSize":0,"pageNo":0}
+:{}
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - │─tearDown─────────────────│
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:46:21] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:46:21] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@75b25825, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@18025ced, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@13cf7d52, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3a3e4aff, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5d2a4eed, org.springframework.test.context.transaction.TransactionalTestExecutionListener@57459491, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3f0846c6, org.springframework.test.context.event.EventPublishingTestExecutionListener@77a98a6a]
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │──setup───────────────────│
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─getDateTime()            │
+[2025-12-26 10:46:21] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:46:21] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:46:21] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:46:22] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==>  Preparing: SELECT SYSDATE FROM dual
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - dateTime:2025-12-26 01:46:22
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─tearDown─────────────────│
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:46:22] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:46:22] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5e85c21b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@41def031, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@38e83838, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@39832280, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4966bab1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7f0f84d4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6df4af5, org.springframework.test.context.event.EventPublishingTestExecutionListener@26e8ff8c]
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT * FROM users WHERE user_id = ?
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:22] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:46:22] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6af310c7, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4aed311e, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4c38cd16, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@7ddcb0dc, org.springframework.test.context.support.DirtiesContextTestExecutionListener@f5bf288, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2c1d57bc, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@26c77f54, org.springframework.test.context.event.EventPublishingTestExecutionListener@3e856100]
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_02(String), 공지내용_02(String), admin01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_03(String), 공지내용_03(String), admin01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 3
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 3
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==>  Preparing: DELETE FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==> Parameters: 9(Integer)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==>  Preparing: UPDATE NOTICE SET NOTICE_TITLE = ?, NOTICE_CONTENT = ?, NOTICE_UPDATE = SYSDATE WHERE NOTICE_SID = ?
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==> Parameters: 공지제목_01_수정(String), 공지내용_01_내용수정(String), 10(Integer)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - <==    Updates: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==> Parameters: 10(Integer)
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:46:22] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:22] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 10:46:23] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - │──setup───────────────────│
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - 3.message:등록 되었습니다
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - 4.jsonString:{"flag":1,"message":"등록 되었습니다","no":0,"totalCnt":0,"pageSize":0,"pageNo":0}
+:{}
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - │─tearDown─────────────────│
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:46:57] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:46:57] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@75b25825, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@18025ced, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@13cf7d52, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3a3e4aff, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5d2a4eed, org.springframework.test.context.transaction.TransactionalTestExecutionListener@57459491, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3f0846c6, org.springframework.test.context.event.EventPublishingTestExecutionListener@77a98a6a]
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │──setup───────────────────│
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─getDateTime()            │
+[2025-12-26 10:46:57] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:46:57] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:46:57] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:46:58] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==>  Preparing: SELECT SYSDATE FROM dual
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - dateTime:2025-12-26 01:46:58
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─tearDown─────────────────│
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:46:58] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:46:58] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5e85c21b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@41def031, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@38e83838, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@39832280, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4966bab1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7f0f84d4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6df4af5, org.springframework.test.context.event.EventPublishingTestExecutionListener@26e8ff8c]
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT * FROM users WHERE user_id = ?
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:58] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:46:58] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6af310c7, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4aed311e, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4c38cd16, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@7ddcb0dc, org.springframework.test.context.support.DirtiesContextTestExecutionListener@f5bf288, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2c1d57bc, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@26c77f54, org.springframework.test.context.event.EventPublishingTestExecutionListener@3e856100]
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_02(String), 공지내용_02(String), admin01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_03(String), 공지내용_03(String), admin01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 3
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 3
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==>  Preparing: DELETE FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==> Parameters: 15(Integer)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==>  Preparing: UPDATE NOTICE SET NOTICE_TITLE = ?, NOTICE_CONTENT = ?, NOTICE_UPDATE = SYSDATE WHERE NOTICE_SID = ?
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==> Parameters: 공지제목_01_수정(String), 공지내용_01_내용수정(String), 16(Integer)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - <==    Updates: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==> Parameters: 16(Integer)
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:46:58] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:46:58] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 10:46:58] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - │──setup───────────────────│
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - 3.message:등록 되었습니다
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - 4.jsonString:{"flag":1,"message":"등록 되었습니다","no":0,"totalCnt":0,"pageSize":0,"pageNo":0}
+:{}
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - ┌──────────────────────────┐
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - │─tearDown─────────────────│
+[2025-12-26 10:48:54] [DEBUG] com.pcwk.ehr.Log4j2Test - └──────────────────────────┘
+[2025-12-26 10:48:54] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:48:54] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6da00fb9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@a202ccb, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@20f12539, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@75b25825, org.springframework.test.context.support.DirtiesContextTestExecutionListener@18025ced, org.springframework.test.context.transaction.TransactionalTestExecutionListener@13cf7d52, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3a3e4aff, org.springframework.test.context.event.EventPublishingTestExecutionListener@5d2a4eed]
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.user.controller.UserController - ┌──────────────────────────┐
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.user.controller.UserController - │──UserController 생성     ──│
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.user.controller.UserController - └──────────────────────────┘
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │──setup───────────────────│
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─getDateTime()            │
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:48:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-26 10:48:55] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-26 10:48:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==>  Preparing: SELECT SYSDATE FROM dual
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.TimeMapper.getDateTime - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - dateTime:2025-12-26 01:48:55
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - ┌──────────────────────────┐
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - │─tearDown─────────────────│
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.time.TimeDaoTest - └──────────────────────────┘
+[2025-12-26 10:48:55] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:48:55] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@22d477c2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5e85c21b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@41def031, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@38e83838, org.springframework.test.context.support.DirtiesContextTestExecutionListener@39832280, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4966bab1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7f0f84d4, org.springframework.test.context.event.EventPublishingTestExecutionListener@6df4af5]
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT * FROM users WHERE user_id = ?
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.user.UserDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:48:55] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-26 10:48:55] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@435e416c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6af310c7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4aed311e, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c38cd16, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7ddcb0dc, org.springframework.test.context.transaction.TransactionalTestExecutionListener@f5bf288, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2c1d57bc, org.springframework.test.context.event.EventPublishingTestExecutionListener@26c77f54]
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_02(String), 공지내용_02(String), admin01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_03(String), 공지내용_03(String), admin01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 3
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 3
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==>  Preparing: DELETE FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - ==> Parameters: 21(Integer)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doDelete - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getCount - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - setup: 테스트 데이터 초기화
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: admin01(String), 관리자(String), 1234(String), 010-0000-0000(String), admin@pcwk.com(String), 관리자닉(String), 소개(String), Y(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==>  Preparing: DELETE FROM NOTICE
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.deleteAll - <==    Updates: 0
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==>  Preparing: INSERT INTO NOTICE ( NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATE, NOTICE_TIME, REG_ID ) VALUES ( NOTICE_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - ==> Parameters: 공지제목_01(String), 공지내용_01(String), admin01(String)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSave - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE ORDER BY NOTICE_SID DESC
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - ==> Parameters: 
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.getAll - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==>  Preparing: UPDATE NOTICE SET NOTICE_TITLE = ?, NOTICE_CONTENT = ?, NOTICE_UPDATE = SYSDATE WHERE NOTICE_SID = ?
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - ==> Parameters: 공지제목_01_수정(String), 공지내용_01_내용수정(String), 22(Integer)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doUpdate - <==    Updates: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==>  Preparing: SELECT NOTICE_SID, NOTICE_TITLE, NOTICE_CONTENT, TO_CHAR(NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE, TO_CHAR(NOTICE_TIME, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME, REG_ID FROM NOTICE WHERE NOTICE_SID = ?
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - ==> Parameters: 22(Integer)
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.mapper.NoticeMapper.doSelectOne - <==      Total: 1
+[2025-12-26 10:48:55] [DEBUG] com.pcwk.ehr.notice.NoticeDaoTest - tearDown: 테스트 종료
+[2025-12-26 10:48:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-26 10:48:56] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
