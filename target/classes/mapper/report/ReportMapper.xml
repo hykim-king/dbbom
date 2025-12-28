@@ -59,5 +59,10 @@
         WHERE report_sid = #{reportSid}
     </select>
     
+    <delete id="doDelete" parameterType="ReportVO">
+        DELETE FROM report
+        WHERE report_sid = #{reportSid}
+    </delete>
+
 
 </mapper>

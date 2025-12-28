@@ -124,5 +124,23 @@ class ReportDaoTest {
 
         log.debug("doSelectOne() 성공: " + outVO);
     }
+
+    @Test
+    void doDelete() {
+        log.debug("┌──────────────────────────┐");
+        log.debug("│─doDelete()               │");
+        log.debug("└──────────────────────────┘");
+
+        // 먼저 저장
+        reportMapper.deleteAll();
+        int flag = reportMapper.doSave(report01);
+        assertEquals(1, flag, "doSave() 실패");
+
+        // 삭제
+        flag = reportMapper.doDelete(report01);
+        assertEquals(1, flag, "doDelete() 실패");
+
+        log.debug("doDelete() 성공: " + report01);
+    }
     
 }
