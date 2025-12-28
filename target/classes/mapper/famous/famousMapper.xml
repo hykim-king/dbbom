@@ -12,6 +12,7 @@
 	    <result column="famous_viewcount"       property="famousViewcount"/>
 	    <result column="famous_reccount"         property="famousReccount"/>
 	    <result column="famous_time"       property="famousTime"/>
+        <result column="famous_update"       property="famousUpdate"/>
 	    <result column="reg_id"    property="regId"/>
   </resultMap>
 
@@ -124,7 +125,7 @@
 	        famous_time,
 	        reg_id
 	    ) VALUES (
-	        seq_famous.NEXTVAL,
+	        famous_seq.NEXTVAL,
 	        #{famousAuthor},
 	        #{famousContent},
 	        #{famousEmotion},
