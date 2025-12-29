@@ -69,7 +69,7 @@ class DiaryDaoTest {
 		log.debug("└──────────────────────────┘");			
 	}
 
-    //@Disabled
+    @Disabled
 	@Test
 	void doSave() {
         
@@ -94,7 +94,7 @@ class DiaryDaoTest {
 		
 	}
 
-	//@Disabled
+	@Disabled
 	@Test
 	void doUpdate() {
 
@@ -138,7 +138,77 @@ class DiaryDaoTest {
 
 	}
 
-	@Disabled
+	//@Disabled
+	@Test
+	void doDelete() {
+		diaryMapper.deleteAll();
+		userMapper.deleteAll();
+		int flag1 = userMapper.doSave(user01);
+		assertEquals(1, flag1, "등록 실패!"); // 결과가 1인지 확인
+
+		
+		int count = diaryMapper.getCount();
+		assertEquals(0, count);
+		
+		//2.
+		int flag = diaryMapper.doSave(diary01);
+		assertEquals(1, flag);
+		log.debug("diary01:{}",diary01);
+		// 3.
+		count = diaryMapper.getCount();
+		assertEquals(1, count);
+
+		DiaryVO param = new DiaryVO();
+		param.setDiarySid(diary01.getDiarySid());
+		
+		// 4.
+		DiaryVO outVO01=diaryMapper.doSelectOne(param);
+		assertNotNull(outVO01);
+		log.debug("outVO01:{}",outVO01);
+		
+		//5. 
+		 
+		// 6.
+		flag = diaryMapper.doDelete(outVO01);
+		assertEquals(1, flag);
+		
+		// 7.
+		DiaryVO resultVO01 = diaryMapper.doSelectOne(outVO01);
+		assertEquals(null, resultVO01);
+		log.debug("resultVO01:{}",resultVO01);
+
+	}
+
+	@Test
+	void doSelectOne() {
+		diaryMapper.deleteAll();
+		userMapper.deleteAll();
+		int flag1 = userMapper.doSave(user01);
+		assertEquals(1, flag1, "등록 실패!"); // 결과가 1인지 확인
+
+		
+		int count = diaryMapper.getCount();
+		assertEquals(0, count);
+		
+		//2.
+		int flag = diaryMapper.doSave(diary01);
+		assertEquals(1, flag);
+		log.debug("diary01:{}",diary01);
+		// 3.
+		count = diaryMapper.getCount();
+		assertEquals(1, count);
+
+		DiaryVO param = new DiaryVO();
+		param.setDiarySid(diary01.getDiarySid());
+		
+		// 4.
+		DiaryVO outVO01=diaryMapper.doSelectOne(param);
+		assertNotNull(outVO01);
+		log.debug("outVO01:{}",outVO01);
+		
+	}
+
+	//@Disabled
 	@Test
 	void doRetrieve() {
 		// 1. 전체 삭제
@@ -150,7 +220,7 @@ class DiaryDaoTest {
 		// 2. 1002건 등록
 		count = diaryMapper.saveAll();
 		// saveAll이 영향받은 행 수를 반환하지 않으면 아래 라인은 주석 처리
-		// assertEquals(1002, count);
+		 assertEquals(1002, count);
 
 		// 3. 페이징 조회용 DTO 세팅
 		dto.setPageNo(1);

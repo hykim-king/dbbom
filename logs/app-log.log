@@ -11597,3 +11597,481 @@ Caused by: org.xml.sax.SAXParseException: 요소 콘텐츠는 올바른 형식�
 [2025-12-29 12:27:17] [DEBUG] com.pcwk.ehr.report.ReportDaoTest - └──────────────────────────┘
 [2025-12-29 12:27:17] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [2025-12-29 12:27:17] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 12:43:33] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 12:43:33] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@17bffc17, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6e535154, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@15a34df2, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextTestExecutionListener@338fc1d8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4722ef0c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@48e1f6c7, org.springframework.test.context.event.EventPublishingTestExecutionListener@55cb6996]
+[2025-12-29 12:43:35] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 12:43:35] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 12:43:35] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 12:43:36] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 2038(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=2038, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 2038(Integer)
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=2038, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 12:43:36, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 12:43:36] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 12:43:36] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 12:43:37] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 12:44:28] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 12:44:28] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@17bffc17, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6e535154, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@15a34df2, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DirtiesContextTestExecutionListener@338fc1d8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4722ef0c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@48e1f6c7, org.springframework.test.context.event.EventPublishingTestExecutionListener@55cb6996]
+[2025-12-29 12:44:29] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 12:44:29] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 12:44:29] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 12:44:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 2039(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=2039, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 2039(Integer)
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=2039, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 12:44:30, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==>  Preparing: DELETE FROM diary WHERE diary_sid = ?
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==> Parameters: 2039(Integer)
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - <==    Updates: 1
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 2039(Integer)
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 0
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - resultVO01:null
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 12:44:31] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 12:44:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 12:44:31] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 12:46:47] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 12:46:47] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6e535154, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@15a34df2, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4722ef0c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48e1f6c7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@55cb6996, org.springframework.test.context.event.EventPublishingTestExecutionListener@1807e3f6]
+[2025-12-29 12:46:48] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 12:46:48] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 12:46:48] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 12:46:49] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:46:49] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 2040(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=2040, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 2040(Integer)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=2040, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 12:46:49, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==>  Preparing: DELETE FROM diary WHERE diary_sid = ?
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==> Parameters: 2040(Integer)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - <==    Updates: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 2040(Integer)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 0
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - resultVO01:null
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 2041(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=2041, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 2041(Integer)
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=2041, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 12:46:49, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 12:46:50] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 12:46:50] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 12:46:50] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:15:40] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:15:40] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6e535154, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@15a34df2, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4722ef0c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48e1f6c7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@55cb6996, org.springframework.test.context.event.EventPublishingTestExecutionListener@1807e3f6]
+[2025-12-29 14:15:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:15:42] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:15:42] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:15:43] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 3044(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=3044, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3044(Integer)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=3044, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:15:42, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==>  Preparing: DELETE FROM diary WHERE diary_sid = ?
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==> Parameters: 3044(Integer)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3044(Integer)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 0
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - resultVO01:null
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 3045(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=3045, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3045(Integer)
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=3045, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:15:42, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:15:43] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:15:43] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:15:43] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:16:21] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:16:21] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6e535154, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@15a34df2, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4722ef0c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48e1f6c7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@55cb6996, org.springframework.test.context.event.EventPublishingTestExecutionListener@1807e3f6]
+[2025-12-29 14:16:23] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:16:23] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:16:23] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:16:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 3046(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=3046, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3046(Integer)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=3046, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:16:23, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==>  Preparing: DELETE FROM diary WHERE diary_sid = ?
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==> Parameters: 3046(Integer)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3046(Integer)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 0
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - resultVO01:null
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 3047(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=3047, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3047(Integer)
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=3047, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:16:23, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:16:24] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:16:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:16:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:17:39] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:17:39] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6e535154, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@15a34df2, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4722ef0c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48e1f6c7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@55cb6996, org.springframework.test.context.event.EventPublishingTestExecutionListener@1807e3f6]
+[2025-12-29 14:17:40] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:17:40] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:17:40] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:17:42] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 3048(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=3048, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3048(Integer)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=3048, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:17:41, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==>  Preparing: DELETE FROM diary WHERE diary_sid = ?
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==> Parameters: 3048(Integer)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3048(Integer)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 0
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - resultVO01:null
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 3049(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=3049, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 3049(Integer)
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=3049, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:17:41, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:17:42] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:17:42] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:17:42] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:18:00] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:18:00] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6e535154, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@15a34df2, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5b38c1ec, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4722ef0c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48e1f6c7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@55cb6996, org.springframework.test.context.event.EventPublishingTestExecutionListener@1807e3f6]
+[2025-12-29 14:18:01] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:18:01] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:18:01] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:18:02] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:18:02] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.saveAll - ==>  Preparing: INSERT INTO DIARY ( DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, REG_ID ) SELECT DIARY_SEQ.NEXTVAL AS diary_sid, '제목' || LEVEL AS diary_title, '내용' || LEVEL AS diary_content, LEVEL AS diary_viewcount, 0 AS diary_reccount, 'Y' AS diary_status, 10 AS diary_category, (SYSDATE - LEVEL) AS diary_uploaddate, 'user01' AS reg_id FROM dual CONNECT BY LEVEL <= 1002
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.saveAll - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.saveAll - <==    Updates: 1002
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doRetrieve - ==>  Preparing: SELECT A.*, B.* FROM ( SELECT tt1.rnum AS no, tt1.diary_sid, tt1.diary_title, tt1.diary_content, tt1.diary_viewcount, tt1.diary_reccount, tt1.diary_status, tt1.diary_category, tt1.diary_uploaddate, tt1.diary_update, tt1.reg_id FROM ( SELECT ROWNUM AS rnum, t1.* FROM ( SELECT * FROM diary WHERE 1=1 ORDER BY diary_uploaddate DESC ) t1 WHERE ROWNUM <= (? * (? - 1) + ?) ) tt1 WHERE tt1.rnum >= (? * (? - 1) + 1) ) A CROSS JOIN ( SELECT COUNT(*) total_cnt FROM diary WHERE 1=1 ) B
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doRetrieve - ==> Parameters: 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doRetrieve - <==      Total: 10
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3050, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=1, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-28 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=1, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3051, diaryTitle=제목2, diaryContent=내용2, diaryViewCount=2, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-27 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=2, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3052, diaryTitle=제목3, diaryContent=내용3, diaryViewCount=3, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-26 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=3, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3053, diaryTitle=제목4, diaryContent=내용4, diaryViewCount=4, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-25 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=4, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3054, diaryTitle=제목5, diaryContent=내용5, diaryViewCount=5, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-24 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=5, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3055, diaryTitle=제목6, diaryContent=내용6, diaryViewCount=6, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-23 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=6, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3056, diaryTitle=제목7, diaryContent=내용7, diaryViewCount=7, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-22 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=7, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3057, diaryTitle=제목8, diaryContent=내용8, diaryViewCount=8, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-21 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=8, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3058, diaryTitle=제목9, diaryContent=내용9, diaryViewCount=9, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-20 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=9, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diaryVO [diarySid=3059, diaryTitle=제목10, diaryContent=내용10, diaryViewCount=10, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-19 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=10, totalCnt=1002, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - 총 건수: 1002
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 1002
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 4052(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=4052, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 4052(Integer)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=4052, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==>  Preparing: DELETE FROM diary WHERE diary_sid = ?
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - ==> Parameters: 4052(Integer)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 4052(Integer)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 0
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - resultVO01:null
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==>  Preparing: DELETE FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==>  Preparing: SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave!selectKey - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==>  Preparing: INSERT INTO DIARY (DIARY_SID, DIARY_TITLE, DIARY_CONTENT, DIARY_VIEWCOUNT, DIARY_RECCOUNT, DIARY_STATUS, DIARY_CATEGORY, DIARY_UPLOADDATE, DIARY_UPDATE, REG_ID ) VALUES ( ?, ?, ?, 0, 0, ?, ?, sysdate, sysdate, ? )
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - ==> Parameters: 4053(Integer), 제목1(String), 내용1(String), Y(String), 10(Integer), user01(String)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSave - <==    Updates: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - diary01:diaryVO [diarySid=4053, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=임시reg_dt, diaryUpdate=임시update, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM diary
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - ==> Parameters: 
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.getCount - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==>  Preparing: SELECT diary_sid AS diarySid, diary_title AS diaryTitle, diary_content AS diaryContent, diary_viewcount AS diaryViewcount, diary_reccount AS diaryReccount, diary_status AS diaryStatus, diary_category AS diaryCategory, TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate, reg_id AS regId FROM diary WHERE diary_sid = ?
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - ==> Parameters: 4053(Integer)
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.mapper.DiaryMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - outVO01:diaryVO [diarySid=4053, diaryTitle=제목1, diaryContent=내용1, diaryViewCount=0, diaryRecCount=0, diaryStatus=Y, diaryCategory=10, diaryUploadDate=2025-12-29 14:18:02, diaryUpdate=null, regId=user01, toString()=DTO [no=0, totalCnt=0, pageSize=0, pageNo=0, searchDiv=null, searchWord=null]]
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - ┌──────────────────────────┐
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - │─tearDown()               │
+[2025-12-29 14:18:03] [DEBUG] com.pcwk.ehr.diary.DiaryDaoTest - └──────────────────────────┘
+[2025-12-29 14:18:03] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:18:03] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

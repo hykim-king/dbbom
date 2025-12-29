@@ -142,6 +142,11 @@
         ) B
     </select>
 
+    <delete id="doDelete" parameterType="DiaryVO">
+        DELETE FROM diary
+        WHERE diary_sid = #{diarySid}
+    </delete>
+
 
 
     
