@@ -48,6 +48,29 @@
     )
   </insert>
 
+  <!-- 여러 건 댓글 대량 등록 (saveAll) -->
+  <insert id="saveAll">
+    INSERT INTO COMMENTS (
+      COMMENT_SID,
+      COMMENT_CONTENT,
+      COMMENT_RECCOUNT,
+      COMMENT_UPLOADDATE,
+      DIARY_SID,
+      FAMOUS_SID,
+      REG_ID
+    )
+    SELECT
+      COMMENT_SEQ.NEXTVAL AS comment_sid,
+      '댓글내용' || ROWNUM AS comment_content,
+      0 AS comment_reccount,
+      SYSDATE AS comment_uploaddate,
+      D.DIARY_SID AS diary_sid,
+      NULL AS famous_sid,
+      'user01' AS reg_id
+    FROM DIARY D
+    WHERE ROWNUM <![CDATA[ <= ]]> 1002
+  </insert>
+
   <!-- 댓글 단건 조회 -->
   <select id="doSelectOne" parameterType="int" resultMap="commentMap">
     SELECT

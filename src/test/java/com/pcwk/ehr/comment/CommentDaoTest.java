@@ -30,7 +30,7 @@ public class CommentDaoTest {
     @Autowired
     ApplicationContext context;
     @Autowired
-    CommentMapper mapper;
+    CommentMapper commentmapper;
     @Autowired
     UserMapper userMapper; // 테스트 대상 Mapper
 
@@ -62,10 +62,15 @@ public class CommentDaoTest {
         int flag2 = diaryMapper.doSave(diary01);
         assertEquals(1, flag2, "다이어리 등록 실패!");
 
+        // 실제로 저장된 diarySid를 조회
+        List<DiaryVO> diaries = diaryMapper.doRetrieve(new DTO() {{ setPageSize(1); setPageNo(1); }});
+        assertTrue(diaries.size() > 0, "다이어리 데이터 없음");
+        int realDiarySid = diaries.get(0).getDiarySid();
+
         comment01 = new CommentVO();
         comment01.setCommentContent("테스트 댓글 내용");
         comment01.setCommentReccount(0);
-        comment01.setDiarySid(diary01.getDiarySid());
+        comment01.setDiarySid(realDiarySid);
         comment01.setFamousSid(null);
         comment01.setRegId("user01");
         dto = new DTO();
@@ -74,74 +79,74 @@ public class CommentDaoTest {
     @AfterEach
     public void tearDown() {
         // 전체 삭제
-        mapper.deleteAll();
+        commentmapper.deleteAll();
     }
+    //@Disabled
     @Test
     void doSave() {
-        mapper.deleteAll();
-        int flag = mapper.doSave(comment01);
+        commentmapper.deleteAll();
+        int flag = commentmapper.doSave(comment01);
         assertEquals(1, flag, "doSave() 실패");
         log.debug("doSave() 성공: " + comment01);
     }
     @Test
     //@Disabled
     void doSelectOne() {
-        mapper.deleteAll();
-        mapper.doSave(comment01);
+        commentmapper.deleteAll();
+        commentmapper.doSave(comment01);
         // commentSid는 시퀀스에 의해 할당되므로, 가장 최근 등록된 댓글을 조회
-        List<CommentVO> list = mapper.doRetrieve(new DTO() {{ setPageSize(1); setPageNo(1); }});
+        List<CommentVO> list = commentmapper.doRetrieve(new DTO() {{ setPageSize(1); setPageNo(1); }});
         assertTrue(list.size() > 0, "등록 후 데이터 없음");
-        CommentVO outVO = mapper.doSelectOne(list.get(0).getCommentSid());
+        CommentVO outVO = commentmapper.doSelectOne(list.get(0).getCommentSid());
         assertNotNull(outVO, "doSelectOne() 실패");
         log.debug("doSelectOne() 성공: " + outVO);
     }
     //@Disabled
     @Test
     void doDelete() {
-        mapper.deleteAll();
-        mapper.doSave(comment01);
-        List<CommentVO> list = mapper.doRetrieve(new DTO() {{ setPageSize(1); setPageNo(1); }});
+        commentmapper.deleteAll();
+        commentmapper.doSave(comment01);
+        List<CommentVO> list = commentmapper.doRetrieve(new DTO() {{ setPageSize(1); setPageNo(1); }});
         assertTrue(list.size() > 0, "등록 후 데이터 없음");
-        int flag = mapper.doDelete(list.get(0).getCommentSid());
+        int flag = commentmapper.doDelete(list.get(0).getCommentSid());
         assertEquals(1, flag, "doDelete() 실패");
         log.debug("doDelete() 성공");
     }
-    //@Disabled
-    // @Test
-    // void doRetrieve() {
-    //     mapper.deleteAll();
-    //     userMapper.deleteAll();
-    //     // user0~user4 계정 등록
-    //     for (int i = 0; i < 5; i++) {
-    //         UserVO u = new UserVO("user" + i, "테스터" + i, "pw" + i, "010-0000-000" + i, "user" + i + "@test.com", "닉" + i, "소개" + i, null, null, "N");
-    //         userMapper.doSave(u);
-    //     }
-    //     // 여러 건 댓글 등록
-    //     for (int i = 0; i < 5; i++) {
-    //         CommentVO vo = new CommentVO();
-    //         vo.setCommentContent("댓글 내용" + i);
-    //         vo.setCommentReccount(i);
-    //         vo.setDiarySid(1);
-    //         vo.setFamousSid(null);
-    //         vo.setRegId("user" + i);
-    //         mapper.doSave(vo);
-    //     }
-    //     dto.setPageSize(3);
-    //     dto.setPageNo(1);
-    //     List<CommentVO> list = mapper.doRetrieve(dto);
-    //     assertNotNull(list, "doRetrieve() 실패");
-    //     assertTrue(list.size() > 0, "조회된 댓글 데이터가 없습니다.");
-    //     for (CommentVO vo : list) {
-    //         log.debug("doRetrieve() 결과: " + vo);
-    //     }
-    // }
+
     //@Disabled
     @Test
     void getCount() {
-        mapper.deleteAll();
-        int before = mapper.getCount();
-        mapper.doSave(comment01);
-        int after = mapper.getCount();
+        commentmapper.deleteAll();
+        int before = commentmapper.getCount();
+        commentmapper.doSave(comment01);
+        int after = commentmapper.getCount();
         assertEquals(before + 1, after, "getCount() 실패");
+    }
+
+    @Test
+    void doRetrieve() {
+        log.debug("┌──────────────────────────┐");
+        log.debug("│─doRetrieve()             │");
+        log.debug("└──────────────────────────┘");
+
+        // 먼저 저장
+        commentmapper.deleteAll();
+        diaryMapper.saveAll();
+        int count = commentmapper.getCount();
+        log.debug("초기 건수: " + count);
+        int flag = commentmapper.saveAll();
+        assertEquals(1002, flag, "doSave() 실패");
+        count = commentmapper.getCount();
+        log.debug("저장 후 건수: " + count);
+
+        dto.setPageSize(10);
+        dto.setPageNo(1);
+
+        List<CommentVO> list = commentmapper.doRetrieve(dto);
+        assertNotNull(list, "doRetrieve() 실패");
+        for (CommentVO vo : list) {
+            log.debug("doRetrieve() 결과: " + vo);
+        }
+
     }
 }

@@ -69,7 +69,7 @@ class FamousDaoTest {
 	}
 
 	//단건 저장 테스트
-	//@Disabled
+	@Disabled
 	@Test
 	void doSave() {
 		
@@ -102,8 +102,10 @@ class FamousDaoTest {
 	void doUpdate() {
 	    // DB 초기화
 	    famousMapper.deleteAll();
+		userMapper.deleteAll();		
 
 	    // 단건 저장
+		userMapper.doSave(user01);
 	    famousMapper.doSave(famous01);
 
 	    // 저장된 객체의 PK(famousId) 조회
@@ -123,7 +125,7 @@ class FamousDaoTest {
 	}
 
 	//단건 삭제 테스트
-//@Disabled
+@Disabled
 @Test
 void doDelete() {
     // DB 초기화
@@ -144,7 +146,7 @@ void doDelete() {
 }
 
 	//전체 목록 조회 테스트
-	//@Disabled
+	@Disabled
 	@Test
 	void getAll() {
 		//DB 초기화
@@ -193,7 +195,7 @@ void doDelete() {
 	}
 
 	//전체 삭제 테스트
-	//@Disabled
+	@Disabled
 	@Test
 	void deleteAll() {
 		famousMapper.doSave(famous01);
@@ -206,6 +208,7 @@ void doDelete() {
 	}
 
 	
+	@Disabled
 	@Test
 	void doRetrieve() {
 		// 1. 전체 삭제

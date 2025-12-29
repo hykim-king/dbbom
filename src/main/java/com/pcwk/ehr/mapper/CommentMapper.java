@@ -26,6 +26,10 @@ public interface CommentMapper {
     // 댓글 개수 조회
     int getCount();
 
+    int saveAll();
+
+
+
     // 댓글 목록(페이징)
     List<CommentVO> doRetrieve(DTO dto);
 
