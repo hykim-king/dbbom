@@ -21,8 +21,8 @@
         'admin01'                -- 등록자는 'admin01'로 고정
     FROM DUAL
     CONNECT BY LEVEL <![CDATA[ <= ]]> 1002  </insert>
-
-<sql id="searchCondition">
+    
+  <sql id="searchCondition">
     <choose>
         <when test="searchDiv == '10'">
             AND NOTICE_TITLE LIKE #{searchWord} || '%'
@@ -67,6 +67,9 @@
   </resultMap>
 
   <insert id="doSave" parameterType="com.pcwk.ehr.notice.NoticeVO">
+    <selectKey keyProperty="noticeSid" resultType="int" order="BEFORE">
+        SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
     INSERT INTO NOTICE (
         NOTICE_SID,
         NOTICE_TITLE,
@@ -75,13 +78,13 @@
         NOTICE_TIME,
         REG_ID
     ) VALUES (
-        NOTICE_SEQ.NEXTVAL,  #{noticeTitle},
+        #{noticeSid},  #{noticeTitle},
         #{noticeContent},
         SYSDATE,             SYSDATE,             #{regId}
     )
   </insert>
 
-  <select id="doSelectOne" parameterType="com.pcwk.ehr.notice.NoticeVO" resultMap="noticeMap">
+  <select id="doSelectOne" parameterType="com.pcwk.ehr.notice.NoticeVO" resultType="com.pcwk.ehr.notice.NoticeVO">
     SELECT 
         NOTICE_SID,
         NOTICE_TITLE,
@@ -105,7 +108,7 @@
     WHERE NOTICE_SID = #{noticeSid}
   </delete>
   
-  <select id="getAll" resultMap="noticeMap">
+  <select id="getAll" resultType="com.pcwk.ehr.notice.NoticeVO">
     SELECT 
         NOTICE_SID,
         NOTICE_TITLE,

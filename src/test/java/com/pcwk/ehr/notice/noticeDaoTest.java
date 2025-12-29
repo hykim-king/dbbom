@@ -67,6 +67,33 @@ class NoticeDaoTest {
     }
 
     @Test
+    void doSelectOne(){
+        // 1. 전체 삭제
+        int count = noticeMapper.deleteAll();
+        assertEquals(0,count);
+
+        // 2. 등록
+        int flag = noticeMapper.doSave(notice01);
+        assertEquals(1,flag);
+        
+        // 3. 조회
+        NoticeVO outVO = noticeMapper.doSelectOne(notice01);
+        assertNotNull(outVO); // <- 데이터가 비었는지 확인
+        
+        // 4.
+        assertEquals(notice01.getNoticeSid(), outVO.getNoticeSid());
+        assertEquals(notice01.getNoticeTitle(), outVO.getNoticeTitle());
+        assertEquals(notice01.getNoticeContent(), outVO.getNoticeContent());
+        assertNotNull(outVO.getNoticeUpdate());
+        assertNotNull(outVO.getNoticeTime());
+        assertEquals(notice01.getRegId(), outVO.getRegId());
+        
+        log.debug("1. outVO:{}",outVO);
+        
+        
+    }
+    
+    @Test
     void doRetrieve() {
         // [1. 전체 삭제]
         noticeMapper.deleteAll();
