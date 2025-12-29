@@ -100,24 +100,26 @@ class FamousDaoTest {
 	//@Disabled
 	@Test
 	void doUpdate() {
-		//DB 초기화
-		famousMapper.deleteAll();
-		
-		//단건 저장
-		famousMapper.doSave(famous01);
+	    // DB 초기화
+	    famousMapper.deleteAll();
 
-		//단건 조회
-		FamousVO outVO = famousMapper.doSelectOne(famous01);
-		outVO.setFamousContent("수정된 명언"); //수정할 내용
-		outVO.setFamousEmotion("중립"); //수정할 감정
+	    // 단건 저장
+	    famousMapper.doSave(famous01);
 
-		//수정 수행 및 확인
-		int flag = famousMapper.doUpdate(outVO);
-		assertEquals(1, flag, "수정 실패!");
+	    // 저장된 객체의 PK(famousId) 조회
+	    FamousVO saved = famousMapper.getAll().get(0); // 또는 doSelectOne(famous01)
 
-		//수정 후, 단건 조회
-		FamousVO upResult = famousMapper.doSelectOne(outVO);
-		isSameFamous(upResult, outVO);//필드 비교
+	    // 수정할 내용 세팅
+	    saved.setFamousContent("수정된 명언");
+	    saved.setFamousEmotion("P");
+
+	    // 수정 수행 및 확인
+	    int flag = famousMapper.doUpdate(saved);
+	    assertEquals(1, flag, "수정 실패!");
+
+	    // 수정 후, 단건 조회
+	    FamousVO upResult = famousMapper.doSelectOne(saved);
+	    isSameFamous(upResult, saved); // 필드 비교
 	}
 
 	//단건 삭제 테스트

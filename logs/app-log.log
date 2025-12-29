@@ -12869,3 +12869,391 @@ Caused by: org.xml.sax.SAXParseException: 요소 콘텐츠는 올바른 형식�
 [2025-12-29 14:42:24] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
 [2025-12-29 14:42:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [2025-12-29 14:42:24] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:47:51] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:47:51] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-29 14:47:52] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:47:52] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:47:52] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:47:53] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) SELECT famous_seq.NEXTVAL AS famous_sid, '작가' || LEVEL AS famous_author, '명언 내용' || LEVEL AS famous_content, 'P' AS famous_emotion, LEVEL AS famous_viewcount, 0 AS famous_reccount, SYSDATE AS famous_time, SYSDATE AS famous_update, 'user01' AS reg_id FROM dual CONNECT BY LEVEL <= 1002
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - ==> Parameters: 
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - <==    Updates: 1002
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - ==>  Preparing: SELECT A.*, B.* FROM ( SELECT tt1.rnum AS no, tt1.famous_sid, tt1.famous_author, tt1.famous_content, tt1.famous_emotion, tt1.famous_viewcount, tt1.famous_reccount, tt1.famous_time, tt1.famous_update, tt1.reg_id FROM ( SELECT ROWNUM AS rnum, t1.* FROM ( SELECT * FROM famous_collection WHERE 1=1 ORDER BY famous_time DESC ) t1 WHERE ROWNUM <= (? * (? - 1) + ?) ) tt1 WHERE tt1.rnum >= (? * (? - 1) + 1) ) A CROSS JOIN ( SELECT COUNT(*) total_cnt FROM famous_collection WHERE 1=1 ) B
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - ==> Parameters: 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer)
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - <==      Total: 10
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15361, famousAuthor=작가218, famousContent=명언 내용218, famousEmotion=P, famousViewcount=218, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15362, famousAuthor=작가219, famousContent=명언 내용219, famousEmotion=P, famousViewcount=219, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15363, famousAuthor=작가220, famousContent=명언 내용220, famousEmotion=P, famousViewcount=220, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15364, famousAuthor=작가221, famousContent=명언 내용221, famousEmotion=P, famousViewcount=221, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15365, famousAuthor=작가222, famousContent=명언 내용222, famousEmotion=P, famousViewcount=222, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15366, famousAuthor=작가223, famousContent=명언 내용223, famousEmotion=P, famousViewcount=223, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15367, famousAuthor=작가224, famousContent=명언 내용224, famousEmotion=P, famousViewcount=224, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15368, famousAuthor=작가225, famousContent=명언 내용225, famousEmotion=P, famousViewcount=225, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15369, famousAuthor=작가226, famousContent=명언 내용226, famousEmotion=P, famousViewcount=226, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=15370, famousAuthor=작가227, famousContent=명언 내용227, famousEmotion=P, famousViewcount=227, famousReccount=0, famousTime=2025-12-29 14:47:52, famousUpdate=2025-12-29 14:47:52, regId=user01]
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:47:53] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1002
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 2
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - 전체 목록: [FamousVO [famousSid=16148, famousAuthor=알베르트 아인슈타인, famousContent=상상력은 지식보다 중요하다., famousEmotion=P, famousViewcount=0, famousReccount=0, famousTime=2025-12-29 14:47:53, famousUpdate=null, regId=user01], FamousVO [famousSid=16147, famousAuthor=알베르트 아인슈타인, famousContent=상상력은 지식보다 중요하다., famousEmotion=P, famousViewcount=0, famousReccount=0, famousTime=2025-12-29 14:47:53, famousUpdate=null, regId=user01]]
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 4
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - ==>  Preparing: DELETE FROM famous_collection WHERE famous_sid = ?
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - ==> Parameters: 16151(Integer)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 1
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - ==>  Preparing: UPDATE famous_collection SET famous_content = ?, famous_emotion = ? WHERE famous_sid = ?
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - ==> Parameters: 수정된 명언(String), 중립(String), 16152(Integer)
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:47:54] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:47:54] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:47:54] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:48:11] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:48:11] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-29 14:48:12] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:12] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:48:12] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:48:14] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) SELECT famous_seq.NEXTVAL AS famous_sid, '작가' || LEVEL AS famous_author, '명언 내용' || LEVEL AS famous_content, 'P' AS famous_emotion, LEVEL AS famous_viewcount, 0 AS famous_reccount, SYSDATE AS famous_time, SYSDATE AS famous_update, 'user01' AS reg_id FROM dual CONNECT BY LEVEL <= 1002
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - <==    Updates: 1002
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - ==>  Preparing: SELECT A.*, B.* FROM ( SELECT tt1.rnum AS no, tt1.famous_sid, tt1.famous_author, tt1.famous_content, tt1.famous_emotion, tt1.famous_viewcount, tt1.famous_reccount, tt1.famous_time, tt1.famous_update, tt1.reg_id FROM ( SELECT ROWNUM AS rnum, t1.* FROM ( SELECT * FROM famous_collection WHERE 1=1 ORDER BY famous_time DESC ) t1 WHERE ROWNUM <= (? * (? - 1) + ?) ) tt1 WHERE tt1.rnum >= (? * (? - 1) + 1) ) A CROSS JOIN ( SELECT COUNT(*) total_cnt FROM famous_collection WHERE 1=1 ) B
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - ==> Parameters: 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - <==      Total: 10
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16370, famousAuthor=작가218, famousContent=명언 내용218, famousEmotion=P, famousViewcount=218, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16371, famousAuthor=작가219, famousContent=명언 내용219, famousEmotion=P, famousViewcount=219, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16372, famousAuthor=작가220, famousContent=명언 내용220, famousEmotion=P, famousViewcount=220, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16373, famousAuthor=작가221, famousContent=명언 내용221, famousEmotion=P, famousViewcount=221, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16374, famousAuthor=작가222, famousContent=명언 내용222, famousEmotion=P, famousViewcount=222, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16375, famousAuthor=작가223, famousContent=명언 내용223, famousEmotion=P, famousViewcount=223, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16376, famousAuthor=작가224, famousContent=명언 내용224, famousEmotion=P, famousViewcount=224, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16377, famousAuthor=작가225, famousContent=명언 내용225, famousEmotion=P, famousViewcount=225, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16378, famousAuthor=작가226, famousContent=명언 내용226, famousEmotion=P, famousViewcount=226, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=16379, famousAuthor=작가227, famousContent=명언 내용227, famousEmotion=P, famousViewcount=227, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=2025-12-29 14:48:13, regId=user01]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1002
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 2
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - 전체 목록: [FamousVO [famousSid=17157, famousAuthor=알베르트 아인슈타인, famousContent=상상력은 지식보다 중요하다., famousEmotion=P, famousViewcount=0, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=null, regId=user01], FamousVO [famousSid=17156, famousAuthor=알베르트 아인슈타인, famousContent=상상력은 지식보다 중요하다., famousEmotion=P, famousViewcount=0, famousReccount=0, famousTime=2025-12-29 14:48:13, famousUpdate=null, regId=user01]]
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 4
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - ==>  Preparing: DELETE FROM famous_collection WHERE famous_sid = ?
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - ==> Parameters: 17160(Integer)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 1
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - ==>  Preparing: UPDATE famous_collection SET famous_content = ?, famous_emotion = ? WHERE famous_sid = ?
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - ==> Parameters: 수정된 명언(String), Y(String), 17161(Integer)
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:14] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:14] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:48:14] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-12-29 14:48:35] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2025-12-29 14:48:35] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@338fc1d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4722ef0c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@48e1f6c7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55cb6996, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1807e3f6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@480d3575, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@f1da57d, org.springframework.test.context.event.EventPublishingTestExecutionListener@194fad1]
+[2025-12-29 14:48:36] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:37] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-12-29 14:48:37] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-12-29 14:48:38] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) SELECT famous_seq.NEXTVAL AS famous_sid, '작가' || LEVEL AS famous_author, '명언 내용' || LEVEL AS famous_content, 'P' AS famous_emotion, LEVEL AS famous_viewcount, 0 AS famous_reccount, SYSDATE AS famous_time, SYSDATE AS famous_update, 'user01' AS reg_id FROM dual CONNECT BY LEVEL <= 1002
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.saveAll - <==    Updates: 1002
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - ==>  Preparing: SELECT A.*, B.* FROM ( SELECT tt1.rnum AS no, tt1.famous_sid, tt1.famous_author, tt1.famous_content, tt1.famous_emotion, tt1.famous_viewcount, tt1.famous_reccount, tt1.famous_time, tt1.famous_update, tt1.reg_id FROM ( SELECT ROWNUM AS rnum, t1.* FROM ( SELECT * FROM famous_collection WHERE 1=1 ORDER BY famous_time DESC ) t1 WHERE ROWNUM <= (? * (? - 1) + ?) ) tt1 WHERE tt1.rnum >= (? * (? - 1) + 1) ) A CROSS JOIN ( SELECT COUNT(*) total_cnt FROM famous_collection WHERE 1=1 ) B
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - ==> Parameters: 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doRetrieve - <==      Total: 10
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17379, famousAuthor=작가218, famousContent=명언 내용218, famousEmotion=P, famousViewcount=218, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17380, famousAuthor=작가219, famousContent=명언 내용219, famousEmotion=P, famousViewcount=219, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17381, famousAuthor=작가220, famousContent=명언 내용220, famousEmotion=P, famousViewcount=220, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17382, famousAuthor=작가221, famousContent=명언 내용221, famousEmotion=P, famousViewcount=221, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17383, famousAuthor=작가222, famousContent=명언 내용222, famousEmotion=P, famousViewcount=222, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17384, famousAuthor=작가223, famousContent=명언 내용223, famousEmotion=P, famousViewcount=223, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17385, famousAuthor=작가224, famousContent=명언 내용224, famousEmotion=P, famousViewcount=224, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17386, famousAuthor=작가225, famousContent=명언 내용225, famousEmotion=P, famousViewcount=225, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17387, famousAuthor=작가226, famousContent=명언 내용226, famousEmotion=P, famousViewcount=226, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - FamousVO [famousSid=17388, famousAuthor=작가227, famousContent=명언 내용227, famousEmotion=P, famousViewcount=227, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=2025-12-29 14:48:37, regId=user01]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1002
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 2
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - 전체 목록: [FamousVO [famousSid=18166, famousAuthor=알베르트 아인슈타인, famousContent=상상력은 지식보다 중요하다., famousEmotion=P, famousViewcount=0, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=null, regId=user01], FamousVO [famousSid=18165, famousAuthor=알베르트 아인슈타인, famousContent=상상력은 지식보다 중요하다., famousEmotion=P, famousViewcount=0, famousReccount=0, famousTime=2025-12-29 14:48:37, famousUpdate=null, regId=user01]]
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 4
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - ==>  Preparing: DELETE FROM famous_collection WHERE famous_sid = ?
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - ==> Parameters: 18169(Integer)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doDelete - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getCount - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - setup: 테스트 데이터 초기화
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==>  Preparing: DELETE FROM famous_collection
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.deleteAll - <==    Updates: 0
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==>  Preparing: INSERT INTO famous_collection ( famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, famous_update, reg_id ) VALUES ( famous_seq.NEXTVAL, ?, ?, ?, 0, 0, SYSDATE, SYSDATE, ? )
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - ==> Parameters: 알베르트 아인슈타인(String), 상상력은 지식보다 중요하다.(String), P(String), user01(String)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSave - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection ORDER BY famous_sid DESC
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - ==> Parameters: 
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.getAll - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - ==>  Preparing: UPDATE famous_collection SET famous_content = ?, famous_emotion = ? WHERE famous_sid = ?
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - ==> Parameters: 수정된 명언(String), P(String), 18170(Integer)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doUpdate - <==    Updates: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSelectOne - ==>  Preparing: SELECT famous_sid, famous_author, famous_content, famous_emotion, famous_viewcount, famous_reccount, famous_time, reg_id FROM famous_collection WHERE famous_sid = ?
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSelectOne - ==> Parameters: 18170(Integer)
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.mapper.FamousMapper.doSelectOne - <==      Total: 1
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - ┌───────────────────────┐
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - │tearDown 테스트 종료               │
+[2025-12-29 14:48:38] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
+[2025-12-29 14:48:38] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-12-29 14:48:38] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
