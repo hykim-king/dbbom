@@ -21,6 +21,9 @@ import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.report.domain.ReportVO;
 import com.pcwk.ehr.user.domain.UserVO;
+
+import oracle.net.aso.l;
+
 import com.pcwk.ehr.mapper.DiaryMapper;
 import com.pcwk.ehr.mapper.ReportMapper;
 import com.pcwk.ehr.mapper.UserMapper;
@@ -62,14 +65,16 @@ class ReportDaoTest {
         user01 = new UserVO("user01", "홍길동", "1234", "010-1111-1111", "hong@gmail.com", "홍홍", "반가워요", null, null, "N");
         diary01 = new DiaryVO(seq, "제목1", "내용1", 0, 0, "Y", 10, "임시reg_dt", "임시update","user01");
 
-        // 다이어리 저장 후 시퀀스 값 할당
+        userMapper.deleteAll();
         diaryMapper.deleteAll();
+
+        int flag1 = userMapper.doSave(user01);
+        assertEquals(1, flag1, "유저 등록 실패!");
+
         int flag2 = diaryMapper.doSave(diary01);
         assertEquals(1, flag2, "다이어리 등록 실패!");
 
-        // 실제 시퀀스 값으로 ReportVO 생성
         report01 = new ReportVO(seq, "신고내용1", 10, null, null, diary01.getDiarySid(), "user01");
-
         dto = new DTO();      
     }
 
@@ -79,14 +84,14 @@ class ReportDaoTest {
 		log.debug("│─tearDown()               │");
 		log.debug("└──────────────────────────┘");			
 
-        userMapper.deleteAll();
-        diaryMapper.deleteAll();
+        // userMapper.deleteAll();
+        // diaryMapper.deleteAll();
 
-        int flag1 = userMapper.doSave(user01);
-        assertEquals(1, flag1, "등록 실패!"); // 결과가 1
+        // int flag1 = userMapper.doSave(user01);
+        // assertEquals(1, flag1, "등록 실패!"); // 결과가 1
 
-        int flag2 = diaryMapper.doSave(diary01);
-        assertEquals(1, flag2, "등록 실패!"); // 결과가 1
+        // int flag2 = diaryMapper.doSave(diary01);
+        // assertEquals(1, flag2, "등록 실패!"); // 결과가 1
 	}
 
     @Disabled
@@ -98,16 +103,13 @@ class ReportDaoTest {
 
         reportMapper.deleteAll();
 
-        
-
-
         int flag = reportMapper.doSave(report01);
         assertEquals(1, flag, "doSave() 실패");
 
         log.debug("doSave() 성공: " + report01);
     }
 
-    //@Disabled
+    @Disabled
     @Test
     void doSelectOne() {
         log.debug("┌──────────────────────────┐");
@@ -125,6 +127,7 @@ class ReportDaoTest {
         log.debug("doSelectOne() 성공: " + outVO);
     }
 
+    @Disabled
     @Test
     void doDelete() {
         log.debug("┌──────────────────────────┐");
@@ -134,6 +137,7 @@ class ReportDaoTest {
         // 먼저 저장
         reportMapper.deleteAll();
         int flag = reportMapper.doSave(report01);
+
         assertEquals(1, flag, "doSave() 실패");
 
         // 삭제
@@ -142,5 +146,33 @@ class ReportDaoTest {
 
         log.debug("doDelete() 성공: " + report01);
     }
+
+    //@Disabled
+    @Test
+    void doRetrieve() {
+        log.debug("┌──────────────────────────┐");
+        log.debug("│─doRetrieve()             │");
+        log.debug("└──────────────────────────┘");
+
+        // 먼저 저장
+        reportMapper.deleteAll();
+        diaryMapper.saveAll();
+        int count = reportMapper.getCount();
+        log.debug("초기 건수: " + count);
+        int flag = reportMapper.saveAll();
+        assertEquals(1002, flag, "doSave() 실패");
+        count = reportMapper.getCount();
+        log.debug("저장 후 건수: " + count);
+
+        dto.setPageSize(10);
+        dto.setPageNo(1);
+
+        List<ReportVO> list = reportMapper.doRetrieve(dto);
+        assertNotNull(list, "doRetrieve() 실패");
+        for (ReportVO vo : list) {
+            log.debug("doRetrieve() 결과: " + vo);
+        }
+    }
+
     
 }

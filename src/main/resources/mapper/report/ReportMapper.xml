@@ -65,4 +65,56 @@
     </delete>
 
 
+    <select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultType="ReportVO">
+    SELECT A.*, B.*
+    FROM (
+        SELECT tt1.rnum AS no,
+               tt1.report_sid,
+               tt1.report_content,
+               tt1.report_category,
+               tt1.famous_sid,
+               tt1.comment_sid,
+               tt1.diary_sid,
+               tt1.reg_id
+        FROM (
+            SELECT ROWNUM AS rnum, t1.*
+            FROM (
+                SELECT *
+                FROM report
+                WHERE 1=1
+                ORDER BY report_sid DESC
+            ) t1
+            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
+        ) tt1
+        WHERE tt1.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNo} - 1) + 1)
+    ) A
+    CROSS JOIN (
+        SELECT COUNT(*) total_cnt
+        FROM report
+        WHERE 1=1
+    ) B
+</select>
+
+    <insert id="saveAll">
+        INSERT INTO REPORT (
+            REPORT_SID,
+            REPORT_CONTENT,
+            REPORT_CATEGORY,
+            FAMOUS_SID,
+            COMMENT_SID,
+            DIARY_SID,
+            REG_ID
+        )
+        SELECT
+            REPORT_SEQ.NEXTVAL AS report_sid,
+            '신고내용' || ROWNUM AS report_content,
+            10 AS report_category,
+            NULL AS famous_sid,
+            NULL AS comment_sid,
+            D.DIARY_SID AS diary_sid,
+            'user01' AS reg_id
+        FROM DIARY D
+        WHERE ROWNUM <![CDATA[ <= ]]> 1002
+    </insert>
+
 </mapper>
