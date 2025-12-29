@@ -69,7 +69,7 @@ class DiaryDaoTest {
 		log.debug("└──────────────────────────┘");			
 	}
 
-    @Disabled
+    //@Disabled
 	@Test
 	void doSave() {
         
@@ -94,7 +94,7 @@ class DiaryDaoTest {
 		
 	}
 
-	@Disabled
+	//@Disabled
 	@Test
 	void doUpdate() {
 

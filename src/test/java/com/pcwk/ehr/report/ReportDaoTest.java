@@ -94,7 +94,7 @@ class ReportDaoTest {
         // assertEquals(1, flag2, "등록 실패!"); // 결과가 1
 	}
 
-    @Disabled
+    //@Disabled
     @Test
     void doSave() {
         log.debug("┌──────────────────────────┐");
@@ -109,7 +109,7 @@ class ReportDaoTest {
         log.debug("doSave() 성공: " + report01);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void doSelectOne() {
         log.debug("┌──────────────────────────┐");
@@ -127,7 +127,7 @@ class ReportDaoTest {
         log.debug("doSelectOne() 성공: " + outVO);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void doDelete() {
         log.debug("┌──────────────────────────┐");
