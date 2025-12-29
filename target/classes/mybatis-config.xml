@@ -12,6 +12,9 @@
   <typeAliases>
     <typeAlias alias="TimeMapperVO" type="com.pcwk.ehr.time.domain.TimeMapperVO"/>
     <typeAlias alias="UserVO" type="com.pcwk.ehr.user.domain.UserVO"/>
+    <typeAlias alias="DiaryVO" type="com.pcwk.ehr.diary.domain.DiaryVO"/>
+    <typeAlias alias="ReportVO" type="com.pcwk.ehr.report.domain.ReportVO"/>
+    <typeAlias alias="ReportVO" type="com.pcwk.ehr.report.domain.ReportVO"/>
   </typeAliases>
  
  </configuration> 

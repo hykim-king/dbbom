@@ -4,7 +4,6 @@ package com.pcwk.ehr.cmn;
  */
 import java.sql.SQLException;
 import java.util.List;
-import com.pcwk.ehr.user.domain.UserVO;
 public interface WorkDiv<T> {
 	
 	/**
@@ -12,7 +11,7 @@ public interface WorkDiv<T> {
 	 * @param dto
 	 * @return
 	 */
-	List<UserVO> doRetrieve(DTO dto);
+	List<T> doRetrieve(DTO dto);
 	/**
 	 * 단건 수정
 	 * @param param
@@ -27,11 +26,11 @@ public interface WorkDiv<T> {
 	int doDelete(T param);
 	
 	/**
-	 * 단건조회
+	 * 단건조회3
 	 * @param param
 	 * @return UserVO
 	 */
-	UserVO doSelectOne(T param);
+	T doSelectOne(T param);
 	/**
 	 * 단건저장
 	 * @param param

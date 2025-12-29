@@ -51,7 +51,11 @@ public class UserDaoTest {
     }
 
     /** 단건조회 테스트: doSelectOne */
+<<<<<<< HEAD
     @Disabled
+=======
+    //@Disabled
+>>>>>>> main
     @Test
     void doSelectOneTest() {
         userMapper.deleteAll();
@@ -64,7 +68,11 @@ public class UserDaoTest {
     }
 
     /** 전체조회 테스트: getAll */
+<<<<<<< HEAD
     @Disabled
+=======
+    //@Disabled
+>>>>>>> main
     @Test
     void getAllTest() {
         userMapper.deleteAll();
@@ -78,7 +86,11 @@ public class UserDaoTest {
     }
 
     /** 검색조회 테스트: doRetrieve (닉네임 LIKE) */
+<<<<<<< HEAD
     @Disabled
+=======
+    //@Disabled
+>>>>>>> main
     @Test
     void doRetrieveByNicknameTest() {
         userMapper.deleteAll();
@@ -120,7 +132,7 @@ public class UserDaoTest {
 		isSameUser(outVO, user01);
 	}
 	
-	@Disabled
+	//@Disabled
 	@Test
 	void doUpdate() {
 		// 1. 초기화
@@ -142,7 +154,11 @@ public class UserDaoTest {
 		isSameUser(upResultVO, outVO);
 	}
 
+<<<<<<< HEAD
 	@Disabled
+=======
+	//@Disabled
+>>>>>>> main
 	@Test
 	void doDelete() {
 		userMapper.deleteAll();
