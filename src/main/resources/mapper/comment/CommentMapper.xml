@@ -7,7 +7,7 @@
   <!-- ResultMap -->
   <resultMap id="commentMap" type="com.pcwk.ehr.comment.domain.CommentVO">
     <id column="comment_sid" property="commentSid"/>
-    <result column= nm,."comment_content" property="commentContent"/>
+    <result column="comment_content" property="commentContent"/>
     <result column="comment_reccount" property="commentReccount"/>
     <result column="comment_uploaddate" property="commentUpdateDate"/>
     <result column="diary_sid" property="diarySid"/>
