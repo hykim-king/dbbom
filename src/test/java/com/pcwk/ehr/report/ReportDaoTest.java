@@ -91,7 +91,7 @@ class ReportDaoTest {
         // assertEquals(1, flag1, "등록 실패!"); // 결과가 1
 
         // int flag2 = diaryMapper.doSave(diary01);
-        // assertEquals(1, flag2, "등록 실패!"); // 결과가 1
+        // assertEquals(1, flag2, "등록 실패!"); // 결과가 \
 	}
 
     //@Disabled
