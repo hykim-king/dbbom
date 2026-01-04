@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* =========================
+   기본 레이아웃
+========================= */
+.page-body {
+    background-color: #f4f4f4;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================
+   컨테이너
+========================= */
+.list-container {
+    width: 900px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   제목
+========================= */
+.list-title {
+    text-align: left;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   테이블
+========================= */
+.list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.list-table-thead {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.list-table th,
+.list-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.list-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* =========================
+   링크
+========================= */
+.list-table a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+.list-table a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   버튼 영역
+========================= */
+.btn-area {
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* 버튼 공통 */
+.btn {
+    padding: 10px 20px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* =========================
+   정렬 유틸 클래스
+========================= */
+td.left {
+    text-align: left;
+}
+
+td.center {
+    text-align: center;
+}
+
+td.right {
+    text-align: right;
+}

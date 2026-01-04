@@ -24446,3 +24446,94 @@ Caused by: org.xml.sax.SAXParseException: 문서에서 루트 요소 다음에 �
 [2025-12-29 17:45:27] [DEBUG] com.pcwk.ehr.famous.FamousDaoTest - └───────────────────────┘
 [2025-12-29 17:45:27] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [2025-12-29 17:45:27] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2026-01-02 22:20:54] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+[2026-01-02 22:20:54] [INFO ] org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6f15d60e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1be2019a, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@29d80d2b, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@58e1d9d, org.springframework.test.context.support.DirtiesContextTestExecutionListener@446a1e84, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4f0f2942, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2657d4dd, org.springframework.test.context.event.EventPublishingTestExecutionListener@5340477f]
+[2026-01-02 22:20:55] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setUp()
+[2026-01-02 22:20:55] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-01-02 22:20:55] [WARN ] com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2026-01-02 22:20:56] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk FROM users WHERE user_id = ?
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setUp()
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doDelete - ==>  Preparing: DELETE FROM users WHERE user_id = ?
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doDelete - ==> Parameters: user01(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doDelete - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==>  Preparing: SELECT COUNT(*) FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getCount - <==      Total: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setUp()
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 0
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user02(String), 김철수(String), 1234(String), 010-2222-2222(String), kim@gmail.com(String), 철이(String), 안녕하세요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user03(String), 이영희(String), 1234(String), 010-3333-3333(String), lee@gmail.com(String), 영희(String), 반갑습니다(String), Y(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getAll - ==>  Preparing: SELECT user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk FROM users ORDER BY user_id ASC
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.getAll - <==      Total: 3
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setUp()
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 3
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk FROM users WHERE user_id = ?
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setUp()
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk FROM users WHERE user_id = ?
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doUpdate - ==>  Preparing: UPDATE users SET user_name = ?, user_pw = ?, user_tel = ?, user_email = ?, nickname = ?, user_intro = ?, admin_chk = ? WHERE user_id = ?
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doUpdate - ==> Parameters: 홍길동_수정(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 닉네임수정(String), 소개글수정(String), N(String), user01(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doUpdate - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==>  Preparing: SELECT user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk FROM users WHERE user_id = ?
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - ==> Parameters: user01(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSelectOne - <==      Total: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.user.UserDaoTest - setUp()
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==>  Preparing: DELETE FROM users
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - ==> Parameters: 
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.deleteAll - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user01(String), 홍길동(String), 1234(String), 010-1111-1111(String), hong@gmail.com(String), 홍홍(String), 반가워요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user02(String), 김철수(String), 1234(String), 010-2222-2222(String), kim@gmail.com(String), 철이(String), 안녕하세요(String), N(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==>  Preparing: INSERT INTO users ( user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk ) VALUES ( ?, ?, ?, ?, ?, ?, ?, SYSDATE, SYSDATE, ? )
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - ==> Parameters: user03(String), 이영희(String), 1234(String), 010-3333-3333(String), lee@gmail.com(String), 영희(String), 반갑습니다(String), Y(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doSave - <==    Updates: 1
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doRetrieve - ==>  Preparing: SELECT user_id, user_name, user_pw, user_tel, user_email, nickname, user_intro, last_rec_time, last_report_time, admin_chk FROM users WHERE nickname LIKE '%' || ? || '%' ORDER BY user_id ASC
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doRetrieve - ==> Parameters: 영희(String)
+[2026-01-02 22:20:56] [DEBUG] com.pcwk.ehr.mapper.UserMapper.doRetrieve - <==      Total: 1
+[2026-01-02 22:20:56] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-01-02 22:20:56] [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -1,0 +1,76 @@
+/* ===== 기본 레이아웃 ===== */
+.page-body {
+    background-color: #f4f4f4;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== 폼 컨테이너 ===== */
+.form-container {
+    width: 600px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== 제목 ===== */
+.form-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* ===== 폼 그룹 ===== */
+.form-group {
+    margin-top: 15px;
+}
+
+/* ===== 라벨 ===== */
+.form-label {
+    display: block;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+/* ===== 입력 요소 ===== */
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* ===== 버튼 영역 ===== */
+.btn-group {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* ===== 버튼 공통 ===== */
+.btn {
+    padding: 10px 25px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+/* ===== 버튼 타입 ===== */
+.btn-submit {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.btn-reset {
+    background-color: #cccccc;
+    color: #333333;
+}
