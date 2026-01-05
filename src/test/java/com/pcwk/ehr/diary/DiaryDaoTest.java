@@ -39,8 +39,9 @@ class DiaryDaoTest {
 	DiaryMapper diaryMapper; // 테스트 대상 Mapper
 
 	@Autowired
-	UserMapper userMapper; // 테스트 대상 Mappe
+	UserMapper userMapper; // 테스트 대상 Mapper
 
+	
     DiaryVO diary01;
     DiaryVO diary02;
 
