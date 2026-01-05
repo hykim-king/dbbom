@@ -132,6 +132,30 @@ public class UserController {
         log.debug("└──────────────────────────┘");
         return "user/signIn";
     }
+    
+    
+    /**
+     * 마이페이지 화면(GET)
+     * URL: /user/myPage.do
+     * VIEW: /WEB-INF/views/user/myPage.jsp
+     */
+    @GetMapping(value="/myPage.do")
+    public String myPageView(HttpSession session, Model model) {
+
+        // 1) 로그인 체크
+        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            // 혹시 URL로 직접 접근할 수 있으니 방어
+            return "redirect:/resources/mainPage.jsp";
+        }
+
+        // 2) 화면에서 쓰도록 모델에 담기(권장)
+        model.addAttribute("loginUser", loginUser);
+
+        return "user/myPage";
+    }
+
+    
 
     /**
      * ✅ 로그인 처리 - AJAX(JSON)
