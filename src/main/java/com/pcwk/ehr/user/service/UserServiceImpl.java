@@ -93,6 +93,12 @@ public class UserServiceImpl implements UserService {
         // WorkDiv.doDelete(UserVO) 사용 (보통 userId 기준으로 삭제되게 매핑되어 있음)
         return userMapper.doDelete(param);
     }
+    
+    @Override
+    public UserVO doFindId(UserVO param) {
+        log.debug("doFindId() param: {}", param);
+        return userMapper.doFindId(param);
+    }
 
     private boolean isEmpty(String s) {
         return s == null || s.trim().isEmpty();
