@@ -103,6 +103,7 @@ class DiaryDaoTest {
 		userMapper.deleteAll();
 		int flag1 = userMapper.doSave(user01);
 		assertEquals(1, flag1, "등록 실패!"); // 결과가 1인지 확인
+		log.debug("user01:{}",user01);
 
 		
 		int count = diaryMapper.getCount();
