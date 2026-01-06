@@ -11,10 +11,10 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
-    <!-- <link rel="stylesheet" href="../css/board.css" /> -->
-<%-- 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/famous_diary_board.css"/>
+   	
+   	
     <script src="../../resources/assets/js/common.js"></script>
-    <script src="../../resources/assets/js/board.js"></script> --%>
   </head>
   <body>
     <header>
@@ -204,19 +204,18 @@
           <c:forEach var="diary" items="${list}">
             <div class="board-row">
               <div class="row-content">
-                <span class="post-tag">${diary.diaryCategory}</span>
+                <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
                 <span class="row-title">${diary.diaryTitle}</span>
                 <!-- 신규글 표시 등은 필요시 추가 -->
               </div>
               <div class="row-meta">
-                <span class="row-author">${diary.regId}</span>
+                <span class="row-author">${diary.nickname}</span>
                 <span class="row-date">${diary.diaryUploadDate}</span>
                 <span class="row-likes">${diary.diaryRecCount}</span>
               </div>
             </div>
           </c:forEach>
 
-          
         </section>
       </div>
     </main>

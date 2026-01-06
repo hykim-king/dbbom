@@ -15,6 +15,7 @@ public class DiaryVO extends DTO {
     private String diaryUploadDate;
     private String diaryUpdate;
     private String regId;
+    private String nickname;
 
 
     public DiaryVO() {
@@ -117,6 +118,14 @@ public class DiaryVO extends DTO {
         this.regId = regId;
     }
 
+    public String getNickname() {
+        return this.nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public String toString() {
         return "diaryVO [diarySid=" + diarySid + ", diaryTitle=" + diaryTitle + ", diaryContent=" + diaryContent
                 + ", diaryViewCount=" + diaryViewCount + ", diaryRecCount=" + diaryRecCount + ", diaryStatus="
@@ -124,9 +133,17 @@ public class DiaryVO extends DTO {
                 + ", regId=" + regId + ", toString()=" + super.toString() + "]";
     }
 
-
-
-
-
+    /**
+     * 카테고리 코드(10,20,30,40)를 한글명으로 반환
+     */
+    public String getDiaryCategoryName() {
+        switch (this.diaryCategory) {
+            case 10: return "명언";
+            case 20: return "행운";
+            case 30: return "감사";
+            case 40: return "성찰";
+            default: return "기타";
+        }
+    }
 
 }

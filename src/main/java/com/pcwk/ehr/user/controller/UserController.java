@@ -27,7 +27,7 @@ public class UserController {
     public UserController() {
         super();
         log.debug("┌──────────────────────────┐");
-        log.debug("│UserController()          │");
+        log.debug("│UserController()라          │");
         log.debug("└──────────────────────────┘");
     }
 
