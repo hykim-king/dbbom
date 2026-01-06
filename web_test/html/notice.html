@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내면의 흔적 - 공지사항</title>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/notice.css" />
+    <script src="../javascript/common.js"></script>
+    <script src="../javascript/notice.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container header-inner flex-between">
+        <a
+          href="../html/index.html"
+          class="logo-area"
+          style="text-decoration: none"
+        >
+          <h1 class="logo-text">내면의 흔적</h1>
+        </a>
+        <div class="auth-links">
+          <a href="../html/login_page.html" class="auth-item">로그인</a>
+          <span class="divider">|</span>
+          <a href="../html/sign_in.html" class="auth-item">회원가입</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="tab-list">
+        <div class="menu-label">메뉴</div>
+
+        <a href="../html/overview.html" class="tab-btn"
+          ><i data-lucide="sparkles"></i> 개요</a
+        >
+
+        <a href="../html/notice.html" class="tab-btn"
+          ><i data-lucide="book-open"></i> 공지사항</a
+        >
+
+        <div class="dropdown-container">
+          <a
+            href="../html/board_diary.html"
+            class="tab-btn"
+            style="width: 100%; border: none"
+          >
+            <i data-lucide="pencil"></i> 게시판
+          </a>
+
+          <div class="dropdown-content">
+            <a href="../html/board_diary.html">📖 일기 공개 게시판</a>
+            <a href="../html/board_quotes.html">💬 명언 모음집</a>
+          </div>
+        </div>
+
+        <a href="../html/mypage.html" class="tab-btn"
+          ><i data-lucide="user"></i> 마이페이지</a
+        >
+      </div>
+
+      <div class="tab-content">
+        <div class="notice-container">
+          <h3 class="section-title">
+            <i data-lucide="megaphone"></i> 공지사항
+          </h3>
+          <ul style="list-style: none">
+            <li class="notice-item important">
+              <div class="notice-info">
+                <span class="notice-badge must">필독</span>
+                <span style="font-weight: 600"
+                  >내면의 흔적 서비스 정식 오픈 안내</span
+                >
+              </div>
+              <span class="notice-date">2024.05.20</span>
+            </li>
+            <li class="notice-item">
+              <div class="notice-info">
+                <span class="notice-badge event">이벤트</span>
+                <span>📝 6월 '감사 일기' 챌린지 참여 안내</span>
+              </div>
+              <span class="notice-date">2024.05.18</span>
+            </li>
+            <li class="notice-item">
+              <div class="notice-info">
+                <span class="notice-badge update">업데이트</span>
+                <span>감정 스티커 기능이 추가되었습니다!</span>
+              </div>
+              <span class="notice-date">2024.05.15</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <p>© 2024 내면의 흔적. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
