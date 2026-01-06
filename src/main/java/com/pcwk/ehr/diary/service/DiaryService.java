@@ -4,5 +4,7 @@ import com.pcwk.ehr.cmn.WorkDiv;
 import com.pcwk.ehr.diary.domain.DiaryVO;
 
 public interface DiaryService extends WorkDiv<DiaryVO>{
+
+    DiaryVO upDoSelectOne(DiaryVO param);
     
 }

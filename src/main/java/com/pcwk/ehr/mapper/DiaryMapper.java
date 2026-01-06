@@ -22,5 +22,9 @@ public interface DiaryMapper extends WorkDiv<DiaryVO> {
     /** 다건 입력 테스트용 */
     int saveAll();
 
+    /** 조회수 증가 */
+    int updateViewCount(DiaryVO param);
+    
+
     
 }
