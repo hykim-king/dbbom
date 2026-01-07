@@ -58,6 +58,11 @@ public class DiaryServiceImpl implements DiaryService
         return diaryMapper.doSave(param);
     }
 
+    @Override
+    public List<DiaryVO> doPublicRetrieve(DTO dto) {
+        return diaryMapper.doPublicRetrieve(dto);
+    }
+
     
 
 }

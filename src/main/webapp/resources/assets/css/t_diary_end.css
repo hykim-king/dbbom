@@ -2,15 +2,16 @@
    1. 변수 및 리셋 (Variables & Reset)
    ========================================= */
 :root {
-  --primary-blue: #3b82f6;
-  --primary-hover: #2563eb;
-  --gradient-start: #eff6ff;
-  --gradient-mid: #eef2ff;
-  --gradient-end: #faf5ff;
+  --primary-gold: #ddb100;
+  --primary-hover: #c49d00;
+  --bg-yellow: #fffdf0;
+  --gradient-start: #fffdf0;
+  --gradient-mid: #fff9db;
+  --gradient-end: #fff3bf;
   --text-main: #1f2937;
   --text-sub: #4b5563;
-  --border-color: #dbeafe;
-  --white-alpha: rgba(255, 255, 255, 0.8);
+  --border-color: #f1f5f9;
+  --white-alpha: rgba(255, 255, 255, 0.9);
 }
 
 * {
@@ -20,8 +21,8 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    sans-serif;
   background: linear-gradient(
     135deg,
     var(--gradient-start),
@@ -35,8 +36,13 @@ body {
   flex-direction: column;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* =========================================
-   2. 레이아웃 유틸리티 (Layout Utilities)
+   2. 레이아웃 유틸리티
    ========================================= */
 .container {
   max-width: 1152px;
@@ -53,17 +59,17 @@ body {
 
 main {
   padding: 2rem 1rem;
-  flex: 1; /* 푸터를 하단에 고정 */
+  flex: 1;
 }
 
 hr {
   border: none;
-  border-top: 1px solid #2146705e;
-  margin: 20px 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 1.5rem 0;
 }
 
 /* =========================================
-   3. 헤더 & 푸터 (Header & Footer)
+   3. 헤더 & 푸터
    ========================================= */
 header {
   background-color: var(--white-alpha);
@@ -71,28 +77,15 @@ header {
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  z-index: 1000;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.header-inner {
+  z-index: 50;
   padding: 1rem 0;
-}
-
-.logo-area {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  background: #7950f2;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary-gold);
 }
 
 .auth-links {
@@ -102,27 +95,21 @@ header {
   font-size: 0.9rem;
 }
 
-.auth-item {
-  text-decoration: none;
-  color: var(--text-sub);
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
 .auth-item:hover {
-  color: var(--primary-blue);
+  color: var(--primary-gold);
 }
 
 footer {
   background-color: rgba(255, 255, 255, 0.6);
   border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
   padding: 2rem 0;
   text-align: center;
   color: var(--text-sub);
 }
 
 /* =========================================
-   4. 메뉴바 & 드롭다운 (Navigation)
+   4. 메뉴바 (Tabs)
    ========================================= */
 .tab-list {
   display: grid;
@@ -133,48 +120,46 @@ footer {
   border-radius: 1rem;
   margin-bottom: 2rem;
   gap: 0.5rem;
-  align-items: center;
-  position: relative;
-  z-index: 500;
 }
 
 .tab-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   padding: 0.6rem;
   border-radius: 0.75rem;
-  text-decoration: none;
-  color: var(--text-sub);
-  font-size: 0.95rem;
   font-weight: 600;
-  transition: all 0.2s ease;
+  color: var(--text-sub);
+  transition: all 0.2s;
+  gap: 8px;
 }
 
 .tab-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: var(--primary-blue);
+  background-color: #fffdf0;
+  color: var(--primary-gold);
   transform: translateY(-2px);
 }
 
+.tab-btn.active,
 .tab-btn[aria-selected="true"] {
-  background-color: var(--primary-blue) !important;
+  background-color: var(--primary-gold) !important;
   color: white !important;
-  box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 5px rgba(221, 177, 0, 0.3);
 }
 
 .menu-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 800;
   color: var(--text-sub);
-  text-align: center;
   font-size: 0.9rem;
-  cursor: default;
 }
 
-/* 드롭다운 영역 */
-.dropdown-container {
-  position: relative;
+/* 게시판 드롭다운 */
+.dropdown-container:hover .dropdown-content {
+  display: block;
+  animation: smoothFadeUp 0.3s ease-out forwards;
 }
 
 .dropdown-content {
@@ -182,38 +167,25 @@ footer {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, 15px);
+  transform: translateX(-50%);
   background: white;
   min-width: 180px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  border: 1px solid #f1f5f9;
   padding: 0.5rem;
   z-index: 999;
-  opacity: 0;
-}
-
-.dropdown-container:hover .dropdown-content {
-  display: block;
-  animation: smoothFadeUp 0.3s ease-out forwards;
-}
-
-.dropdown-content a {
-  display: block;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: var(--text-main);
-  font-size: 0.9rem;
-  border-radius: 8px;
-  transition: background 0.2s;
 }
 
 .dropdown-content a:hover {
-  background-color: #f8fafc;
-  color: var(--primary-blue);
+  background-color: #fffdf0;
+  color: var(--primary-gold);
 }
 
 @keyframes smoothFadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 15px);
+  }
   to {
     opacity: 1;
     transform: translate(-50%, 0);
@@ -221,13 +193,12 @@ footer {
 }
 
 /* =========================================
-   5. 카드 섹션 (Card Section)
+   5. 카드 스타일
    ========================================= */
 .card {
   background-color: var(--white-alpha);
-  backdrop-filter: blur(4px);
   border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
   margin-bottom: 1.5rem;
   overflow: hidden;
 }
@@ -239,7 +210,7 @@ footer {
 .section-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #7950f2;
+  color: var(--primary-gold);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -250,19 +221,15 @@ footer {
   font-weight: bold;
 }
 
-/* 결과 영역 텍스트 정렬 */
-#summaryArea,
-#quoteArea {
-  line-height: 1.7;
+/* 하단 버튼 영역 스타일 */
+#buttonArea {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
-#quoteArea {
-  word-break: keep-all;
-}
-
-/* =========================================
-   6. 모바일 대응 (Responsive)
-   ========================================= */
+/* 모바일 대응 */
 @media (max-width: 640px) {
   .tab-list {
     grid-template-columns: repeat(2, 1fr);

@@ -153,8 +153,43 @@
         <include refid="diaryWhere"></include>
     ) B
     JOIN users u ON A.reg_id = u.user_id
-</select>
-
+    </select>
+    
+    <select id="doPublicRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultType="DiaryVO">
+    SELECT A.*, B.*, u.nickname
+    FROM (
+        SELECT tt1.rnum AS no,
+               tt1.diary_sid,
+               tt1.diary_title,
+               tt1.diary_content,
+               tt1.diary_viewcount,
+               tt1.diary_reccount,
+               tt1.diary_status,
+               tt1.diary_category,
+               tt1.diary_uploaddate,
+               tt1.diary_update,
+               tt1.reg_id
+        FROM (
+            SELECT ROWNUM AS rnum, t1.*
+            FROM (
+                SELECT *
+                FROM diary
+                WHERE diary_status = 'Y'
+                <include refid="diaryWhere"></include>
+                ORDER BY diary_uploaddate DESC
+            ) t1
+            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
+        ) tt1
+        WHERE tt1.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNo} - 1) + 1)
+    ) A
+    CROSS JOIN (
+        SELECT COUNT(*) total_cnt
+        FROM diary
+        WHERE diary_status = 'Y'
+        <include refid="diaryWhere"></include>
+    ) B
+    JOIN users u ON A.reg_id = u.user_id
+    </select>
     <delete id="doDelete" parameterType="DiaryVO">
         DELETE FROM diary
         WHERE diary_sid = #{diarySid}

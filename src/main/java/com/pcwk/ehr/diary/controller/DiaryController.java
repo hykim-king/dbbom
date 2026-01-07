@@ -35,9 +35,9 @@ public class DiaryController {
     }
 
     @GetMapping(value="/diaryList.do")
-    public String doRetrieve(DTO dto, Model model) {
+    public String doPublicRetrieve(DTO dto, Model model) {
         log.debug("┌---------------------------┐");
-        log.debug("│doRetrieve dto: " + dto);  
+        log.debug("│doPublicRetrieve dto: " + dto);  
         log.debug("└---------------------------┘");
 
         String viewname = "diary/diary_list";
@@ -54,13 +54,33 @@ public class DiaryController {
         dto.setSearchWord(searchWord);
         log.debug("dto: " + dto);
 
-        List<DiaryVO> list = diaryService.doRetrieve(dto);
+        List<DiaryVO> list = diaryService.doPublicRetrieve(dto);
         model.addAttribute("vo" , dto);
         model.addAttribute("list", list);
 
         return viewname;
 
 
+    }
+
+    @GetMapping("/fDiaryWrite.do")
+    public String fDiaryWrite() {
+        return "diary/f_diary_write";
+    }
+
+    @GetMapping("/fDiaryStart.do")
+    public String fDiaryStart() {
+        return "diary/f_diary_start";
+    }
+
+    @GetMapping("/lDiaryWrite.do")
+    public String lDiaryWrite() {
+        return "diary/l_diary_write";
+    }
+
+    @GetMapping("/lDiaryStart.do")
+    public String lDiaryStart() {
+        return "diary/l_diary_start";
     }
 
     @PostMapping(value="/diarySave.do", produces="application/json;charset=UTF-8")

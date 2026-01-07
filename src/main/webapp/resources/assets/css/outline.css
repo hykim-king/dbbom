@@ -17,11 +17,6 @@
     padding: 0;
 }
 
-a{
-    text-decoration: none;
-    color: white;
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
@@ -207,11 +202,10 @@ main {
 
 /*줄 색상 및 굵기*/
 hr {
-  border: none;           /* 기본 테두리 제거 */
-  border-top: 2px solid #1837a0; /* 선 색상과 두께 */
-  margin: 1rem 0;         /* 위아래 간격 */
+    border: none;
+    border-top: 1px solid #2146705e;
+    margin: 20px 0; /*줄 위아래 공간 확보*/
 }
-
 
 
 /* 카드 공통 스타일 */
@@ -222,29 +216,9 @@ hr {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     margin-bottom: 1.5rem;
-
-     /* 중앙 정렬을 위한 flexbox */
-    display: flex;
-    justify-content: center; /* 가로 중앙 */
-    align-items: center;    /* 세로 중앙 */
-
-    text-align: center; /* 여러 줄일 때 중앙 정렬 */
 }
 
 .card-body {
-    padding: 1.5rem;
-    padding: 1.5rem;
-    height: 100%; /* 카드 전체 높이 사용 */
-    display: flex; /* 내부 요소 중앙 정렬 */
-    flex-direction: column; /* 세로로 쌓기 */
-    justify-content: center; /* 세로 중앙 */
-    align-items: center;     /* 가로 중앙 */
-    text-align: center;      /* 여러 줄일 때 중앙 정렬 */
-    
-}
-
-.card-body-2{
-    padding: 1.5rem;
     padding: 1.5rem;
 }
 
@@ -296,7 +270,7 @@ hr {
 .info-grid {
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: 1px solid #597dc45b;
+    border-top: 1px solid #f3f4f6;
     display: grid;
     gap: 1rem;
 }
@@ -306,16 +280,8 @@ hr {
     border-radius: 0.5rem;
 }
 
-
-
-.info-box.blue { 
-background-color: #eff6ff;
- text-align: left; }
-
-.info-box.indigo { 
-background-color: #eef2ff;
-text-align: left;
-}
+.info-box.blue { background-color: #eff6ff; }
+.info-box.indigo { background-color: #eef2ff; }
 
 .info-box h4 {
     font-weight: 700;
@@ -390,25 +356,6 @@ text-align: left;
 .blue-theme .time-stamp { color: #2563eb; }
 .purple-theme .time-stamp { color: #9333ea; }
 
-.diary-btn {
-  display: block;        /* 한 줄 전체 차지 */
-  margin: 1rem auto 0;   /* 위쪽 간격 1rem, 가운데 정렬 */
-  padding: 0.6rem 1.2rem;
-  background-color: #3b82f6;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  text-decoration: none;
-}
-
-.diary-btn:hover {
-  background-color: #2365d0;
-}
-
-
 /* 푸터 */
 footer {
     background-color: rgba(255, 255, 255, 0.6);
@@ -418,8 +365,6 @@ footer {
     text-align: center;
     color: var(--text-sub);
 }
-
-
 
 /* 모바일 대응 */
 @media (max-width: 640px) {

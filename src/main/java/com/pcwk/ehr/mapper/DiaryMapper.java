@@ -2,6 +2,8 @@ package com.pcwk.ehr.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+
+import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.WorkDiv;
 import com.pcwk.ehr.diary.domain.DiaryVO;
 
@@ -25,6 +27,6 @@ public interface DiaryMapper extends WorkDiv<DiaryVO> {
     /** 조회수 증가 */
     int updateViewCount(DiaryVO param);
     
-
-    
+    /** 공개글(공개 일기)만 조회 */
+    List<DiaryVO> doPublicRetrieve(DTO dto);
 }

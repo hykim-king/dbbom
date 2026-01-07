@@ -2,22 +2,19 @@
    1. 변수 및 리셋 (Variables & Reset)
    ========================================= */
 :root {
-  /* 색상 변수 통합 */
-  --primary-blue: #3b82f6;
-  --primary-hover: #2563eb;
-  --gradient-start: #eff6ff;
-  --gradient-mid: #eef2ff;
-  --gradient-end: #faf5ff;
+  /* 메인 컬러: Gold Theme */
+  --primary-gold: #ddb100;
+  --primary-hover: #c49d00;
+
+  /* 배경색: 연한 노란색 */
+  --gradient-start: #fffdf0;
+  --gradient-mid: #fff9db;
+  --gradient-end: #fff3bf;
+
   --text-main: #1f2937;
   --text-sub: #4b5563;
-  --border-color: #dbeafe;
+  --border-color: #f1f5f9;
   --white-alpha: rgba(255, 255, 255, 0.8);
-
-  /* 태그 및 포인트 색상 */
-  --color-quote: #e9d5ff;
-  --color-gratitude: #fde68a;
-  --color-luck: #66eb71a4;
-  --color-reflection: #bae6fd;
 }
 
 * {
@@ -91,29 +88,13 @@ header {
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   cursor: pointer;
-}
-
-.logo-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  background: linear-gradient(135deg, var(--primary-blue), #4f46e5);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  background: #7950f2;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary-gold);
 }
 
 .auth-links {
@@ -123,14 +104,8 @@ header {
   font-size: 0.9rem;
 }
 
-.auth-item {
-  color: var(--text-sub);
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
 .auth-item:hover {
-  color: var(--primary-blue);
+  color: var(--primary-gold);
 }
 
 .divider {
@@ -147,7 +122,7 @@ footer {
 }
 
 /* =========================================
-   4. 메뉴바 및 드롭다운 (Tabs & Dropdown)
+   4. 메뉴바 (Tabs & Navigation)
    ========================================= */
 .tab-list {
   display: grid;
@@ -159,9 +134,8 @@ footer {
   margin-bottom: 2rem;
   gap: 0.5rem;
   align-items: center;
-  overflow: visible;
   position: relative;
-  z-index: 100;
+  z-index: 20;
 }
 
 .tab-btn {
@@ -171,25 +145,25 @@ footer {
   gap: 8px;
   padding: 0.6rem;
   border-radius: 0.75rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-sub);
   cursor: pointer;
   transition: all 0.2s ease;
-  width: 100%;
+  height: 100%;
 }
 
 .tab-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: var(--primary-blue);
+  background-color: #fffdf0;
+  color: var(--primary-gold);
   transform: translateY(-2px);
 }
 
 .tab-btn.active,
 .tab-btn[aria-selected="true"] {
-  background-color: var(--primary-blue) !important;
+  background-color: var(--primary-gold) !important;
   color: white !important;
-  box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 5px rgba(221, 177, 0, 0.3);
 }
 
 .menu-label {
@@ -198,22 +172,16 @@ footer {
   justify-content: center;
   font-weight: 800;
   color: var(--text-sub);
-  cursor: default;
   font-size: 0.9rem;
+  cursor: default;
 }
 
-/* .menu-label::after {
-  content: "|";
-  margin-left: 1.2rem;
-  color: #cbd5e1;
-} */
-
-/* 드롭다운 */
+/* 드롭다운 메뉴 */
 .dropdown-container {
   position: relative;
-  display: flex;
-  justify-content: center;
+  height: 100%;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -222,13 +190,11 @@ footer {
   transform: translate(-50%, 0);
   background: white;
   min-width: 180px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 그림자를 조금 더 명확하게 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   border: 1px solid #f1f5f9;
   padding: 0.5rem;
-
-  /* [수정] 매우 높은 값을 주어 다른 카드(.card) 요소들보다 위에 오도록 합니다. */
-  z-index: 9999;
+  z-index: 999;
 }
 
 .dropdown-container:hover .dropdown-content {
@@ -240,13 +206,12 @@ footer {
   display: block;
   padding: 10px 15px;
   border-radius: 8px;
-  color: var(--text-main);
   font-size: 0.9rem;
 }
 
 .dropdown-content a:hover {
-  background-color: #f8fafc;
-  color: var(--primary-blue);
+  background-color: #fffdf0;
+  color: var(--primary-gold);
 }
 
 @keyframes smoothFadeUp {
@@ -265,7 +230,6 @@ footer {
    ========================================= */
 .diary-card {
   background-color: var(--white-alpha);
-  backdrop-filter: blur(4px);
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -284,7 +248,7 @@ footer {
 .icon-circle {
   width: 32px;
   height: 32px;
-  background: linear-gradient(to right, #8861ed, #544ce7);
+  background: linear-gradient(to right, #ffdc4b, #ddb100);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -295,15 +259,12 @@ footer {
 .diary-title-text {
   font-size: 1.2rem;
   font-weight: 700;
-  background: linear-gradient(to right, #6c38ef, #544ce7);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary-gold);
 }
 
 .diary-header {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .diary-title {
@@ -311,7 +272,7 @@ footer {
   padding: 0.75rem;
   border-radius: 0.5rem;
   border: 1px solid #cbd5e1;
-  outline: none;
+  outline-color: var(--primary-gold);
 }
 
 .diary-date {
@@ -326,7 +287,7 @@ footer {
   border-radius: 0.5rem;
   border: 1px solid #cbd5e1;
   resize: vertical;
-  outline: none;
+  outline-color: var(--primary-gold);
 }
 
 .diary-footer {
@@ -338,41 +299,29 @@ footer {
 .radio-group {
   display: flex;
   gap: 1rem;
-  align-items: center;
 }
 
 .diary-btn {
   padding: 0.6rem 2rem;
-  background-color: #7950f2;
+  background-color: var(--primary-gold);
   color: white;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  transition: background 0.2s;
 }
 
 .diary-btn:hover {
   background-color: var(--primary-hover);
 }
 
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1837a0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-/* 애니메이션 */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@media (max-width: 640px) {
+  .tab-list {
+    grid-template-columns: repeat(2, 1fr);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .header-inner {
+    flex-direction: column;
+    gap: 1rem;
   }
 }

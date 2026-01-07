@@ -2,22 +2,21 @@
    1. 변수 및 리셋 (Variables & Reset)
    ========================================= */
 :root {
-  /* 색상 변수 통합 */
+  /* 배경색: 연한 노란색으로 변경 */
+  --bg-yellow: #fffdf0;
+  --gradient-start: #fffdf0;
+  --gradient-mid: #fff9db;
+  --gradient-end: #fff3bf;
+
   --primary-blue: #3b82f6;
   --primary-hover: #2563eb;
-  --gradient-start: #eff6ff;
-  --gradient-mid: #eef2ff;
-  --gradient-end: #faf5ff;
   --text-main: #1f2937;
   --text-sub: #4b5563;
-  --border-color: #dbeafe;
-  --white-alpha: rgba(255, 255, 255, 0.8);
+  --border-color: #f1f5f9;
+  --white-alpha: rgba(255, 255, 255, 0.9);
 
-  /* 태그 및 포인트 색상 */
-  --color-quote: #e9d5ff;
-  --color-gratitude: #fde68a;
-  --color-luck: #66eb71a4;
-  --color-reflection: #bae6fd;
+  /* 포인트 컬러 (기존 테마 유지) */
+  --accent-blue: #1837a0;
 }
 
 * {
@@ -29,6 +28,7 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
     sans-serif;
+  /* 연한 노란색 그라데이션 배경 */
   background: linear-gradient(
     135deg,
     var(--gradient-start),
@@ -70,8 +70,8 @@ main {
 
 hr {
   border: none;
-  border-top: 1px solid #2146705e;
-  margin: 20px 0;
+  border-top: 2px solid var(--accent-blue);
+  margin: 1.5rem 0;
 }
 
 /* =========================================
@@ -84,33 +84,34 @@ header {
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 1rem 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.header-inner {
+  padding: 1rem 0;
 }
 
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
+  gap: 0.5rem;
 }
 
 .logo-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, var(--primary-blue), #4f46e5);
+  background: linear-gradient(135deg, #3b82f6, #4f46e5);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  background: #7950f2;
+  background: #ddb100;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -147,21 +148,20 @@ footer {
 }
 
 /* =========================================
-   4. 메뉴바 및 드롭다운 (Tabs & Dropdown)
+   4. 메뉴바 (Tabs & Navigation)
    ========================================= */
 .tab-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(4px);
   padding: 0.4rem;
   border-radius: 1rem;
   margin-bottom: 2rem;
   gap: 0.5rem;
   align-items: center;
-  overflow: visible;
   position: relative;
-  z-index: 100;
+  z-index: 20;
 }
 
 .tab-btn {
@@ -171,27 +171,26 @@ footer {
   gap: 8px;
   padding: 0.6rem;
   border-radius: 0.75rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-sub);
-  cursor: pointer;
   transition: all 0.2s ease;
-  width: 100%;
 }
 
 .tab-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: var(--primary-blue);
+  background-color: #fffdf0; /* 마우스 올렸을 때 연한 노란색 배경 */
+  color: #ddb100; /* 텍스트는 골드 색상 */
   transform: translateY(-2px);
+  transition: all 0.2s ease;
 }
 
 .tab-btn.active,
 .tab-btn[aria-selected="true"] {
-  background-color: var(--primary-blue) !important;
+  background-color: #ddb100 !important;
   color: white !important;
-  box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
 }
 
+/* 메뉴 라벨 (클릭 불가) */
 .menu-label {
   display: flex;
   align-items: center;
@@ -202,33 +201,24 @@ footer {
   font-size: 0.9rem;
 }
 
-/* .menu-label::after {
-  content: "|";
-  margin-left: 1.2rem;
-  color: #cbd5e1;
-} */
-
-/* 드롭다운 */
+/* 게시판 드롭다운 */
 .dropdown-container {
   position: relative;
-  display: flex;
-  justify-content: center;
+  height: 100%;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translateX(-50%);
   background: white;
   min-width: 180px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 그림자를 조금 더 명확하게 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  border: 1px solid #f1f5f9;
   padding: 0.5rem;
-
-  /* [수정] 매우 높은 값을 주어 다른 카드(.card) 요소들보다 위에 오도록 합니다. */
-  z-index: 9999;
+  z-index: 999;
 }
 
 .dropdown-container:hover .dropdown-content {
@@ -240,15 +230,14 @@ footer {
   display: block;
   padding: 10px 15px;
   border-radius: 8px;
-  color: var(--text-main);
   font-size: 0.9rem;
+  transition: background 0.2s;
 }
-
+/* [수정] 드롭다운 내부 링크 호버 스타일 */
 .dropdown-content a:hover {
-  background-color: #f8fafc;
-  color: var(--primary-blue);
+  background-color: #fff9db; /* 조금 더 진한 연노랑 */
+  color: #ddb100;
 }
-
 @keyframes smoothFadeUp {
   from {
     opacity: 0;
@@ -261,108 +250,79 @@ footer {
 }
 
 /* =========================================
-   5. 일기 작성 카드 (Diary Card)
+   5. 카드 스타일 (Cards & Content)
    ========================================= */
-.diary-card {
+.card {
   background-color: var(--white-alpha);
-  backdrop-filter: blur(4px);
   border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.diary-st {
-  display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.icon-circle {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(to right, #8861ed, #544ce7);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.diary-title-text {
-  font-size: 1.2rem;
-  font-weight: 700;
-  background: linear-gradient(to right, #6c38ef, #544ce7);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.diary-header {
-  display: flex;
-  gap: 1rem;
-}
-
-.diary-title {
-  flex: 1;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid #cbd5e1;
-  outline: none;
-}
-
-.diary-date {
-  padding: 0.5rem;
-  border-radius: 0.375rem;
-  border: 1px solid #cbd5e1;
-}
-
-.diary-content {
-  min-height: 30rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid #cbd5e1;
-  resize: vertical;
-  outline: none;
-}
-
-.diary-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.radio-group {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.diary-btn {
-  padding: 0.6rem 2rem;
-  background-color: #7950f2;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.diary-btn:hover {
-  background-color: var(--primary-hover);
+.card-body {
+  padding: 2rem;
+  width: 100%;
 }
 
 .section-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1837a0;
+  color: #ddb100;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.p_font {
+  font-weight: bold;
+}
+
+.info-grid {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* 안내 박스 스타일 */
+.info-box {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+
+.info-box.blue {
+  background-color: #fcedb4;
+}
+.info-box.indigo {
+  background-color: #f8d4aabe;
+}
+
+.info-box h4 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #df9308;
+}
+
+.info-box p {
+  font-size: 0.875rem;
+  color: var(--text-sub);
+}
+
+/* 하단 버튼 영역 스타일 (JavaScript 생성용) */
+#buttonArea {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 /* 애니메이션 */
@@ -374,5 +334,16 @@ footer {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* 모바일 대응 */
+@media (max-width: 640px) {
+  .tab-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header-inner {
+    flex-direction: column;
+    gap: 1rem;
   }
 }

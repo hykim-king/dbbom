@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/famous_diary_board.css"/>
    	
-   	
-    <script src="../../resources/assets/js/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
   </head>
   <body>
     <header>

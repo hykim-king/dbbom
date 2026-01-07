@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>명언일기 | 오늘의 흔적</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/f_diary_start.css"/>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/diary/f_diary_start.js"></script>
+    <script src="../javascript/common.js"></script>
+    <script src="../javascript/l_diary_start.js"></script>
+    <link rel="stylesheet" href="../css/l_diary_start.css" />
   </head>
   <body>
     <header>
@@ -65,7 +65,7 @@
             <i data-lucide="heart-pulse"></i> 오늘의 흔적
           </h3>
           <p>하루의 흔적을 일기에 남겨 주세요.</p>
-          <p style="color: var(--primary-purple); line-height: 1.6" class="p_font">
+          <p style="color: #18a067; line-height: 1.6" class="p_font">
             그 날의 감정과 내용에 맞는 명언이 조용히 찾아와 여러분께
             전해드립니다.
           </p>
@@ -130,17 +130,18 @@
 
           <div style="text-align: center; margin-top: 20px">
             <a
-              href="${pageContext.request.contextPath}/diary/fDiaryWrite.do"
+              href="l_diary_write.html"
               class="diary-btn"
               style="
                 text-decoration: none;
                 display: inline-block;
                 padding: 10px 20px;
-                background-color: #7950f2;
+                background-color: #18a067;
                 color: #fff;
                 border-radius: 5px;
               "
-              >일기 작성하기</a>
+              >일기 작성하기</a
+            >
           </div>
         </div>
       </div>
@@ -154,7 +155,6 @@
         <p style="font-size: 0.875rem">당신의 감정을 소중히 여기는 공간</p>
       </div>
     </footer>
-
 
     <script>
       lucide.createIcons();
