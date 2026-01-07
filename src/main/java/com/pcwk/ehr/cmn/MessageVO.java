@@ -9,6 +9,12 @@ public class MessageVO extends DTO {
 		// TODO Auto-generated constructor stub
 	}
 
+	public MessageVO(int flag, String message) {
+		super();
+		this.flag = flag;
+		this.message = message;
+	}
+
 	public int getFlag() {
 		return flag;
 	}

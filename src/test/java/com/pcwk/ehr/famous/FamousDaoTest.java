@@ -54,7 +54,7 @@ class FamousDaoTest {
 
 	//DTO 객체 (추후 검색/페이징 등 테스트용)
 	DTO dto;
-
+	
 	//테스트 전, 초기화
 	@BeforeEach
 	void setUp() throws Exception {

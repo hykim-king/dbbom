@@ -17,14 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // 일기 등록 버튼 이벤트
-  document.getElementById("saveDiary").addEventListener("click", () => {
-    const titleInput = document.querySelector(".diary-title");
-    const contentInput = document.querySelector(".diary-content");
-    const dateInput = document.querySelector(".diary-date");
+  document.getElementById("savefDiary").addEventListener("click", () => {
+    const titleInput = document.querySelector("#diaryTitle");
+    const contentInput = document.querySelector("#diaryContent");
 
     const title = titleInput.value.trim();
     const content = contentInput.value.trim();
-    const date = dateInput.value;
 
     // 제목 검사
     if (title === "") {
@@ -41,15 +39,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 공개/비공개
-    const visibility = document.querySelector(
-      'input[name="visibility"]:checked'
-    )?.value || "private";
+    const diaryStatus = document.querySelector(
+      'input[name="diaryStatus"]:checked'
+    )?.value || "N";
 
-    console.log({
-      title,
-      date,
-      content,
-      visibility,
+    const param = {
+      diaryTitle: title,
+      diaryContent: content,
+      diaryStatus: diaryStatus
+      // 필요한 추가 필드
+    };
+
+    $.ajax({
+      url: "/ehr/diary/diarySave.do",
+      type: "POST",
+      data: param,
+      dataType: "json",
+      success: function(res) {
+        if(res.flag === 1){
+          alert(res.message);
+          location.href = "/ehr/diary/diaryList.do";
+        }else{
+          alert("실패: " + res.message);
+        }
+      },
+      error: function() {
+        alert("통신 실패");
+      }
     });
 
     alert("일기가 등록되었습니다!");
@@ -57,10 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 입력값 초기화
     titleInput.value = "";
     contentInput.value = "";
-    dateInput.value = "";
 
     document
-      .querySelectorAll('input[name="visibility"]')
+      .querySelectorAll('input[name="diaryStatus"]')
       .forEach((radio) => (radio.checked = false));
 
 

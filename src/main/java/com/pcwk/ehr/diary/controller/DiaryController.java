@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.diary.service.DiaryService;
+import com.google.gson.Gson;
 import com.pcwk.ehr.cmn.DTO;
+import com.pcwk.ehr.cmn.MessageVO;
 import com.pcwk.ehr.cmn.StringUtil;
 
 
@@ -59,6 +61,36 @@ public class DiaryController {
         return viewname;
 
 
+    }
+
+    @PostMapping(value="/diarySave.do", produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String doSave(DiaryVO param) {
+        log.debug("┌---------------------------┐");
+        log.debug("│doSave diaryVO: " + param);  
+        log.debug("└---------------------------┘");
+
+        String jsonString = "";
+
+        int flag = diaryService.doSave(param);
+        String message = "";
+        if  (1 == flag) {
+            message = param.getDiaryTitle() + "일기가 저장되었습니다.";
+        }
+        else {
+            message = "일기 저장에 실패하였습니다.";
+        }
+
+        MessageVO messageVO = new MessageVO();
+        messageVO.setFlag(flag);
+        messageVO.setMessage(message);
+
+        log.debug("mesasagevo: {}",messageVO);
+
+        jsonString = new Gson().toJson(messageVO);
+
+
+        return jsonString;
     }
     
 }

@@ -199,6 +199,7 @@
             <span class="th-author">작성자</span>
             <span class="th-date">날짜</span>
             <span class="th-likes">공감</span>
+            <span class="th-count">조회수</span>
           </div>
 
           <c:forEach var="diary" items="${list}">
@@ -212,6 +213,7 @@
                 <span class="row-author">${diary.nickname}</span>
                 <span class="row-date">${diary.diaryUploadDate}</span>
                 <span class="row-likes">${diary.diaryRecCount}</span>
+                <span class="row-count">${diary.diaryViewCount}</span>
               </div>
             </div>
           </c:forEach>
