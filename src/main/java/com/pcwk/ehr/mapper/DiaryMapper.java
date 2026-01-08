@@ -32,4 +32,7 @@ public interface DiaryMapper extends WorkDiv<DiaryVO> {
 
     /** 추천수 상위 3개 일기 조회 */
     List<DiaryVO> getBest3();
+
+    /** 추천수 증가 */
+    int updateRecCount(DiaryVO param);
 }

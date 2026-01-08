@@ -13,5 +13,9 @@ public interface DiaryService extends WorkDiv<DiaryVO>{
     List<DiaryVO> doPublicRetrieve(DTO dto);
 
     List<DiaryVO> getBest3();
+
+    int updateRecCount(DiaryVO param);
+
+    
     
 }

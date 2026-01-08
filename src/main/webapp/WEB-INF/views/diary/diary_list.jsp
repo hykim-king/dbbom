@@ -135,7 +135,7 @@
             </article>
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
-              <div class="post-tag">${best2.diaryCategoryName}</div>
+              <div class="post-tag ">${best2.diaryCategoryName}</div>
               <h4 class="post-title">${best2.diaryTitle}</h4>
               <p class="post-preview">${best2.diaryContent}</p>
               <div class="post-meta">
@@ -161,7 +161,7 @@
           </div>
 
           <c:forEach var="diary" items="${list}">
-            <div class="board-row">
+            <a href="doSelectOne.do?diarySid=${diary.diarySid}" class="board-row" style="display:flex; text-decoration:none; color:inherit;">
               <div class="row-content">
                 <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
                 <span class="row-title">${diary.diaryTitle}</span>
@@ -173,7 +173,7 @@
                 <span class="row-likes">${diary.diaryRecCount}</span>
                 <span class="row-count">${diary.diaryViewCount}</span>
               </div>
-            </div>
+            </a>
           </c:forEach>
 
         </section>
@@ -185,5 +185,13 @@
         <p>© 2024 내면의 흔적. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      // Lucide 아이콘 전체 렌더링 (body 끝에서 한 번만 실행)
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
+    </script>
   </body>
 </html>

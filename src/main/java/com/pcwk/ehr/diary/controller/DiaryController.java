@@ -139,13 +139,45 @@ public class DiaryController {
         return jsonString;
     }
 
-    // @RequestMapping(value = "/diaryList.do", method = RequestMethod.GET)
-    //     public String diaryList(Model model) {
-    //     List<DiaryVO> bestList = diaryService.getBest3();
-    //     List<DiaryVO> list = diaryService.getAll(); // 기존 전체 리스트
-    //     model.addAttribute("bestList", bestList);
-    //     model.addAttribute("list", list);
-    //     return "diary/diary_list";
-    // }
+    @GetMapping(value = "/doSelectOne.do", produces = "application/json;charset=UTF-8")
+    public String doSelectOne(@RequestParam int diarySid, Model model) {
+        log.debug("┌---------------------------┐");
+        log.debug("│doSelectOne diaryNo: " + diarySid);  
+        log.debug("└---------------------------┘");
+
+        DiaryVO param = new DiaryVO();
+        param.setDiarySid(diarySid);
+
+        DiaryVO outVO = diaryService.upDoSelectOne(param);
+
+        model.addAttribute("diaryVO", outVO);
+
+        return "diary/diary_detail";
+    }
+
+    @PostMapping(value = "/updateRecCount.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String updateRecCount(@RequestParam int diarySid) {
+        log.debug("┌---------------------------┐");
+        log.debug("│updateRecCount diarySid: " + diarySid);
+        log.debug("└---------------------------┘");
+
+        DiaryVO param = new DiaryVO();
+        param.setDiarySid(diarySid);
+
+        int flag = diaryService.updateRecCount(param);
+
+        // 추천수 증가 후, 현재 추천수 조회
+        DiaryVO outVO = diaryService.upDoSelectOne(param);
+        int recCount = (outVO != null) ? outVO.getDiaryRecCount() : -1;
+
+        MessageVO messageVO = new MessageVO();
+        messageVO.setFlag(flag);
+        messageVO.setMessage(flag == 1 ? "추천수 증가 성공" : "추천수 증가 실패");
+        messageVO.setDiaryRecCount(recCount);
+
+        String jsonString = new Gson().toJson(messageVO);
+        return jsonString;
+    }
     
 }

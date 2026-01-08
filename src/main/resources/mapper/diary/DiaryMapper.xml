@@ -64,17 +64,19 @@
     </update>
 
     <select id="doSelectOne" parameterType="DiaryVO" resultType="DiaryVO">
-        SELECT diary_sid       AS diarySid,
-               diary_title     AS diaryTitle,
-               diary_content   AS diaryContent,
-               diary_viewcount AS diaryViewcount,
-               diary_reccount  AS diaryReccount,
-               diary_status    AS diaryStatus,
-               diary_category  AS diaryCategory,
-               TO_CHAR(diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate,
-               reg_id          AS regId
-        FROM diary
-        WHERE diary_sid = #{diarySid}
+        SELECT d.diary_sid       AS diarySid,
+               d.diary_title     AS diaryTitle,
+               d.diary_content   AS diaryContent,
+               d.diary_viewcount AS diaryViewcount,
+               d.diary_reccount  AS diaryReccount,
+               d.diary_status    AS diaryStatus,
+               d.diary_category  AS diaryCategory,
+               TO_CHAR(d.diary_uploaddate, 'YYYY-MM-DD HH24:MI:SS') AS diaryUploaddate,
+               d.reg_id          AS regId,
+               u.nickname        AS nickname
+        FROM diary d
+        JOIN users u ON d.reg_id = u.user_id
+        WHERE d.diary_sid = #{diarySid}
     </select>
 
     <insert id="saveAll">

@@ -3,6 +3,9 @@ package com.pcwk.ehr.cmn;
 public class MessageVO extends DTO {
 	private int flag;
 	private String message;
+	private int diaryRecCount;
+
+
 	
 	public MessageVO() {
 		super();
@@ -29,6 +32,14 @@ public class MessageVO extends DTO {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public int getDiaryRecCount() {
+	    return diaryRecCount;
+	}
+	
+	public void setDiaryRecCount(int diaryRecCount) {
+	    this.diaryRecCount = diaryRecCount;
 	}
 
 	@Override

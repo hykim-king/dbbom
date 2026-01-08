@@ -66,8 +66,10 @@ public class DiaryServiceImpl implements DiaryService
     @Override
     public List<DiaryVO> getBest3() {
         return diaryMapper.getBest3();
+    }   
+
+    @Override
+    public int updateRecCount(DiaryVO param) {
+        return diaryMapper.updateRecCount(param);
     }
-
-    
-
 }

@@ -62,7 +62,7 @@
     	      diaryContent: content,
     	      diaryStatus: diaryStatus,
     	      diaryCategory: 10, // 임시값 또는 선택값
-    	      regId: "user01" // 임시값 또는 실제 로그인 사용자 ID
+    	      regId: "admin01" // 임시값 또는 실제 로그인 사용자 ID
     	    };
 
     	    $.ajax({
