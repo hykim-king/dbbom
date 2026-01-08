@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>행운일기 | 작성하기</title>
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <title>감사일기 | 작성하기</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/l_diary_write.css"/>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/t_diary_write.css"/>
+    <!-- <link rel="stylesheet" href="../css/common.css" /> -->
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
 
     	  // Lucide 아이콘 초기화
     	  if (typeof lucide !== "undefined") {
@@ -30,7 +31,7 @@
     	  });
 
     	  // 일기 등록 버튼 이벤트
-    	  document.getElementById("savelDiary").addEventListener("click", () => {
+    	  document.getElementById("savetDiary").addEventListener("click", () => {
     	    const titleInput = document.querySelector("#diaryTitle");
     	    const contentInput = document.querySelector("#diaryContent");
 
@@ -60,7 +61,7 @@
     	      diaryTitle: title,
     	      diaryContent: content,
     	      diaryStatus: diaryStatus,
-    	      diaryCategory: 20, // 임시값 또는 선택값
+    	      diaryCategory: 30, // 임시값 또는 선택값
     	      regId: "user01" // 임시값 또는 실제 로그인 사용자 ID
     	    };
 
@@ -97,6 +98,7 @@
     	});
 
     </script>
+
   </head>
   <body>
     <header>
@@ -147,9 +149,9 @@
       <div class="card diary-card" style="margin-top: 20px">
         <div class="diary-st">
           <span class="icon-circle">
-            <i data-lucide="clover"></i>
+            <i data-lucide="flower-2"></i>
           </span>
-          <span class="diary-title-text">우연의 흔적</span>
+          <span class="diary-title-text">마음의 흔적</span>
         </div>
 
         <div class="diary-header flex-between">
@@ -176,12 +178,14 @@
               <input type="radio" name="diaryStatus" value="N" /> 비공개
             </label>
           </div>
-          <button class="diary-btn" id="savelDiary" type="button">등록</button>
+          <button class="diary-btn" id="savetDiary">등록</button>
         </div>
       </div>
     </main>
 
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="../javascript/t_diary_write.js"></script>
 
     <script>
       lucide.createIcons();

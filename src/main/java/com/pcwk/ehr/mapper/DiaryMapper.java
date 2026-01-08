@@ -29,4 +29,7 @@ public interface DiaryMapper extends WorkDiv<DiaryVO> {
     
     /** 공개글(공개 일기)만 조회 */
     List<DiaryVO> doPublicRetrieve(DTO dto);
+
+    /** 추천수 상위 3개 일기 조회 */
+    List<DiaryVO> getBest3();
 }

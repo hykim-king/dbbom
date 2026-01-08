@@ -6,12 +6,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>명언일기 | 오늘의 흔적</title>
+    <title>행운일기 | 오늘의 흔적</title>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../javascript/common.js"></script>
-    <script src="../javascript/l_diary_start.js"></script>
-    <link rel="stylesheet" href="../css/l_diary_start.css" />
+ <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/diary/l_diary_start.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/l_diary_start.css"/>
   </head>
   <body>
     <header>
@@ -62,29 +62,31 @@
       <div class="card">
         <div class="card-body">
           <h3 class="section-title">
-            <i data-lucide="heart-pulse"></i> 오늘의 흔적
+            <i data-lucide="heart-pulse"></i> 우연의 흔적
           </h3>
-          <p>하루의 흔적을 일기에 남겨 주세요.</p>
+          <p>하루 속 작은 행운을 기록해 보세요.</p>
           <p style="color: #18a067; line-height: 1.6" class="p_font">
-            그 날의 감정과 내용에 맞는 명언이 조용히 찾아와 여러분께
-            전해드립니다.
+            우리는 종종 특별한 일이 있어야 행운이라고 생각하지만, 사실 대부분의
+            행운은 아주 조용하게 찾아옵니다.
           </p>
 
           <div class="info-grid">
             <div style="grid-column: span 2">
               <p>
-                기쁨, 슬픔, 설렘부터 고민스러운 마음까지 당신이 느낀 감정을
-                그대로 이해하고,<br />
+                우연히 맞춰진 타이밍, 생각보다 순조로웠던 하루,<br />
                 <span class="p_font"
-                  >남겨진 흔적으로 하루를 돌아보는 소중한 순간이
-                  되어줍니다.</span
+                  >별일 없어서 오히려 마음이 편했던 순간도 모두 당신의 하루를
+                  지켜준 행운일 수 있어요.</span
                 >
               </p>
               <br />
               <p>
-                이렇게 기록을 이어가다 보면, 단순히 일기를 쓰는 것을 넘어<br />
-                자신의 마음을 더 깊이 이해하고,<br />
-                <span class="p_font">작은 위로와 힘을 얻을 수 있습니다.</span>
+                남겨진 흔적은 “아무 일도 없던 하루”가 아니라<br />
+                “잘 흘러간 하루”였다는 사실을 알려줍니다.<br />
+                <span class="p_font"
+                  >이 기록이 쌓일수록 당신은 점점 더 많은 행운을 알아보게
+                  됩니다.</span
+                >
               </p>
             </div>
           </div>
@@ -94,43 +96,42 @@
       <div class="card">
         <div class="card-body">
           <h3 class="section-title">
-            <i data-lucide="edit"></i> 오늘의 흔적 작성 요령
+            <i data-lucide="edit"></i> 우연의 흔적 작성 요령
           </h3>
           <p style="color: #374151; line-height: 1.6">
-            더 잘 어울리는 명언을 만나기 위해 아래의 요령을 참고해 주세요.
+            더 많은 행운을 발견하기 위해 아래의 요령을 참고해 주세요.
           </p>
 
           <div class="info-grid">
             <div class="info-box blue">
-              <h4>솔직한 하루를 적어주세요</h4>
-              <p class="p_font">
-                잘한 일, 힘들었던 순간, 사소한 감정까지 있는 그대로 적을수록
-                명언이 더 정확해져요.
+              <h4>작은 행운도 괜찮아요</h4>
+              <p class="p_font">크지 않아도 좋아요 :)</p>
+              <p>
+                버스를 놓치지 않은 일, 커피가 유난히 맛있었던 순간도 행운이에요.
               </p>
-              <p>예) “괜히 우울했던 하루였다”, “별일 없었지만 마음이 편했다”</p>
             </div>
             <div class="info-box indigo">
-              <h4>감정을 한 단어로 표현해 보세요</h4>
+              <h4>느낌을 함께 적어보세요</h4>
               <p class="p_font">
-                기쁨, 불안, 설렘, 후회처럼 짧은 감정 표현은 명언을 찾는 중요한
-                힌트가 됩니다.
+                무슨 일이 있었는지 그리고 “기분이 좋아졌다”, “괜히 웃음이 났다”
               </p>
+              <p>같은 감정이 중요해요.</p>
             </div>
             <div class="info-box blue">
-              <h4>길지 않아도 괜찮아요</h4>
-              <p class="p_font">중요한 건 분량이 아니라 지금의 마음이에요.</p>
-              <p>한두 문장만 적어도 충분해요.</p>
+              <h4>짧아도 충분해요</h4>
+              <p class="p_font">한 문장만 적어도</p>
+              <p>오늘의 행운은 충분히 기록됩니다.</p>
             </div>
             <div class="info-box indigo">
-              <h4>판단하지 말고 기록하세요</h4>
-              <p class="p_font">명언 일기는 당신의 감정을 평가하지 않습니다.</p>
-              <p>좋은 생각, 나쁜 생각을 나누지 않아도 돼요.</p>
+              <h4>행운의 크기를 비교하지 마세요</h4>
+              <p class="p_font">남들과 비교할 필요 없이</p>
+              <p>당신에게 의미 있었다면 그걸로 충분해요.</p>
             </div>
           </div>
 
           <div style="text-align: center; margin-top: 20px">
             <a
-              href="l_diary_write.html"
+              href="${pageContext.request.contextPath}/diary/lDiaryWrite.do"
               class="diary-btn"
               style="
                 text-decoration: none;

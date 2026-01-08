@@ -3,16 +3,16 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>명언일기 | 작성하기</title>
-
     <script src="https://unpkg.com/lucide@latest"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/f_diary_write.css"/>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    <!-- <link rel="stylesheet" href="../css/common.css" /> -->
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
 
     	  // Lucide 아이콘 초기화
     	  if (typeof lucide !== "undefined") {
@@ -99,71 +99,95 @@
 
     </script>
 
-</head>
-<body>
- <!-- Header -->
-   <header>
-  <div class="container header-inner flex-between">
-    <div class="logo-area">
-     
-      <h1 class="logo-text">내면의 흔적</h1>
-    </div>
-    <button class="login-btn">로그인</button>
-  </div>
-</header>
+  </head>
+  <body>
+    <header>
+      <div class="container header-inner flex-between">
+        <a href="main.html" class="logo-area" style="text-decoration: none">
+          <h1 class="logo-text">내면의 흔적</h1>
+        </a>
 
-    <!-- Main Content -->
+        <div class="auth-links">
+          <a href="login_page.html" class="auth-item">로그인</a>
+          <span class="divider">|</span>
+          <a href="sign_in.html" class="auth-item">회원가입</a>
+        </div>
+      </div>
+    </header>
+
     <main class="container">
-      <!-- Navigation Tabs -->
-     <div class="tab-list">
-  <div class="menu-label">메뉴</div>
-  <button class="tab-btn" data-tab="overview" aria-selected="false">
-    <i data-lucide="sparkles"></i> 개요
-  </button>
-  <button class="tab-btn" data-tab="notice" aria-selected="false">
-    <i data-lucide="book-open"></i> 공지사항
-  </button>
-  <button class="tab-btn" data-tab="board" aria-selected="false">
-    <i data-lucide="pencil"></i> 게시판
-  </button>
-  <button class="tab-btn" data-tab="mypage" aria-selected="false">
-    <i data-lucide="user"></i> 마이페이지
-  </button>
-   </main>
-</div>
+      <div class="tab-list">
+        <div class="menu-label">메뉴</div>
 
-    <!-- Diary Entry Form -->
-    <main class="container">
-        <div class="card diary-card">
-          <div class="diary-st">
-  <span class="icon-circle">
-    <i data-lucide="quote"></i>
-  </span>
-  <span class="diary-title-text">오늘의 흔적</span>
-</div>
-            <div class="diary-header flex-between">
-                <input type="text" class="diary-title" id="diaryTitle" name="diaryTitle" placeholder="제목을 입력하세요">
-            </div>
-            <textarea class="diary-content" id="diaryContent" name="diaryContent" placeholder="오늘의 일기를 작성해보세요"></textarea>
-            
-<div class="diary-footer">
-    <div class="radio-group">
-        <label class="radio-label">
-            <input type="radio" name="diaryStatus" value="Y"> 공개
-        </label>
-        <label class="radio-label">
-            <input type="radio" name="diaryStatus" value="N"> 비공개
-        </label>
-    </div>
-    <button class="diary-btn" id="savefDiary" type="button">등록</button>
-</div>
+        <a href="outline.html" class="tab-btn">
+          <i data-lucide="sparkles"></i> 개요
+        </a>
 
+        <a href="notice.html" class="tab-btn">
+          <i data-lucide="book-open"></i> 공지사항
+        </a>
+
+        <div class="dropdown-container">
+          <a
+            href="diary_board.html"
+            class="tab-btn"
+            style="width: 100%; border: none"
+          >
+            <i data-lucide="pencil"></i> 게시판
+          </a>
+          <div class="dropdown-content">
+            <a href="diary_board.html">📖 일기 공개 게시판</a>
+            <a href="famous_board.html">💬 명언 모음집</a>
+          </div>
+        </div>
+
+        <a href="myPage.html" class="tab-btn">
+          <i data-lucide="user"></i> 마이페이지
+        </a>
+      </div>
+
+      <div class="card diary-card" style="margin-top: 20px">
+        <div class="diary-st">
+          <span class="icon-circle">
+            <i data-lucide="quote"></i>
+          </span>
+          <span class="diary-title-text">오늘의 흔적</span>
+        </div>
+
+        <div class="diary-header flex-between">
+          <input
+            type="text"
+            class="diary-title"
+			id="diaryTitle" name="diaryTitle"
+            placeholder="제목을 입력하세요"
+          />
+        </div>
+
+        <textarea
+          class="diary-content"
+		  id="diaryContent" name="diaryContent"
+          placeholder="오늘의 일기를 작성해보세요"
+        ></textarea>
+
+        <div class="diary-footer">
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="diaryStatus" value="Y" /> 공개
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="diaryStatus" value="N" /> 비공개
+            </label>
+          </div>
+          <button class="diary-btn" id="savefDiary" type="button">등록</button>
+        </div>
+      </div>
     </main>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-</body>
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    lucide.createIcons();
-</script>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
 </html>

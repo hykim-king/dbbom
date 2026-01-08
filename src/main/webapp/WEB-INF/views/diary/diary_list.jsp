@@ -83,28 +83,21 @@
               "
               >가장 많은 공감을 받은 이야기들입니다.</span
             >
+            
           </div>
 
           <div class="posts-grid">
+            <c:set var="best0" value="${bestList[0]}" />
+            <c:set var="best1" value="${bestList[1]}" />
+            <c:set var="best2" value="${bestList[2]}" />
             <article class="post-card best-card">
-              <div
-                style="
-                  font-size: 0.85rem;
-                  font-weight: bold;
-                  color: #d97706;
-                  margin-bottom: 8px;
-                "
-              >
-                🥇 1위
-              </div>
-              <div class="post-tag gratitude">감사</div>
-              <h4 class="post-title">퇴근길에 본 노을이 너무 예뻐서...</h4>
-              <p class="post-preview">
-                지친 하루였지만 하늘을 보는 순간 모든 피로가 싹 풀리는
-                기분이었어요. 살아있음에 감사합니다.
-              </p>
+              <div style="font-size:0.85rem;font-weight:bold;color:#d97706;margin-bottom:8px;">🥇 1위</div>
+              <div class="post-tag quote">${best0.diaryCategoryName}</div>
+              <h4 class="post-title">${best0.diaryTitle}</h4>
+              <p class="post-preview">${best0.diaryContent}</p>
               <div class="post-meta">
-                <span>행복한구름</span>
+                <span>${best0.nickname}</span>
+                
                 <div
                   style="
                     display: flex;
@@ -115,30 +108,17 @@
                   "
                 >
                   <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
-                  1,204
+                  ${best0.diaryRecCount}
                 </div>
               </div>
             </article>
-
             <article class="post-card best-card">
-              <div
-                style="
-                  font-size: 0.85rem;
-                  font-weight: bold;
-                  color: #94a3b8;
-                  margin-bottom: 8px;
-                "
-              >
-                🥈 2위
-              </div>
-              <div class="post-tag quote">명언</div>
-              <h4 class="post-title">중요한 건 꺾이지 않는 마음</h4>
-              <p class="post-preview">
-                오늘 실패했다고 해서 내일도 실패하란 법은 없습니다. 다시
-                도전하는 용기를 가져봅니다.
-              </p>
+              <div style="font-size:0.85rem;font-weight:bold;color:#94a3b8;margin-bottom:8px;">🥈 2위</div>
+              <div class="post-tag quote">${best1.diaryCategoryName}</div>
+              <h4 class="post-title">${best1.diaryTitle}</h4>
+              <p class="post-preview">${best1.diaryContent}</p>
               <div class="post-meta">
-                <span>오뚝이</span>
+                <span>${best0.nickname}</span> 
                 <div
                   style="
                     display: flex;
@@ -149,41 +129,20 @@
                   "
                 >
                   <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
-                  982
+                  ${best1.diaryRecCount}
                 </div>
               </div>
             </article>
-
             <article class="post-card best-card">
-              <div
-                style="
-                  font-size: 0.85rem;
-                  font-weight: bold;
-                  color: #b45309;
-                  margin-bottom: 8px;
-                "
-              >
-                🥉 3위
-              </div>
-              <div class="post-tag luck">행운</div>
-              <h4 class="post-title">버스 정류장에 도착하자마자!</h4>
-              <p class="post-preview">
-                정류장에 가자마자 버스가 딱! 이런 작은 행운이 하루 전체의 기분을
-                좋게 만드네요 ㅎㅎ
-              </p>
+              <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
+              <div class="post-tag">${best2.diaryCategoryName}</div>
+              <h4 class="post-title">${best2.diaryTitle}</h4>
+              <p class="post-preview">${best2.diaryContent}</p>
               <div class="post-meta">
-                <span>럭키비키</span>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-                    color: #e11d48;
-                    font-weight: bold;
-                  "
-                >
-                  <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
-                  856
+                <span>${best2.nickname}</span>
+                <div style="display:flex;align-items:center;gap:4px;color:#e11d48;font-weight:bold;">
+                  <i data-lucide="heart" style="width:14px;fill:#e11d48"></i>
+                  ${best2.diaryRecCount}
                 </div>
               </div>
             </article>

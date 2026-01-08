@@ -195,6 +195,14 @@
         WHERE diary_sid = #{diarySid}
     </delete>
 
+    <select id="getBest3" resultType="DiaryVO">
+        SELECT d.*, u.nickname
+        FROM DIARY d
+        JOIN USERS u ON d.reg_id = u.user_id
+        ORDER BY d.diary_reccount DESC, d.diary_uploaddate DESC
+        FETCH FIRST 3 ROWS ONLY
+    </select>
+
     
 
 </mapper>

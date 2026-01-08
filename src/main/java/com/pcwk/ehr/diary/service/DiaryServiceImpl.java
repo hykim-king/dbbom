@@ -63,6 +63,11 @@ public class DiaryServiceImpl implements DiaryService
         return diaryMapper.doPublicRetrieve(dto);
     }
 
+    @Override
+    public List<DiaryVO> getBest3() {
+        return diaryMapper.getBest3();
+    }
+
     
 
 }

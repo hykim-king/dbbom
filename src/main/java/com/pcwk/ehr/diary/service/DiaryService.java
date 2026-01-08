@@ -11,5 +11,7 @@ public interface DiaryService extends WorkDiv<DiaryVO>{
     DiaryVO upDoSelectOne(DiaryVO param);
 
     List<DiaryVO> doPublicRetrieve(DTO dto);
+
+    List<DiaryVO> getBest3();
     
 }
