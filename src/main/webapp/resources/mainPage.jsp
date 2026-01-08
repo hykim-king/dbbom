@@ -112,7 +112,8 @@
             <div class="welcome"><%= welcomeName %>님 환영합니다</div>
 
             <!-- 마이페이지는 "버튼만" 요청이므로 화면 이동만 연결(다음 단계에서 구현 가능) -->
-            <button type="button">마이페이지</button>
+            
+            <button type="button" onclick="location.href='<%=request.getContextPath()%>/user/myPage.do'">마이페이지</button>            
 
             <button type="button" onclick="doLogout()">로그아웃</button>
 

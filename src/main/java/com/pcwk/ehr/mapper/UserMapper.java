@@ -10,6 +10,9 @@ public interface UserMapper extends WorkDiv<UserVO> {
     
     // WorkDiv에 정의된 doSave, doDelete, doUpdate, doSelectOne, doRetrieve는 자동 포함됨
     
+	/** 아이디 찾기 */
+    UserVO doFindId(UserVO param);
+	
     /** 전체 조회 */
     List<UserVO> getAll();
 

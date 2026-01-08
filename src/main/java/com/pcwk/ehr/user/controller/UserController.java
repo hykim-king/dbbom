@@ -33,17 +33,44 @@ public class UserController {
 
     /**
      * 회원가입 화면으로 이동
-     * URL: /user/signUp.do (GET)
-     * VIEW: /WEB-INF/views/user/signUp.jsp
      */
     @GetMapping(value="/signUp.do")
     public String signUpView() {
-        log.debug("┌──────────────────────────┐");
-        log.debug("│signUpView()              │");
-        log.debug("└──────────────────────────┘");
         return "user/signUp";
     }
 
+    /**
+     * 회원가입 처리 - AJAX
+     */
+    @PostMapping(value = "/doSignUpAjax.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String doSignUpAjax(UserVO param) {
+        int flag = 0;
+        String message = "";
+        try {
+            if (param != null && (param.getAdminChk() == null || param.getAdminChk().trim().isEmpty())) {
+                param.setAdminChk("N");
+            }
+            flag = userService.doSignUp(param);
+            if (flag == 1) message = "가입이 완료 되었습니다.";
+            else if (flag == -1) message = "가입에 실패 했습니다. (이미 사용 중인 아이디입니다.)";
+            else message = "가입에 실패 했습니다. (입력값을 확인하세요.)";
+        } catch (Exception e) {
+            log.error("doSignUpAjax() 예외", e);
+            flag = 0;
+            message = "가입에 실패 했습니다. (서버 오류)";
+        }
+        return "{\"flag\":" + flag + ",\"message\":\"" + escapeJson(message) + "\"}";
+    }
+
+    /**
+     * 로그인 화면 이동
+     */
+    @GetMapping(value = "/signIn.do")
+    public String signInView() {
+        log.debug("signInView() 이동");
+        return "user/signIn";
+    }
     /**
      * ✅ (기존 방식) 회원가입 처리(저장) - submit 방식
      * URL: /user/doSignUp.do (POST)
@@ -78,198 +105,83 @@ public class UserController {
         return "user/signUp";
     }
 
-    /**
-     * ✅ 회원가입 처리 - AJAX(JSON)
-     * URL: /user/doSignUpAjax.do (POST)
-     * 응답 예: {"flag":1,"message":"가입이 완료 되었습니다."}
-     */
-    @PostMapping(value = "/doSignUpAjax.do", produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public String doSignUpAjax(UserVO param) {
-
-        log.debug("┌──────────────────────────┐");
-        log.debug("│doSignUpAjax() - AJAX 방식│");
-        log.debug("└──────────────────────────┘");
-        log.debug("param: {}", param);
-
-        int flag = 0;
-        String message = "";
-
-        try {
-            // 일반회원 기본값 강제(N). (관리자=Y, 일반=N 규칙)
-            if (param != null && (param.getAdminChk() == null || param.getAdminChk().trim().isEmpty())) {
-                param.setAdminChk("N");
-            }
-
-            flag = userService.doSignUp(param);
-
-            if (flag == 1) {
-                message = "가입이 완료 되었습니다.";
-            } else if (flag == -1) {
-                message = "가입에 실패 했습니다. (이미 사용 중인 아이디입니다.)";
-            } else {
-                message = "가입에 실패 했습니다. (입력값을 확인하세요.)";
-            }
-
-        } catch (Exception e) {
-            log.error("doSignUpAjax() 예외", e);
-            flag = 0;
-            message = "가입에 실패 했습니다. (서버 오류: " + e.getMessage() + ")";
-        }
-
-        return "{\"flag\":" + flag + ",\"message\":\"" + escapeJson(message) + "\"}";
-    }
 
     /**
-     * 로그인 화면(GET)
-     * URL: /user/signIn.do
-     * VIEW: /WEB-INF/views/user/signIn.jsp
-     */
-    @GetMapping(value = "/signIn.do")
-    public String signInView() {
-        log.debug("┌──────────────────────────┐");
-        log.debug("│signInView()              │");
-        log.debug("└──────────────────────────┘");
-        return "user/signIn";
-    }
-
-    /**
-     * ✅ 로그인 처리 - AJAX(JSON)
-     * URL: /user/doSignInAjax.do (POST)
-     * 성공 시 세션(session)에 loginUser 저장
-     * 응답 예: {"flag":1,"message":"OO님 환영합니다."}
+     * 로그인 처리 - AJAX
      */
     @PostMapping(value="/doSignInAjax.do", produces="application/json;charset=UTF-8")
     @ResponseBody
     public String doSignInAjax(UserVO param, HttpSession session) {
-
-        log.debug("┌──────────────────────────┐");
-        log.debug("│doSignInAjax() - AJAX     │");
-        log.debug("└──────────────────────────┘");
-        log.debug("param: {}", param);
-
         int flag = 0;
         String message = "";
-
         try {
-            // userService에 doSignIn(UserVO) 메서드가 있어야 함
             UserVO loginUser = userService.doSignIn(param);
-
             if (loginUser != null) {
                 session.setAttribute("loginUser", loginUser);
                 flag = 1;
-
-                // 닉네임이 있으면 닉네임, 없으면 userId로 환영문구
                 String who = (loginUser.getNickname() != null && !loginUser.getNickname().trim().isEmpty())
-                        ? loginUser.getNickname()
-                        : loginUser.getUserId();
-
+                        ? loginUser.getNickname() : loginUser.getUserId();
                 message = who + "님 환영합니다.";
             } else {
-                flag = 0;
-                message = "로그인에 실패했습니다. (아이디/비밀번호를 확인하세요.)";
+                message = "로그인에 실패했습니다.";
             }
-
         } catch (Exception e) {
-            log.error("doSignInAjax() 예외", e);
-            flag = 0;
-            message = "로그인에 실패했습니다. (서버 오류: " + e.getMessage() + ")";
+            message = "로그인 오류";
         }
-
         return "{\"flag\":" + flag + ",\"message\":\"" + escapeJson(message) + "\"}";
     }
 
     /**
-     * ✅ 로그아웃 처리 - AJAX(JSON)
-     * URL: /user/doLogoutAjax.do (POST)
-     * - 로그인 상태면: "로그아웃 되었습니다." + 세션 종료
-     * - 비회원이면: "로그인을 진행 해주세요!"
+     * 아이디 찾기 화면으로 이동
+     */
+    @GetMapping(value="/findIdView.do")
+    public String findIdView() {
+        return "user/findId";
+    }
+
+    /**
+     * 비밀번호 찾기 화면으로 이동
+     */
+    @GetMapping(value="/findPwView.do")
+    public String findPwView() {
+        return "user/findPw";
+    }
+
+    /**
+     * 아이디 찾기 실행 - 결과 페이지 이동 방식 (수정됨)
+     */
+    @PostMapping(value="/doFindId.do")
+    public String doFindId(UserVO param, Model model) {
+        log.debug("doFindId() param: {}", param);
+        
+        UserVO outVO = userService.doFindId(param);
+        
+        if(outVO != null) {
+            // 성공 시 결과 페이지에 보여줄 데이터 전달
+            model.addAttribute("foundId", outVO.getUserId());
+            model.addAttribute("userName", outVO.getUserName());
+        } else {
+            // 실패 시 메시지 전달
+            model.addAttribute("message", "입력하신 정보와 일치하는 아이디가 없습니다.");
+        }
+        
+        // 결과 페이지(/WEB-INF/views/user/findIdResult.jsp)로 이동
+        return "user/findIdResult";
+    }
+
+    /**
+     * 로그아웃 처리
      */
     @PostMapping(value="/doLogoutAjax.do", produces="application/json;charset=UTF-8")
     @ResponseBody
     public String doLogoutAjax(HttpSession session) {
-
-        log.debug("┌──────────────────────────┐");
-        log.debug("│doLogoutAjax() - AJAX     │");
-        log.debug("└──────────────────────────┘");
-
-        int flag = 0;
-        String message = "";
-
-        try {
-            Object loginUser = session.getAttribute("loginUser");
-            if (loginUser == null) {
-                flag = 0;
-                message = "로그인을 진행 해주세요!";
-            } else {
-                session.invalidate();
-                flag = 1;
-                message = "로그아웃 되었습니다.";
-            }
-        } catch (Exception e) {
-            log.error("doLogoutAjax() 예외", e);
-            flag = 0;
-            message = "로그아웃 처리 중 오류: " + e.getMessage();
-        }
-
-        return "{\"flag\":" + flag + ",\"message\":\"" + escapeJson(message) + "\"}";
+        session.invalidate();
+        return "{\"flag\":1,\"message\":\"로그아웃 되었습니다.\"}";
     }
 
-    /**
-     * ✅ 회원탈퇴(DB 삭제) - AJAX(JSON)
-     * URL: /user/doWithdrawAjax.do (POST)
-     * - 로그인 상태에서만 가능
-     * - 성공 시: DB 삭제 + 세션 종료
-     */
-    @PostMapping(value="/doWithdrawAjax.do", produces="application/json;charset=UTF-8")
-    @ResponseBody
-    public String doWithdrawAjax(HttpSession session) {
-
-        log.debug("┌──────────────────────────┐");
-        log.debug("│doWithdrawAjax() - AJAX   │");
-        log.debug("└──────────────────────────┘");
-
-        int flag = 0;
-        String message = "";
-
-        try {
-            UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-
-            if (loginUser == null) {
-                flag = 0;
-                message = "로그인을 진행 해주세요!";
-            } else {
-                UserVO param = new UserVO();
-                param.setUserId(loginUser.getUserId());
-
-                // userService에 doWithdraw(UserVO) 메서드가 있어야 함
-                int delFlag = userService.doWithdraw(param);
-
-                if (delFlag == 1) {
-                    session.invalidate();
-                    flag = 1;
-                    message = "회원탈퇴가 완료 되었습니다.";
-                } else {
-                    flag = 0;
-                    message = "회원탈퇴에 실패 했습니다.";
-                }
-            }
-
-        } catch (Exception e) {
-            log.error("doWithdrawAjax() 예외", e);
-            flag = 0;
-            message = "회원탈퇴 처리 중 오류: " + e.getMessage();
-        }
-
-        return "{\"flag\":" + flag + ",\"message\":\"" + escapeJson(message) + "\"}";
-    }
-
-    // JSON 문자열 안전 처리(따옴표/개행 등 최소 처리)
+    // JSON 문자열 안전 처리
     private String escapeJson(String s) {
         if (s == null) return "";
-        return s.replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\n", " ")
-                .replace("\r", " ");
+        return s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", " ").replace("\r", " ");
     }
 }

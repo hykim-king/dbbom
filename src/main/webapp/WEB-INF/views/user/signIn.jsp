@@ -83,10 +83,22 @@
       <div class="btns">
         <button type="button" id="doSignIn">로그인</button>
         <button type="button" onclick="location.href='<%=request.getContextPath()%>/resources/mainPage.jsp'">
-          메인으로
+                        메인으로
         </button>
       </div>
-    </form>
+			<div style="margin-top: 20px; text-align: center;">
+				<div style="color: #666; font-size: 14px; margin-bottom: 8px;">아이디/비밀번호를
+					잊으셨나요?</div>
+				<div style="font-size: 14px;">
+					<a href="<%=request.getContextPath()%>/user/findIdView.do"
+						style="color: #4a90e2; text-decoration: none; margin-right: 10px;">아이디
+						찾기</a> <span style="color: #ccc;">|</span> <a
+						href="<%=request.getContextPath()%>/user/findPwView.do"
+						style="color: #4a90e2; text-decoration: none; margin-left: 10px;">비밀번호
+						찾기</a>
+				</div>
+			</div>
+		</form>
   </div>
 </body>
 </html>
