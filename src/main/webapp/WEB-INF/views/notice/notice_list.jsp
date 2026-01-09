@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice_detail_board
+    .css" />
     
     <style>
         .search-area {
@@ -133,9 +135,9 @@
                    </button>
                    
                    <%-- <c:if test="${sessionScope.user.isAdmin == 'Y'}"></c:if> --%>
-                       <a href="/notice/moveToReg.do" class="btn-write">
-                           <i data-lucide="pen-tool" style="width: 14px;"></i> 글쓰기
-                       </a>
+                    <a href="${pageContext.request.contextPath}/notice/moveToReg.do" class="btn-write">
+                      <i data-lucide="pen-tool"></i> 글쓰기
+                    </a>
                    
               </div>
               

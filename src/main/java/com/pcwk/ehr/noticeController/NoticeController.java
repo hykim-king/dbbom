@@ -29,6 +29,13 @@ public class NoticeController {
     public String noticeList() {
         return "notice/notice_list";
     }
+    
+    // 등록 화면으로 이동하는 메서드 추가
+    @GetMapping("/moveToReg.do")
+    public String moveToReg() {
+        log.debug("moveToReg() - 등록 화면 이동");
+        return "notice/notice_reg"; // WEB-INF/views/notice/notice_reg.jsp를 호출
+    }
 
     // 목록 조회
 //    @GetMapping(value = "/doRetrieve.do")
@@ -50,7 +57,7 @@ public class NoticeController {
         UserVO loginUser = (UserVO) session.getAttribute("user");
         
         // 관리자 권한 체크 (isAdmin 필드가 'Y'인 경우)
-        if(loginUser == null || !"Y".equals(loginUser.getIsAdmin())) {
+        if(loginUser == null || !"Y".equals(loginUser.getAdminChk())) {
             return "{\"status\":\"fail\", \"msg\":\"관리자만 작성 가능합니다.\"}";
         }
         

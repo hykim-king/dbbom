@@ -46,10 +46,10 @@
             TO_CHAR(TT1.NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE,
             TO_CHAR(TT1.NOTICE_TIME,   'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME,
             TT1.REG_ID,
-            -- 전체 건수 (페이징 처리를 위해 모든 행에 전체 개수를 같이 가져옴)
-            COUNT(*) OVER() AS TOTAL_CNT,
-            -- 번호 매기기 (최신글이 1번이 되도록 정렬)
-            ROW_NUMBER() OVER(ORDER BY TT1.NOTICE_SID DESC) AS RNUM
+						/* 전체 건수 (페이징 처리를 위해 모든 행에 전체 개수를 같이 가져옴) */
+						COUNT(*) OVER() AS TOTAL_CNT,
+						/* 번호 매기기 (최신글이 1번이 되도록 정렬) */
+						ROW_NUMBER() OVER(ORDER BY TT1.NOTICE_SID DESC) AS RNUM
         FROM NOTICE TT1
         WHERE 1=1
         <include refid="searchCondition"/>
