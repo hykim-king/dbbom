@@ -1,0 +1,70 @@
+package com.pcwk.ehr.noticeController;
+
+import java.util.List;
+import javax.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pcwk.ehr.notice.NoticeVO;
+import com.pcwk.ehr.noticeService.*;
+import com.pcwk.ehr.user.domain.UserVO; 
+
+@Controller
+@RequestMapping("/notice")
+public class NoticeController {
+
+    final Logger log = LogManager.getLogger(getClass());
+
+    @Autowired
+    NoticeService noticeService;
+    
+    @GetMapping("/noticeList.do")
+    public String noticeList() {
+        return "notice/notice_list";
+    }
+
+    // 목록 조회
+//    @GetMapping(value = "/doRetrieve.do")
+//    public String doRetrieve(NoticeVO inVO, Model model) {
+//        if(inVO.getPageNo() == 0) inVO.setPageNo(1);
+//        if(inVO.getPageSize() == 0) inVO.setPageSize(10);
+//        
+//        List<NoticeVO> list = noticeService.doRetrieve(inVO);
+//        model.addAttribute("list", list);
+//        model.addAttribute("vo", inVO);
+//        
+//        return "notice/notice_list"; 
+//    }
+
+    // 등록 (관리자 체크 포함)
+    @RequestMapping(value = "/doSave.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody 
+    public String doSave(NoticeVO inVO, HttpSession session) {
+        UserVO loginUser = (UserVO) session.getAttribute("user");
+        
+        // 관리자 권한 체크 (isAdmin 필드가 'Y'인 경우)
+        if(loginUser == null || !"Y".equals(loginUser.getIsAdmin())) {
+            return "{\"status\":\"fail\", \"msg\":\"관리자만 작성 가능합니다.\"}";
+        }
+        
+        inVO.setRegId(loginUser.getUserId()); 
+        int flag = noticeService.doSave(inVO);
+        
+        return flag == 1 ? "{\"status\":\"success\"}" : "{\"status\":\"fail\"}";
+    }
+
+    // 상세 조회
+    @RequestMapping(value = "/doSelectOne.do", method = RequestMethod.GET)
+    public String doSelectOne(NoticeVO inVO, Model model) {
+        NoticeVO outVO = noticeService.doSelectOne(inVO);
+        model.addAttribute("vo", outVO);
+        return "notice/notice_mng";
+    }
+}
