@@ -72,8 +72,10 @@ public class NoticeController {
 	// 상세 조회
 	@RequestMapping(value = "/doSelectOne.do", method = RequestMethod.GET)
 	public String doSelectOne(NoticeVO inVO, Model model) {
-		NoticeVO outVO = noticeService.doSelectOne(inVO);
-		model.addAttribute("vo", outVO);
-		return "notice/notice_mng";
+	    NoticeVO outVO = noticeService.doSelectOne(inVO);
+	    model.addAttribute("vo", outVO);
+	    
+	    // 이 이름이 WEB-INF/views/notice/notice_mng.jsp 파일명과 정확히 일치해야 합니다.
+	    return "notice/notice_mng"; 
 	}
 }

@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice_detail_board
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice_write_board
     .css" />
     
     <style>
@@ -155,7 +155,7 @@
                 <c:choose>
                     <c:when test="${not empty list}">
                         <c:forEach var="item" items="${list}">
-                            <li class="notice-item" onclick="location.href='/notice/doSelectOne.do?noticeSid=${item.noticeSid}'">
+                            <li class="notice-item" onclick="location.href='${pageContext.request.contextPath}/notice/doSelectOne.do?noticeSid=${item.noticeSid}'">
                               <div class="notice-info">
                                 <span style="font-weight: 600; font-size:1.05rem;">
                                     ${item.noticeTitle}
