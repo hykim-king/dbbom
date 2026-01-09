@@ -134,10 +134,11 @@
                        <i data-lucide="search" style="width: 14px;"></i> 검색
                    </button>
                    
-                   <%-- <c:if test="${sessionScope.user.isAdmin == 'Y'}"></c:if> --%>
+                   <c:if test="${sessionScope.user.isAdmin == 'Y'}">
                     <a href="${pageContext.request.contextPath}/notice/moveToReg.do" class="btn-write">
                       <i data-lucide="pen-tool"></i> 글쓰기
                     </a>
+                   </c:if>
                    
               </div>
               
