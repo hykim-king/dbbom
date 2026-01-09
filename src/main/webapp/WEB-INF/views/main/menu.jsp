@@ -11,6 +11,7 @@
     }
 %>
 <header>
+
     <script>
         // 마이페이지 이동 로직 (로그인 여부 체크)
         function moveToMyPage() {
@@ -124,4 +125,8 @@
             error: function(xhr, status, err) { alert("오류 발생"); }
         });
     }
+</script>
+
+<script>
+    window.loginUserId = "<%= (loginUser != null) ? loginUser.getUserId() : "" %>";
 </script>

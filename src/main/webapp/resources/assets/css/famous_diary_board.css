@@ -38,20 +38,20 @@
   margin-bottom: 10px;
 }
 .post-tag.gratitude {
-  background: #ffe4e6;
-  color: #be123c;
+  background: #fcfcbf;
+  color: #8d842ff3;
 }
 .post-tag.quote {
   background: #f3e8ff;
   color: #7e22ce;
 }
 .post-tag.luck {
-  background: #fef3c7;
-  color: #b45309;
+  background: #d2fec7;
+  color: #158a24;
 }
 .post-tag.reflection {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: #aec7fc;
+  color: #2d3faa;
 }
 
 /* 글 내용 */

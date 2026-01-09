@@ -102,9 +102,9 @@
         <a href="<%=request.getContextPath()%>/notice/notice.do" class="tab-btn">
         <i data-lucide="book-open"></i> 공지사항</a>
         <div class="dropdown-container">
-          <a href="<%=request.getContextPath()%>/diary/diarylist.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
+          <a href="<%=request.getContextPath()%>/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
           <div class="dropdown-content">
-            <a href="<%=request.getContextPath()%>/diary/diarylist.do">📖 일기 공개 게시판</a>
+            <a href="<%=request.getContextPath()%>/diary/diaryList.do">📖 일기 공개 게시판</a>
             <a href="<%=request.getContextPath()%>/famous/famousboard.do">💬 명언 모음집</a>
           </div>
         </div>

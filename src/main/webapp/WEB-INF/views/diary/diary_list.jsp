@@ -42,7 +42,23 @@
             <c:set var="best2" value="${bestList[2]}" />
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#d97706;margin-bottom:8px;">🥇 1위</div>
-              <div class="post-tag quote">${best0.diaryCategoryName}</div>
+              <c:choose>
+                <c:when test="${best0.diaryCategory == 10}">
+                  <div class="post-tag quote">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best0.diaryCategory == 20}">
+                  <div class="post-tag luck">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best0.diaryCategory == 30}">
+                  <div class="post-tag gratitude">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best0.diaryCategory == 40}">
+                  <div class="post-tag reflect">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:otherwise>
+                  <div class="post-tag">${best0.diaryCategoryName}</div>
+                </c:otherwise>
+              </c:choose>
               <h4 class="post-title">${best0.diaryTitle}</h4>
               <p class="post-preview">${best0.diaryContent}</p>
               <div class="post-meta">
@@ -64,11 +80,27 @@
             </article>
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#94a3b8;margin-bottom:8px;">🥈 2위</div>
-              <div class="post-tag quote">${best1.diaryCategoryName}</div>
+              <c:choose>
+                <c:when test="${best1.diaryCategory == 10}">
+                  <div class="post-tag quote">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best1.diaryCategory == 20}">
+                  <div class="post-tag luck">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best1.diaryCategory == 30}">
+                  <div class="post-tag gratitude">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best1.diaryCategory == 40}">
+                  <div class="post-tag reflect">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:otherwise>
+                  <div class="post-tag">${best1.diaryCategoryName}</div>
+                </c:otherwise>
+              </c:choose>
               <h4 class="post-title">${best1.diaryTitle}</h4>
               <p class="post-preview">${best1.diaryContent}</p>
               <div class="post-meta">
-                <span>${best0.nickname}</span> 
+                <span>${best1.nickname}</span> 
                 <div
                   style="
                     display: flex;
@@ -113,7 +145,23 @@
           <c:forEach var="diary" items="${list}">
             <a href="doSelectOne.do?diarySid=${diary.diarySid}" class="board-row" style="display:flex; text-decoration:none; color:inherit;">
               <div class="row-content">
-                <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
+                <c:choose>
+                  <c:when test="${diary.diaryCategory == 10}">
+                    <span class="post-tag quote" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 20}">
+                    <span class="post-tag luck" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 30}">
+                    <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 40}">
+                    <span class="post-tag reflection" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:otherwise>
+                    <span class="post-tag" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:otherwise>
+                </c:choose>
                 <span class="row-title">${diary.diaryTitle}</span>
                 <!-- 신규글 표시 등은 필요시 추가 -->
               </div>
