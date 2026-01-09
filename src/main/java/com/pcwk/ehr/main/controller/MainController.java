@@ -14,7 +14,7 @@ public class MainController {
 	 public MainController() {
 	        super();
 	        log.debug("┌──────────────────────────┐");
-	        log.debug("│MainController()          │");
+	        log.debug("│MainController            │");
 	        log.debug("└──────────────────────────┘");
 	    }
 	 
