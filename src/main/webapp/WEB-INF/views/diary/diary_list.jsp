@@ -12,63 +12,13 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/famous_diary_board.css"/>
-   	
-    <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script> --%>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
   </head>
   <body>
-    <header>
-      <div class="container header-inner flex-between">
-        <a
-          href="../html/index.html"
-          class="logo-area"
-          style="text-decoration: none"
-        >
-          <h1 class="logo-text">내면의 흔적</h1>
-        </a>
-        <div class="auth-links">
-          <a href="../html/login_page.html" class="auth-item">로그인</a>
-          <span class="divider">|</span>
-          <a href="../html/sign_in.html" class="auth-item">회원가입</a>
-        </div>
-      </div>
-    </header>
 
     <main class="container">
-      <div class="tab-list">
-        <div class="menu-label">메뉴</div>
-        <a href="../html/overview.html" class="tab-btn"
-          ><i data-lucide="sparkles"></i> 개요</a
-        >
-        <a href="../html/notice.html" class="tab-btn"
-          ><i data-lucide="book-open"></i> 공지사항</a
-        >
-
-        <div class="dropdown-container">
-          <a
-            href="../html/board_diary.html"
-            class="tab-btn active"
-            style="width: 100%; border: none"
-          >
-            <i data-lucide="pencil"></i> 게시판
-          </a>
-          <div class="dropdown-content">
-            <a
-              href="../html/board_diary.html"
-              style="
-                color: var(--primary-blue);
-                font-weight: bold;
-                background-color: #f8fafc;
-              "
-              >📖 일기 공개 게시판</a
-            >
-            <a href="../html/board_quotes.html">💬 명언 모음집</a>
-          </div>
-        </div>
-
-        <a href="../html/myPage.html" class="tab-btn"
-          ><i data-lucide="user"></i> 마이페이지</a
-        >
-      </div>
 
       <div class="tab-content">
         <section class="board-best-section">

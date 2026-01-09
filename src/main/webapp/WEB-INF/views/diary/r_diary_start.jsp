@@ -11,53 +11,12 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/diary/r_diary_start.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
   </head>
   <body>
-    <header>
-      <div class="container header-inner flex-between">
-        <a href="main.html" class="logo-area" style="text-decoration: none">
-          <h1 class="logo-text">내면의 흔적</h1>
-        </a>
-
-        <div class="auth-links">
-          <a href="login_page.html" class="auth-item">로그인</a>
-          <span class="divider">|</span>
-          <a href="sign_in.html" class="auth-item">회원가입</a>
-        </div>
-      </div>
-    </header>
 
     <main class="container">
-      <div class="tab-list">
-        <div class="menu-label">메뉴</div>
-
-        <a href="outline.html" class="tab-btn">
-          <i data-lucide="sparkles"></i> 개요
-        </a>
-
-        <a href="notice.html" class="tab-btn">
-          <i data-lucide="book-open"></i> 공지사항
-        </a>
-
-        <div class="dropdown-container">
-          <a
-            href="diary_board.html"
-            class="tab-btn"
-            style="width: 100%; border: none"
-          >
-            <i data-lucide="pencil"></i> 게시판
-          </a>
-          <div class="dropdown-content">
-            <a href="diary_board.html">📖 일기 공개 게시판</a>
-            <a href="famous_board.html">💬 명언 모음집</a>
-          </div>
-        </div>
-
-        <a href="myPage.html" class="tab-btn">
-          <i data-lucide="user"></i> 마이페이지
-        </a>
-      </div>
-
       <div class="card">
         <div class="card-body">
           <h3 class="section-title">

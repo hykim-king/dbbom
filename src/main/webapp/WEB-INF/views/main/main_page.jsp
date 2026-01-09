@@ -132,14 +132,14 @@
               <p>오늘 하루 감사했던 순간들.</p>
             </div>
           </a>
-          <a href="l_diary_start.html" style="text-decoration: none; color: inherit">
+          <a href="<%=request.getContextPath()%>/diary/lDiaryStart.do" style="text-decoration: none; color: inherit">
             <div class="diary-card luck">
               <div class="icon-circle"><i data-lucide="clover"></i></div>
               <h3>행운 일기</h3>
               <p>나에게 찾아온 작은 행운.</p>
             </div>
           </a>
-          <a href="r_diary_start.html" style="text-decoration: none; color: inherit">
+          <a href="<%=request.getContextPath()%>/diary/rDiaryStart.do" style="text-decoration: none; color: inherit">
             <div class="diary-card reflection">
               <div class="icon-circle"><i data-lucide="moon"></i></div>
               <h3>성찰 일기</h3>
