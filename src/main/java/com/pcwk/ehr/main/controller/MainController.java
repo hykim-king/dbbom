@@ -31,14 +31,9 @@ public class MainController {
 		return "notice/notice_start";
 	}
 	
-	// @GetMapping(value = "/diary/diaryList.do")
-	// public String diaryList() {
-	// 	return "diary/diary_list";
+	// @GetMapping(value = "/famous/famousboard.do")
+	// public String famousBoard() {
+	// 	return "famous/famous_board";
 	// }
-	
-	@GetMapping(value = "/famous/famousboard.do")
-	public String famousBoard() {
-		return "famous/famous_board";
-	}
 
 }

@@ -83,7 +83,7 @@
     <a href="<%=request.getContextPath()%>/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
     <div class="dropdown-content">
       <a href="<%=request.getContextPath()%>/diary/diaryList.do">📖 일기 공개 게시판</a>
-      <a href="<%=request.getContextPath()%>/famous/famousboard.do">💬 명언 모음집</a>
+      <a href="<%=request.getContextPath()%>/famous/famous.do">💬 명언 모음집</a>
     </div>
   </div>
   <a href="javascript:moveToMyPage();" class="tab-btn"><i data-lucide="user"></i> 마이페이지</a>

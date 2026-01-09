@@ -27,7 +27,7 @@
     
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/common.css" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/famous_diary_board.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/diary_list.css" />
 
     <script>
         // 마이페이지 이동 로직 (로그인 여부 체크)
@@ -75,7 +75,7 @@
 <body>
     <header>
       <div class="container header-inner flex-between">
-        <a href="mainPage.jsp" class="logo-area" style="text-decoration: none">
+        <a href="<%=request.getContextPath()%>/main/main.do" class="logo-area" style="text-decoration: none">
           <h1 class="logo-text">내면의 흔적</h1>
         </a>
 
@@ -105,7 +105,7 @@
           <a href="<%=request.getContextPath()%>/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
           <div class="dropdown-content">
             <a href="<%=request.getContextPath()%>/diary/diaryList.do">📖 일기 공개 게시판</a>
-            <a href="<%=request.getContextPath()%>/famous/famousboard.do">💬 명언 모음집</a>
+            <a href="<%=request.getContextPath()%>/famous/famous.do">💬 명언 모음집</a>
           </div>
         </div>
         <a href="javascript:moveToMyPage();" class="tab-btn"><i data-lucide="user"></i> 마이페이지</a>

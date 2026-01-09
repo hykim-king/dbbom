@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/famous_diary_board.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_list.css"/>
     <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
     <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script> --%>
     <jsp:include page="/WEB-INF/views/main/menu.jsp" />
