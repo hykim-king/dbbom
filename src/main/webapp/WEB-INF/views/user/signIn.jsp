@@ -50,7 +50,7 @@
           success: function(res){
             if(res.flag === 1){
               alert(res.message);
-              location.href = "<%=request.getContextPath()%>/resources/mainPage.jsp";
+              location.href = "<%=request.getContextPath()%>/main/main.do";
             }else{
               alert(res.message);
             }
@@ -82,7 +82,7 @@
 
       <div class="btns">
         <button type="button" id="doSignIn">로그인</button>
-        <button type="button" onclick="location.href='<%=request.getContextPath()%>/resources/mainPage.jsp'">
+        <button type="button" onclick="location.href='<%=request.getContextPath()%>/main/main.do'">
                         메인으로
         </button>
       </div>
