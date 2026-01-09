@@ -7,10 +7,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>성찰일기 | 오늘의 흔적</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/r_diary_start.css"/>
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/diary/r_diary_start.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/r_diary_start.css"/>
+
     <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
     <jsp:include page="/WEB-INF/views/main/menu.jsp" />
   </head>
@@ -88,19 +90,38 @@
           </div>
 
           <div style="text-align: center; margin-top: 20px">
-            <a
-              href="${pageContext.request.contextPath}/diary/rDiaryWrite.do"
-              class="diary-btn"
-              style="
-                text-decoration: none;
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #3563fc;
-                color: #fff;
-                border-radius: 5px;
-              "
-              >일기 작성하기</a
-            >
+            <c:choose>
+                <c:when test="${not empty sessionScope.loginUser}">
+                    <a
+                        href="${pageContext.request.contextPath}/diary/rDiaryWrite.do"
+                        class="diary-btn"
+                        style="
+                            text-decoration: none;
+                            display: inline-block;
+                            padding: 10px 20px;
+                            background-color: #3563fc;
+                            color: #fff;
+                            border-radius: 5px;
+                        "
+                    >일기 작성하기</a>
+                </c:when>
+                <c:otherwise>
+                    <a
+                        href="${pageContext.request.contextPath}/login_page.html"
+                        class="diary-btn"
+                        style="
+                            text-decoration: none;
+                            display: inline-block;
+                            padding: 10px 20px;
+                            background-color: #bdbdbd;
+                            color: #fff;
+                            border-radius: 5px;
+                            cursor: not-allowed;
+                        "
+                        onclick="alert('로그인 후 이용 가능합니다.'); return false;"
+                    >일기 작성하기</a>
+                </c:otherwise>
+            </c:choose>
           </div>
         </div>
       </div>
@@ -115,9 +136,6 @@
       </div>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../javascript/common.js"></script>
-    <script src="../javascript/r_diary_start.js"></script>
     <script>
       lucide.createIcons();
     </script>

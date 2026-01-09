@@ -84,18 +84,38 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 20px">
-                    <a
-                        href="${pageContext.request.contextPath}/diary/fDiaryWrite.do"
-                        class="diary-btn"
-                        style="
-                            text-decoration: none;
-                            display: inline-block;
-                            padding: 10px 20px;
-                            background-color: #7950f2;
-                            color: #fff;
-                            border-radius: 5px;
-                        "
-                        >일기 작성하기</a>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.loginUser}">
+                            <a
+                                href="${pageContext.request.contextPath}/diary/fDiaryWrite.do"
+                                class="diary-btn"
+                                style="
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    padding: 10px 20px;
+                                    background-color: #7950f2;
+                                    color: #fff;
+                                    border-radius: 5px;
+                                "
+                            >일기 작성하기</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a
+                                href="${pageContext.request.contextPath}/login_page.html"
+                                class="diary-btn"
+                                style="
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    padding: 10px 20px;
+                                    background-color: #bdbdbd;
+                                    color: #fff;
+                                    border-radius: 5px;
+                                    cursor: not-allowed;
+                                "
+                                onclick="alert('로그인 후 이용 가능합니다.'); return false;"
+                            >일기 작성하기</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
