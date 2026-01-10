@@ -30,6 +30,11 @@ public class MainController {
 	public String noticeStart() {
 		return "notice/notice_start";
 	}
+
+	@GetMapping(value = "/main/outline.do")
+	public String outlineStart() {
+		return "main/outline";
+	}
 	
 	// @GetMapping(value = "/famous/famousboard.do")
 	// public String famousBoard() {

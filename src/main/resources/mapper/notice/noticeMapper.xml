@@ -46,10 +46,10 @@
             TO_CHAR(TT1.NOTICE_UPDATE, 'YYYY-MM-DD HH24:MI:SS') AS NOTICE_UPDATE,
             TO_CHAR(TT1.NOTICE_TIME,   'YYYY-MM-DD HH24:MI:SS') AS NOTICE_TIME,
             TT1.REG_ID,
-            -- 전체 건수 (페이징 처리를 위해 모든 행에 전체 개수를 같이 가져옴)
-            COUNT(*) OVER() AS TOTAL_CNT,
-            -- 번호 매기기 (최신글이 1번이 되도록 정렬)
-            ROW_NUMBER() OVER(ORDER BY TT1.NOTICE_SID DESC) AS RNUM
+						/* 전체 건수 (페이징 처리를 위해 모든 행에 전체 개수를 같이 가져옴) */
+						COUNT(*) OVER() AS TOTAL_CNT,
+						/* 번호 매기기 (최신글이 1번이 되도록 정렬) */
+						ROW_NUMBER() OVER(ORDER BY TT1.NOTICE_SID DESC) AS RNUM
         FROM NOTICE TT1
         WHERE 1=1
         <include refid="searchCondition"/>
@@ -57,7 +57,7 @@
     WHERE RNUM BETWEEN (#{pageSize} * (#{pageNo} - 1) + 1) AND (#{pageSize} * #{pageNo})
   </select>
 
-  <resultMap type="com.pcwk.ehr.notice.NoticeVO" id="noticeMap">
+  <resultMap type="com.pcwk.ehr.notice.domain.NoticeVO" id="noticeMap">
     <id     column="NOTICE_SID"      property="noticeSid"/>
     <result column="NOTICE_TITLE"    property="noticeTitle"/>
     <result column="NOTICE_CONTENT"  property="noticeContent"/>
@@ -66,7 +66,7 @@
     <result column="REG_ID"          property="regId"/>
   </resultMap>
 
-  <insert id="doSave" parameterType="com.pcwk.ehr.notice.NoticeVO">
+  <insert id="doSave" parameterType="com.pcwk.ehr.notice.domain.NoticeVO">
     <selectKey keyProperty="noticeSid" resultType="int" order="BEFORE">
         SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
     </selectKey>
@@ -84,7 +84,7 @@
     )
   </insert>
 
-  <select id="doSelectOne" parameterType="com.pcwk.ehr.notice.NoticeVO" resultType="com.pcwk.ehr.notice.NoticeVO">
+  <select id="doSelectOne" parameterType="com.pcwk.ehr.notice.domain.NoticeVO" resultType="com.pcwk.ehr.notice.domain.NoticeVO">
     SELECT 
         NOTICE_SID,
         NOTICE_TITLE,
@@ -96,19 +96,19 @@
     WHERE NOTICE_SID = #{noticeSid}
   </select>
 
-  <update id="doUpdate" parameterType="com.pcwk.ehr.notice.NoticeVO">
+  <update id="doUpdate" parameterType="com.pcwk.ehr.notice.domain.NoticeVO">
     UPDATE NOTICE
     SET NOTICE_TITLE   = #{noticeTitle},
         NOTICE_CONTENT = #{noticeContent},
         NOTICE_UPDATE  = SYSDATE    WHERE NOTICE_SID   = #{noticeSid}
   </update>
 
-  <delete id="doDelete" parameterType="com.pcwk.ehr.notice.NoticeVO">
+  <delete id="doDelete" parameterType="com.pcwk.ehr.notice.domain.NoticeVO">
     DELETE FROM NOTICE
     WHERE NOTICE_SID = #{noticeSid}
   </delete>
   
-  <select id="getAll" resultType="com.pcwk.ehr.notice.NoticeVO">
+  <select id="getAll" resultType="com.pcwk.ehr.notice.domain.NoticeVO">
     SELECT 
         NOTICE_SID,
         NOTICE_TITLE,

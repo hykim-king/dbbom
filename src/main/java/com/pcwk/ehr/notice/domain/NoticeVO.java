@@ -1,4 +1,4 @@
-package com.pcwk.ehr.notice;
+package com.pcwk.ehr.notice.domain;
 
 import java.io.Serializable;
 import com.pcwk.ehr.cmn.DTO;

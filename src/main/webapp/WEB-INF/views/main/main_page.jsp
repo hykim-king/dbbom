@@ -98,8 +98,8 @@
     <main class="container">
       <div class="tab-list">
         <div class="menu-label">메뉴</div>
-        <a href="summaryPage.jsp" class="tab-btn"><i data-lucide="sparkles"></i> 개요</a>
-        <a href="<%=request.getContextPath()%>/notice/notice.do" class="tab-btn">
+        <a href="<%=request.getContextPath()%>/main/outline.do" class="tab-btn"><i data-lucide="sparkles"></i> 개요</a>
+        <a href="<%=request.getContextPath()%>/notice/noticeList.do" class="tab-btn">
         <i data-lucide="book-open"></i> 공지사항</a>
         <div class="dropdown-container">
           <a href="<%=request.getContextPath()%>/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
