@@ -53,7 +53,7 @@
                   <div class="post-tag gratitude">${best0.diaryCategoryName}</div>
                 </c:when>
                 <c:when test="${best0.diaryCategory == 40}">
-                  <div class="post-tag reflect">${best0.diaryCategoryName}</div>
+                  <div class="post-tag reflection">${best0.diaryCategoryName}</div>
                 </c:when>
                 <c:otherwise>
                   <div class="post-tag">${best0.diaryCategoryName}</div>
@@ -91,7 +91,7 @@
                   <div class="post-tag gratitude">${best1.diaryCategoryName}</div>
                 </c:when>
                 <c:when test="${best1.diaryCategory == 40}">
-                  <div class="post-tag reflect">${best1.diaryCategoryName}</div>
+                  <div class="post-tag reflection">${best1.diaryCategoryName}</div>
                 </c:when>
                 <c:otherwise>
                   <div class="post-tag">${best1.diaryCategoryName}</div>
@@ -117,7 +117,23 @@
             </article>
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
-              <div class="post-tag ">${best2.diaryCategoryName}</div>
+              <c:choose>
+                <c:when test="${best2.diaryCategory == 10}">
+                  <div class="post-tag quote">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best2.diaryCategory == 20}">
+                  <div class="post-tag luck">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best2.diaryCategory == 30}">
+                  <div class="post-tag gratitude">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best2.diaryCategory == 40}">
+                  <div class="post-tag reflection">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:otherwise>
+                  <div class="post-tag">${best2.diaryCategoryName}</div>
+                </c:otherwise>
+              </c:choose>
               <h4 class="post-title">${best2.diaryTitle}</h4>
               <p class="post-preview">${best2.diaryContent}</p>
               <div class="post-meta">

@@ -51,57 +51,10 @@
         });
       });
     </script>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 </head>
-<header>
-      <div class="container header-inner flex-between"> 
-        <a
-          href="../html/main.html"
-          class="logo-area"
-          style="text-decoration: none"
-        >
-          <h1 class="logo-text">내면의 흔적</h1>
-        </a>
-        <div class="auth-links">
-          <a href="../html/login_page.html" class="auth-item">로그인</a>
-          <span class="divider">|</span>
-          <a href="../html/sign_in.html" class="auth-item">회원가입</a>
-        </div>
-      </div>
-    </header>
+
     <main class="container">
-      <div class="tab-list"> 
-        <div class="menu-label">메뉴</div>
-        <a href="../html/outline.html" class="tab-btn">
-          <i data-lucide="sparkles"></i> 개요
-        </a>
-        <a href="../html/notice.html" class="tab-btn">
-          <i data-lucide="book-open"></i> 공지사항
-        </a>
-        <div class="dropdown-container">
-          <a
-            href="../html/diary_board.html"
-            class="tab-btn"
-            style="width: 100%; border: none"
-          >
-            <i data-lucide="pencil"></i> 게시판
-          </a>
-          <div class="dropdown-content">
-            <a
-              href="../html/diary_board.html"
-              style="
-                color: var(--primary-blue);
-                font-weight: bold;
-                background-color: #f8fafc;
-              "
-              >📖 일기 공개 게시판</a
-            >
-            <a href="../html/famous_board.html">💬 명언 모음집</a>
-          </div>
-        </div>
-        <a href="../html/mypage.html" class="tab-btn active">
-          <i data-lucide="user"></i> 마이페이지
-        </a>
-      </div>
 
         <div style="flex: 1;">
           <a href="board_diary.html" class="back-btn">
@@ -120,6 +73,7 @@
                 </div>
                 <div class="meta-left">
                   <span class="meta-item"><i data-lucide="eye" size="16"></i> 조회 ${diaryVO.diaryViewCount}</span>
+                  <button class="btn-action-text" onclick="reportContent('diary', '${diaryVO.diarySid}')" style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px;">신고</button>
                 </div>
               </div>    
             </header>
