@@ -121,6 +121,34 @@ public class FamousController {
 	    return "famous/famous_detail"; // 생성한 상세페이지 JSP 경로
 	}
 	
+	// 등록 화면으로 이동
+	@RequestMapping(value = "/famousRegView.do")
+	public String famousRegView() {
+	    // /WEB-INF/views/famous/famous_reg.jsp 페이지를 호출합니다.
+	    return "famous/famous_reg"; 
+	}
 	
+	// 명언 등록 실행
+	@PostMapping(value = "/doSave.do", produces = "application/json;charset=UTF-8")
+	@ResponseBody // AJAX 응답을 위해 데이터(JSON)만 반환
+	public String doSave(FamousVO vo) {
+	    log.debug("┌───────────────────────────┐");
+	    log.debug("│ doSave vo: " + vo);
+	    log.debug("└───────────────────────────┘");
+
+	    // 1. 서비스 호출 (성공 시 1, 실패 시 0 반환 예상)
+	    int flag = famousService.doSave(vo);
+	    
+	    // 2. 응답 메시지 설정
+	    String message = "";
+	    if (flag == 1) {
+	        message = "명언이 성공적으로 등록되었습니다.";
+	    } else {
+	        message = "등록에 실패했습니다.";
+	    }
+
+	    // 3. 다이어리와 동일한 형식의 JSON 결과 반환
+	    return "{\"flag\":\"" + flag + "\", \"message\":\"" + message + "\"}";
+	}
 	
 }

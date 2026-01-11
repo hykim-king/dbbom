@@ -27,6 +27,50 @@
 
 <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 
+<style>
+    /* 명언 모음집 전체 섹션의 중앙 정렬 해제 */
+    .board-latest-section {
+        text-align: left !important; /* 전체 중앙 정렬 무시 */
+    }
+
+    /* 타이틀과 버튼을 가로로 배치하는 컨테이너 */
+    .custom-header-flex {
+        display: flex !important;
+        align-items: center !important; /* 세로 중앙 맞춤 */
+        gap: 15px !important; /* 텍스트와 버튼 사이 간격 */
+        margin-bottom: 25px !important;
+        margin-left: 10px !important; /* 화면 왼쪽 끝에서 살짝 띄움 */
+    }
+
+    /* 타이틀 텍스트 스타일 */
+    .custom-header-flex .title-group {
+        text-align: left !important;
+    }
+
+    .custom-header-flex h3 {
+        margin: 0 !important;
+        font-size: 1.5rem !important;
+        color: #1e293b !important;
+    }
+
+    /* 버튼 스타일 (기존 디자인 유지하며 정렬만 수정) */
+    .btn-custom-famous {
+        all: unset !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%) !important;
+        color: white !important;
+        padding: 10px 20px !important;
+        border-radius: 50px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+        transition: 0.3s !important;
+    }
+</style>
+
+
 </head>
 <body>
 
@@ -87,11 +131,21 @@
 			<hr class="section-divider">
 
 			<section class="board-latest-section">
-				<div class="section-title">
-					<h3>💬 명언 모음집</h3>
-					<span style="font-size: 0.9rem; color: #64748b; margin-left: 10px">마음을
-						울리는 한 줄의 힘</span>
-				</div>
+    <div class="custom-header-flex">
+        <div class="title-group">
+            <h3>💬 명언 모음집</h3>
+            <p style="margin: 4px 0 0 0; font-size: 0.9rem; color: #64748b;">마음을 울리는 한 줄의 힘</p>
+        </div>
+
+        <button id="btnMoveToReg" class="btn-custom-famous" type="button">
+            <i data-lucide="plus-circle" style="width: 18px; height: 18px;"></i>
+            <span>명언 등록하기</span>
+        </button>
+    </div>
+    
+    <div id="paged-list-container" class="posts-grid">
+    
+    </section>
 
 				<div id="paged-list-container" class="posts-grid">
 					<c:choose>
@@ -179,6 +233,15 @@
 
 	<script>
 		$(document).ready( function() {
+			
+			$(document).ready(function() {
+			    // 명언 등록 페이지로 이동
+			    $("#btnMoveToReg").on("click", function() {
+			        // 등록 페이지용 Controller 주소 호출
+			        location.href = "${pageContext.request.contextPath}/famous/famousRegView.do";
+			    });
+			});
+			
 							// 1. 초기 UI 복구 및 아이콘 설정
 							function refreshRankUI() {
 								// 명예의 명언 섹션의 카드들을 순서대로 돌며 아이콘 설정
