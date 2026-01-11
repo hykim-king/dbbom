@@ -1,64 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-<<<<<<< HEAD
-        	
-    
     <wb-module deploy-name="ehr-1.0.0-BUILD-SNAPSHOT">
-                        
-        
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                		
-        
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                		
-        
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                		
-        
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                        
-        
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
-                
         <property name="context-root" value="ehr"/>
         <property name="java-output-path" value="/dbbom/target/classes"/>
-                	
-    
     </wb-module>
-        
-=======
-            	
-    
-    
-    <wb-module deploy-name="ehr-1.0.0-BUILD-SNAPSHOT">
-                                
-        
-        
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                        		
-        
-        
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                        		
-        
-        
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                        		
-        
-        
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
-                        
-        
-        <property name="context-root" value="ehr"/>
-                
-        <property name="java-output-path" value="/jun/target/classes"/>
-                        	
-    
-    
-    </wb-module>
-            
-
->>>>>>> b85466b9cb719dca6331ce6b2ac8a9fb4185b741
-
 </project-modules>
