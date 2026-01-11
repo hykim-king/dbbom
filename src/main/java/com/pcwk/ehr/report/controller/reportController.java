@@ -15,8 +15,6 @@ import com.pcwk.ehr.diary.service.DiaryService;
 import com.pcwk.ehr.report.domain.ReportVO;
 import com.pcwk.ehr.report.service.ReportService;
 
-import oracle.jdbc.proxy.annotation.Post;
-
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 

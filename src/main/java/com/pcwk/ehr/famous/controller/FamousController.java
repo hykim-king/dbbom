@@ -58,7 +58,7 @@ public class FamousController {
 	        log.debug("데이터 확인: " + vo.toString()); 
 	        // 여기서 famousContent 내용이 비어있다면 MyBatis 매핑 문제입니다.
 	    }
-	    
+	   
 	    
 	    // 4. [수정 핵심] 전체 건수를 숫자(int)로 추출하여 모델에 전달
 	    int totalCount = 0;
@@ -94,4 +94,33 @@ public class FamousController {
 		// 3. 실제 DB에 저장된 총 좋아요 수를 리턴
 		return String.valueOf(latestVO.getFamousReccount());
 	}
+	
+	
+	@RequestMapping(value = "/doUpdateViewCount.do", produces = "application/json;charset=UTF-8")
+	@ResponseBody // AJAX 통신을 위해 필요
+	public String doUpdateViewCount(FamousVO inVO) {
+	    int flag = famousService.updateViewCount(inVO);
+	    return String.valueOf(flag);
+	}
+	
+	@RequestMapping(value = "/getFamousDetail.do", produces = "application/json;charset=UTF-8")
+	public String getFamousDetail(FamousVO vo, Model model) {
+	    // 데이터 유효성 체크
+	    if(vo.getFamousSid() == 0) {
+	        return "redirect:/famous/famous.do"; 
+	    }
+
+	    // 서비스 호출
+	    FamousVO outVO = famousService.getFamousDetail(vo);
+	    
+	    // JSP에서 사용할 데이터 이름을 "detail"로 지정
+	    model.addAttribute("detail", outVO);
+	    model.addAttribute("pageNo", vo.getPageNo()); 
+	    model.addAttribute("pageSize", vo.getPageSize());
+	    
+	    return "famous/famous_detail"; // 생성한 상세페이지 JSP 경로
+	}
+	
+	
+	
 }
