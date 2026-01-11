@@ -9,7 +9,7 @@
     <!-- <script src="../javascript/outline.js"></script> -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/common.js"></script>
     <!-- 외부 스타일시트 연결 (같은 폴더의 style.css 파일을 불러옵니다) -->
-    <!-- <link rel="stylesheet" href="../css/outline.css" /> -->
+    <link rel="stylesheet" href=${pageContext.request.contextPath}/resources/assets/css/outline.css />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
     <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
 

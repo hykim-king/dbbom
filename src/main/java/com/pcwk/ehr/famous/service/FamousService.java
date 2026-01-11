@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.WorkDiv;
+import com.pcwk.ehr.comment.domain.CommentVO;
 import com.pcwk.ehr.famous.domain.FamousVO;
 
 public interface FamousService extends WorkDiv<FamousVO> {
@@ -14,6 +15,8 @@ public interface FamousService extends WorkDiv<FamousVO> {
      * @return 1:성공, 0:실패, 2:이미 추천함
      */
     int doUpdateLike(FamousVO vo);
+    
+    int doSaveComment(CommentVO vo);
 
     /**
      * 실시간 베스트 3 명언 조회
@@ -27,6 +30,8 @@ public interface FamousService extends WorkDiv<FamousVO> {
      * @return
      */
     List<FamousVO> allDoRetrieve(DTO dto);
+    
+    List<CommentVO> getCommentList(DTO dto);
     
 
 }

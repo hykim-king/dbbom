@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pcwk.ehr.cmn.DTO;
+import com.pcwk.ehr.comment.domain.CommentVO;
 import com.pcwk.ehr.famous.domain.FamousVO;
+import com.pcwk.ehr.mapper.CommentMapper;
 import com.pcwk.ehr.mapper.FamousMapper;
 
 @Service
@@ -14,6 +16,19 @@ public class FamousServiceImpl implements FamousService {
 
 	@Autowired
 	FamousMapper famousMapper;
+	
+	@Autowired
+	CommentMapper commentMapper;
+	
+	@Override
+	public int doSaveComment(CommentVO vo) {
+		return commentMapper.doSave(vo);
+	}
+	
+	@Override
+	public List<CommentVO> getCommentList(DTO dto) {
+	    return commentMapper.doRetrieve(dto);
+	}
 	
 	@Override
 	public int doUpdateLike(FamousVO vo) {

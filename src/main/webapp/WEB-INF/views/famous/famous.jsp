@@ -28,7 +28,7 @@
 
 
 	<main class="container">
-
+`
 
 <div class="tab-content">
             <section class="board-best-section">
@@ -181,6 +181,30 @@ $(document).off("click", ".likes-trigger").on("click", ".likes-trigger", functio
             $this.data('requesting', false);
         }
     });
+    
+    function saveComment(famousSid) {
+        const content = $("#comment_input_" + famousSid).val();
+        
+        if(!content) {
+            alert("댓글 내용을 입력해주세요.");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/famous/doSaveComment.do",
+            data: {
+                "famousSid": famousSid,
+                "commentContent": content
+            },
+            success: function(res) {
+                if(res.status === "success") {
+                    alert("댓글이 등록되었습니다.");
+                    location.reload(); // 리스트 갱신
+                }
+            }
+        });
+    }
 });
 </script>
         

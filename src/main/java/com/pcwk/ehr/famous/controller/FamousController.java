@@ -2,6 +2,8 @@ package com.pcwk.ehr.famous.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.StringUtil;
+import com.pcwk.ehr.comment.domain.CommentVO;
 import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.famous.service.FamousService;
 import com.pcwk.ehr.mapper.FamousMapper;
@@ -26,6 +29,31 @@ public class FamousController {
 
 	@Autowired
 	FamousService famousService;
+
+	@PostMapping(value = "/doSaveComment.do", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doSaveComment(CommentVO vo, HttpSession session) {
+	    log.debug("댓글 저장 요청: " + vo);
+	    
+	    // 1. 작성자 정보 세팅 (로그인 세션 활용)
+	    // UserVO user = (UserVO) session.getAttribute("loginUser");
+	    // if(user == null) return "{\"status\":\"fail\", \"msg\":\"로그인이 필요합니다.\"}";
+	    // vo.setRegId(user.getUserId());
+	    
+	    vo.setRegId("user01"); // 테스트용 강제 세팅
+	    
+	    // 2. 서비스 호출
+	    int flag = famousService.doSaveComment(vo);
+	    
+	    return flag == 1 ? "{\"status\":\"success\"}" : "{\"status\":\"fail\"}";
+	}
+
+	@GetMapping(value = "/getComments.do", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<CommentVO> getComments(DTO dto) {
+	    // famousSid를 파라미터로 받아 해당 명언의 댓글 리스트 반환
+	    return famousService.getCommentList(dto);
+	}
 
 	@GetMapping(value = "/famous.do")
 	public String famousList(DTO dto, Model model) {
