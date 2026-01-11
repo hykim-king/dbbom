@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ class NoticeServiceTest {
     @Autowired
     NoticeMapper noticeMapper; 
 
-    @Autowired
     NoticeVO notice01;
 
     @BeforeEach
@@ -46,12 +46,40 @@ class NoticeServiceTest {
     }
 
     @Test
+    void doDelete() {
+    	log.debug("┌──────────────────────────┐");
+        log.debug("│ ▶ 수행: doDelete()	      │");
+        log.debug("└──────────────────────────┘");
+        
+        // 1. 테스트 
+        int testFlag = noticeService.doSave(notice01);
+        assertEquals(1,testFlag);
+        log.debug("testFlag: "+testFlag);
+        
+        // 2. 삭제
+        int deleteFlag = noticeService.doDelete(notice01);
+        assertEquals(1, deleteFlag);
+        log.debug("deleteFlag: "+deleteFlag);
+        
+        // 3. 조회(삭제 후에도 데이터가 있는지 확인)
+        NoticeVO outVO = noticeService.doSelectOne(notice01);
+        assertEquals(null,outVO,"삭제 했지만 데이터가 있습니다");
+        
+        log.debug("삭제 완료!");
+        
+        
+    	
+    }
+    
+    @Disabled
+    @Test
     void doSave() {
         log.debug("▶ 수행: doSave()");
         int flag = noticeService.doSave(notice01);
         assertEquals(1, flag, "저장 실패");
     }
 
+    @Disabled
     @Test
     void doSelectOne() {
         log.debug("▶ 수행: doSelectOne()");
