@@ -14,6 +14,7 @@ public interface FamousService extends WorkDiv<FamousVO> {
      * @return 1:성공, 0:실패, 2:이미 추천함
      */
     int doUpdateLike(FamousVO vo);
+ 
 
     /**
      * 실시간 베스트 3 명언 조회
@@ -22,11 +23,19 @@ public interface FamousService extends WorkDiv<FamousVO> {
     List<FamousVO> getBest3();
     
     /**
-     * 
+     * 전체 명언 건수 조회
      * @param dto
      * @return
      */
     List<FamousVO> allDoRetrieve(DTO dto);
     
-
+    /**
+     * 명언 조회수
+     * @param inVO
+     * @return
+     */
+    int updateViewCount(FamousVO inVO);
+    
+    /** 명언 상세 조회 */
+    FamousVO getFamousDetail(FamousVO vo);
 }

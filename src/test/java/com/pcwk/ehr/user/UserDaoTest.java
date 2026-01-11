@@ -103,7 +103,7 @@ public class UserDaoTest {
 	@Test
 	void doSave() {
 		// 1. 기존 데이터 전체 삭제
-		userMapper.deleteAll();
+		//userMapper.deleteAll();
 		
 		// 2. 단건 등록
 		int flag = userMapper.doSave(user01);

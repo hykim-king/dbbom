@@ -347,3 +347,81 @@
 .like-count {
   font-weight: bold;
 }
+
+
+/* 1. 카드 전체 레이아웃 정돈 */
+/* 카드 기본 설정 */
+/* 1. 카드 전체 레이아웃 */
+.post-card {
+    height: 300px !important; /* 높이를 살짝 키워 여유 확보 */
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #fff !important;
+    border-radius: 20px !important;
+    border: 1px solid #edf2f7 !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+/* 2. 저자 및 내용 영역 (중앙 정렬) */
+.post-content-main {
+    flex: 1 !important; /* 중간 공간을 꽉 채우도록 설정 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* 수직 중앙 정렬 */
+    margin-top: 10px !important;
+}
+
+.display-author {
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: #1a202c !important;
+    margin: 0 0 8px 0 !important;
+    text-align: center !important;
+}
+
+.display-content {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1 !important; /*내용이 1줄일 경우 ...*/
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 0.95rem !important;
+    color: #4a5568 !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+    margin: 0 !important;
+}
+
+/* 3. 하단 메타 정보 (가로 정렬 핵심!) */
+.post-meta {
+    display: flex !important;
+    justify-content: space-between !important; /* ID와 아이콘들을 양 끝으로 */
+    align-items: center !important;
+    border-top: 1px solid #f7fafc !important;
+    padding-top: 15px !important;
+    margin-top: 20px !important;
+}
+
+/* 아이콘 묶음 가로 정렬 */
+.meta-icons {
+    display: flex !important;
+    flex-direction: row !important; /* 가로 방향 강제 */
+    align-items: center !important;
+    gap: 12px !important; /* 아이콘 사이 간격 */
+    color: #718096 !important;
+}
+
+.views-info, .likes-trigger {
+    display: flex !important;
+    flex-direction: row !important; /* 내부 아이콘과 숫자 가로 정렬 */
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+.views-info i, .likes-trigger i {
+    width: 16px !important;
+    height: 16px !important;
+}
