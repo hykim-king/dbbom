@@ -2,10 +2,36 @@
 
 // 문서가 로딩된 후 버튼 이벤트 연결
 document.addEventListener("DOMContentLoaded", () => {
-  // [신고하기] 버튼 찾기 & 클릭 이벤트 연결
-  const submitBtn = document.querySelector(".btn-submit");
-  if (submitBtn) {
-    submitBtn.addEventListener("click", submitReport);
+  // [신고하기] 폼 submit 이벤트 가로채기 (AJAX 전송)
+  const reportForm = document.getElementById("reportForm");
+  if (reportForm) {
+    reportForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(reportForm);
+      const params = new URLSearchParams();
+      for (const [key, value] of formData.entries()) {
+        params.append(key, value);
+      }
+      fetch(reportForm.action, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: params
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result) {
+          alert("신고되었습니다");
+          window.close();
+        } else {
+          alert(data.msg);
+        }
+      })
+      .catch(() => {
+        alert("신고 처리 중 오류가 발생했습니다.");
+      });
+    });
   }
 
   // [닫기] 버튼 찾기 & 클릭 이벤트 연결
@@ -17,28 +43,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// 신고하기 실제 동작 함수
-function submitReport() {
-  // 라디오 버튼 선택값 가져오기
-  const checkedInput = document.querySelector('input[name="reason"]:checked');
-
-  // 선택된 것이 없으면 방어 코드
-  if (!checkedInput) {
-    alert("신고 사유를 선택해주세요.");
-    return;
-  }
-
-  // 텍스트 내용 가져오기
-  const reasonText = checkedInput.parentNode.textContent.trim();
-
-  // 상세 내용 가져오기
-  const detailText = document.querySelector(".textarea-box").value;
-
-  // TODO: 서버 전송 로직 (AJAX 등)
-
-  // 알림창 띄우기
-  alert(`['${reasonText}'] 사유로 신고가 접수되었습니다.`);
-
-  // 완료 후 창 닫기
-  window.close();
-}
+// 기존 submitReport 함수는 더 이상 사용하지 않음

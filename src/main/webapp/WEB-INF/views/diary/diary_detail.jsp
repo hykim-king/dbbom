@@ -57,7 +57,7 @@
     <main class="container">
 
         <div style="flex: 1;">
-          <a href="board_diary.html" class="back-btn">
+          <a href="${pageContext.request.contextPath}/diary/diaryList.do" class="back-btn">
             <i data-lucide="arrow-left" size="18"></i> 목록으로 돌아가기
           </a>
 
@@ -73,7 +73,10 @@
                 </div>
                 <div class="meta-left">
                   <span class="meta-item"><i data-lucide="eye" size="16"></i> 조회 ${diaryVO.diaryViewCount}</span>
-                  <button class="btn-action-text" onclick="reportContent('diary', '${diaryVO.diarySid}')" style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px;">신고</button>
+                  <%-- <button class="btn-action-text" onclick="reportContent('diary', '${diaryVO.diarySid}')" style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px;">신고</button> --%>
+                  <a class="btn-action-text" href="${pageContext.request.contextPath}/report/reportPage.do?type=diary&id=${diaryVO.diarySid}"
+                    onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
+                    style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px; text-decoration:none;">신고</a>
                 </div>
               </div>    
             </header>
