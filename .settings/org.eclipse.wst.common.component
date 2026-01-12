@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
             	
     
@@ -34,3 +35,27 @@
 
 
 </project-modules>
+=======
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
+	<wb-module deploy-name="ehr-1.0.0-BUILD-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <property name="java-output-path" value="/dbbom/target/classes"/>
+        <property name="context-root" value="ehr"/>
+	</wb-module>
+=======
+    <wb-module deploy-name="ehr-1.0.0-BUILD-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <property name="context-root" value="ehr"/>
+        <property name="java-output-path" value="/dbbom/target/classes"/>
+    </wb-module>
+>>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
+</project-modules>
+>>>>>>> 48c113d37198ef9dd41211189edded58b9762eb9
