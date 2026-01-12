@@ -110,7 +110,7 @@
 
           if(res.flag === 1){
             alert(res.message); // 가입 완료
-            location.href = "<%=request.getContextPath()%>/resources/mainPage.jsp";
+            location.href = "<%=request.getContextPath()%>/main/main.do";
           }else{
             alert(res.message); // 실패 사유
           }
@@ -200,7 +200,7 @@
 
       <div class="btns">
         <button type="button" id="doSignUp">가입하기</button>
-        <button type="button" onclick="location.href='<%=request.getContextPath()%>/resources/mainPage.jsp'">
+        <button type="button" onclick="location.href='<%=request.getContextPath()%>/main/main.do'">
           메인으로
         </button>
       </div>

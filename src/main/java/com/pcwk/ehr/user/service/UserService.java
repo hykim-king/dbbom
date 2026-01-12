@@ -25,4 +25,12 @@ public interface UserService {
      * @return  1: 성공, 0: 실패
      */
     int doWithdraw(UserVO param);
+    
+    /*비밀번호 찾기*/
+    String doFindPw(UserVO param); // 반환값은 성공/실패 메시지
+    
+    String doUpdatePassword(String userId, String oldPw, String newPw);
+    
+    /** 회원 정보 수정 (닉네임, 자기소개) */
+    int doUpdateInfo(UserVO param);
 }

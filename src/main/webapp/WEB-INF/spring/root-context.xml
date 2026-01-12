@@ -34,6 +34,8 @@
     <!-- 트랜잭션  Advice : 트랜잭션 규칙 정책, 어떤 메서드에 어떤 트랜잭션을 적용할 것인가 -->
     <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
        <tx:attributes>
+          		<tx:method name="do*" propagation="REQUIRED"
+			read-only="false" />
           <tx:method name="up*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
           <tx:method name="*"   propagation="REQUIRED" read-only="true"/>       
        </tx:attributes>
@@ -56,13 +58,13 @@
     <bean id="mailSenderImpl" class="org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.naver.com"/>
       <property name="port" value="465"/>
-      <property name="username" value="메일ID@naver.com"/>
-      <property name="password" value="앱비밀번호"/>
+      <property name="username" value="msk924616@naver.com"/>
+      <property name="password" value="MJVT5Y36ZGHF"/>
       <property name="defaultEncoding" value="utf-8"/>
       
-      <!-- SSL -->
       <property name="javaMailProperties">
         <props>
+          <prop key="mail.smtp.auth">true</prop> 
           <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
           <prop key="mail.smtp.ssl.enable">true</prop>
           <prop key="mail.smtp.ssl.trust">smtp.naver.com</prop>
