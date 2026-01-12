@@ -16,7 +16,6 @@ import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.StringUtil;
 import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.famous.service.FamousService;
-import com.pcwk.ehr.mapper.FamousMapper;
 
 @Controller
 @RequestMapping("/famous")

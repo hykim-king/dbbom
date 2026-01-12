@@ -15,37 +15,97 @@
     <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/diary_detail_board.js"></script> --%>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        $('#likeBtn').on('click', function() {
+        // 좋아요 상태 복구
+        const diarySid = '${diaryVO.diarySid}';
+        const likeKey = 'diary_liked_' + diarySid;
+        if (localStorage.getItem(likeKey) === 'true') {
+          $('#likeBtn').addClass('active');
+          $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
+        }
+
+        // 좋아요 버튼 클릭
+        $('#likeBtn').off('click').on('click', function(e) {
+          // 로그인 체크 (sessionScope.loginUser는 문자열로 넘어옴)
+          const loginUser = "${sessionScope.loginUser}";
+          if (loginUser === null || loginUser === '' || loginUser === 'undefined') {
+            if (confirm('좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?')) {
+              location.href = "<%=request.getContextPath()%>/user/signIn.do";
+            }
+            return;
+          }
+
+          const isLiked = $(this).data('is-liked') === true || localStorage.getItem(likeKey) === 'true';
+          const changeValue = isLiked ? -1 : 1;
+
+          // 낙관적 UI 반영
+          if (!isLiked) {
+            $(this).data('is-liked', true);
+            localStorage.setItem(likeKey, 'true');
+            $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
+            $('#likeBtn').addClass('active');
+          } else {
+            $(this).data('is-liked', false);
+            localStorage.removeItem(likeKey);
+            $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
+            $('#likeBtn').removeClass('active');
+          }
+          // 숫자 업데이트
+          var currentVal = parseInt($('#likeCount').text()) || 0;
+          $('#likeCount').text(currentVal + changeValue);
+
+          // 서버 전송
           $.ajax({
-            url: '${pageContext.request.contextPath}/diary/updateRecCount.do',
             type: 'POST',
-            data: { diarySid: '${diaryVO.diarySid}' },
+            url: '${pageContext.request.contextPath}/diary/updateRecCount.do',
+            data: {
+              diarySid: diarySid,
+              diaryRecCount: changeValue
+            },
             success: function(res) {
-              // 서버에서 JSON 문자열로 응답이 오므로 파싱 필요
               if (typeof res === 'string') {
                 try { res = JSON.parse(res); } catch(e) {}
               }
               if(res && res.flag === 0) {
-                // 10분 제한 등 안내 메시지
                 alert(res.message || '추천이 제한되었습니다.');
+                // 서버에서 제한 시 UI 롤백
+                if (!isLiked) {
+                  $('#likeBtn').data('is-liked', false);
+                  localStorage.removeItem(likeKey);
+                  $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
+                  $('#likeBtn').removeClass('active');
+                  $('#likeCount').text(currentVal); // 원래 값 복구
+                } else {
+                  $('#likeBtn').data('is-liked', true);
+                  localStorage.setItem(likeKey, 'true');
+                  $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
+                  $('#likeBtn').addClass('active');
+                  $('#likeCount').text(currentVal); // 원래 값 복구
+                }
                 return;
               }
               // 서버에서 newRecCount 반환 시
               if(res && res.newRecCount !== undefined) {
                 $('#likeCount').text(res.newRecCount);
-                $('#likeBtn').addClass('active');
-                $('#heartIcon').css('fill', 'white');
               } else if(res && res.flag === 1 && res.recCount !== undefined) {
                 $('#likeCount').text(res.recCount);
-                $('#likeBtn').addClass('active');
-                $('#heartIcon').css('fill', 'white');
-              } else {
-                // fallback: 새로고침
-                location.reload();
               }
             },
             error: function() {
               alert('추천수 증가에 실패했습니다.');
+              // 실패 시 롤백
+              if (!isLiked) {
+                $('#likeBtn').data('is-liked', false);
+                localStorage.removeItem(likeKey);
+                $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
+                $('#likeBtn').removeClass('active');
+                $('#likeCount').text(currentVal); // 원래 값 복구
+              } else {
+                $('#likeBtn').data('is-liked', true);
+                localStorage.setItem(likeKey, 'true');
+                $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
+                $('#likeBtn').addClass('active');
+                $('#likeCount').text(currentVal); // 원래 값 복구
+              }
             }
           });
         });

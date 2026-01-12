@@ -146,7 +146,6 @@
 			if (pageNoField) {
 				pageNoField.value = pageNo;
 			}
-			
 			const form = document.getElementById("noticeForm");
 			if (form) {
 				form.submit();

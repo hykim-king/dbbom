@@ -59,6 +59,11 @@ public class DiaryController {
         List<DiaryVO> list = diaryService.doPublicRetrieve(dto);
         log.debug("[doPublicRetrieve] list: {}", list);
 
+        // 전체 건수 세팅 (페이징 정상 동작)
+        if(list != null && list.size() > 0) {
+            dto.setTotalCnt(list.get(0).getTotalCnt());
+        }
+
         // 좋아요 상위 3개 리스트 추가
         model.addAttribute("vo" , dto);
         model.addAttribute("list", list);
@@ -66,6 +71,8 @@ public class DiaryController {
         log.debug("[doPublicRetrieve] model.addAttribute vo: {}", dto);
         log.debug("[doPublicRetrieve] model.addAttribute list: {}", list);
         log.debug("[doPublicRetrieve] model.addAttribute bestList: {}", bestList);
+
+                log.debug("│doPublicRetrieve dto: {}", dto);
 
         return viewname;
 

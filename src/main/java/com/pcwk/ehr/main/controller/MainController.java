@@ -16,6 +16,10 @@ import java.util.List;
 public class MainController {
 	
 	 final Logger log = LogManager.getLogger(getClass());
+
+	@Autowired
+	DiaryService diaryService; 
+
 	 
 	 public MainController() {
 	        super();
@@ -23,20 +27,20 @@ public class MainController {
 	        log.debug("│MainController            │");
 	        log.debug("└──────────────────────────┘");
 	    }
-	 
+
 	 /**
 	 * 회원가입 화면으로 이동
 	  */
-		@Autowired
-		DiaryService diaryService;
 
-		@GetMapping(value = "/main/main.do")
-		public String mainStart(Model model) {
-			// bestList 조회 및 모델에 추가
-			List<DiaryVO> bestList = diaryService.getBest3();
-			model.addAttribute("bestList", bestList);
-			return "main/main_page";
-		}
+
+	@GetMapping(value = "/main/main.do")
+	public String mainStart(Model model) {
+		// bestList 조회 및 모델에 추가
+		List<DiaryVO> bestList = diaryService.getBest3();
+		model.addAttribute("bestList", bestList);
+		log.debug("[doPublicRetrieve] model.addAttribute bestList: {}", bestList);
+		return "main/main_page";
+	}
 	 
 	@GetMapping(value = "/notice/notice.do")
 	public String noticeStart() {
