@@ -27,6 +27,16 @@ public interface FamousMapper extends WorkDiv<FamousVO>  {
     //전체 건수 조회
     int getCount();
     
+<<<<<<< HEAD
+=======
+//    
+//    //추천수 증가
+//    int updateReCount(FamousVO vo);
+    
+    //공개일기인 경우 명언 자동 등록
+    int saveFromDiary(FamousVO vo);
+    
+>>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
     //전체 삭제: 테스트용
     int deleteAll();
 
@@ -36,12 +46,17 @@ public interface FamousMapper extends WorkDiv<FamousVO>  {
     //실시간 베스트 3 명언
     List<FamousVO> getBest3();
     
+<<<<<<< HEAD
     //명언 전체조회
     List<FamousVO> allDoRetrieve(DTO dto);
     
     /** 명언 상세 조회 */
     FamousVO getFamousDetail(FamousVO vo);
     
+=======
+    List<FamousVO> allDoRetrieve(DTO dto);
+    
+>>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
     /**
      * 추천수(좋아요) 증가
      * @param vo (famousSid 포함)
@@ -49,6 +64,7 @@ public interface FamousMapper extends WorkDiv<FamousVO>  {
      */
     int updateReCount(FamousVO vo);
     
+<<<<<<< HEAD
     /**
      * 조회수
      * @param inVO
@@ -56,5 +72,7 @@ public interface FamousMapper extends WorkDiv<FamousVO>  {
      */
     int updateViewCount(FamousVO inVO);
     
+=======
+>>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 
 }

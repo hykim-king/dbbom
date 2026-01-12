@@ -150,4 +150,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# vs code
+.vscode/
+.cursor/
+.razor/
+extensions/
 # End of https://www.toptal.com/developers/gitignore/api/maven,windows,eclipse,web,java
