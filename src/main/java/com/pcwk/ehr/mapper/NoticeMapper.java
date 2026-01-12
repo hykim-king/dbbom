@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.WorkDiv;
-import com.pcwk.ehr.notice.NoticeVO; 
+import com.pcwk.ehr.notice.domain.NoticeVO; 
 
 @Mapper
 public interface NoticeMapper extends WorkDiv<NoticeVO> {

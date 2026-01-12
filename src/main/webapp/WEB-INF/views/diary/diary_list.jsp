@@ -11,64 +11,14 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/famous_diary_board.css"/>
-   	
-    <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_list.css"/>
+    <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script> --%>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
   </head>
   <body>
-    <header>
-      <div class="container header-inner flex-between">
-        <a
-          href="../html/index.html"
-          class="logo-area"
-          style="text-decoration: none"
-        >
-          <h1 class="logo-text">내면의 흔적</h1>
-        </a>
-        <div class="auth-links">
-          <a href="../html/login_page.html" class="auth-item">로그인</a>
-          <span class="divider">|</span>
-          <a href="../html/sign_in.html" class="auth-item">회원가입</a>
-        </div>
-      </div>
-    </header>
 
     <main class="container">
-      <div class="tab-list">
-        <div class="menu-label">메뉴</div>
-        <a href="../html/overview.html" class="tab-btn"
-          ><i data-lucide="sparkles"></i> 개요</a
-        >
-        <a href="../html/notice.html" class="tab-btn"
-          ><i data-lucide="book-open"></i> 공지사항</a
-        >
-
-        <div class="dropdown-container">
-          <a
-            href="../html/board_diary.html"
-            class="tab-btn active"
-            style="width: 100%; border: none"
-          >
-            <i data-lucide="pencil"></i> 게시판
-          </a>
-          <div class="dropdown-content">
-            <a
-              href="../html/board_diary.html"
-              style="
-                color: var(--primary-blue);
-                font-weight: bold;
-                background-color: #f8fafc;
-              "
-              >📖 일기 공개 게시판</a
-            >
-            <a href="../html/board_quotes.html">💬 명언 모음집</a>
-          </div>
-        </div>
-
-        <a href="../html/myPage.html" class="tab-btn"
-          ><i data-lucide="user"></i> 마이페이지</a
-        >
-      </div>
 
       <div class="tab-content">
         <section class="board-best-section">
@@ -92,7 +42,23 @@
             <c:set var="best2" value="${bestList[2]}" />
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#d97706;margin-bottom:8px;">🥇 1위</div>
-              <div class="post-tag quote">${best0.diaryCategoryName}</div>
+              <c:choose>
+                <c:when test="${best0.diaryCategory == 10}">
+                  <div class="post-tag quote">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best0.diaryCategory == 20}">
+                  <div class="post-tag luck">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best0.diaryCategory == 30}">
+                  <div class="post-tag gratitude">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best0.diaryCategory == 40}">
+                  <div class="post-tag reflection">${best0.diaryCategoryName}</div>
+                </c:when>
+                <c:otherwise>
+                  <div class="post-tag">${best0.diaryCategoryName}</div>
+                </c:otherwise>
+              </c:choose>
               <h4 class="post-title">${best0.diaryTitle}</h4>
               <p class="post-preview">${best0.diaryContent}</p>
               <div class="post-meta">
@@ -114,11 +80,27 @@
             </article>
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#94a3b8;margin-bottom:8px;">🥈 2위</div>
-              <div class="post-tag quote">${best1.diaryCategoryName}</div>
+              <c:choose>
+                <c:when test="${best1.diaryCategory == 10}">
+                  <div class="post-tag quote">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best1.diaryCategory == 20}">
+                  <div class="post-tag luck">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best1.diaryCategory == 30}">
+                  <div class="post-tag gratitude">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best1.diaryCategory == 40}">
+                  <div class="post-tag reflection">${best1.diaryCategoryName}</div>
+                </c:when>
+                <c:otherwise>
+                  <div class="post-tag">${best1.diaryCategoryName}</div>
+                </c:otherwise>
+              </c:choose>
               <h4 class="post-title">${best1.diaryTitle}</h4>
               <p class="post-preview">${best1.diaryContent}</p>
               <div class="post-meta">
-                <span>${best0.nickname}</span> 
+                <span>${best1.nickname}</span> 
                 <div
                   style="
                     display: flex;
@@ -135,7 +117,23 @@
             </article>
             <article class="post-card best-card">
               <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
-              <div class="post-tag ">${best2.diaryCategoryName}</div>
+              <c:choose>
+                <c:when test="${best2.diaryCategory == 10}">
+                  <div class="post-tag quote">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best2.diaryCategory == 20}">
+                  <div class="post-tag luck">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best2.diaryCategory == 30}">
+                  <div class="post-tag gratitude">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:when test="${best2.diaryCategory == 40}">
+                  <div class="post-tag reflection">${best2.diaryCategoryName}</div>
+                </c:when>
+                <c:otherwise>
+                  <div class="post-tag">${best2.diaryCategoryName}</div>
+                </c:otherwise>
+              </c:choose>
               <h4 class="post-title">${best2.diaryTitle}</h4>
               <p class="post-preview">${best2.diaryContent}</p>
               <div class="post-meta">
@@ -163,7 +161,23 @@
           <c:forEach var="diary" items="${list}">
             <a href="doSelectOne.do?diarySid=${diary.diarySid}" class="board-row" style="display:flex; text-decoration:none; color:inherit;">
               <div class="row-content">
-                <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
+                <c:choose>
+                  <c:when test="${diary.diaryCategory == 10}">
+                    <span class="post-tag quote" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 20}">
+                    <span class="post-tag luck" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 30}">
+                    <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 40}">
+                    <span class="post-tag reflection" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:otherwise>
+                    <span class="post-tag" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:otherwise>
+                </c:choose>
                 <span class="row-title">${diary.diaryTitle}</span>
                 <!-- 신규글 표시 등은 필요시 추가 -->
               </div>

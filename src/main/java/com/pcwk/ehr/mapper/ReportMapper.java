@@ -3,7 +3,6 @@ package com.pcwk.ehr.mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.pcwk.ehr.cmn.WorkDiv;
-import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.report.domain.ReportVO;
 
 @Mapper // 스프링이 이 인터페이스를 Mapper로 인식하게 함

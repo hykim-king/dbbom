@@ -13,8 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.pcwk.ehr.noticeService.*;
-import com.pcwk.ehr.mapper.NoticeMapper; 
+import com.pcwk.ehr.mapper.NoticeMapper;
+import com.pcwk.ehr.notice.domain.NoticeVO;
+import com.pcwk.ehr.notice.noticeService.*; 
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {
@@ -31,6 +32,7 @@ class NoticeServiceTest {
     @Autowired
     NoticeMapper noticeMapper; 
 
+    @Autowired
     NoticeVO notice01;
 
     @BeforeEach

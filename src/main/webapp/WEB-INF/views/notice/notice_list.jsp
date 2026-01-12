@@ -1,209 +1,165 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내면의 흔적 - 공지사항</title>
+<head>
+<meta charset="UTF-8" />
+<title>내면의 흔적 - 공지사항</title>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice_write_board
-    .css" />
-    
-    <style>
-        .search-area {
-            display: flex;
-            justify-content: flex-end; /* 오른쪽 정렬 */
-            gap: 8px;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-        .search-select, .search-input {
-            padding: 8px 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-        .btn-search {
-            background-color: #3b82f6;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex; align-items: center; gap: 4px;
-        }
-        .btn-write {
-            background-color: #10b981; /* 녹색 */
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex; align-items: center; gap: 4px;
-            text-decoration: none; font-size: 0.9rem;
-        }
-        /* 페이징 */
-        .pagination { display: flex; justify-content: center; margin-top: 30px; gap: 5px; }
-        .page-item {
-             padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; 
-             color: #64748b; cursor: pointer; text-decoration: none;
-        }
-        .page-item.active { background-color: #3b82f6; color: white; border-color: #3b82f6; }
-    </style>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/common.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/notice.js"></script>
-  </head>
-  <body>
-    <form action="/notice/noticeList.do" method="get" name="noticeForm" id="noticeForm">
-        <input type="hidden" name="pageNo" id="pageNo" value="${vo.pageNo}">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/notice.css" />
 
-        <header>
-          <div class="container header-inner flex-between">
-            <a href="/main/mainPage.do" class="logo-area" style="text-decoration: none">
-              <h1 class="logo-text">내면의 흔적</h1>
-            </a>
+<style>
+/* 검색 및 글쓰기 영역 */
+.search-area { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 20px; align-items: center; }
+.search-select, .search-input { padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; }
+.search-input:focus { border-color: #3b82f6; outline: none; } /* 포커스 효과 추가 */
 
-            <div class="auth-links">
-              <c:choose>
-                   <c:when test="${empty sessionScope.user}">
-                      <a href="/user/signIn.do" class="auth-item">로그인</a>
-                      <span class="divider">|</span>
-                      <a href="/user/signUp.do" class="auth-item">회원가입</a>
-                   </c:when>
-                   <c:otherwise>
-                      <span class="auth-item">${sessionScope.user.userName}님</span>
-                      <span class="divider">|</span>
-                      <a href="/user/doLogout.do" class="auth-item">로그아웃</a>
-                   </c:otherwise>
-               </c:choose>
-            </div>
-          </div>
-        </header>
+.btn-search { background-color: #3b82f6; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 4px; }
+.btn-write { background-color: #10b981; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 4px; text-decoration: none; font-size: 0.9rem; }
 
-        <main class="container">
-          <div class="tab-list">
-            <div class="menu-label">메뉴</div>
-            <a href="/main/overview.do" class="tab-btn">
-              <i data-lucide="sparkles"></i> 개요
-            </a>
-            <a href="/notice/noticeList.do" class="tab-btn active">
-              <i data-lucide="book-open"></i> 공지사항
-            </a>
-            <div class="dropdown-container">
-              <a href="/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none">
-                <i data-lucide="pencil"></i> 게시판
-              </a>
-              <div class="dropdown-content">
-                <a href="/diary/diaryList.do">📖 일기 공개 게시판</a>
-                <a href="/famous/famousList.do">💬 명언 모음집</a>
-              </div>
-            </div>
-            <a href="/user/myPage.do" class="tab-btn">
-              <i data-lucide="user"></i> 마이페이지
-            </a>
-          </div>
+/* 페이징 스타일 */
+.pagination { display: flex; justify-content: center; margin-top: 30px; gap: 5px; }
+.page-item { padding: 6px 14px; border: 1px solid #e2e8f0; border-radius: 8px; color: #64748b; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.page-item:hover { background-color: #f1f5f9; }
+.page-item.active { background-color: #3b82f6; color: white; border-color: #3b82f6; font-weight: bold; }
 
-          <div class="tab-content">
-            <div class="notice-container">
-              <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:10px;">
-                  <h3 class="section-title" style="margin-bottom:0;">
-                    <i data-lucide="megaphone"></i> 공지사항
-                  </h3>
-              </div>
+/* 데이터 없음 스타일 */
+.no-data-area { text-align: center; padding: 80px 0; color: #94a3b8; background: #f8fafc; border-radius: 16px; border: 1px dashed #e2e8f0; }
+.search-keyword-highlight { color: #3b82f6; text-decoration: underline; font-weight: bold; }
+</style>
 
-              <div class="search-area">
-                   <select name="searchDiv" id="searchDiv" class="search-select">
-                      <option value=""   <c:if test="${vo.searchDiv == ''}">selected</c:if>>전체</option>
-                      <option value="10" <c:if test="${vo.searchDiv == '10'}">selected</c:if>>제목</option>
-                      <option value="20" <c:if test="${vo.searchDiv == '20'}">selected</c:if>>내용</option>
-                   </select>
-                   <input type="text" name="searchWord" id="searchWord" class="search-input" 
-                          placeholder="검색어 입력" value="${vo.searchWord}">
-                   <button type="button" class="btn-search" onclick="doRetrieve(1)">
-                       <i data-lucide="search" style="width: 14px;"></i> 검색
-                   </button>
-                   
-                   <!-- 글쓰기 버튼 숨기기  -->
-                   <c:if test="${sessionScope.user.isAdmin == 'Y'}">
-                    <a href="${pageContext.request.contextPath}/notice/moveToReg.do" class="btn-write">
-                      <i data-lucide="pen-tool"></i> 글쓰기
-                    </a>
-                   </c:if>
-                   
-                   <!-- 글쓰기 버튼 생성 -->
-                   <%-- <a href="${pageContext.request.contextPath}/notice/moveToReg.do" class="btn-write">
-                      <i data-lucide="pen-tool"></i> 글쓰기
-                    </a> --%>
-                   
-                   
-              </div>
-              
-              <hr style="margin: 10px 0 20px 0; border-color:#f1f5f9;">
+<jsp:include page="/WEB-INF/views/main/menu.jsp" />
+</head>
+<body>
+	<form action="${pageContext.request.contextPath}/notice/noticeList.do" method="get" name="noticeForm" id="noticeForm">
+		<input type="hidden" name="pageNo" id="pageNo" value="${vo.pageNo}">
 
-              <ul style="list-style: none; padding:0;">
-                <c:choose>
-                    <c:when test="${not empty list}">
-                        <c:forEach var="item" items="${list}">
-                            <li class="notice-item" onclick="location.href='${pageContext.request.contextPath}/notice/doSelectOne.do?noticeSid=${item.noticeSid}'">
-                              <div class="notice-info">
-                                <span style="font-weight: 600; font-size:1.05rem;">
-                                    ${item.noticeTitle}
-                                </span>
-                                </div>
-                              <span class="notice-date">${item.noticeTime}</span>
-                            </li>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <li style="text-align:center; padding: 40px; color:#94a3b8;">
-                            등록된 공지사항이 없습니다.
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-              </ul>
-              
-              <div class="pagination">
-                 </div>
-              
-            </div>
-          </div>
-        </main>
-        
-        <footer>
-          <div class="container">
-            <p>© 2024 내면의 흔적. All rights reserved.</p>
-          </div>
-        </footer>
-    </form>
+		<main class="container">
+			<div class="tab-content">
+				<div class="notice-container">
+					<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+						<h3 class="section-title">
+							<i data-lucide="megaphone"></i> 공지사항
+						</h3>
+					</div>
 
-    <script>
-        // Lucide 아이콘 실행
-        if (typeof lucide !== 'undefined') lucide.createIcons();
+					<div class="search-area">
+						<select name="searchDiv" id="searchDiv" class="search-select">
+							<option value="">전체</option>
+							<option value="10" ${vo.searchDiv == '10' ? 'selected' : ''}>제목</option>
+							<option value="20" ${vo.searchDiv == '20' ? 'selected' : ''}>내용</option>
+							<option value="30" ${vo.searchDiv == '30' ? 'selected' : ''}>제목+내용</option>
+						</select> 
+						
+						<input type="text" name="searchWord" id="searchWord"
+							class="search-input" value="${vo.searchWord}"
+							placeholder="검색어를 입력하세요" autocomplete="off">
 
-        // 검색 함수
-        function doRetrieve(pageNo) {
-            document.getElementById("pageNo").value = pageNo;
-            document.noticeForm.submit();
-        }
+						<button type="button" class="btn-search" onclick="doRetrieve(1)">
+							<i data-lucide="search" style="width: 14px;"></i> 검색
+						</button>
 
-        // 엔터키 검색
-        document.getElementById("searchWord").addEventListener("keydown", function(e){
-            if(e.key === "Enter") {
-                e.preventDefault(); // 폼 자동 전송 방지
-                doRetrieve(1);
-            }
-        });
-    </script>
-  </body>
+						<c:if test="${sessionScope.loginUser.adminChk == 'Y'}">
+							<a href="${pageContext.request.contextPath}/notice/moveToReg.do"
+								class="btn-write"> <i data-lucide="pen-tool"></i> 글쓰기
+							</a>
+						</c:if>
+					</div>
+
+					<hr style="margin: 10px 0 20px 0; border-color: #f1f5f9;">
+
+					<ul style="list-style: none; padding: 0;">
+						<c:choose>
+							<c:when test="${not empty list && list.size() > 0}">
+								<c:forEach var="item" items="${list}">
+									<li class="notice-item"
+										onclick="location.href='${pageContext.request.contextPath}/notice/doSelectOne.do?noticeSid=${item.noticeSid}'">
+										<div class="notice-info">
+											<span style="font-weight: 600; font-size: 1.05rem;">${item.noticeTitle}</span>
+										</div> <span class="notice-date">${item.noticeTime}</span>
+									</li>
+								</c:forEach>
+							</c:when>
+
+							<c:otherwise>
+								<li class="no-data-area">
+									<i data-lucide="search-x" style="width: 48px; height: 48px; margin-bottom: 15px; opacity: 0.5; color: #3b82f6;"></i>
+									<p style="font-size: 1.1rem; font-weight: 600; color: #475569;">검색된 공지사항이 없습니다.</p> 
+									<c:if test="${not empty vo.searchWord}">
+										<p style="font-size: 0.9rem; margin-top: 8px;">
+											입력하신 검색어 <span class="search-keyword-highlight">"${vo.searchWord}"</span>에 매칭되는 내용이 없습니다.
+										</p>
+									</c:if>
+									<p style="font-size: 0.85rem; margin-top: 4px;">단어의 철자가 정확한지 확인하거나 다른 검색어를 시도해 보세요.</p>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+
+					<div class="pagination">
+						<c:if test="${totalCnt > 0}">
+							<fmt:parseNumber var="totalPage" value="${Math.ceil(totalCnt / vo.pageSize)}" integerOnly="true" />
+							<c:forEach var="i" begin="1" end="${totalPage}">
+								<a href="javascript:doRetrieve(${i});"
+									class="page-item ${vo.pageNo == i ? 'active' : ''}">${i}</a>
+							</c:forEach>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<div class="container">
+				<p>© 2024 내면의 흔적. All rights reserved.</p>
+			</div>
+		</footer>
+	</form>
+
+	<script>
+		// Lucide 아이콘 초기화
+		if (typeof lucide !== 'undefined') lucide.createIcons();
+
+		$(document).ready(function() {
+			// 페이지 로드 시 검색창에 커서 배치 (값이 있으면 끝으로)
+			const $searchWord = $("#searchWord");
+			if($searchWord.val()) {
+				$searchWord.focus();
+				const len = $searchWord.val().length;
+				$searchWord[0].setSelectionRange(len, len);
+			}
+		});
+
+		// 조회 함수
+		function doRetrieve(pageNo) {
+			console.log("조회 실행 - 페이지: " + pageNo);
+			
+			// 검색 버튼을 누를 때는 무조건 1페이지로 가야 함 (onclick="doRetrieve(1)")
+			// 페이지 번호를 클릭할 때는 해당 번호가 인자로 들어옴
+			const pageNoField = document.getElementById("pageNo");
+			if (pageNoField) {
+				pageNoField.value = pageNo;
+			}
+			
+			const form = document.getElementById("noticeForm");
+			if (form) {
+				form.submit();
+			}
+		}
+
+		// 엔터키 검색 지원 (중복 제출 방지 포함)
+		document.getElementById("searchWord").addEventListener("keydown", function(e) {
+			if (e.key === "Enter") {
+				e.preventDefault(); // 기본 폼 제출 막기
+				doRetrieve(1);      // 명시적으로 1페이지 조회 호출
+			}
+		});
+	</script>
+</body>
 </html>

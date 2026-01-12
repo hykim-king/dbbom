@@ -6,12 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.diary.service.DiaryService;
@@ -38,32 +33,39 @@ public class DiaryController {
     @GetMapping(value="/diaryList.do")
     public String doPublicRetrieve(DTO dto, Model model) {
         log.debug("┌---------------------------┐");
-        log.debug("│doPublicRetrieve dto: " + dto);  
+        log.debug("│doPublicRetrieve dto: {}", dto);
         log.debug("└---------------------------┘");
 
         List<DiaryVO> bestList = diaryService.getBest3();
-
-        log.debug("bestList : {}", bestList);
+        log.debug("[doPublicRetrieve] bestList: {}", bestList);
 
         String viewname = "diary/diary_list";
+        log.debug("[doPublicRetrieve] viewname: {}", viewname);
 
         int pageNo = StringUtil.nvlZero(dto.getPageNo(), 1);
         int pageSize = StringUtil.nvlZero(dto.getPageSize(), 10);
+        log.debug("[doPublicRetrieve] pageNo: {}, pageSize: {}", pageNo, pageSize);
 
         String searchDiv = StringUtil.nullToEmpty(dto.getSearchDiv());
         String searchWord = StringUtil.nullToEmpty(dto.getSearchWord());
+        log.debug("[doPublicRetrieve] searchDiv: {}, searchWord: {}", searchDiv, searchWord);
 
         dto.setPageNo(pageNo);
         dto.setPageSize(pageSize);
         dto.setSearchDiv(searchDiv);
         dto.setSearchWord(searchWord);
-        log.debug("dto: " + dto);
+        log.debug("[doPublicRetrieve] dto after set: {}", dto);
 
         List<DiaryVO> list = diaryService.doPublicRetrieve(dto);
+        log.debug("[doPublicRetrieve] list: {}", list);
+
         // 좋아요 상위 3개 리스트 추가
         model.addAttribute("vo" , dto);
         model.addAttribute("list", list);
         model.addAttribute("bestList", bestList);
+        log.debug("[doPublicRetrieve] model.addAttribute vo: {}", dto);
+        log.debug("[doPublicRetrieve] model.addAttribute list: {}", list);
+        log.debug("[doPublicRetrieve] model.addAttribute bestList: {}", bestList);
 
         return viewname;
 

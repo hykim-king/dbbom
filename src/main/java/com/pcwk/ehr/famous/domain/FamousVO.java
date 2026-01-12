@@ -1,7 +1,9 @@
 package com.pcwk.ehr.famous.domain;
 
+import com.pcwk.ehr.cmn.DTO;
+
 //Mapper -> Service -> Controller -> JSP로 전달하는 데이터 박스
-public class FamousVO {
+public class FamousVO extends DTO{
 	
 	//필드 변수
 	//private: 외부에서 직접 접근 못하게 잠금(캡슐화)

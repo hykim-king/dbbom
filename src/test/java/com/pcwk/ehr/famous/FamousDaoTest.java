@@ -166,18 +166,18 @@ void doDelete() {
 	}
 
 	//조회수 증가 테스트
-	@Disabled
-	@Test
-	void updateViewCount() {
-		//DB 초기화
-		famousMapper.deleteAll();
-		//단건 저장
-		famousMapper.doSave(famous01);
+	// @Disabled
+	// @Test
+	// void updateViewCount() {
+	// 	//DB 초기화
+	// 	famousMapper.deleteAll();
+	// 	//단건 저장
+	// 	famousMapper.doSave(famous01);
 
-		//조회수 +1 및 확인
-		int flag = famousMapper.updateViewCount(famous01);
-		assertEquals(1, flag);
-	}
+	// 	//조회수 +1 및 확인
+	// 	int flag = famousMapper.updateViewCount(famous01);
+	// 	assertEquals(1, flag);
+	// }
 
 	//추천수 증가 테스트
 	@Disabled

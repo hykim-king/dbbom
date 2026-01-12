@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.WorkDiv;
 import com.pcwk.ehr.famous.domain.FamousVO;
 
@@ -26,20 +27,34 @@ public interface FamousMapper extends WorkDiv<FamousVO>  {
     //전체 건수 조회
     int getCount();
     
-    //조회수 증가
-    int updateViewCount(FamousVO vo);
-    
-    //추천수 증가
-    int updateReCount(FamousVO vo);
-    
-    //공개일기인 경우 명언 자동 등록
-    int saveFromDiary(FamousVO vo);
-    
     //전체 삭제: 테스트용
     int deleteAll();
 
     //대량 데이터 입력: 테스트 용
     int saveAll();
+    
+    //실시간 베스트 3 명언
+    List<FamousVO> getBest3();
+    
+    //명언 전체조회
+    List<FamousVO> allDoRetrieve(DTO dto);
+    
+    /** 명언 상세 조회 */
+    FamousVO getFamousDetail(FamousVO vo);
+    
+    /**
+     * 추천수(좋아요) 증가
+     * @param vo (famousSid 포함)
+     * @return 1: 성공, 0: 실패
+     */
+    int updateReCount(FamousVO vo);
+    
+    /**
+     * 조회수
+     * @param inVO
+     * @return
+     */
+    int updateViewCount(FamousVO inVO);
     
 
 }
