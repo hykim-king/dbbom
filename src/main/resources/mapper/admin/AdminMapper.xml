@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcwk.ehr.mapper.AdminMapper">
+
+    <select id="doRetrieveReportList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT r.report_sid as reportSid, d.diary_title as diaryTitle, d.reg_id as regId
+                FROM report r JOIN diary d ON r.diary_sid = d.diary_sid
+                ORDER BY r.report_sid DESC
+            ) A WHERE ROWNUM &lt;= #{pageNo} * #{pageSize}
+        ) WHERE rnum &gt; (#{pageNo} - 1) * #{pageSize}
+    </select>
+
+    <select id="doRetrieveUserList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.user.domain.UserVO">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT user_id as userId, nickname, admin_chk as adminChk
+                FROM users WHERE 1=1
+                <if test="searchWord != null and searchWord != ''">
+                    AND user_id LIKE '%' || #{searchWord} || '%'
+                </if>
+                ORDER BY user_id ASC
+            ) A WHERE ROWNUM &lt;= #{pageNo} * #{pageSize}
+        ) WHERE rnum &gt; (#{pageNo} - 1) * #{pageSize}
+    </select>
+
+    <select id="doRetrieveDiaryList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT diary_sid as diarySid, reg_id as regId, diary_title as diaryTitle, diary_status as diaryStatus
+                FROM diary ORDER BY diary_sid DESC
+            ) A WHERE ROWNUM &lt;= #{pageNo} * #{pageSize}
+        ) WHERE rnum &gt; (#{pageNo} - 1) * #{pageSize}
+    </select>
+</mapper>
