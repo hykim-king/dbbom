@@ -254,7 +254,11 @@
 		DELETE FROM famous_collection
 	</delete>
 
-
+<update id="doUpdateRecTime" parameterType="com.pcwk.ehr.user.domain.UserVO">
+    UPDATE users
+    SET last_rec_time = SYSDATE
+    WHERE user_id = #{userId}
+</update>
 
 
 </mapper>

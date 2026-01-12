@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.pcwk.ehr.mapper.UserMapper;
 import com.pcwk.ehr.user.domain.UserVO;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     final Logger log = LogManager.getLogger(getClass());

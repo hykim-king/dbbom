@@ -5,7 +5,7 @@
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
-        <property name="java-output-path" value="/dbbomm/target/classes"/>
         <property name="context-root" value="ehr"/>
+        <property name="java-output-path" value="/dbbom11/target/classes"/>
 	</wb-module>
 </project-modules>

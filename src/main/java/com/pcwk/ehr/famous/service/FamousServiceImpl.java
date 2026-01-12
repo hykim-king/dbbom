@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.mapper.FamousMapper;
+import com.pcwk.ehr.mapper.UserMapper;
+import com.pcwk.ehr.user.domain.UserVO;
 
 @Service
 public class FamousServiceImpl implements FamousService {
@@ -18,6 +20,22 @@ public class FamousServiceImpl implements FamousService {
 
 	@Autowired
 	FamousMapper famousMapper;
+	
+	@Autowired
+	UserMapper userMapper;
+	
+	@Override
+	public int doUpdateRecTime(UserVO vo) {
+	    // famousMapper에 새로 추가한 doUpdateRecTime을 호출합니다.
+	    return famousMapper.doUpdateRecTime(vo);
+	}
+
+	@Override
+	public UserVO getUserInfo(UserVO vo) {
+	    // UserMapper에 이미 있는 doSelectOne을 활용합니다.
+	    return (UserVO) userMapper.doSelectOne(vo);
+	}
+	
 
 	@Override
 	public List<FamousVO> doRetrieve(DTO dto) {

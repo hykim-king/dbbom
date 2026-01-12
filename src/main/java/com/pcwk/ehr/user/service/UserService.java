@@ -1,8 +1,10 @@
 package com.pcwk.ehr.user.service;
 
+import com.pcwk.ehr.cmn.WorkDiv;
+import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.user.domain.UserVO;
 
-public interface UserService {
+public interface UserService{
 	
 	/** 아이디 찾기 */
 	UserVO doFindId(UserVO param);
