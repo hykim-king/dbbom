@@ -102,37 +102,34 @@
   </select>
 
   <!-- 댓글 목록(페이징) -->
-<select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="commentMap">
-    SELECT A.*, B.total_cnt
+  <select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="commentMap">
+    SELECT A.*, B.*
     FROM (
-        SELECT tt1.rnum AS no,
-               tt1.comment_sid,
-               tt1.comment_content,
-               tt1.reg_id,
-               tt1.comment_uploaddate
+            SELECT tt1.rnum AS no,
+              tt1.comment_sid,
+              tt1.comment_content,
+              tt1.comment_reccount,
+              tt1.comment_uploaddate,
+              tt1.diary_sid,
+              tt1.famous_sid,
+              tt1.reg_id
+      FROM (
+        SELECT ROWNUM AS rnum, t1.*
         FROM (
-            SELECT ROWNUM AS rnum, t1.*
-            FROM (
-                SELECT *
-                FROM comments
-                WHERE 1=1
-                <if test="famousSid != null">
-                    AND famous_sid = #{famousSid}
-                </if>
-                ORDER BY comment_sid DESC
-            ) t1
-            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
-        ) tt1
-        WHERE tt1.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNo} - 1) + 1)
+          SELECT *
+          FROM comments
+          WHERE 1=1
+          ORDER BY comment_sid DESC
+        ) t1
+        WHERE ROWNUM <![CDATA[ <= ]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
+      ) tt1
+      WHERE tt1.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNo} - 1) + 1)
     ) A
     CROSS JOIN (
-        SELECT COUNT(*) total_cnt
-        FROM comments
-        WHERE 1=1
-        <if test="famousSid != null">
-            AND famous_sid = #{famousSid}
-        </if>
+      SELECT COUNT(*) total_cnt
+      FROM comments
+      WHERE 1=1
     ) B
-</select>
+  </select>
 
 </mapper>

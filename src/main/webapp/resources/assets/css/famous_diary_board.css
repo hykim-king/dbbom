@@ -346,7 +346,6 @@
 
 .like-count {
   font-weight: bold;
-<<<<<<< HEAD
 }
 
 
@@ -425,6 +424,4 @@
 .views-info i, .likes-trigger i {
     width: 16px !important;
     height: 16px !important;
-=======
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 }

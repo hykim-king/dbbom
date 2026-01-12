@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 // import org.springframework.web.bind.annotation.RequestMapping;
-=======
-import org.springframework.web.bind.annotation.RequestMapping;
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 
 import com.pcwk.ehr.diary.service.DiaryService;
 import com.pcwk.ehr.diary.domain.DiaryVO;

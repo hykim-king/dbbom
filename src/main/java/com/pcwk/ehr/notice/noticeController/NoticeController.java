@@ -2,11 +2,7 @@ package com.pcwk.ehr.notice.noticeController;
 
 import java.util.List;
 
-<<<<<<< HEAD
 
-=======
-import javax.mail.Session;
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

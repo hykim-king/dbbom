@@ -2,11 +2,6 @@ package com.pcwk.ehr.famous.controller;
 
 import java.util.List;
 
-<<<<<<< HEAD
-=======
-import javax.servlet.http.HttpSession;
-
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.StringUtil;
-<<<<<<< HEAD
-=======
-import com.pcwk.ehr.comment.domain.CommentVO;
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.famous.service.FamousService;
 import com.pcwk.ehr.mapper.FamousMapper;
@@ -36,34 +27,6 @@ public class FamousController {
 	@Autowired
 	FamousService famousService;
 
-<<<<<<< HEAD
-=======
-	@PostMapping(value = "/doSaveComment.do", produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String doSaveComment(CommentVO vo, HttpSession session) {
-	    log.debug("댓글 저장 요청: " + vo);
-	    
-	    // 1. 작성자 정보 세팅 (로그인 세션 활용)
-	    // UserVO user = (UserVO) session.getAttribute("loginUser");
-	    // if(user == null) return "{\"status\":\"fail\", \"msg\":\"로그인이 필요합니다.\"}";
-	    // vo.setRegId(user.getUserId());
-	    
-	    vo.setRegId("user01"); // 테스트용 강제 세팅
-	    
-	    // 2. 서비스 호출
-	    int flag = famousService.doSaveComment(vo);
-	    
-	    return flag == 1 ? "{\"status\":\"success\"}" : "{\"status\":\"fail\"}";
-	}
-
-	@GetMapping(value = "/getComments.do", produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public List<CommentVO> getComments(DTO dto) {
-	    // famousSid를 파라미터로 받아 해당 명언의 댓글 리스트 반환
-	    return famousService.getCommentList(dto);
-	}
-
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 	@GetMapping(value = "/famous.do")
 	public String famousList(DTO dto, Model model) {
 		log.debug("┌───────────────────────────┐");
@@ -95,11 +58,7 @@ public class FamousController {
 	        log.debug("데이터 확인: " + vo.toString()); 
 	        // 여기서 famousContent 내용이 비어있다면 MyBatis 매핑 문제입니다.
 	    }
-<<<<<<< HEAD
 	   
-=======
-	    
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
 	    
 	    // 4. [수정 핵심] 전체 건수를 숫자(int)로 추출하여 모델에 전달
 	    int totalCount = 0;
@@ -135,7 +94,6 @@ public class FamousController {
 		// 3. 실제 DB에 저장된 총 좋아요 수를 리턴
 		return String.valueOf(latestVO.getFamousReccount());
 	}
-<<<<<<< HEAD
 	
 	
 	@RequestMapping(value = "/doUpdateViewCount.do", produces = "application/json;charset=UTF-8")
@@ -166,6 +124,3 @@ public class FamousController {
 	
 	
 }
-=======
-}
->>>>>>> 18ed6dc36142b715f4fe2b6205e7bd779f8ffacc
