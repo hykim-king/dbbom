@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.WorkDiv;
 import com.pcwk.ehr.famous.domain.FamousVO;
+import com.pcwk.ehr.user.domain.UserVO;
 
 /*
  * FamousMapper 역할
@@ -20,6 +21,8 @@ import com.pcwk.ehr.famous.domain.FamousVO;
 //MyBatis가 이 인터페이스를 보고
 //실행 시 자동으로 구현 클래스(프록시 객체)를 생성
 public interface FamousMapper extends WorkDiv<FamousVO>  { 
+
+    int doUpdateRecTime(UserVO vo);
     
     // 명언 전체 목록 조회(조건X)/ DB의 여러 행을 List로 받음
     List<FamousVO> getAll();
@@ -55,6 +58,11 @@ public interface FamousMapper extends WorkDiv<FamousVO>  {
      * @return
      */
     int updateViewCount(FamousVO inVO);
+    
+        /** 감정(P/N)별 랜덤 명언 1개 조회 */
+        FamousVO getRandomByEmotion(String famousEmotion);
+
+        FamousVO getById(int famousSid);
     
 
 }

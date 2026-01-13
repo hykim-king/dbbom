@@ -133,10 +133,17 @@
                 </div>
                 <div class="meta-left">
                   <span class="meta-item"><i data-lucide="eye" size="16"></i> 조회 ${diaryVO.diaryViewCount}</span>
+
+                <%-- <c:if test="${sessionScope.loginUser ne null and sessionScope.loginUser eq diaryVO.regId}"> --%>
+                  <a href="${pageContext.request.contextPath}/diary/diaryUpdateForm.do?diarySid=${diaryVO.diarySid}"
+                     class="btn-action-text" style="margin-left:16px; font-size:14px; color:#3b82f6; text-decoration:none;">수정</a>
+                <%-- </c:if> --%>
+
                   <%-- <button class="btn-action-text" onclick="reportContent('diary', '${diaryVO.diarySid}')" style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px;">신고</button> --%>
                   <a class="btn-action-text" href="${pageContext.request.contextPath}/report/reportPage.do?type=diary&id=${diaryVO.diarySid}"
                     onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
-                    style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px; text-decoration:none;">신고</a>
+                    style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444;
+                     padding:0; margin-left:12px; text-decoration:none;">신고</a>
                 </div>
               </div>    
             </header>
@@ -150,6 +157,7 @@
                 <i data-lucide="heart" id="heartIcon"></i>
                 <span id="likeCount">${diaryVO.diaryRecCount}</span>
               </button>
+
             </div>
 
             <section class="comment-section">

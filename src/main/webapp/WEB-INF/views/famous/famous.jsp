@@ -27,6 +27,76 @@
 
 <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 
+<style>
+    /* 명언 모음집 전체 섹션의 중앙 정렬 해제 */
+   .board-latest-section { text-align: left !important; }
+
+    /* 타이틀과 버튼을 가로로 배치하는 컨테이너 */
+   .custom-header-flex {
+        display: flex !important;
+        align-items: center !important;
+        gap: 15px !important;
+        margin-bottom: 25px !important;
+        margin-left: 10px !important;
+    }
+
+    /* 타이틀 텍스트 스타일 */
+    .custom-header-flex .title-group {
+        text-align: left !important;
+    }
+
+    .custom-header-flex h3 {
+        margin: 0 !important;
+        font-size: 1.5rem !important;
+        color: #1e293b !important;
+    }
+
+    /* 버튼 스타일 (기존 디자인 유지하며 정렬만 수정) */
+    .btn-custom-famous {
+        all: unset !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%) !important;
+        color: white !important;
+        padding: 10px 20px !important;
+        border-radius: 50px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+        transition: 0.3s !important;
+    }
+    /* 좋아요 버튼의 기본 상태를 빨간색으로 설정 */
+/* 좋아요 버튼/아이콘 기본 빨간색 설정 (목록의 하트와 상세페이지 버튼 모두 대응) */
+    .btn-like, .likes-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #ff4d4d !important; /* 숫자 색상 */
+        cursor: pointer;
+    }
+
+/* 목록과 상세페이지의 모든 하트 아이콘을 빨간색으로 */
+    .heart-icon, #heartIcon {
+        color: #ff4d4d !important; /* 테두리 */
+        fill: #ff4d4d !important;  /* 내부 채우기 */
+        width: 18px;
+        height: 18px;
+        transition: transform 0.2s ease;
+    }
+    
+    .likes-trigger:hover .heart-icon {
+        transform: scale(1.2);
+    }
+
+    /* 버튼에 마우스를 올렸을 때 효과 (선택 사항) */
+    .btn-like:hover {
+        background-color: #fff5f5;
+        transform: scale(1.05);
+    }
+</style>
+
+
 </head>
 <body>
 
@@ -63,9 +133,18 @@
 							</div>
 
 							<div class="post-meta">
-    <span class="reg-id">${best.regId}</span>
+    <span class="reg-id">
+        <c:choose>
+            <c:when test="${not empty best.userVO.nickname}">
+                ${best.userVO.nickname}
+            </c:when>
+            <c:otherwise>
+                ${best.regId}
+            </c:otherwise>
+        </c:choose>
+    </span>
     
-    <div class="meta-icons">
+   <div class="meta-icons">
         <div class="views-info">
             <i data-lucide="eye"></i>
             <span>${best.famousViewcount}</span>
@@ -87,12 +166,41 @@
 			<hr class="section-divider">
 
 			<section class="board-latest-section">
-				<div class="section-title">
-					<h3>💬 명언 모음집</h3>
-					<span style="font-size: 0.9rem; color: #64748b; margin-left: 10px">마음을
-						울리는 한 줄의 힘</span>
-				</div>
+    <div class="custom-header-flex" style="justify-content: space-between; align-items: center;">
+        <div class="title-group">
+            <h3>💬 명언 모음집</h3>
+            <p style="margin: 4px 0 0 0; font-size: 0.9rem; color: #64748b;">마음을 울리는 한 줄의 힘</p>
+        </div>
 
+        <button id="btnMoveToReg" class="btn-custom-famous" type="button">
+            <i data-lucide="plus-circle" style="width: 18px; height: 18px;"></i>
+            <span>명언 등록하기</span>
+        </button>
+    </div>
+    
+    <div class="search-container" style="margin: 10px 0 25px 10px; display: flex; justify-content: flex-start;">
+        <form name="famousSearchFrm" id="famousSearchFrm" method="get" action="${pageContext.request.contextPath}/famous/famous.do" style="display: flex; gap: 8px; align-items: center;">
+            <input type="hidden" name="pageNo" id="pageNo" value="${vo.pageNo}">
+            
+            <select name="searchDiv" id="searchDiv" style="padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; background-color: white; color: #475569; font-size: 0.9rem;">
+                <option value="">전체</option>
+                <option value="10" ${vo.searchDiv == '10' ? 'selected' : ''}>내용</option>
+                <option value="20" ${vo.searchDiv == '20' ? 'selected' : ''}>저자</option>
+            </select>
+            
+            <div style="position: relative; display: flex; align-items: center;">
+                <input type="text" name="searchWord" id="searchWord" value="${vo.searchWord}" 
+                       placeholder="검색어를 입력하세요" 
+                       style="padding: 10px 15px; border-radius: 8px; border: 1px solid #e2e8f0; width: 280px; font-size: 0.9rem; outline: none;">
+            </div>
+            
+            <button type="button" id="doRetrieve" class="btn-custom-famous" style="padding: 10px 20px !important; box-shadow: none !important;">
+                <i data-lucide="search" style="width: 16px; height: 16px;"></i>
+                <span>검색</span>
+            </button>
+        </form>
+    </div>
+</section>
 				<div id="paged-list-container" class="posts-grid">
 					<c:choose>
 						<c:when test="${empty list}">
@@ -117,7 +225,12 @@
 									</div>
 
 									<div class="post-meta">
-										<span class="reg-id">${vo.regId}</span>
+										<span class="reg-id">
+    <c:choose>
+        <c:when test="${not empty vo.userVO.nickname}">${vo.userVO.nickname}</c:when>
+        <c:otherwise>${vo.regId}</c:otherwise>
+    </c:choose>
+</span>
 										<div class="meta-icons">
 											<div class="views-info">
     <i data-lucide="eye"></i> 
@@ -136,38 +249,41 @@
 					</c:choose>
 				</div>
 
-				<div id="pagination" class="pagination-container"
-					style="text-align: center; margin-top: 40px;">
-					<ul class="pagination-list"
-						style="display: flex; justify-content: center; list-style: none; gap: 10px;">
-						<c:if test="${totalCnt > 0}">
-							<%-- 전체 페이지 수 계산 --%>
-							<c:set var="totalPage"
-								value="${Math.ceil(totalCnt / vo.pageSize).intValue()}" />
+				<div class="pagination-container">
+    <ul class="pagination-list">
+        <c:if test="${totalCnt > 0}">
+            <%-- 전체 페이지 수 계산: (전체건수 + 페이지사이즈 - 1) / 페이지사이즈 --%>
+            <c:set var="totalPageNum" value="${((totalCnt + vo.pageSize - 1) / vo.pageSize).intValue()}" />
 
-							<c:if test="${vo.pageNo > 1}">
-								<li><a
-									href="?pageNo=${vo.pageNo - 1}&pageSize=${vo.pageSize}"
-									class="page-link">이전</a></li>
-							</c:if>
+            <%-- '이전' 버튼 --%>
+            <c:if test="${vo.pageNo > 1}">
+                <li>
+                    <a href="?pageNo=${vo.pageNo - 1}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}" 
+                       class="page-link prev-next">이전</a>
+                </li>
+            </c:if>
 
-							<c:forEach begin="1" end="${totalPage}" var="i">
-								<li><a href="?pageNo=${i}&pageSize=${vo.pageSize}"
-									class="page-link ${vo.pageNo == i ? 'active' : ''}"
-									style="${vo.pageNo == i ? 'font-weight: bold; color: #ef4444; text-decoration: underline;' : 'color: #64748b;'}">
-										${i} </a></li>
-							</c:forEach>
+            <%-- 페이지 번호 --%>
+            <c:forEach begin="1" end="${totalPageNum}" var="i">
+                <li>
+                    <a href="?pageNo=${i}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}"
+                       class="page-link ${vo.pageNo == i ? 'active' : ''}">${i}</a>
+                </li>
+            </c:forEach>
 
-							<c:if test="${vo.pageNo < totalPage}">
-								<li><a
-									href="?pageNo=${vo.pageNo + 1}&pageSize=${vo.pageSize}"
-									class="page-link">다음</a></li>
-							</c:if>
-						</c:if>
-					</ul>
-				</div>
+            <%-- '다음' 버튼 --%>
+            <c:if test="${vo.pageNo < totalPageNum}">
+                <li>
+                    <a href="?pageNo=${vo.pageNo + 1}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}" 
+                       class="page-link prev-next">다음</a>
+                </li>
+            </c:if>
+        </c:if>
+    </ul>
+</div>
 			</section>
 		</div>
+		
 	</main>
 
 	<footer>
@@ -177,160 +293,133 @@
 	</footer>
 
 
-	<script>
-		$(document).ready( function() {
-							// 1. 초기 UI 복구 및 아이콘 설정
-							function refreshRankUI() {
-								// 명예의 명언 섹션의 카드들을 순서대로 돌며 아이콘 설정
-								$("#best-posts-container .post-card")
-										.each(
-												function(index) {
-													const $card = $(this);
-													const rank = index + 1;
-													const $tag = $card
-															.find(".sentiment-tag");
+<script>
+    $(document).ready(function() {
+        // --- 1. 검색 및 페이징 관련 이벤트 ---
+        
+        // 검색 버튼 클릭
+        $("#doRetrieve").on("click", function() {
+            const searchWord = $("#searchWord").val();
+            if(searchWord && !$("#searchDiv").val()) {
+                alert("검색 조건을 선택해주세요.");
+                return;
+            }
+            $("#pageNo").val(1); // 검색 시 1페이지로 리셋
+            $("#famousSearchFrm").submit();
+        });
 
-													// 순위 텍스트 업데이트
-													$tag.find(".rank-badge")
-															.text(rank + "위");
+        // 엔터키 검색 허용
+        $("#searchWord").on("keypress", function(e) {
+            if(e.keyCode === 13) {
+                e.preventDefault();
+                $("#doRetrieve").click();
+            }
+        });
 
-													// 순위별 왕관 색상 강제 지정 (금, 은, 동)
-													const $crown = $tag
-															.find("[data-lucide='crown']");
-													if (rank === 1) {
-														$crown
-																.css({
-																	"color" : "#fbbf24",
-																	"fill" : "#fbbf24"
-																});
-													} else if (rank === 2) {
-														$crown
-																.css({
-																	"color" : "#94a3b8",
-																	"fill" : "#94a3b8"
-																});
-													} else {
-														$crown
-																.css({
-																	"color" : "#b45309",
-																	"fill" : "#b45309"
-																});
-													}
-												});
+        // 페이징 번호 클릭 (검색어 유지하며 페이지 이동)
+        $(".page-link").on("click", function(e) {
+            e.preventDefault();
+            // href 속성에서 pageNo 추출
+            const href = $(this).attr("href");
+            if(href && href.indexOf("pageNo=") !== -1) {
+                const pageNo = href.split("pageNo=")[1].split("&")[0];
+                $("#pageNo").val(pageNo);
+                $("#famousSearchFrm").submit();
+            }
+        });
 
-								// localStorage 기반 좋아요 상태 복구
-								$(".post-card")
-										.each(
-												function() {
-													const sid = $(this).data(
-															"sid");
-													if (localStorage
-															.getItem("famous_liked_"
-																	+ sid) === "true") {
-														const $trigger = $(this)
-																.find(
-																		".likes-trigger");
-														$trigger.data(
-																"is-liked",
-																true);
-														$trigger
-																.find(
-																		".heart-icon")
-																.attr(
-																		{
-																			"fill" : "#ef4444",
-																			"stroke" : "#ef4444"
-																		});
-														$trigger.css("color",
-																"#ef4444");
-													}
-												});
 
-								lucide.createIcons(); // 아이콘 최종 렌더링
-							}
+        // --- 2. 페이지 이동 및 UI 초기화 ---
 
-							refreshRankUI();
+        // 등록 페이지로 이동
+        $("#btnMoveToReg").on("click", function() {
+            location.href = "${pageContext.request.contextPath}/famous/famousRegView.do";
+        });
 
-							// 카드 클릭 이벤트 (조회수 증가 + 상세페이지 이동)
-							$(document).on("click", ".post-card", function(e) {
-    // 1. 좋아요 버튼 클릭 시 상세페이지 이동 방지
-    if ($(e.target).closest('.likes-trigger').length) return;
+        // 베스트 및 일반 카드 UI (왕관, 하트 등) 초기 설정 함수
+        function refreshRankUI() {
+            // Best 3 왕관 아이콘 및 순위 설정
+            $("#best-posts-container .post-card").each(function(index) {
+                const $card = $(this);
+                const rank = index + 1;
+                const $tag = $card.find(".sentiment-tag");
+                
+                $tag.find(".rank-badge").text(rank + "위");
+                const $crown = $tag.find("[data-lucide='crown']");
+                
+                if (rank === 1) $crown.css({"color": "#fbbf24", "fill": "#fbbf24"});
+                else if (rank === 2) $crown.css({"color": "#94a3b8", "fill": "#94a3b8"});
+                else if (rank === 3) $crown.css({"color": "#b45309", "fill": "#b45309"});
+            });
 
-    // 2. 필요한 데이터 추출
-    const famousSid = $(this).data("sid");
-    const pNo = "${vo.pageNo}";   // 현재 목록의 페이지 번호
-    const pSize = "${vo.pageSize}"; // 현재 목록의 페이지 사이즈
-
-    // 3. 즉시 이동 (조회수 증가는 상세페이지 컨트롤러가 처리함)
-    let url = "${pageContext.request.contextPath}/famous/getFamousDetail.do";
-    url += "?famousSid=" + famousSid;
-    url += "&pageNo=" + (pNo ? pNo : 1);
-    url += "&pageSize=" + (pSize ? pSize : 12);
-    
-    location.href = url;
-});// 2. 좋아요 클릭 이벤트
-							$(document).off("click", ".likes-trigger").on("click", ".likes-trigger", function(e) {
-							    // 1. 하트 클릭 시 상세페이지로 이동 방지
-							    e.stopPropagation();
-
-							    // 2. 로그인 체크 (문자열 에러 방지를 위해 변수 처리)
-							    // 세션값이 없을 때 스크립트가 깨지지 않도록 ' ' 따옴표로 감싸는 것이 중요합니다.
-							    const loginUser = "${sessionScope.loginUser}";
-    
-    if (loginUser === null || loginUser === "" || loginUser === "undefined") {
-        if (confirm("좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
-            // menu.jsp의 경로에 맞춰 수정
-            location.href = "<%=request.getContextPath()%>/user/signIn.do";
+            // 좋아요 상태 복구 (localStorage)
+            $(".post-card").each(function() {
+                const sid = $(this).data("sid");
+                if (localStorage.getItem("famous_liked_" + sid) === "true") {
+                    const $trigger = $(this).find(".likes-trigger");
+                    $trigger.data("is-liked", true);
+                    $trigger.find(".heart-icon").attr({"fill": "#ef4444", "stroke": "#ef4444"});
+                    $trigger.css("color", "#ef4444");
+                }
+            });
+            lucide.createIcons(); // 루시드 아이콘 렌더링
         }
-        return;
-    }
 
-							    const $this = $(this);
-							    const famousSid = $this.closest(".post-card").data("sid");
-							    const isLiked = $this.data("is-liked") === true;
-							    const changeValue = isLiked ? -1 : 1;
+        refreshRankUI();
 
-							    // UI 즉시 반영 (낙관적 업데이트) - 사용자님 기존 코드와 동일
-							    const $allTriggers = $("[data-sid='" + famousSid + "'] .likes-trigger");
-							    const $allCounts = $(".count-" + famousSid);
 
-							    if (!isLiked) {
-							        $allTriggers.data("is-liked", true);
-							        localStorage.setItem("famous_liked_" + famousSid, "true");
-							        $allTriggers.find(".heart-icon").attr({
-							            "fill": "#ef4444",
-							            "stroke": "#ef4444"
-							        });
-							    } else {
-							        $allTriggers.data("is-liked", false);
-							        localStorage.removeItem("famous_liked_" + famousSid);
-							        $allTriggers.find(".heart-icon").attr({
-							            "fill": "none",
-							            "stroke": "currentColor"
-							        });
-							    }
+        // --- 3. 카드 클릭 및 좋아요 AJAX ---
 
-							    // 숫자 업데이트 (NaN 방지를 위해 parseInt 처리)
-							    var currentVal = parseInt($allCounts.first().text()) || 0;
-							    $allCounts.text(currentVal + changeValue);
+        // 상세페이지 이동
+        $(document).on("click", ".post-card", function(e) {
+            if ($(e.target).closest('.likes-trigger').length) return;
 
-							    // 3. 서버 전송 - 사용자님 기존 코드와 동일
-							    $.ajax({
-							        type: "POST",
-							        url: "${pageContext.request.contextPath}/famous/doUpdateLike.do",
-							        data: {
-							            "famousSid": famousSid,
-							            "famousReccount": changeValue
-							        },
-							        success: function(response) {
-							            console.log(famousSid + "번 좋아요 업데이트 성공");
-							        },
-							        error: function(err) {
-							            console.log("좋아요 처리 중 오류 발생");
-							        }
-							    });
-							});
-						});
-	</script>
+            const famousSid = $(this).data("sid");
+            const pNo = "${vo.pageNo}";
+            const pSize = "${vo.pageSize}";
+
+            let url = "${pageContext.request.contextPath}/famous/getFamousDetail.do";
+            url += "?famousSid=" + famousSid;
+            url += "&pageNo=" + (pNo ? pNo : 1);
+            url += "&pageSize=" + (pSize ? pSize : 12);
+            // 검색어 유지 이동을 위해 추가 (선택사항)
+            url += "&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}";
+            
+            location.href = url;
+        });
+
+        // 좋아요 클릭 (AJAX)
+        $(document).off("click", ".likes-trigger").on("click", ".likes-trigger", function(e) {
+            e.stopPropagation();
+            const loginUser = "${sessionScope.loginUser}";
+            if (!loginUser) {
+                if (confirm("좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
+                    location.href = "${pageContext.request.contextPath}/user/signIn.do";
+                }
+                return;
+            }
+
+            const famousSid = $(this).closest(".post-card").data("sid");
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/famous/doUpdateLike.do",
+                data: { "famousSid": famousSid },
+                dataType: "text",
+                success: function(res) {
+                    if (res === "LOGIN_REQUIRED") alert("로그인이 필요합니다.");
+                    else if (res.includes("TIME_LIMIT")) {
+                        alert("이미 추천하셨습니다. " + res.split(":")[1] + "분 후에 다시 가능합니다.");
+                    } else if (res === "ERROR") alert("처리 중 오류가 발생했습니다.");
+                    else {
+                        $(".count-" + famousSid).text(res);
+                        alert("추천되었습니다!");
+                    }
+                },
+                error: function() { alert("통신 오류가 발생했습니다."); }
+            });
+        });
+    });
+</script>
 </body>
 </html>

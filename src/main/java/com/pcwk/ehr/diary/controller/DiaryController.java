@@ -1,3 +1,4 @@
+
 package com.pcwk.ehr.diary.controller;
 import java.util.List;
 
@@ -15,6 +16,10 @@ import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.MessageVO;
 import com.pcwk.ehr.cmn.StringUtil;
 
+import com.pcwk.ehr.famous.service.FamousService;
+
+
+
 
 @Controller
 @RequestMapping("/diary")
@@ -25,6 +30,10 @@ public class DiaryController {
 
     @Autowired
     DiaryService diaryService;
+
+    
+    @Autowired
+    FamousService famousService;
 
     public DiaryController() {
         // TODO Auto-generated constructor stub
@@ -117,34 +126,50 @@ public class DiaryController {
         return "diary/r_diary_start";
     }
 
+    @GetMapping("/fDiaryEnd.do")
+
+    public String fdiaryEnd(@RequestParam(value = "famousSid", required = false) Integer famousSid, Model model) {
+        if (famousSid != null) {
+            com.pcwk.ehr.famous.domain.FamousVO famousVO = famousService.getById(famousSid);
+            model.addAttribute("famous", famousVO);
+        }
+        return "diary/f_diary_end";
+    }
+
+    
+
 
     @PostMapping(value="/diarySave.do", produces="application/json;charset=UTF-8")
     @ResponseBody
-    public String doSave(DiaryVO param) {
+    public String doSave(DiaryVO param, @RequestParam(value = "showFamous", required = false, defaultValue = "false") boolean showFamous) {
         log.debug("┌---------------------------┐");
-        log.debug("│doSave diaryVO: " + param);  
+        log.debug("│doSave diaryVO: " + param);
+        log.debug("│showFamous: " + showFamous);
         log.debug("└---------------------------┘");
 
         String jsonString = "";
-
         int flag = diaryService.doSave(param);
         String message = "";
-        if  (1 == flag) {
+        com.pcwk.ehr.famous.domain.FamousVO famousVO = null;
+        if (flag == 1) {
             message = param.getDiaryTitle() + "일기가 저장되었습니다.";
-        }
-        else {
+            if (showFamous) {
+                famousVO = diaryService.assignFamousBySentiment(param);
+            }
+        } else {
             message = "일기 저장에 실패하였습니다.";
         }
 
-        MessageVO messageVO = new MessageVO();
-        messageVO.setFlag(flag);
-        messageVO.setMessage(message);
+        // 응답에 명언 정보 포함
+        java.util.Map<String, Object> result = new java.util.HashMap<>();
+        result.put("flag", flag);
+        result.put("message", message);
+        if (famousVO != null) {
+            result.put("famousVO", famousVO);
+        }
 
-        log.debug("mesasagevo: {}",messageVO);
-
-        jsonString = new Gson().toJson(messageVO);
-
-
+        log.debug("응답: {}", result);
+        jsonString = new Gson().toJson(result);
         return jsonString;
     }
 
@@ -188,5 +213,35 @@ public class DiaryController {
         String jsonString = new Gson().toJson(messageVO);
         return jsonString;
     }
+
+    /**
+     * 다이어리 수정 폼 진입(GET)
+     */
+    @GetMapping("/diaryUpdateForm.do")
+    public String diaryUpdateForm(@RequestParam int diarySid, Model model) {
+        DiaryVO param = new DiaryVO();
+        param.setDiarySid(diarySid);
+        DiaryVO outVO = diaryService.upDoSelectOne(param);
+        model.addAttribute("diaryVO", outVO);
+        return "diary/diary_update";
+    }
+
+    @PostMapping("/diaryUpdate.do")
+    public String doUpdate(DiaryVO param) {
+        log.debug("┌---------------------------┐");
+        log.debug("│doUpdate diaryVO: " + param);
+        log.debug("└---------------------------┘");
+
+        int flag = diaryService.doUpdate(param);
+        if (flag == 1) {
+            // 수정 성공 시 상세페이지로 리다이렉트
+            return "redirect:/diary/doSelectOne.do?diarySid=" + param.getDiarySid();
+        } else {
+            // 실패 시 수정 폼으로 다시 이동 (에러 메시지 전달 가능)
+            return "redirect:/diary/diaryUpdateForm.do?diarySid=" + param.getDiarySid();
+        }
+    }
+
+    
     
 }

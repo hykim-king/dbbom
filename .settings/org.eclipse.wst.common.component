@@ -23,8 +23,7 @@
                         
         
         <property name="context-root" value="ehr"/>
-                
-        <property name="java-output-path" value="/jun/target/classes"/>
+        <property name="java-output-path" value="/dbbom/target/classes"/>
                         	
     
     

@@ -1,9 +1,12 @@
 package com.pcwk.ehr.famous.domain;
 
 import com.pcwk.ehr.cmn.DTO;
+import com.pcwk.ehr.user.domain.UserVO;
 
 //Mapper -> Service -> Controller -> JSP로 전달하는 데이터 박스
 public class FamousVO extends DTO{
+
+	UserVO userVO;
 	
 	//필드 변수
 	//private: 외부에서 직접 접근 못하게 잠금(캡슐화)
@@ -110,6 +113,14 @@ public class FamousVO extends DTO{
 
 	public void setRegId(String regId) {
 		this.regId = regId;
+	}
+
+	public com.pcwk.ehr.user.domain.UserVO getUserVO() {
+	    return userVO;
+	}
+
+	public void setUserVO(com.pcwk.ehr.user.domain.UserVO userVO) {
+	    this.userVO = userVO;
 	}
 
 	//toString(): 객체 안에 어떤 값들이 들어있는지 문자열로 보여줌
