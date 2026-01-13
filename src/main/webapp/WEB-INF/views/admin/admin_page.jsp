@@ -69,7 +69,59 @@
 	cursor: pointer;
 }
 
-/* 텍스트 줄임표 및 신고사유 강조 */
+/* 검색창 스타일 */
+.admin-search-box {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+	justify-content: flex-end;
+}
+
+.admin-search-select {
+	padding: 8px;
+	border-radius: 8px;
+	border: 1px solid #e2e8f0;
+	outline: none;
+}
+
+.admin-search-input {
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1px solid #e2e8f0;
+	width: 250px;
+	outline: none;
+}
+
+/* 페이징 스타일 */
+.admin-pagination {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 25px;
+}
+
+.page-link {
+	padding: 8px 14px;
+	border-radius: 8px;
+	border: 1px solid #e2e8f0;
+	text-decoration: none;
+	color: #64748b;
+	font-weight: 600;
+	transition: all 0.2s;
+}
+
+.page-link:hover {
+	background-color: #f1f5f9;
+	color: #3b82f6;
+}
+
+.page-link.active {
+	background-color: #3b82f6;
+	color: white;
+	border-color: #3b82f6;
+}
+
+/* 모달 및 기타 기존 스타일 유지... */
 .text-ellipsis {
 	max-width: 250px;
 	white-space: nowrap;
@@ -85,7 +137,6 @@
 	text-underline-offset: 3px;
 }
 
-/* 모달 스타일 */
 .modal-overlay {
 	display: none;
 	position: fixed;
@@ -130,7 +181,6 @@
 	overflow-y: auto;
 }
 
-/* 신고 상세 박스 디자인 */
 .report-box {
 	margin-bottom: 15px;
 	padding: 15px;
@@ -168,7 +218,7 @@
 	background: #3b82f6;
 	color: white;
 	border: none;
-	padding: 10px 16px;
+	padding: 8px 16px;
 	border-radius: 8px;
 	font-weight: 600;
 	cursor: pointer;
@@ -252,6 +302,18 @@
 				</button>
 			</div>
 
+			<%-- 공통 검색 폼 (상단 고정 또는 각 섹션 내부에 위치 가능) --%>
+			<form action="adminPage.do" method="get" id="searchForm"
+				class="admin-search-box">
+				<input type="hidden" name="menu" value="${menu}"> <select
+					name="searchDiv" class="admin-search-select">
+					<option value="10" ${searchDiv == '10' ? 'selected' : ''}>제목/내용</option>
+					<option value="20" ${searchDiv == '20' ? 'selected' : ''}>작성자/ID</option>
+				</select> <input type="text" name="searchWord" class="admin-search-input"
+					value="${searchWord}" placeholder="검색어를 입력하세요">
+				<button type="submit" class="btn-search">검색</button>
+			</form>
+
 			<%-- 1. 신고 관리 섹션 --%>
 			<c:if test="${menu eq 'section1' || menu eq 'all'}">
 				<div class="admin-table-card" id="section1">
@@ -305,6 +367,16 @@
 							</c:choose>
 						</tbody>
 					</table>
+					<%-- 신고 페이징 --%>
+					<div class="admin-pagination">
+						<c:if test="${reportMaxPage > 0}">
+							<c:forEach var="i" begin="1" end="${reportMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&reportPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}"
+									class="page-link ${param.reportPage == i || (empty param.reportPage && i == 1) ? 'active' : ''}">${i}</a>
+							</c:forEach>
+						</c:if>
+					</div>
 				</div>
 			</c:if>
 
@@ -346,6 +418,16 @@
 							</c:choose>
 						</tbody>
 					</table>
+					<%-- 회원 페이징 --%>
+					<div class="admin-pagination">
+						<c:if test="${userMaxPage > 0}">
+							<c:forEach var="i" begin="1" end="${userMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&userPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}"
+									class="page-link ${param.userPage == i || (empty param.userPage && i == 1) ? 'active' : ''}">${i}</a>
+							</c:forEach>
+						</c:if>
+					</div>
 				</div>
 			</c:if>
 
@@ -392,6 +474,16 @@
 							</c:choose>
 						</tbody>
 					</table>
+					<%-- 게시글 페이징 --%>
+					<div class="admin-pagination">
+						<c:if test="${diaryMaxPage > 0}">
+							<c:forEach var="i" begin="1" end="${diaryMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&diaryPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}"
+									class="page-link ${param.diaryPage == i || (empty param.diaryPage && i == 1) ? 'active' : ''}">${i}</a>
+							</c:forEach>
+						</c:if>
+					</div>
 				</div>
 			</c:if>
 		</div>
@@ -408,29 +500,23 @@
             if (!confirm("로그아웃 하시겠습니까?")) return;
             $.ajax({
                 url: cp + "/user/doLogoutAjax.do",
-                type: "POST", // 반드시 POST 방식이어야 합니다.
+                type: "POST",
                 dataType: "json",
                 success: function(res) {
                     alert(res.message);
                     if (res.flag === 1) location.href = cp + "/main/main.do";
                 },
-                error: function() { 
-                    location.href = cp + "/main/main.do"; 
-                }
+                error: function() { location.href = cp + "/main/main.do"; }
             });
         }
-        function openReportModal(reportContent, diaryContent, diarySid) {
-            console.log("받아온 diarySid:", diarySid); // 여기서 0인지 확인
 
-            // 0이거나 빈값이면 이동 불가 처리
+        function openReportModal(reportContent, diaryContent, diarySid) {
             if (!diarySid || diarySid === '0' || diarySid === '' || diarySid === 'null') {
-                alert("해당 신고는 일기와 연결된 식별 번호가 없습니다(0).");
+                alert("해당 신고는 일기와 연결된 식별 번호가 없습니다.");
                 return;
             }
-
             $('#modalTitle').text("신고 상세 확인");
             const detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + diarySid;
-
             let html = `
                 <div class="report-box">
                     <div style="font-weight:bold; color:#e11d48;">신고 내용</div>
@@ -452,7 +538,6 @@
             lucide.createIcons();
         }
 
-        // 3. 게시글 관리 모달
         function openDiaryModal(title, subTitle, content, diarySid) {
             $('#modalTitle').text(title);
             const detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + diarySid;
