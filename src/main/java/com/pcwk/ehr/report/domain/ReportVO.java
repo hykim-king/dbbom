@@ -17,13 +17,14 @@ public class ReportVO {
     private Integer commentSid;
     private Integer diarySid;
     private String regId;
+    private String diaryContent; // 추가된 필드
 
     public ReportVO() {
         super();
     }
 
     public ReportVO(int reportSid, String reportContent, int reportCategory, Integer famousSid, Integer commentSid,
-                    Integer diarySid, String regId) {
+                    Integer diarySid, String regId,  String diaryContent) {
         super();
         this.reportSid = reportSid;
         this.reportContent = reportContent;
@@ -32,6 +33,7 @@ public class ReportVO {
         this.commentSid = commentSid;
         this.diarySid = diarySid;
         this.regId = regId;
+        this.diaryContent = diaryContent;
     }
 
 
@@ -90,6 +92,13 @@ public class ReportVO {
     public void setRegId(String regId) {
         this.regId = regId;
     }
+    public String getDiaryContent() {
+		return diaryContent;
+	}
+
+	public void setDiaryContent(String diaryContent) {
+		this.diaryContent = diaryContent;
+	}
 
     @Override
     public String toString() {

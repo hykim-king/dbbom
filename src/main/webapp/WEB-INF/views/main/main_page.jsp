@@ -1,100 +1,153 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.pcwk.ehr.user.domain.UserVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="com.pcwk.ehr.user.domain.UserVO"%>
 <%
-    // 세션에서 로그인 사용자 정보 가져오기 
-    UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-    String welcomeName = "";
-    boolean isLogin = false;
-    if (loginUser != null) {
-        isLogin = true;
-        // 닉네임이 있으면 닉네임, 없으면 아이디 표시
-        welcomeName = (loginUser.getNickname() != null && !loginUser.getNickname().trim().isEmpty()) 
-                      ? loginUser.getNickname() : loginUser.getUserId();
-    }
+	// 세션에서 로그인 사용자 정보 가져오기
+UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+String welcomeName = "";
+boolean isLogin = false;
+boolean isAdmin = false;
+
+if (loginUser != null) {
+	isLogin = true;
+
+	// 관리자 권한 확인 (DB 값이 'Y'인 경우 관리자로 판단)
+	if ("Y".equals(loginUser.getAdminChk())) {
+		isAdmin = true;
+	}
+
+	welcomeName = (loginUser.getNickname() != null && !loginUser.getNickname().trim().isEmpty())
+	? loginUser.getNickname()
+	: loginUser.getUserId();
+}
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내면의 흔적 - 홈</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>내면의 흔적 - 홈</title>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/assets/js/common.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/assets/js/main.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/assets/js/famous_diary_board.js"></script>
-    
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/common.css" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/diary_list.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/assets/js/common.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets/js/main.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/assets/js/famous_diary_board.js"></script>
 
-    <script>
-        // 마이페이지 이동 로직 (로그인 여부 체크)
-        function moveToMyPage() {
-            var isLogin = <%= isLogin %>;
-            if (!isLogin) {
-                alert("로그인이 필요합니다.");
-                location.href = "<%=request.getContextPath()%>/user/signIn.do";
-                return;
-            }
-            location.href = "<%=request.getContextPath()%>/user/myPage.do";
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/assets/css/common.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/assets/css/diary_list.css" />
+
+<script>
+    // 마이페이지 이동 로직 (관리자여도 본인 정보를 수정하는 마이페이지로 이동)
+    function moveToManagement() {
+        var isLogin = <%=isLogin%>;
+        
+        if (!isLogin) {
+            alert("로그인이 필요합니다.");
+            location.href = "<%=request.getContextPath()%>/user/signIn.do";
+            return;
         }
+        
+        // 관리자라도 본인 정보를 수정하는 마이페이지로 연결
+        location.href = "<%=request.getContextPath()%>/user/myPage.do";
+    }
 
-        // 로그아웃 로직
-        function doLogout() {
-            if (!confirm("로그아웃 하시겠습니까?")) return;
-            $.ajax({
-                url: "<%=request.getContextPath()%>/user/doLogoutAjax.do",
-                type: "POST",
-                dataType: "json",
-                success: function(res) {
-                    alert(res.message);
-                    if (res.flag === 1) location.href = "<%=request.getContextPath()%>/main/main.do";
-                },
-                error: function(xhr, status, err) { alert("오류 발생"); }
-            });
-        }
+    // 로그아웃 로직
+    function doLogout() {
+        if (!confirm("로그아웃 하시겠습니까?")) return;
+        $.ajax({
+            url: "<%=request.getContextPath()%>/user/doLogoutAjax.do",
+            type: "POST",
+            dataType: "json",
+            success: function(res) {
+                alert(res.message);
+                if (res.flag === 1) location.href = "<%=request.getContextPath()%>/main/main.do";
+            },
+            error: function(xhr, status, err) { alert("오류 발생"); }
+        });
+    }
 
-        // 회원탈퇴 로직
-        function doWithdraw() {
-            if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
-            $.ajax({
-                url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
-                type: "POST",
-                dataType: "json",
-                success: function(res) {
-                    alert(res.message);
-                    if (res.flag === 1) location.href = "<%=request.getContextPath()%>/resources/main/main.do";
-                },
-                error: function(xhr, status, err) { alert("오류 발생"); }
-            });
-        }
-    </script>
+    // 회원탈퇴 로직 (에러 수정 완료)
+    function doWithdraw() {
+        if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
+        
+        $.ajax({
+            url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
+            type: "POST",
+            dataType: "json",
+            success: function(res) {
+                alert(res.message);
+                // [수정] 줄바꿈을 없애고 따옴표 쌍을 맞추어 한 줄로 연결함 (Syntax Error 해결)
+                if (res.flag === 1) {
+                    location.href = "<%=request.getContextPath()%>
+	/main/main.do";
+						}
+					},
+					error : function(xhr, status, err) {
+						alert("오류 발생");
+					}
+				});
+	}
+</script>
 </head>
 <body>
-    <header>
-      <div class="container header-inner flex-between">
-        <a href="<%=request.getContextPath()%>/main/main.do" class="logo-area" style="text-decoration: none">
-          <h1 class="logo-text">내면의 흔적</h1>
-        </a>
+	<header>
+		<div class="container header-inner flex-between">
+			<a href="<%=request.getContextPath()%>/main/main.do"
+				class="logo-area" style="text-decoration: none">
+				<h1 class="logo-text">내면의 흔적</h1>
+			</a>
 
-        <div class="auth-links">
-          <% if (!isLogin) { %>
-              <a href="<%=request.getContextPath()%>/user/signIn.do" class="auth-item">로그인</a>
-              <span class="divider">|</span>
-              <a href="<%=request.getContextPath()%>/user/signUp.do" class="auth-item">회원가입</a>
-          <% } else { %>
-              <span class="auth-item"><b><%= welcomeName %></b>님 환영합니다</span>
-              <span class="divider">|</span>
-              <a href="javascript:doLogout();" class="auth-item">로그아웃</a>
-              <span class="divider">|</span>
-              <a href="javascript:doWithdraw();" class="auth-item" style="color:red; font-size:0.8rem;">회원탈퇴</a>
-          <% } %>
-        </div>
-      </div>
-    </header>
+			<div class="auth-links">
+				<%
+					if (!isLogin) {
+				%>
+				<a href="<%=request.getContextPath()%>/user/signIn.do"
+					class="auth-item">로그인</a> <span class="divider">|</span> <a
+					href="<%=request.getContextPath()%>/user/signUp.do"
+					class="auth-item">회원가입</a>
+				<%
+					} else {
+				%>
+				<span class="auth-item"><b><%=welcomeName%></b>님 환영합니다</span> <span
+					class="divider">|</span>
+
+				<%
+					if (isAdmin) {
+				%>
+				<a href="<%=request.getContextPath()%>/admin/adminPage.do"
+					class="auth-item" style="color: #2563eb; font-weight: bold;">관리자
+					페이지</a> <span class="divider">|</span>
+				<%
+					}
+				%>
+
+				<a href="javascript:doLogout();" class="auth-item">로그아웃</a>
+
+				<%-- [핵심 수정] 관리자가 아닐 때(!isAdmin)만 회원탈퇴 버튼 노출 --%>
+				<%
+					if (!isAdmin) {
+				%>
+				<span class="divider">|</span> <a href="javascript:doWithdraw();"
+					class="auth-item" style="color: red; font-size: 0.8rem;">회원탈퇴</a>
+				<%
+					}
+				%>
+				<%
+					}
+				%>
+			</div>
+		</div>
+	</header>
 
     <main class="container">
       <div class="tab-list">
