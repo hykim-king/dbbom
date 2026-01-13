@@ -221,11 +221,10 @@
 		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
 		UPDATE famous_collection
 		SET
-		famous_content =
-		#{famousContent},
+		famous_author = #{famousAuthor},
+		famous_content = #{famousContent},
 		famous_emotion = #{famousEmotion}
-		WHERE famous_sid =
-		#{famousSid}
+		WHERE famous_sid = #{famousSid}
 	</update>
 
 
