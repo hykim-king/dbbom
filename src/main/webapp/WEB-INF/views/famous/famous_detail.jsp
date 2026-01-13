@@ -11,59 +11,85 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_detail_board.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
-    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
 <style>
-    .btn-like {
-        /* 원형을 만들기 위한 고정 크기 */
-        width: 80px !important;
-        height: 80px !important;
-        border-radius: 50% !important;
-        
-        /* 내용물을 세로로 중앙 정렬 */
+    /* 1. 메뉴바 레이아웃 복구 (세로 겹침 및 위치 오류 해결) */
+    /* menu.jsp의 원래 디자인을 방해하는 display: flex 강제 설정을 해제합니다. */
+    header {
+        position: relative !important;
+        display: block !important; /* flex가 아닌 block이어야 내부 container가 제대로 잡힙니다 */
+        width: 100% !important;
+        height: auto !important;
+        top: auto !important;
+    }
+
+    /* 로고바 내부 정렬 유지 */
+    header .header-inner.flex-between {
         display: flex !important;
-        flex-direction: column !important;
+        justify-content: space-between !important;
         align-items: center !important;
-        justify-content: center !important;
-        
-        /* 기존 색상 및 테두리 유지 */
-        border: 2px solid #ff4d4d !important;
-        background-color: #fff5f5 !important;
-        color: #ff4d4d !important;
-        cursor: pointer;
-        transition: transform 0.2s;
+        width: 100% !important;
+        max-width: 1152px;
+        margin: 0 auto;
+        padding: 0 20px;
+        height: 64px;
     }
 
-    .btn-like:hover {
-        transform: scale(1.1);
+    /* 메뉴 탭바(.tab-list)가 포함된 컨테이너 */
+    header + .container {
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        max-width: 1152px !important;
+        margin: 0 auto !important;
     }
 
-    #heartIcon {
-        width: 24px;
-        height: 24px;
-        fill: #ff4d4d; /* 하트 내부 채우기 */
-        stroke: #ff4d4d;
+    /* 2. 본문 카드와의 간격 */
+    main.container {
+        display: block !important;
+        margin-top: 40px !important; 
+        padding: 0 20px !important;
     }
 
-    #likeCount {
-        font-size: 0.9rem;
-        font-weight: bold;
-        margin-top: 4px;
+    /* 3. 상세보기 카드 내부 헤더 (제목 영역 둥둥 떠다님 방지) */
+    /* diary_detail_board.css에서 강제로 준 fixed를 여기서 해제합니다. */
+    .detail-card .detail-header {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 40px 30px 25px 30px !important;
+        background-color: #ffffff !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+        display: block !important;
+        z-index: 10 !important;
+    }
+
+    /* 4. 제목 스타일 보정 */
+    .detail-title {
+        font-size: 1.8rem !important;
+        font-weight: bold !important;
+        margin: 10px 0 !important;
+        color: #1e293b !important;
+        display: block !important;
     }
 </style>
-
 </head>
 
 <body> 
-<main class="container"> 
-    <div style="flex: 1; padding: 20px;">
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+
+    <main class="container"> 
         <a href="javascript:void(0);" class="back-btn" id="btnMoveToList">
             <i data-lucide="arrow-left"></i> 목록으로 돌아가기
         </a>
 
-        <article class="detail-card">
+            <article class="detail-card">
             <header class="detail-header">
                 <span class="post-tag ${fn:trim(detail.famousEmotion) eq 'P' ? 'gratitude' : 'emotion'}">
                     <i data-lucide="${fn:trim(detail.famousEmotion) eq 'P' ? 'sun' : 'moon'}" size="16"></i>

@@ -14,20 +14,28 @@
 		<result column="famous_reccount" property="famousReccount" />
 		<result column="famous_time" property="famousTime" />
 		<result column="reg_id" property="regId" />
+		<result column="total_cnt" property="totalCnt" />
+
+		<association property="userVO"
+			javaType="com.pcwk.ehr.user.domain.UserVO">
+			<result property="nickname" column="nickname" />
+		</association>
+
 	</resultMap>
 
 
 	<!-- 명언 베스트 3 추출 -->
-	<select id="getBest3" resultMap="famousMap">
-		SELECT *
-		FROM (
-		SELECT *
-		FROM famous_collection
-		WHERE famous_reccount  <![CDATA[> ]]>0
-		ORDER BY famous_reccount DESC, famous_time DESC )
-		WHERE ROWNUM <![CDATA[ <= ]]>
-		3
-	</select>
+<select id="getBest3" resultMap="famousMap">
+    SELECT *
+    FROM (
+        SELECT f.*, m.nickname 
+        FROM famous_collection f
+        LEFT JOIN users m ON f.reg_id = m.user_id 
+        WHERE f.famous_reccount <![CDATA[>]]> 0
+        ORDER BY f.famous_reccount DESC, f.famous_time DESC 
+    )
+    WHERE ROWNUM <![CDATA[<=]]> 3
+</select>
 
 	<!-- 명언 전체 리스트 조회(페이징) -->
 	<sql id="searchCondition">
@@ -43,32 +51,41 @@
 		</where>
 	</sql>
 
-	<select id="allDoRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="famousMap">
+<select id="allDoRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="famousMap">
     SELECT A.*, B.total_cnt
     FROM (
-        SELECT tt1.rnum AS no,
-               tt1.famous_sid,
-               tt1.famous_content,
-               tt1.famous_author,
-               tt1.famous_emotion, 
-               tt1.famous_viewcount,  tt1.famous_reccount,
-               tt1.famous_time,
-               tt1.reg_id
+        SELECT tt1.*
         FROM (
             SELECT ROWNUM AS rnum, t1.* FROM (
-                SELECT * FROM famous_collection
+                SELECT f.*, m.nickname 
+                FROM famous_collection f
+                LEFT JOIN users m ON f.reg_id = m.user_id 
                 WHERE 1=1
-                ORDER BY famous_reccount DESC, famous_time DESC
+                <if test="searchWord != null and searchWord != ''">
+                    <choose>
+                        <when test="searchDiv == '10'"> AND f.famous_content LIKE '%' || #{searchWord} || '%' </when>
+                        <when test="searchDiv == '20'"> AND f.famous_author LIKE '%' || #{searchWord} || '%' </when>
+                    </choose>
+                </if>
+                ORDER BY f.famous_time DESC -- 최신순 정렬
             ) t1
-            WHERE ROWNUM <![CDATA[<=]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
+            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
         ) tt1
-        WHERE tt1.rnum <![CDATA[>=]]> (#{pageSize} * (#{pageNo} - 1) + 1)
+        WHERE tt1.rnum <![CDATA[ >= ]]> ((#{pageNo} - 1) * #{pageSize} + 1)
     ) A
     CROSS JOIN (
-        SELECT COUNT(*) total_cnt FROM famous_collection WHERE 1=1
+        SELECT COUNT(*) total_cnt 
+        FROM famous_collection
+        <where>
+            <if test="searchWord != null and searchWord != ''">
+                <choose>
+                    <when test="searchDiv == '10'"> AND famous_content LIKE '%' || #{searchWord} || '%' </when>
+                    <when test="searchDiv == '20'"> AND famous_author LIKE '%' || #{searchWord} || '%' </when>
+                </choose>
+            </if>
+        </where>
     ) B
 </select>
-
 	<!-- 1건 저장 -->
 	<insert id="doSave"
 		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
@@ -148,19 +165,23 @@
 		SELECT A.*, B.*
 		FROM (
 		SELECT tt1.rnum AS no,
-		tt1.famous_sid AS famousSid,
+		tt1.famous_sid AS
+		famousSid,
 		tt1.famous_author AS famousAuthor,
-		tt1.famous_content AS famousContent,
+		tt1.famous_content AS
+		famousContent,
 		tt1.famous_emotion AS famousEmotion,
 		tt1.famous_viewcount AS famousViewcount,
-		tt1.famous_reccount AS famousReccount,
+		tt1.famous_reccount AS
+		famousReccount,
 		tt1.famous_time AS famousTime,
 		tt1.reg_id AS regId
 		FROM (
 		SELECT ROWNUM AS rnum, t1.*
 		FROM (
 		SELECT *
-		FROM famous_collection WHERE 1=1
+		FROM famous_collection WHERE
+		1=1
 		ORDER BY famous_time DESC
 		) t1
 		WHERE ROWNUM <![CDATA[ <= ]]>
@@ -170,7 +191,8 @@
 		(#{pageSize} * (#{pageNo} - 1) + 1)
 		) A
 		CROSS JOIN (
-		SELECT COUNT(*) total_cnt FROM famous_collection
+		SELECT COUNT(*)
+		total_cnt FROM famous_collection
 		) B
 	</select>
 
@@ -214,7 +236,8 @@
 	<update id="updateViewCount"
 		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
 		UPDATE famous_collection
-		SET famous_viewcount = NVL(famous_viewcount, 0) + 1
+		SET famous_viewcount =
+		NVL(famous_viewcount, 0) + 1
 		WHERE famous_sid = #{famousSid}
 	</update>
 
@@ -227,19 +250,20 @@
 		WHERE famous_sid = #{famousSid}
 	</update>
 
-<select id="getFamousDetail" parameterType="com.pcwk.ehr.famous.domain.FamousVO">
-    SELECT
-        famous_sid AS famousSid,
-        famous_author AS famousAuthor,
-        famous_content AS famousContent,
-        famous_emotion AS famousEmotion,
-        famous_viewcount AS famousViewcount,
-        famous_reccount AS famousReccount,
-        reg_id AS regId,
-        TO_CHAR(famous_time, 'YYYY-MM-DD HH24:MI:SS') AS famousTime
-        FROM famous_collection
-    WHERE famous_sid = #{famousSid}
-</select>
+	<select id="getFamousDetail"
+		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+		SELECT
+		famous_sid AS famousSid,
+		famous_author AS famousAuthor,
+		famous_content AS famousContent,
+		famous_emotion AS famousEmotion,
+		famous_viewcount AS famousViewcount,
+		famous_reccount AS famousReccount,
+		reg_id AS regId,
+		TO_CHAR(famous_time, 'YYYY-MM-DD HH24:MI:SS') AS famousTime
+		FROM famous_collection
+		WHERE famous_sid = #{famousSid}
+	</select>
 
 	<!-- 명언 1건 삭제 -->
 	<delete id="doDelete"
@@ -254,11 +278,12 @@
 		DELETE FROM famous_collection
 	</delete>
 
-<update id="doUpdateRecTime" parameterType="com.pcwk.ehr.user.domain.UserVO">
-    UPDATE users
-    SET last_rec_time = SYSDATE
-    WHERE user_id = #{userId}
-</update>
+	<update id="doUpdateRecTime"
+		parameterType="com.pcwk.ehr.user.domain.UserVO">
+		UPDATE users
+		SET last_rec_time = SYSDATE
+		WHERE user_id = #{userId}
+	</update>
 
 
 </mapper>

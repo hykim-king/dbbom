@@ -17,6 +17,9 @@ public class FamousVO extends DTO{
 	private String 	famousUpdate;		 //게시글 생성된 날짜
     private String 	regId;			 //등록자 ID
     
+ // 1. 기존 필드들 아래에 추가
+    private com.pcwk.ehr.user.domain.UserVO userVO; // 작성자의 상세 정보를 담을 객체
+    
     //Default 생성자: 빈 객체 생성 / Spring, MyBatis가 객체를 만들 때 필수!
 	public FamousVO() {
 		super(); //Object 클래스의 생성자 호출
@@ -111,6 +114,15 @@ public class FamousVO extends DTO{
 	public void setRegId(String regId) {
 		this.regId = regId;
 	}
+	
+	public com.pcwk.ehr.user.domain.UserVO getUserVO() {
+	    return userVO;
+	}
+
+	public void setUserVO(com.pcwk.ehr.user.domain.UserVO userVO) {
+	    this.userVO = userVO;
+	}
+	
 
 	//toString(): 객체 안에 어떤 값들이 들어있는지 문자열로 보여줌
 	//-> 디버깅/로그 출력 시, 매우 중요!
@@ -118,7 +130,7 @@ public class FamousVO extends DTO{
 	public String toString() {
 		return "FamousVO [famousSid=" + famousSid + ", famousAuthor=" + famousAuthor + ", famousContent=" + famousContent
 				+ ", famousEmotion=" + famousEmotion + ", famousViewcount=" + famousViewcount + ", famousReccount="
-				+ famousReccount + ", famousTime=" + famousTime + ", famousUpdate=" + famousUpdate + ", regId=" + regId + "]";
+				+ famousReccount + ", famousTime=" + famousTime + ", famousUpdate=" + famousUpdate + ", regId=" + regId + ", userVO=" +userVO + "]";
 	}	
 
 }
