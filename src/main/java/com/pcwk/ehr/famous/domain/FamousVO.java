@@ -19,6 +19,7 @@ public class FamousVO extends DTO{
     private String 	famousTime;		 //게시글 생성된 시간
 	private String 	famousUpdate;		 //게시글 생성된 날짜
     private String 	regId;			 //등록자 ID
+	private String  nickname;
     
     //Default 생성자: 빈 객체 생성 / Spring, MyBatis가 객체를 만들 때 필수!
 	public FamousVO() {
@@ -122,6 +123,14 @@ public class FamousVO extends DTO{
 	public void setUserVO(com.pcwk.ehr.user.domain.UserVO userVO) {
 	    this.userVO = userVO;
 	}
+
+	public String getNickname() {
+        return this.nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
 	//toString(): 객체 안에 어떤 값들이 들어있는지 문자열로 보여줌
 	//-> 디버깅/로그 출력 시, 매우 중요!

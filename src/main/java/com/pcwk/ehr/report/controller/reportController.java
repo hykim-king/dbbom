@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 
 import com.pcwk.ehr.diary.service.DiaryService;
+import com.pcwk.ehr.famous.service.FamousService;
 import com.pcwk.ehr.report.domain.ReportVO;
 import com.pcwk.ehr.report.service.ReportService;
 
+import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,6 +36,9 @@ public class reportController {
     DiaryService diaryService;
 
     @Autowired
+    FamousService famousService;
+
+    @Autowired
     ReportService reportService;
 
     @GetMapping(value = "/report/reportPage.do")
@@ -50,6 +55,22 @@ public class reportController {
             model.addAttribute("diaryVO", outVO);
         }
         return "report/report_page";
+    }
+
+    @GetMapping(value = "/report/famousReportPage.do")
+    public String famousReportPage(@RequestParam(value = "id", required = false) Integer famousSid, Model model, HttpSession session) {
+        Object loginUser = session.getAttribute("loginUser");
+        if (loginUser == null) {
+            model.addAttribute("errorMsg", "로그인 후 이용 가능합니다.");
+            return "report/famous_report_page";
+        }
+        if (famousSid != null) {
+            FamousVO famousVO = new FamousVO();
+            famousVO.setFamousSid(famousSid);
+            FamousVO outVO = famousService.doSelectOne(famousVO);
+            model.addAttribute("famousVO", outVO);
+        }
+        return "report/famous_report_page";
     }
 
     @PostMapping(value = "/report/doSave.do", produces = "application/json;charset=UTF-8")

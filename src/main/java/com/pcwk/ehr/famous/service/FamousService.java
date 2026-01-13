@@ -14,6 +14,8 @@ public interface FamousService extends WorkDiv<FamousVO> {
      * @return 1:성공, 0:실패, 2:이미 추천함
      */
     int doUpdateLike(FamousVO vo);
+
+    FamousVO doSelectOne(FamousVO param);
     
  
 

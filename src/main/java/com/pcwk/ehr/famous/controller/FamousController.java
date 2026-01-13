@@ -118,8 +118,8 @@ public class FamousController {
 	            try {
 	                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	                long lastTime = sdf.parse(currentUser.getLastRecTime()).getTime();
-	                long currentTime = System.currentTimeMillis();
-	                long diffMin = (currentTime - lastTime) / (1000 * 60);
+	                long currentTime = System.currentTimeMillis(); 
+	                long diffMin = (currentTime - lastTime) / (30 * 60); //나중에 1000*60으로 수정
 	                
 	                System.out.println("▶ 유저: " + currentUser.getUserId() + " / 경과분: " + diffMin);
 

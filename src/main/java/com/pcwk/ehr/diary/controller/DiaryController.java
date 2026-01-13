@@ -1,5 +1,9 @@
-
 package com.pcwk.ehr.diary.controller;
+
+import com.pcwk.ehr.mapper.UserMapper;
+import com.pcwk.ehr.user.domain.UserVO;
+import com.pcwk.ehr.user.service.UserService;
+
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +38,13 @@ public class DiaryController {
     
     @Autowired
     FamousService famousService;
+
+    @Autowired
+	UserService userService;
+	
+	@Autowired
+	UserMapper userMapper;
+
 
     public DiaryController() {
         // TODO Auto-generated constructor stub
@@ -191,27 +202,55 @@ public class DiaryController {
 
     @PostMapping(value = "/updateRecCount.do", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String updateRecCount(@RequestParam int diarySid) {
+    public String updateRecCount(@RequestParam int diarySid, javax.servlet.http.HttpSession session) {
         log.debug("┌---------------------------┐");
         log.debug("│updateRecCount diarySid: " + diarySid);
         log.debug("└---------------------------┘");
 
-        DiaryVO param = new DiaryVO();
-        param.setDiarySid(diarySid);
+        // 1. 세션 체크
+        UserVO sessionUser = (UserVO) session.getAttribute("loginUser");
+        if (sessionUser == null) return "LOGIN_REQUIRED";
 
-        int flag = diaryService.updateRecCount(param);
+        try {
+            // 2. 최신 유저 정보 조회 (userMapper 사용)
+            UserVO searchVO = new UserVO();
+            searchVO.setUserId(sessionUser.getUserId());
+            UserVO currentUser = userMapper.doSelectOne(searchVO);
+            if (currentUser == null) return "ERROR";
 
-        // 추천수 증가 후, 현재 추천수 조회
-        DiaryVO outVO = diaryService.upDoSelectOne(param);
-        int recCount = (outVO != null) ? outVO.getDiaryRecCount() : -1;
+            // 3. 10분 제한 체크 (Null 및 파싱 에러 방어)
+            if (currentUser.getLastRecTime() != null && !currentUser.getLastRecTime().isEmpty()) {
+                try {
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    long lastTime = sdf.parse(currentUser.getLastRecTime()).getTime();
+                    long currentTime = System.currentTimeMillis();
+                    long diffMin = (currentTime - lastTime) / (60 * 1000);
+                    if (diffMin < 10) { 
+                        String msg = "TIME_LIMIT:" + (10 - diffMin);
+                        return msg;
+                    }
+                } catch (Exception parseE) {
+                    // 시간 파싱 실패 시 제한 없이 통과
+                }
+            }
 
-        MessageVO messageVO = new MessageVO();
-        messageVO.setFlag(flag);
-        messageVO.setMessage(flag == 1 ? "추천수 증가 성공" : "추천수 증가 실패");
-        messageVO.setDiaryRecCount(recCount);
+            // 4. 추천수 증가 처리
+            DiaryVO param = new DiaryVO();
+            param.setDiarySid(diarySid);
+            int flag = diaryService.updateRecCount(param);
 
-        String jsonString = new Gson().toJson(messageVO);
-        return jsonString;
+            // 5. 유저 추천 시간 업데이트 (famousService 사용)
+            if (flag > 0) {
+                famousService.doUpdateRecTime(currentUser);
+                // 6. 최신 결과 조회
+                DiaryVO outVO = diaryService.upDoSelectOne(param);
+                int recCount = (outVO != null) ? outVO.getDiaryRecCount() : -1;
+                return String.valueOf(recCount);
+            }
+        } catch (Exception e) {
+            log.error("추천 처리 중 에러", e);
+        }
+        return "ERROR";
     }
 
     /**

@@ -14,98 +14,67 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
     <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/diary_detail_board.js"></script> --%>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      $(document).ready(function() {
         // 좋아요 상태 복구
         const diarySid = '${diaryVO.diarySid}';
         const likeKey = 'diary_liked_' + diarySid;
-        if (localStorage.getItem(likeKey) === 'true') {
+        let isRecommended = localStorage.getItem(likeKey) === 'true';
+        if (isRecommended) {
           $('#likeBtn').addClass('active');
           $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
         }
-
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
         // 좋아요 버튼 클릭
-        $('#likeBtn').off('click').on('click', function(e) {
-          // 로그인 체크 (sessionScope.loginUser는 문자열로 넘어옴)
+        $(document).off('click', '#likeBtn').on('click', '#likeBtn', function(e) {
+          e.stopPropagation();
+          // 로그인 체크 (sessionScope.loginUser는 객체)
           const loginUser = "${sessionScope.loginUser}";
           if (loginUser === null || loginUser === '' || loginUser === 'undefined') {
             if (confirm('좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?')) {
-              location.href = "<%=request.getContextPath()%>/user/signIn.do";
+              location.href = "${pageContext.request.contextPath}/user/signIn.do";
             }
             return;
           }
-
-          const isLiked = $(this).data('is-liked') === true || localStorage.getItem(likeKey) === 'true';
-          const changeValue = isLiked ? -1 : 1;
-
-          // 낙관적 UI 반영
-          if (!isLiked) {
-            $(this).data('is-liked', true);
-            localStorage.setItem(likeKey, 'true');
-            $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
-            $('#likeBtn').addClass('active');
-          } else {
-            $(this).data('is-liked', false);
-            localStorage.removeItem(likeKey);
-            $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
-            $('#likeBtn').removeClass('active');
-          }
-          // 숫자 업데이트
-          var currentVal = parseInt($('#likeCount').text()) || 0;
-          $('#likeCount').text(currentVal + changeValue);
-
-          // 서버 전송
+          // 서버 전송 후 UI 변경
           $.ajax({
             type: 'POST',
             url: '${pageContext.request.contextPath}/diary/updateRecCount.do',
-            data: {
-              diarySid: diarySid,
-              diaryRecCount: changeValue
-            },
-            success: function(res) {
-              if (typeof res === 'string') {
-                try { res = JSON.parse(res); } catch(e) {}
-              }
-              if(res && res.flag === 0) {
-                alert(res.message || '추천이 제한되었습니다.');
-                // 서버에서 제한 시 UI 롤백
-                if (!isLiked) {
-                  $('#likeBtn').data('is-liked', false);
-                  localStorage.removeItem(likeKey);
-                  $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
-                  $('#likeBtn').removeClass('active');
-                  $('#likeCount').text(currentVal); // 원래 값 복구
-                } else {
-                  $('#likeBtn').data('is-liked', true);
-                  localStorage.setItem(likeKey, 'true');
-                  $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
-                  $('#likeBtn').addClass('active');
-                  $('#likeCount').text(currentVal); // 원래 값 복구
-                }
+            data: { diarySid: diarySid },
+            dataType: 'text',
+            success: function(data) {
+              if (data === 'LOGIN_REQUIRED') {
+                alert('로그인이 필요합니다.');
                 return;
-              }
-              // 서버에서 newRecCount 반환 시
-              if(res && res.newRecCount !== undefined) {
-                $('#likeCount').text(res.newRecCount);
-              } else if(res && res.flag === 1 && res.recCount !== undefined) {
-                $('#likeCount').text(res.recCount);
+              } else if (data.indexOf('TIME_LIMIT') > -1) {
+                let remaining = data.split(':')[1];
+                alert('이미 추천하셨습니다. ' + remaining + '분 후에 다시 가능합니다.');
+                return;
+              } else if (data === 'ERROR') {
+                alert('추천 처리 중 오류가 발생했습니다.');
+                return;
+              } else {
+                // 정상적으로 추천수가 리턴된 경우 (성공)
+                $('#likeCount').text(data);
+                if (!isRecommended) {
+                  $('#likeBtn').addClass('active');
+                  $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
+                  localStorage.setItem(likeKey, 'true');
+                  isRecommended = true;
+                  alert('추천되었습니다.');
+                } 
+                <%-- else {
+                  $('#likeBtn').removeClass('active');
+                  $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
+                  localStorage.removeItem(likeKey);
+                  isRecommended = false;
+                  alert('추천이 취소되었습니다.');
+                } --%>
               }
             },
             error: function() {
-              alert('추천수 증가에 실패했습니다.');
-              // 실패 시 롤백
-              if (!isLiked) {
-                $('#likeBtn').data('is-liked', false);
-                localStorage.removeItem(likeKey);
-                $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
-                $('#likeBtn').removeClass('active');
-                $('#likeCount').text(currentVal); // 원래 값 복구
-              } else {
-                $('#likeBtn').data('is-liked', true);
-                localStorage.setItem(likeKey, 'true');
-                $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
-                $('#likeBtn').addClass('active');
-                $('#likeCount').text(currentVal); // 원래 값 복구
-              }
+              alert('추천 처리 중 오류가 발생했습니다.');
             }
           });
         });
@@ -113,6 +82,7 @@
     </script>
     <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 </head>
+<body>
 
     <main class="container">
 
@@ -134,16 +104,20 @@
                 <div class="meta-left">
                   <span class="meta-item"><i data-lucide="eye" size="16"></i> 조회 ${diaryVO.diaryViewCount}</span>
 
-                <%-- <c:if test="${sessionScope.loginUser ne null and sessionScope.loginUser eq diaryVO.regId}"> --%>
+                <!-- 디버깅용: 로그인 유저와 게시글 작성자 정보 출력 -->
+                <%-- <div style="color:red; font-size:12px;">
+                  [DEBUG] loginUser.userId: ${sessionScope.loginUser.userId}, regId: ${diaryVO.regId}
+                </div> --%>
+                <c:if test="${sessionScope.loginUser ne null and sessionScope.loginUser.userId eq diaryVO.regId}">
                   <a href="${pageContext.request.contextPath}/diary/diaryUpdateForm.do?diarySid=${diaryVO.diarySid}"
                      class="btn-action-text" style="margin-left:16px; font-size:14px; color:#3b82f6; text-decoration:none;">수정</a>
-                <%-- </c:if> --%>
+                </c:if>
 
                   <%-- <button class="btn-action-text" onclick="reportContent('diary', '${diaryVO.diarySid}')" style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0; margin-left:12px;">신고</button> --%>
                   <a class="btn-action-text" href="${pageContext.request.contextPath}/report/reportPage.do?type=diary&id=${diaryVO.diarySid}"
                     onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
                     style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444;
-                     padding:0; margin-left:12px; text-decoration:none;">신고</a>
+                     padding:0; margin-left:12px; text-decoration:none;">🚨신고</a>
                 </div>
               </div>    
             </header>

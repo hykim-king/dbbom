@@ -102,6 +102,12 @@
                     </div>
                     <div class="meta-right">
                         <span class="meta-item"><i data-lucide="eye" size="16"></i> 조회 ${detail.famousViewcount}</span>
+
+                    <a class="btn-action-text" href="${pageContext.request.contextPath}/report/famousReportPage.do?type=famous&id=${famousVO.famousSid}"
+                    onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
+                    style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444;
+                     padding:0; margin-left:12px; text-decoration:none;">🚨신고</a>
+
                     </div>
                 </div>
             </header>
