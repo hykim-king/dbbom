@@ -9,10 +9,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내면의 흔적 - 게시글 상세보기</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_detail_board.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css""/>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
+
     <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/diary_detail_board.js"></script> --%>
+
+  <style>
+    /* 1. 메뉴 컨테이너: 상하 높이를 충분히 확보 */
+    .menu-container .tab-list {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        
+        /* 두 번째 사진과 같은 깊이감을 위해 상하 패딩 조정 */
+        padding: 8px 30px !important; 
+        min-height: 50px !important;    /* 전체적인 바 두께 확정 */
+        
+        max-width: 1000px !important;
+        margin: 0 auto !important;
+    }
+
+    /* 2. 모든 버튼 및 라벨: 가로 배열 강제 및 줄바꿈 방지 */
+    .menu-container .menu-label,
+    .menu-container .tab-list .tab-btn, 
+    .menu-container .tab-list .dropdown-container,
+    .menu-container .dropdown-btn {
+        display: flex !important;
+        flex-direction: row !important; /* 아이콘과 글자를 무조건 가로로 */
+        align-items: center !important;
+        justify-content: center !important;
+        
+        white-space: nowrap !important; /* 텍스트 꺾임 방지 핵심 */
+        width: auto !important;         /* 너비 자동 확장 */
+        gap: 10px !important;           /* 아이콘과 글자 사이 간격 */
+        flex-shrink: 0 !important;      /* 좁아져도 찌그러지지 않게 함 */
+    }
+
+    /* 3. 텍스트 요소들 개별 설정 */
+    .menu-container .tab-list span,
+    .menu-container .menu-label {
+        display: inline-block !important;
+        line-height: 1 !important;      /* 줄 간격 때문에 생기는 세로 느낌 제거 */
+        font-size: 15px !important;
+        margin: 0 !important;
+    }
+
+    /* 4. '메뉴' 라벨 전용 (왼쪽 고정 느낌) */
+    .menu-container .menu-label {
+        font-weight: 800 !important;
+        margin-right: 15px !important;
+    }
+</style>
     <script>
       $(document).ready(function() {
         // 좋아요 상태 복구
@@ -80,19 +129,20 @@
         });
       });
     </script>
-    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+    <%-- <jsp:include page="/WEB-INF/views/main/menu.jsp" /> --%>
 </head>
-<body>
-
-    <main class="container">
+<body style="background-color: #f8fafc;">
+   <div class="menu-container">
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+</div>
+    <main class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
 
         <div style="flex: 1;">
-          <a href="${pageContext.request.contextPath}/diary/diaryList.do" class="back-btn">
-            <i data-lucide="arrow-left" size="18"></i> 목록으로 돌아가기
-          </a>
-
-          <article class="detail-card">
-            <header class="detail-header">
+        <a href="${pageContext.request.contextPath}/diary/diaryList.do" class="back-btn" style="text-decoration: none; color: #64748b; display: inline-flex; align-items: center; margin: 15px 0;">
+            <i data-lucide="arrow-left" style="width:18px; margin-right:5px;"></i> 목록으로 돌아가기
+        </a>
+        <article class="detail-card" style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+            <header style="border-bottom: 1px solid #f1f5f9; padding-bottom: 25px; margin-bottom: 30px;">
 
               <span class="post-tag gratitude">${diaryVO.diaryCategoryName}</span>
               <h2 class="detail-title">${diaryVO.diaryTitle}</h2>
