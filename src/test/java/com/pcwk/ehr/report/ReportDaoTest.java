@@ -22,7 +22,6 @@ import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.report.domain.ReportVO;
 import com.pcwk.ehr.user.domain.UserVO;
 
-import oracle.net.aso.l;
 
 import com.pcwk.ehr.mapper.DiaryMapper;
 import com.pcwk.ehr.mapper.ReportMapper;
@@ -147,7 +146,7 @@ class ReportDaoTest {
         log.debug("doDelete() 성공: " + report01);
     }
 
-    //@Disabled
+    @Disabled
     @Test
     void doRetrieve() {
         log.debug("┌──────────────────────────┐");

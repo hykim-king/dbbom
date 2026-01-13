@@ -5,6 +5,7 @@ import java.util.List;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.WorkDiv;
 import com.pcwk.ehr.diary.domain.DiaryVO;
+import com.pcwk.ehr.famous.domain.FamousVO;
 
 public interface DiaryService extends WorkDiv<DiaryVO>{
 
@@ -15,6 +16,8 @@ public interface DiaryService extends WorkDiv<DiaryVO>{
     List<DiaryVO> getBest3();
 
     int updateRecCount(DiaryVO param);
+    
+    FamousVO assignFamousBySentiment(DiaryVO diary);
 
     
     

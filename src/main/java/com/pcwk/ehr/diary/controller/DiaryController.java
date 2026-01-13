@@ -1,3 +1,4 @@
+
 package com.pcwk.ehr.diary.controller;
 import java.util.List;
 
@@ -6,12 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.pcwk.ehr.diary.domain.DiaryVO;
 import com.pcwk.ehr.diary.service.DiaryService;
@@ -19,6 +15,10 @@ import com.google.gson.Gson;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.MessageVO;
 import com.pcwk.ehr.cmn.StringUtil;
+
+import com.pcwk.ehr.famous.service.FamousService;
+
+
 
 
 @Controller
@@ -30,6 +30,10 @@ public class DiaryController {
 
     @Autowired
     DiaryService diaryService;
+
+    
+    @Autowired
+    FamousService famousService;
 
     public DiaryController() {
         // TODO Auto-generated constructor stub
@@ -64,6 +68,11 @@ public class DiaryController {
         List<DiaryVO> list = diaryService.doPublicRetrieve(dto);
         log.debug("[doPublicRetrieve] list: {}", list);
 
+        // 전체 건수 세팅 (페이징 정상 동작)
+        if(list != null && list.size() > 0) {
+            dto.setTotalCnt(list.get(0).getTotalCnt());
+        }
+
         // 좋아요 상위 3개 리스트 추가
         model.addAttribute("vo" , dto);
         model.addAttribute("list", list);
@@ -71,6 +80,8 @@ public class DiaryController {
         log.debug("[doPublicRetrieve] model.addAttribute vo: {}", dto);
         log.debug("[doPublicRetrieve] model.addAttribute list: {}", list);
         log.debug("[doPublicRetrieve] model.addAttribute bestList: {}", bestList);
+
+                log.debug("│doPublicRetrieve dto: {}", dto);
 
         return viewname;
 
@@ -115,34 +126,50 @@ public class DiaryController {
         return "diary/r_diary_start";
     }
 
+    @GetMapping("/fDiaryEnd.do")
+
+    public String fdiaryEnd(@RequestParam(value = "famousSid", required = false) Integer famousSid, Model model) {
+        if (famousSid != null) {
+            com.pcwk.ehr.famous.domain.FamousVO famousVO = famousService.getById(famousSid);
+            model.addAttribute("famous", famousVO);
+        }
+        return "diary/f_diary_end";
+    }
+
+    
+
 
     @PostMapping(value="/diarySave.do", produces="application/json;charset=UTF-8")
     @ResponseBody
-    public String doSave(DiaryVO param) {
+    public String doSave(DiaryVO param, @RequestParam(value = "showFamous", required = false, defaultValue = "false") boolean showFamous) {
         log.debug("┌---------------------------┐");
-        log.debug("│doSave diaryVO: " + param);  
+        log.debug("│doSave diaryVO: " + param);
+        log.debug("│showFamous: " + showFamous);
         log.debug("└---------------------------┘");
 
         String jsonString = "";
-
         int flag = diaryService.doSave(param);
         String message = "";
-        if  (1 == flag) {
+        com.pcwk.ehr.famous.domain.FamousVO famousVO = null;
+        if (flag == 1) {
             message = param.getDiaryTitle() + "일기가 저장되었습니다.";
-        }
-        else {
+            if (showFamous) {
+                famousVO = diaryService.assignFamousBySentiment(param);
+            }
+        } else {
             message = "일기 저장에 실패하였습니다.";
         }
 
-        MessageVO messageVO = new MessageVO();
-        messageVO.setFlag(flag);
-        messageVO.setMessage(message);
+        // 응답에 명언 정보 포함
+        java.util.Map<String, Object> result = new java.util.HashMap<>();
+        result.put("flag", flag);
+        result.put("message", message);
+        if (famousVO != null) {
+            result.put("famousVO", famousVO);
+        }
 
-        log.debug("mesasagevo: {}",messageVO);
-
-        jsonString = new Gson().toJson(messageVO);
-
-
+        log.debug("응답: {}", result);
+        jsonString = new Gson().toJson(result);
         return jsonString;
     }
 
@@ -186,5 +213,35 @@ public class DiaryController {
         String jsonString = new Gson().toJson(messageVO);
         return jsonString;
     }
+
+    /**
+     * 다이어리 수정 폼 진입(GET)
+     */
+    @GetMapping("/diaryUpdateForm.do")
+    public String diaryUpdateForm(@RequestParam int diarySid, Model model) {
+        DiaryVO param = new DiaryVO();
+        param.setDiarySid(diarySid);
+        DiaryVO outVO = diaryService.upDoSelectOne(param);
+        model.addAttribute("diaryVO", outVO);
+        return "diary/diary_update";
+    }
+
+    @PostMapping("/diaryUpdate.do")
+    public String doUpdate(DiaryVO param) {
+        log.debug("┌---------------------------┐");
+        log.debug("│doUpdate diaryVO: " + param);
+        log.debug("└---------------------------┘");
+
+        int flag = diaryService.doUpdate(param);
+        if (flag == 1) {
+            // 수정 성공 시 상세페이지로 리다이렉트
+            return "redirect:/diary/doSelectOne.do?diarySid=" + param.getDiarySid();
+        } else {
+            // 실패 시 수정 폼으로 다시 이동 (에러 메시지 전달 가능)
+            return "redirect:/diary/diaryUpdateForm.do?diarySid=" + param.getDiarySid();
+        }
+    }
+
+    
     
 }

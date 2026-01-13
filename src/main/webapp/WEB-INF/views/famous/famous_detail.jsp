@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+\<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.pcwk.ehr.famous.domain.FamousVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -16,69 +16,132 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
-<style>
-    /* 1. 메뉴바 레이아웃 복구 (세로 겹침 및 위치 오류 해결) */
-    /* menu.jsp의 원래 디자인을 방해하는 display: flex 강제 설정을 해제합니다. */
-    header {
-        position: relative !important;
-        display: block !important; /* flex가 아닌 block이어야 내부 container가 제대로 잡힙니다 */
-        width: 100% !important;
-        height: auto !important;
-        top: auto !important;
-    }
+    <style>
+        /* 메뉴 너비와 일치시키기 위한 설정 */
+        main.container {
+            padding-top: 40px;
+            padding-bottom: 80px;
+            display: flex;
+            justify-content: center;
+        }
 
-    /* 로고바 내부 정렬 유지 */
-    header .header-inner.flex-between {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        width: 100% !important;
-        max-width: 1152px;
-        margin: 0 auto;
-        padding: 0 20px;
-        height: 64px;
-    }
+        .tab-content {
+            width: 100%;
+            /* 사진상의 메뉴바 너비와 맞추기 위해 max-width를 1200px 정도로 설정 */
+            max-width: 1200px; 
+        }
 
-    /* 메뉴 탭바(.tab-list)가 포함된 컨테이너 */
-    header + .container {
-        display: block !important;
-        position: relative !important;
-        width: 100% !important;
-        max-width: 1152px !important;
-        margin: 0 auto !important;
-    }
+        .reg-container { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 16px; 
+            border: 1px solid #e2e8f0; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-    /* 2. 본문 카드와의 간격 */
-    main.container {
-        display: block !important;
-        margin-top: 40px !important; 
-        padding: 0 20px !important;
-    }
+        /* 아이콘 및 텍스트 색상을 공지사항 목록의 파란색(#3b82f6)으로 변경 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
 
-    /* 3. 상세보기 카드 내부 헤더 (제목 영역 둥둥 떠다님 방지) */
-    /* diary_detail_board.css에서 강제로 준 fixed를 여기서 해제합니다. */
-    .detail-card .detail-header {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 40px 30px 25px 30px !important;
-        background-color: #ffffff !important;
-        border-bottom: 1px solid #f1f5f9 !important;
-        display: block !important;
-        z-index: 10 !important;
-    }
+        .form-group { margin-bottom: 25px; }
+        .form-label { display: block; margin-bottom: 10px; font-weight: 600; color: #475569; }
+        
+        .form-control { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 10px; 
+            font-size: 1rem; 
+            box-sizing: border-box; 
+            transition: all 0.2s;
+        }
+        
+        /* 포커스 시 파란색 테두리 */
+        .form-control:focus { 
+            border-color: #3b82f6; 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none; 
+        }
 
-    /* 4. 제목 스타일 보정 */
-    .detail-title {
-        font-size: 1.8rem !important;
-        font-weight: bold !important;
-        margin: 10px 0 !important;
-        color: #1e293b !important;
-        display: block !important;
-    }
-</style>
+        /* 버튼 색상을 파란색(#3b82f6)으로 통일 */
+        .btn-save { 
+            background-color: #3b82f6; 
+            color: white; 
+            padding: 12px 28px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            transition: all 0.2s;
+        }
+
+        .btn-save:hover { 
+            background-color: #2563eb; 
+            transform: translateY(-1px); 
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-cancel { 
+            background-color: #f1f5f9; 
+            color: #64748b; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            transition: background 0.2s;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #e2e8f0;
+        }
+        
+                main.container {
+            display: block !important;
+            margin-top: 30px !important; /* 메뉴바 높이에 따라 조절 (80~100px 권장) */
+            padding-top: 0px !important;
+            position: relative !important;
+        }
+
+        /* 2. 상세 페이지 헤더 고정 해제 및 정렬 */
+        .detail-card .detail-header {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            display: block !important;
+            width: 100% !important;
+            margin-bottom: 30px !important;
+            padding-bottom: 20px !important;
+            background: white !important;
+            z-index: 10 !important;
+            border-bottom: 2px solid #f1f5f9 !important;
+        }
+
+        /* 3. 목록으로 돌아가기 버튼 위치 확보 */
+        .back-btn {
+            display: inline-flex !important;
+            margin-bottom: 20px !important;
+            position: relative !important;
+            z-index: 11;
+        }
+        
+        /* 4. 헤더(메뉴바) 스타일 강제 고정 */
+        header {
+            z-index: 1000 !important; /* 메뉴바가 항상 맨 위에 오도록 */
+        }
+    </style>
 </head>
 
 <body> 
@@ -243,5 +306,65 @@ $(document).off("click", "#likeBtn").on("click", "#likeBtn", function(e) {
     });
 });
 </script>
+
+<style>
+    /* 1. Flex 레이아웃 강제 해제 (이미지 11번 body 설정 무력화) */
+    html body {
+        display: block !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 2. 상단 메뉴바 고정 (common.css의 sticky 설정을 fixed로 변경) */
+    header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 99999 !important;
+        background-color: #ffffff !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+    }
+
+    /* 3. 본문 컨테이너: 메뉴바 높이(약 147px)만큼 확실히 아래로 밀기 */
+    html body main.container {
+        display: block !important;
+        position: relative !important;
+        margin-top: 180px !important; /* 넉넉하게 180px 설정 */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 20px 100px 20px !important;
+        max-width: 1100px !important;
+        z-index: 10 !important;
+    }
+
+    /* 4. 제목 영역(detail-header)이 상단에 고정되는 것 방지 */
+    article.detail-card header.detail-header {
+        position: relative !important;
+        top: auto !important;
+        display: block !important;
+        background: #ffffff !important;
+        margin-top: 0 !important;
+        padding: 40px 30px !important;
+        z-index: 1 !important;
+    }
+
+    /* 5. 공지사항 이미지처럼 텍스트가 가로로 뚫고 나가는 것 방지 */
+    .detail-body {
+        word-break: break-all !important;
+        overflow-wrap: break-word !important;
+        white-space: pre-wrap !important;
+    }
+
+    /* 6. 목록 버튼 위치 조정 */
+    .back-btn {
+        margin-top: 10px !important;
+        margin-bottom: 30px !important;
+        display: inline-flex !important;
+    }
+</style>
+
+<script src="${pageContext.request.contextPath}/resources/assets/js/common.js"></script>
 </body>
 </html>

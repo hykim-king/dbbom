@@ -18,6 +18,35 @@
     <result column="admin_chk"        property="adminChk"/>
   </resultMap>
 
+	<select id="doCheckPassword" parameterType="UserVO"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM users
+		WHERE user_id = #{userId}
+		AND user_pw = #{userPw}
+	</select>
+
+	<update id="doChangePassword" parameterType="UserVO">
+		UPDATE users
+		SET user_pw = #{userPw}
+		WHERE user_id = #{userId}
+	</update>
+
+	<update id="doUpdatePw" parameterType="UserVO">
+		UPDATE users
+		SET user_pw = #{userPw}
+		WHERE user_id = #{userId}
+	</update>
+
+	<select id="doCheckUserForPw" parameterType="UserVO"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM users
+		WHERE user_id = #{userId}
+		AND user_name = #{userName}
+		AND user_email = #{userEmail}
+	</select>
+
 	<select id="doFindId" parameterType="UserVO" resultMap="userMap">
 		SELECT
 		user_id,
@@ -141,15 +170,17 @@
   </select>
 
 <update id="doUpdate" parameterType="UserVO">
-	UPDATE users
-	SET user_name = #{userName},
-	user_pw = #{userPw},
-	user_tel = #{userTel},
-	user_email = #{userEmail},
-	nickname = #{nickname},
-	user_intro = #{userIntro},
-	admin_chk = #{adminChk}
-	WHERE user_id = #{userId}
+    UPDATE users
+    SET user_name  = #{userName, jdbcType=VARCHAR},
+        <if test="userPw != null">
+            user_pw = #{userPw, jdbcType=VARCHAR},
+        </if>
+        user_tel   = #{userTel,  jdbcType=VARCHAR},
+        user_email = #{userEmail,jdbcType=VARCHAR},
+        nickname   = #{nickname, jdbcType=VARCHAR},
+        user_intro = #{userIntro,jdbcType=VARCHAR},
+        admin_chk  = #{adminChk, jdbcType=CHAR}
+    WHERE user_id  = #{userId,   jdbcType=VARCHAR}
 </update>
 
   <!-- 삭제 -->

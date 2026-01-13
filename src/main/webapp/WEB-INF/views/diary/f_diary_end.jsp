@@ -6,49 +6,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../javascript/f_diary_end.js"></script>
     <!-- 외부 스타일시트 연결 (같은 폴더의 style.css 파일을 불러옵니다) -->
-    <link rel="stylesheet" href="../css/f_diary_end.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/f_diary_end.css"/>
+    	<script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/f_diary_end.js"></script>
 
     <!-- 아이콘 라이브러리 (CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <title>명언일기 | 작성완료</title>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <div class="container header-inner flex-between">
-        <div class="logo-area">
-          <div class="logo-icon">
-            <i data-lucide="heart"></i>
-          </div>
-          <h1 class="logo-text">내면의 흔적</h1>
-        </div>
-        <button class="login-btn">로그인</button>
-      </div>
-    </header>
 
     <!-- Main Content -->
     <main class="container">
-      <!-- Navigation Tabs -->
-      <div class="tab-list">
-        <div class="menu-label">메뉴</div>
-        <button class="tab-btn" data-tab="overview" aria-selected="false">
-          <i data-lucide="sparkles"></i> 개요
-        </button>
-        <button class="tab-btn" data-tab="notice" aria-selected="false">
-          <i data-lucide="book-open"></i>공지사항
-        </button>
-        <button class="tab-btn" data-tab="board" aria-selected="false">
-          <i data-lucide="pencil"></i> 게시판
-        </button>
-        <button class="tab-btn" data-tab="mypage" aria-selected="false">
-          <i data-lucide="user"></i> 마이페이지
-        </button>
-      </div>
 
       <!-- 1. Information Cards -->
-      <div class="card">
+      <%-- <div class="card">
         <div class="card-body">
           <h3 class="section-title">
             <i data-lucide="hand-heart"></i> 흔적 한 줄
@@ -66,7 +40,7 @@
             <!-- API 요약 결과가 여기에 들어옴 -->
           </div>
         </div>
-      </div>
+      </div> --%>
 
       <!-- 1-1. Information Cards -->
       <div class="card">
@@ -82,9 +56,18 @@
           <hr />
 
           <!-- 명언 영역 -->
-          <div id="quoteArea">
-            <!-- API 명언 결과가 여기에 들어옴 -->
+
+
+          <div class="post-tag gratitude" id="famousQuoteArea">
+            ${famous.famousContent}
+            <div style="text-align:right; color:#555; margin-top:0.5em;">- ${famous.famousAuthor} -</div>
           </div>
+
+          <script>
+          <!-- JS 명언 출력 코드 제거 -->
+          </script>
+
+          
 
           <div class="info-grid">
             <div class="info-box indigo"></div>

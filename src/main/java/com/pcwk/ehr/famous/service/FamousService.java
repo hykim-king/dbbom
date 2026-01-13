@@ -14,6 +14,7 @@ public interface FamousService extends WorkDiv<FamousVO> {
      * @return 1:성공, 0:실패, 2:이미 추천함
      */
     int doUpdateLike(FamousVO vo);
+    
  
 
     /**
@@ -38,9 +39,8 @@ public interface FamousService extends WorkDiv<FamousVO> {
     
     /** 명언 상세 조회 */
     FamousVO getFamousDetail(FamousVO vo);
-    
-    
-    /**
+
+        /**
      * [추가] 유저의 마지막 추천 시간 업데이트 (famousMapper.xml의 doUpdateRecTime 호출)
      * @param vo (userId가 포함된 UserVO)
      * @return 1:성공, 0:실패
@@ -53,5 +53,9 @@ public interface FamousService extends WorkDiv<FamousVO> {
      * @return UserVO
      */
     com.pcwk.ehr.user.domain.UserVO getUserInfo(com.pcwk.ehr.user.domain.UserVO vo);
+
+    FamousVO getRandomByEmotion(String famousEmotion);
+
+    FamousVO getById(int famousSid);
+
 }
-   

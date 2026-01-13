@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ehr.mapper.FamousMapper">
 
+
+
 	<resultMap type="com.pcwk.ehr.famous.domain.FamousVO"
 		id="famousMap">
 		<id column="famous_sid" property="famousSid" />
@@ -86,6 +88,7 @@
         </where>
     ) B
 </select>
+
 	<!-- 1건 저장 -->
 	<insert id="doSave"
 		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
@@ -165,23 +168,19 @@
 		SELECT A.*, B.*
 		FROM (
 		SELECT tt1.rnum AS no,
-		tt1.famous_sid AS
-		famousSid,
+		tt1.famous_sid AS famousSid,
 		tt1.famous_author AS famousAuthor,
-		tt1.famous_content AS
-		famousContent,
+		tt1.famous_content AS famousContent,
 		tt1.famous_emotion AS famousEmotion,
 		tt1.famous_viewcount AS famousViewcount,
-		tt1.famous_reccount AS
-		famousReccount,
+		tt1.famous_reccount AS famousReccount,
 		tt1.famous_time AS famousTime,
 		tt1.reg_id AS regId
 		FROM (
 		SELECT ROWNUM AS rnum, t1.*
 		FROM (
 		SELECT *
-		FROM famous_collection WHERE
-		1=1
+		FROM famous_collection WHERE 1=1
 		ORDER BY famous_time DESC
 		) t1
 		WHERE ROWNUM <![CDATA[ <= ]]>
@@ -191,8 +190,7 @@
 		(#{pageSize} * (#{pageNo} - 1) + 1)
 		) A
 		CROSS JOIN (
-		SELECT COUNT(*)
-		total_cnt FROM famous_collection
+		SELECT COUNT(*) total_cnt FROM famous_collection
 		) B
 	</select>
 
@@ -236,8 +234,7 @@
 	<update id="updateViewCount"
 		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
 		UPDATE famous_collection
-		SET famous_viewcount =
-		NVL(famous_viewcount, 0) + 1
+		SET famous_viewcount = NVL(famous_viewcount, 0) + 1
 		WHERE famous_sid = #{famousSid}
 	</update>
 
@@ -250,20 +247,19 @@
 		WHERE famous_sid = #{famousSid}
 	</update>
 
-	<select id="getFamousDetail"
-		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
-		SELECT
-		famous_sid AS famousSid,
-		famous_author AS famousAuthor,
-		famous_content AS famousContent,
-		famous_emotion AS famousEmotion,
-		famous_viewcount AS famousViewcount,
-		famous_reccount AS famousReccount,
-		reg_id AS regId,
-		TO_CHAR(famous_time, 'YYYY-MM-DD HH24:MI:SS') AS famousTime
-		FROM famous_collection
-		WHERE famous_sid = #{famousSid}
-	</select>
+<select id="getFamousDetail" parameterType="com.pcwk.ehr.famous.domain.FamousVO">
+    SELECT
+        famous_sid AS famousSid,
+        famous_author AS famousAuthor,
+        famous_content AS famousContent,
+        famous_emotion AS famousEmotion,
+        famous_viewcount AS famousViewcount,
+        famous_reccount AS famousReccount,
+        reg_id AS regId,
+        TO_CHAR(famous_time, 'YYYY-MM-DD HH24:MI:SS') AS famousTime
+        FROM famous_collection
+    WHERE famous_sid = #{famousSid}
+</select>
 
 	<!-- 명언 1건 삭제 -->
 	<delete id="doDelete"
@@ -278,12 +274,27 @@
 		DELETE FROM famous_collection
 	</delete>
 
-	<update id="doUpdateRecTime"
-		parameterType="com.pcwk.ehr.user.domain.UserVO">
-		UPDATE users
-		SET last_rec_time = SYSDATE
-		WHERE user_id = #{userId}
-	</update>
+	<!-- 감정(P/N)별 랜덤 명언 1개 조회 -->
+	<select id="getRandomByEmotion" parameterType="string" resultMap="famousMap">
+		SELECT * FROM (
+			SELECT * FROM famous_collection
+			WHERE famous_emotion = #{famousEmotion}
+			ORDER BY dbms_random.value
+		) WHERE ROWNUM = 1
+	</select>
+
+	<select id="getById" parameterType="int" resultType="com.pcwk.ehr.famous.domain.FamousVO">
+  		SELECT * FROM famous_collection WHERE famous_sid = #{famousSid}
+	</select>
+
+
+
+    <update id="doUpdateRecTime"
+        parameterType="com.pcwk.ehr.user.domain.UserVO">
+        UPDATE users
+        SET last_rec_time = SYSDATE
+        WHERE user_id = #{userId}
+    </update>
 
 
 </mapper>

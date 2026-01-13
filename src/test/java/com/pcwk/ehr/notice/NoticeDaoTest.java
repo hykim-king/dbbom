@@ -17,8 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.pcwk.ehr.mapper.NoticeMapper;
 import com.pcwk.ehr.mapper.UserMapper; // [추가] 회원 등록을 위해 필요
-import com.pcwk.ehr.user.domain.UserVO; // [추가] 회원 객체
-import com.pcwk.ehr.notice.NoticeVO; 
+import com.pcwk.ehr.notice.domain.NoticeVO;
+import com.pcwk.ehr.user.domain.UserVO; // [추가] 회원 객체 
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {

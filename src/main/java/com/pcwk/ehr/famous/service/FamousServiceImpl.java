@@ -20,8 +20,8 @@ public class FamousServiceImpl implements FamousService {
 
 	@Autowired
 	FamousMapper famousMapper;
-	
-	@Autowired
+
+		@Autowired
 	UserMapper userMapper;
 	
 	@Override
@@ -100,5 +100,15 @@ public class FamousServiceImpl implements FamousService {
 	public List<FamousVO> allDoRetrieve(DTO dto) {
 		return famousMapper.allDoRetrieve(dto);
 	}
+
+	@Override
+	public FamousVO getRandomByEmotion(String famousEmotion) {
+		return famousMapper.getRandomByEmotion(famousEmotion);
+	}
+
+	@Override
+	public FamousVO getById(int famousSid) {
+    	return famousMapper.getById(famousSid);
+}
 
 }

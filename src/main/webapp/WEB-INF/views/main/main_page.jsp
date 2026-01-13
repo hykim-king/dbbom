@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.pcwk.ehr.user.domain.UserVO" %>
 <%
     // 세션에서 로그인 사용자 정보 가져오기 
@@ -98,8 +99,8 @@
     <main class="container">
       <div class="tab-list">
         <div class="menu-label">메뉴</div>
-        <a href="summaryPage.jsp" class="tab-btn"><i data-lucide="sparkles"></i> 개요</a>
-        <a href="<%=request.getContextPath()%>/notice/notice.do" class="tab-btn">
+        <a href="<%=request.getContextPath()%>/main/outline.do" class="tab-btn"><i data-lucide="sparkles"></i> 개요</a>
+        <a href="<%=request.getContextPath()%>/notice/noticeList.do" class="tab-btn">
         <i data-lucide="book-open"></i> 공지사항</a>
         <div class="dropdown-container">
           <a href="<%=request.getContextPath()%>/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
@@ -152,13 +153,103 @@
           <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
             <h3><i data-lucide="flame" style="color: #e11d48"></i> 인기 일기 Top 3</h3>
           </div>
-          <div class="posts-grid">
-            <article class="post-card best-card">
-              <div class="post-tag gratitude">감사 일기</div>
-              <h4 class="post-title">오늘 유난히 하늘이 예뻤던 날</h4>
-              <p class="post-preview">바쁜 출근길이었지만, 잠시 멈춰 서서 하늘을 보았습니다...</p>
-              <div class="post-meta"><span>익명님</span> <span>❤️ 1,523</span></div>
-            </article>
+                    <div class="posts-grid">
+            <c:set var="best0" value="${bestList[0]}" />
+            <c:set var="best1" value="${bestList[1]}" />
+            <c:set var="best2" value="${bestList[2]}" />
+            <a href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best0.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#d97706;margin-bottom:8px;">🥇 1위</div>
+                <c:choose>
+                  <c:when test="${best0.diaryCategory == 10}">
+                    <div class="post-tag quote">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 20}">
+                    <div class="post-tag luck">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best0.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best0.diaryTitle}</h4>
+                <p class="post-preview">${best0.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best0.nickname}</span>
+                  <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
+                    <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
+                    ${best0.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+            <a href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best1.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#94a3b8;margin-bottom:8px;">🥈 2위</div>
+                <c:choose>
+                  <c:when test="${best1.diaryCategory == 10}">
+                    <div class="post-tag quote">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 20}">
+                    <div class="post-tag luck">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best1.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best1.diaryTitle}</h4>
+                <p class="post-preview">${best1.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best1.nickname}</span>
+                  <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
+                    <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
+                    ${best1.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+            <a href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best2.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
+                <c:choose>
+                  <c:when test="${best2.diaryCategory == 10}">
+                    <div class="post-tag quote">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 20}">
+                    <div class="post-tag luck">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best2.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best2.diaryTitle}</h4>
+                <p class="post-preview">${best2.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best2.nickname}</span>
+                  <div style="display:flex;align-items:center;gap:4px;color:#e11d48;font-weight:bold;">
+                    <i data-lucide="heart" style="width:14px;fill:#e11d48"></i>
+                    ${best2.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
           </div>
         </section>
       </div>

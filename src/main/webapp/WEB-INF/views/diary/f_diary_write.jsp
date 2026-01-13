@@ -58,41 +58,49 @@
     	      'input[name="diaryStatus"]:checked'
     	    )?.value || "N";
 
-    	    const param = {
-    	      diaryTitle: title,
-    	      diaryContent: content,
-    	      diaryStatus: diaryStatus,
-    	      diaryCategory: 10, // 임시값 또는 선택값
-    	      regId: loginUserId // 임시값 또는 실제 로그인 사용자 ID
-    	    };
+				const showFamous = document.querySelector('input[name="showFamous"]:checked')?.value === "true";
+				const param = {
+					diaryTitle: title,
+					diaryContent: content,
+					diaryStatus: diaryStatus,
+					diaryCategory: 10, // 임시값 또는 선택값
+					regId: loginUserId, // 임시값 또는 실제 로그인 사용자 ID
+					showFamous: showFamous
+				};
 
-    	    $.ajax({
-    	      url: "/ehr/diary/diarySave.do",
-    	      type: "POST",
-    	      data: param,
-    	      dataType: "json",
-    	      success: function(res) {
-    	        if(res.flag === 1){
-    	          alert(res.message);
-    	          location.href = "/ehr/diary/diaryList.do";
-    	        }else{
-    	          alert("실패: " + res.message);
-    	        }
-    	      },
-    	      error: function() {
-    	        alert("통신 실패");
-    	      }
-    	    });
+				$.ajax({
+					url: "/ehr/diary/diarySave.do",
+					type: "POST",
+					data: param,
+					dataType: "json",
+					success: function(res) {
+						if(res.flag === 1){
+							alert(res.message);
+							if(showFamous && res.famousVO){
+								// 명언 보기 선택 시 end 페이지로 이동 (명언 정보 전달)
+								<%-- sessionStorage.setItem("famousVO", JSON.stringify(res.famousVO)); --%>
+								    location.href = "/ehr/diary/fDiaryEnd.do?famousSid=" + res.famousVO.famousSid;
+							}else{
+								// 명언 안보기면 리스트로 이동
+								
+								location.href = "/ehr/diary/diaryList.do";
+							}
+						}else{
+							alert("실패: " + res.message);
+						}
+					},
+					error: function() {
+						alert("통신 실패");
+					}
+				});
 
-    	    alert("일기가 등록되었습니다!");
+				// 입력값 초기화
+				titleInput.value = "";
+				contentInput.value = "";
 
-    	    // 입력값 초기화
-    	    titleInput.value = "";
-    	    contentInput.value = "";
-
-    	    document
-    	      .querySelectorAll('input[name="diaryStatus"]')
-    	      .forEach((radio) => (radio.checked = false));
+				document
+					.querySelectorAll('input[name="diaryStatus"]')
+					.forEach((radio) => (radio.checked = false));
 
 
     	  });
@@ -127,15 +135,23 @@
         ></textarea>
 
         <div class="diary-footer">
-          <div class="radio-group">
-            <label class="radio-label">
-              <input type="radio" name="diaryStatus" value="Y" /> 공개
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="diaryStatus" value="N" /> 비공개
-            </label>
-          </div>
-          <button class="diary-btn" id="savefDiary" type="button">등록</button>
+					<div class="radio-group">
+						<label class="radio-label">
+							<input type="radio" name="diaryStatus" value="Y" /> 공개
+						</label>
+						<label class="radio-label">
+							<input type="radio" name="diaryStatus" value="N" /> 비공개
+						</label>
+					</div>
+					<div class="radio-group" style="margin-top:10px;">
+						<label class="radio-label">
+							<input type="radio" name="showFamous" value="true"  /> 명언 보기
+						</label>
+						<label class="radio-label">
+							<input type="radio" name="showFamous" value="false" checked/> 명언 안보기
+						</label>
+					</div>
+					<button class="diary-btn" id="savefDiary" type="button">등록</button>
         </div>
       </div>
     </main>

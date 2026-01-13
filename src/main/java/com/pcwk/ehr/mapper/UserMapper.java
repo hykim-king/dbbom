@@ -24,4 +24,14 @@ public interface UserMapper extends WorkDiv<UserVO> {
     
     /** 다건 입력 테스트용 */
     int saveAll();
+    
+    /*내 정보 확인(비번찾기)*/
+    int doCheckUserForPw(UserVO param);
+    
+    int doUpdatePw(UserVO param);
+    
+    /*비밀번호 변경*/
+    int doCheckPassword(UserVO param);
+    
+    int doChangePassword(UserVO param);
 }

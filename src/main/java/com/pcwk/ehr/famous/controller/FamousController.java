@@ -288,6 +288,24 @@ public class FamousController {
 	    // JSON 형태로 리턴 (간단하게 "1" 혹은 "0"만 보내도 JSP에서 res == "1"로 체크 가능)
 	    return String.valueOf(flag);
 	}
+
+		@RequestMapping(value = "/getFamousDetail.do", produces = "application/json;charset=UTF-8")
+	public String getFamousDetail(FamousVO vo, Model model) {
+	    // 데이터 유효성 체크
+	    if(vo.getFamousSid() == 0) {
+	        return "redirect:/famous/famous.do"; 
+	    }
+
+	    // 서비스 호출
+	    FamousVO outVO = famousService.getFamousDetail(vo);
+	    
+	    // JSP에서 사용할 데이터 이름을 "detail"로 지정
+	    model.addAttribute("detail", outVO);
+	    model.addAttribute("pageNo", vo.getPageNo()); 
+	    model.addAttribute("pageSize", vo.getPageSize());
+	    
+	    return "famous/famous_detail"; // 생성한 상세페이지 JSP 경로
+	}
 	
 }
 	

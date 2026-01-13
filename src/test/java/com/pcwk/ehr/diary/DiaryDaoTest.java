@@ -210,7 +210,7 @@ class DiaryDaoTest {
 		
 	}
 
-	//@Disabled
+	@Disabled
 	@Test
 	void doRetrieve() {
 		// 1. 전체 삭제

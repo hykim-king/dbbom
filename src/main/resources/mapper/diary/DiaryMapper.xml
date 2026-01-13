@@ -108,13 +108,13 @@
     <sql id="diaryWhere">
         <choose>
             <when test="'10' == searchDiv">
-                AND diary_title LIKE #{searchWord}||'%'
+                AND diary_title LIKE '%' || #{searchWord} || '%'
             </when>
             <when test="'20' == searchDiv">
-                AND diary_content LIKE #{searchWord}||'%'
+                AND diary_content LIKE '%' || #{searchWord} || '%'
             </when>
             <when test="'30' == searchDiv">
-                AND (diary_title LIKE #{searchWord}||'%' OR diary_content LIKE #{searchWord}||'%')
+                AND (diary_title LIKE '%' || #{searchWord} || '%' OR diary_content LIKE '%' || #{searchWord} || '%')
             </when>
         </choose>
     </sql>

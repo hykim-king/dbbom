@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -8,192 +7,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내면의 흔적 - 게시글 상세보기</title>
+    
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_detail_board.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css""/>
     <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
-    <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/diary_detail_board.js"></script> --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_detail_board.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
+
+<style>
+    /* 1. 메뉴 컨테이너: 상하 높이를 충분히 확보 */
+    .menu-container .tab-list {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        
+        /* 두 번째 사진과 같은 깊이감을 위해 상하 패딩 조정 */
+        padding: 8px 30px !important; 
+        min-height: 50px !important;    /* 전체적인 바 두께 확정 */
+        
+        max-width: 1000px !important;
+        margin: 0 auto !important;
+    }
+
+    /* 2. 모든 버튼 및 라벨: 가로 배열 강제 및 줄바꿈 방지 */
+    .menu-container .menu-label,
+    .menu-container .tab-list .tab-btn, 
+    .menu-container .tab-list .dropdown-container,
+    .menu-container .dropdown-btn {
+        display: flex !important;
+        flex-direction: row !important; /* 아이콘과 글자를 무조건 가로로 */
+        align-items: center !important;
+        justify-content: center !important;
+        
+        white-space: nowrap !important; /* 텍스트 꺾임 방지 핵심 */
+        width: auto !important;         /* 너비 자동 확장 */
+        gap: 10px !important;           /* 아이콘과 글자 사이 간격 */
+        flex-shrink: 0 !important;      /* 좁아져도 찌그러지지 않게 함 */
+    }
+
+    /* 3. 텍스트 요소들 개별 설정 */
+    .menu-container .tab-list span,
+    .menu-container .menu-label {
+        display: inline-block !important;
+        line-height: 1 !important;      /* 줄 간격 때문에 생기는 세로 느낌 제거 */
+        font-size: 15px !important;
+        margin: 0 !important;
+    }
+
+    /* 4. '메뉴' 라벨 전용 (왼쪽 고정 느낌) */
+    .menu-container .menu-label {
+        font-weight: 800 !important;
+        margin-right: 15px !important;
+    }
+</style>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        $('#likeBtn').on('click', function() {
-          $.ajax({
-            url: '${pageContext.request.contextPath}/diary/updateRecCount.do',
-            type: 'POST',
-            data: { diarySid: '${diaryVO.diarySid}' },
-            success: function(res) {
-              // 서버에서 JSON 문자열로 응답이 오므로 파싱 필요
-              if (typeof res === 'string') {
-                try { res = JSON.parse(res); } catch(e) {}
-              }
-              if(res && res.flag === 0) {
-                // 10분 제한 등 안내 메시지
-                alert(res.message || '추천이 제한되었습니다.');
-                return;
-              }
-              // 서버에서 newRecCount 반환 시
-              if(res && res.newRecCount !== undefined) {
-                $('#likeCount').text(res.newRecCount);
+        $(document).ready(function() {
+            if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+
+            const diarySid = '${diaryVO.diarySid}';
+            const likeKey = 'diary_liked_' + diarySid;
+
+            if (localStorage.getItem(likeKey) === 'true') {
                 $('#likeBtn').addClass('active');
-                $('#heartIcon').css('fill', 'white');
-              } else if(res && res.flag === 1 && res.recCount !== undefined) {
-                $('#likeCount').text(res.recCount);
-                $('#likeBtn').addClass('active');
-                $('#heartIcon').css('fill', 'white');
-              } else {
-                // fallback: 새로고침
-                location.reload();
-              }
-            },
-            error: function() {
-              alert('추천수 증가에 실패했습니다.');
+                $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
             }
-          });
+
+            $('#likeBtn').on('click', function() {
+                const loginUser = "${sessionScope.loginUser}";
+                if (!loginUser || loginUser === "" || loginUser === "null") {
+                    if (confirm('좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?')) {
+                        location.href = "${pageContext.request.contextPath}/user/signIn.do";
+                    }
+                    return;
+                }
+
+                const isLiked = localStorage.getItem(likeKey) === 'true';
+                const changeValue = isLiked ? -1 : 1;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '${pageContext.request.contextPath}/diary/updateRecCount.do',
+                    data: { diarySid: diarySid, diaryRecCount: changeValue },
+                    success: function(res) {
+                        const status = (typeof res === 'string') ? JSON.parse(res) : res;
+                        if(status.flag === 1 || status.newRecCount !== undefined) {
+                            if (!isLiked) {
+                                localStorage.setItem(likeKey, 'true');
+                                $('#heartIcon').attr({ fill: '#ef4444', stroke: '#ef4444' });
+                                $('#likeBtn').addClass('active');
+                            } else {
+                                localStorage.removeItem(likeKey);
+                                $('#heartIcon').attr({ fill: 'none', stroke: 'currentColor' });
+                                $('#likeBtn').removeClass('active');
+                            }
+                            $('#likeCount').text(status.newRecCount || status.recCount);
+                        }
+                    }
+                });
+            });
         });
-      });
     </script>
 </head>
-<header>
-      <div class="container header-inner flex-between"> 
-        <a
-          href="../html/main.html"
-          class="logo-area"
-          style="text-decoration: none"
-        >
-          <h1 class="logo-text">내면의 흔적</h1>
-        </a>
-        <div class="auth-links">
-          <a href="../html/login_page.html" class="auth-item">로그인</a>
-          <span class="divider">|</span>
-          <a href="../html/sign_in.html" class="auth-item">회원가입</a>
-        </div>
-      </div>
-    </header>
-    <main class="container">
-      <div class="tab-list"> 
-        <div class="menu-label">메뉴</div>
-        <a href="../html/outline.html" class="tab-btn">
-          <i data-lucide="sparkles"></i> 개요
-        </a>
-        <a href="../html/notice.html" class="tab-btn">
-          <i data-lucide="book-open"></i> 공지사항
-        </a>
-        <div class="dropdown-container">
-          <a
-            href="../html/diary_board.html"
-            class="tab-btn"
-            style="width: 100%; border: none"
-          >
-            <i data-lucide="pencil"></i> 게시판
-          </a>
-          <div class="dropdown-content">
-            <a
-              href="../html/diary_board.html"
-              style="
-                color: var(--primary-blue);
-                font-weight: bold;
-                background-color: #f8fafc;
-              "
-              >📖 일기 공개 게시판</a
-            >
-            <a href="../html/famous_board.html">💬 명언 모음집</a>
-          </div>
-        </div>
-        <a href="../html/mypage.html" class="tab-btn active">
-          <i data-lucide="user"></i> 마이페이지
-        </a>
-      </div>
+<body style="background-color: #f8fafc;">
 
-        <div style="flex: 1;">
-          <a href="board_diary.html" class="back-btn">
-            <i data-lucide="arrow-left" size="18"></i> 목록으로 돌아가기
-          </a>
+   <div class="menu-container">
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+</div>
 
-          <article class="detail-card">
-            <header class="detail-header">
+    <main class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <a href="${pageContext.request.contextPath}/diary/diaryList.do" class="back-btn" style="text-decoration: none; color: #64748b; display: inline-flex; align-items: center; margin: 15px 0;">
+            <i data-lucide="arrow-left" style="width:18px; margin-right:5px;"></i> 목록으로 돌아가기
+        </a>
 
-              <span class="post-tag gratitude">${diaryVO.diaryCategoryName}</span>
-              <h2 class="detail-title">${diaryVO.diaryTitle}</h2>
-              <div class="detail-meta-row">
-                <div class="meta-left">
-                  <span class="meta-item"><i data-lucide="user" size="16"></i> ${diaryVO.nickname}</span>
-                  <span class="meta-item"><i data-lucide="calendar" size="16"></i> ${diaryVO.diaryUploadDate}</span>
-                </div>
-                <div class="meta-left">
-                  <span class="meta-item"><i data-lucide="eye" size="16"></i> 조회 ${diaryVO.diaryViewCount}</span>
-                </div>
-              </div>    
+        <article class="detail-card" style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+            <header style="border-bottom: 1px solid #f1f5f9; padding-bottom: 25px; margin-bottom: 30px;">
+                <span style="background: #f1f5f9; padding: 4px 12px; border-radius: 20px; font-size: 13px; color: #64748b;">${diaryVO.diaryCategoryName}</span>
+                <h2 style="font-size: 32px; margin: 15px 0; color: #1e293b; font-weight: 700;">${diaryVO.diaryTitle}</h2>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 14px;">
+                    <div style="display: flex; gap: 20px;">
+                        <span><i data-lucide="user" style="width:14px; vertical-align:middle; margin-right:4px;"></i> ${diaryVO.nickname}</span>
+                        <span><i data-lucide="calendar" style="width:14px; vertical-align:middle; margin-right:4px;"></i> ${diaryVO.diaryUploadDate}</span>
+                        <span><i data-lucide="eye" style="width:14px; vertical-align:middle; margin-right:4px;"></i> 조회 ${diaryVO.diaryViewCount}</span>
+                    </div>
+                    <div>
+                        <a href="${pageContext.request.contextPath}/diary/diaryUpdateForm.do?diarySid=${diaryVO.diarySid}" style="color:#3b82f6; text-decoration:none; margin-right:15px;">수정</a>
+                        <a href="${pageContext.request.contextPath}/report/reportPage.do?type=diary&id=${diaryVO.diarySid}" 
+                           onclick="window.open(this.href, 'reportPopup', 'width=500,height=700'); return false;" 
+                           style="color:#ef4444; text-decoration:none;">신고</a>
+                    </div>
+                </div>    
             </header>
 
-            <div class="detail-body">
-              ${diaryVO.diaryContent}
+            <div style="min-height: 300px; line-height: 1.8; color: #334155; font-size: 17px;">
+                ${diaryVO.diaryContent}
             </div>
 
-            <div class="action-buttons">
-              <button class="btn-like" id="likeBtn">
-                <i data-lucide="heart" id="heartIcon"></i>
-                <span id="likeCount">${diaryVO.diaryRecCount}</span>
-              </button>
+            <div style="display: flex; justify-content: center; margin: 50px 0; padding-top: 30px; border-top: 1px solid #f1f5f9;">
+                <button id="likeBtn" style="background: white; border: 1px solid #e2e8f0; padding: 12px 30px; border-radius: 40px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                    <i data-lucide="heart" id="heartIcon" style="width:22px;"></i>
+                    <span id="likeCount" style="font-weight: 600; font-size: 18px;">${diaryVO.diaryRecCount}</span>
+                </button>
             </div>
 
-            <section class="comment-section">
-              <div class="comment-header">
-                <i data-lucide="message-circle" size="20"></i> 댓글 <span id="commentCount">${fn:length(commentList)}</span>
-              </div>
-                    
-              <form class="comment-form" method="post" action="addComment.do">
-                <input type="text" name="commentContent" id="commentInput" class="comment-input" placeholder="따뜻한 댓글로 공감을 나눠주세요.">
-                <button class="btn-comment" type="submit">등록</button>
-              </form>
+            <section style="margin-top: 50px;">
+                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="message-circle" style="width:24px;"></i> 댓글 <span style="color:#3b82f6;">${fn:length(commentList)}</span>
+                </h3>
+                
+                <form method="post" action="addComment.do" style="display: flex; gap: 12px; margin-bottom: 35px;">
+                    <input type="text" name="commentContent" placeholder="따뜻한 위로와 공감의 댓글을 남겨주세요." style="flex:1; padding:15px; border:1px solid #e2e8f0; border-radius:12px; outline:none; font-size: 15px;">
+                    <button type="submit" style="padding: 0 25px; background: #1e293b; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600;">등록</button>
+                </form>
 
-              <div class="comment-list" id="commentList">
-                <c:forEach var="comment" items="${commentList}">
-                  <div class="comment-wrapper" id="comment-${comment.commentId}" style="background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 16px; border: none;">
-                    <div class="comment-item">
-                      <div class="comment-content">
-                        <span class="comment-user" style="font-weight: bold; color: #1e293b;">
-                          ${comment.writer}
-                          <small style="font-weight:normal; color:#94a3b8; margin-left:8px;">${comment.regDate}</small>
-                        </span>
-                        <p class="comment-text" style="margin: 10px 0; color: #334155;">${comment.content}</p>
-                        <div class="edit-form" style="display:none; gap:8px; margin-top:8px;">
-                          <input type="text" class="edit-input" style="flex:1; padding:8px; border:1px solid #e2e8f0; border-radius:6px;">
-                          <button class="btn-save" style="padding:4px 12px; background:#3b82f6; color:white; border:none; border-radius:4px; cursor:pointer;">저장</button>
-                          <button class="btn-cancel" style="padding:4px 12px; background:#94a3b8; color:white; border:none; border-radius:4px; cursor:pointer;">취소</button>
+                <div class="comment-list">
+                    <c:forEach var="comment" items="${commentList}">
+                        <div style="background: #f8fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px;">
+                            <div style="margin-bottom: 10px;">
+                                <span style="font-weight: 700; color: #1e293b;">${comment.writer}</span>
+                                <span style="color: #94a3b8; font-size: 13px; margin-left: 12px;">${comment.regDate}</span>
+                            </div>
+                            <p style="margin: 0; color: #475569; line-height: 1.6;">${comment.content}</p>
                         </div>
-                      </div>
-                      <div class="comment-actions" style="display: flex; gap: 12px; margin-top: 12px;">
-                        <button class="btn-action-text btn-like-comment" onclick="toggleCommentLike(this)" style="font-size:13px; cursor:pointer; background:none; border:none; color:#64748b; padding:0;">
-                          좋아요 <span class="like-count">${comment.likeCount}</span>
-                        </button>
-                        <button class="btn-action-text" onclick="showEditForm(this)" style="font-size:13px; cursor:pointer; background:none; border:none; color:#64748b; padding:0;">수정</button>
-                        <button class="btn-action-text" onclick="reportContent('comment', ${comment.commentId})" style="font-size:13px; cursor:pointer; background:none; border:none; color:#64748b; padding:0;">신고</button>
-                        <button class="btn-action-text" onclick="deleteComment(${comment.commentId})" style="font-size:13px; cursor:pointer; background:none; border:none; color:#ef4444; padding:0;">삭제</button>
-                      </div>
-                    </div>
-                  </div>
-                </c:forEach>
-              </div>
+                    </c:forEach>
+                </div>
             </section>
-          </article>
-        </div>
-      </main>
+        </article>
+    </main>
 
-   <footer>
-      <div class="container">
+    <footer style="text-align: center; padding: 60px 0; color: #94a3b8; font-size: 14px;">
         <p>© 2024 내면의 흔적. All rights reserved.</p>
-      </div>
     </footer>
 
-
-    <script>
-      // Lucide 아이콘 전체 렌더링 (body 끝에서 한 번만 실행)
-      document.addEventListener('DOMContentLoaded', function() {
-        if (typeof lucide !== 'undefined') {
-          lucide.createIcons();
-        }
-      });
-    </script>
-
-
-  </body>
+</body>
 </html>
