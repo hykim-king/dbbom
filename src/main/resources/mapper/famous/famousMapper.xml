@@ -269,6 +269,14 @@
 		#{famousSid}
 	</delete>
 
+	<update id="doUpdateRecTime"
+		parameterType="com.pcwk.ehr.user.domain.UserVO">
+		UPDATE users
+		SET last_rec_time = SYSDATE
+		WHERE user_id = #{userId}
+	</update>
+
+
 	<!-- 전체 삭제 _테스트용 -->
 	<delete id="deleteAll">
 		DELETE FROM famous_collection

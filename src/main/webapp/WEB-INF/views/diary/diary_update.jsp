@@ -21,22 +21,27 @@
 <main class="container">
   <form id="diaryUpdateForm" method="post" action="${pageContext.request.contextPath}/diary/diaryUpdate.do" style="max-width:600px;margin:32px auto 0;">
     <input type="hidden" name="diarySid" value="${diaryVO.diarySid}" />
-    <input type="hidden" name="diaryStatus" value="${diaryVO.diaryStatus}" />
     <input type="hidden" name="diaryCategory" value="${diaryVO.diaryCategory}" />
-    <article class="detail-card" style="padding:32px 32px 24px 32px; border-radius:18px; background:#fff; box-shadow:0 2px 16px 0 rgba(30,41,59,.08);">
-      <header class="detail-header" style="margin-bottom:24px;">
-        <h2 class="detail-title" style="font-size:2rem; font-weight:700; color:#1e293b; margin-bottom:16px; border:none; background:none; padding:0;">
-          <input type="text" name="diaryTitle" value="${diaryVO.diaryTitle}" placeholder="제목을 입력하세요" required style="width:100%; font-size:2rem; font-weight:700; color:#1e293b; border:none; outline:none; background:transparent;" />
-        </h2>
-      </header>
-      <div class="detail-body" style="margin-bottom:32px;">
-        <textarea name="diaryContent" required style="width:100%; min-height:220px; font-size:1.1rem; color:#334155; border:1px solid #e2e8f0; border-radius:10px; padding:18px; resize:vertical; background:#f8fafc;">${diaryVO.diaryContent}</textarea>
+    <div class="card diary-card" style="margin-top: 20px; background:#fff; border-radius:18px; box-shadow:0 2px 16px 0 rgba(30,41,59,.08); padding:32px 32px 24px 32px;">
+      <div class="diary-header flex-between" style="margin-bottom:18px;">
+        <input type="text" class="diary-title" name="diaryTitle" value="${diaryVO.diaryTitle}" placeholder="제목을 입력하세요" required style="width:100%; font-size:2rem; font-weight:700; color:#1e293b; border:none; outline:none; background:transparent;" />
+      </div>
+      <textarea class="diary-content" name="diaryContent" required placeholder="오늘의 일기를 작성해보세요" style="width:100%; min-height:220px; font-size:1.1rem; color:#334155; border:1px solid #e2e8f0; border-radius:10px; padding:18px; resize:vertical; background:#f8fafc; margin-bottom:18px;">${diaryVO.diaryContent}</textarea>
+      <div class="diary-footer" style="margin-bottom:18px;">
+        <div class="radio-group" style="display:flex; gap:24px; align-items:center;">
+          <label class="radio-label" style="font-size:1rem; color:#334155;">
+            <input type="radio" name="diaryStatus" value="Y" <c:if test='${diaryVO.diaryStatus eq "Y"}'>checked</c:if> /> 공개
+          </label>
+          <label class="radio-label" style="font-size:1rem; color:#334155;">
+            <input type="radio" name="diaryStatus" value="N" <c:if test='${diaryVO.diaryStatus eq "N"}'>checked</c:if> /> 비공개
+          </label>
+        </div>
       </div>
       <div class="action-buttons" style="display:flex; gap:12px; justify-content:flex-end;">
         <button type="submit" class="btn-save" style="padding:10px 32px; background:#3b82f6; color:#fff; border:none; border-radius:8px; font-size:1rem; font-weight:600; cursor:pointer;">저장</button>
         <a href="${pageContext.request.contextPath}/diary/diaryList.do" class="btn-cancel" style="padding:10px 32px; background:#94a3b8; color:#fff; border:none; border-radius:8px; font-size:1rem; font-weight:600; text-decoration:none; display:inline-block; text-align:center;">취소</a>
       </div>
-    </article>
+    </div>
   </form>
 </main>
 
