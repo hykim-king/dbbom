@@ -2,106 +2,99 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ehr.mapper.AdminMapper">
 
-	<select id="doRetrieveReportList"
-		parameterType="com.pcwk.ehr.cmn.DTO"
-		resultType="com.pcwk.ehr.report.domain.ReportVO">
-		SELECT * FROM (
-		SELECT ROWNUM AS rnum, A.* FROM (
-		SELECT
-		r.report_sid as reportSid,
-		r.report_category as reportCategory,
-		d.diary_title as reportContent,
-		d.reg_id as regId
-		FROM report r JOIN diary d ON r.diary_sid = d.diary_sid
-		WHERE 1=1
-		<if test="searchWord != null and searchWord != ''">
-			<choose>
-				<when test="searchDiv == '10'"> AND d.diary_title LIKE '%' || #{searchWord} || '%'
-				</when>
-				<when test="searchDiv == '20'"> AND d.reg_id LIKE '%' || #{searchWord} || '%'
-				</when>
-			</choose>
-		</if>
-		ORDER BY r.report_sid DESC
-		) A WHERE ROWNUM &lt;= #{pageNo} * #{pageSize}
-		) WHERE rnum &gt; (#{pageNo} - 1) * #{pageSize}
-	</select>
+    <resultMap id="reportMap" type="com.pcwk.ehr.report.domain.ReportVO">
+        <id property="reportSid" column="reportSid" />
+        <result property="reportCategory" column="reportCategory" />
+        <result property="reportContent" column="reportContent" />
+        <result property="regId" column="regId" />
+        <result property="diarySid" column="diarySid" />
+        <result property="diaryContent" column="diaryContent" />
+    </resultMap>
 
-	<select id="getReportTotalCount"
-		parameterType="com.pcwk.ehr.cmn.DTO" resultType="int">
-		SELECT COUNT(*) FROM report r JOIN diary d ON r.diary_sid =
-		d.diary_sid
-		WHERE 1=1
-		<if test="searchWord != null and searchWord != ''">
-			<choose>
-				<when test="searchDiv == '10'"> AND d.diary_title LIKE '%' || #{searchWord} || '%'
-				</when>
-				<when test="searchDiv == '20'"> AND d.reg_id LIKE '%' || #{searchWord} || '%'
-				</when>
-			</choose>
-		</if>
-	</select>
+    <select id="doRetrieveReportList" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="reportMap">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT
+                    r.report_sid as reportSid,
+                    r.report_category as reportCategory,
+                    r.report_content as reportContent,
+                    r.reg_id as regId,
+                    r.diary_sid as diarySid,
+                    d.diary_content as diaryContent
+                FROM report r LEFT JOIN diary d ON r.diary_sid = d.diary_sid
+                WHERE 1=1
+                <if test="searchWord != null and searchWord != ''">
+                    <choose>
+                        <when test="searchDiv == '10'"> AND r.report_content LIKE '%' || #{searchWord} || '%' </when>
+                        <when test="searchDiv == '20'"> AND r.reg_id LIKE '%' || #{searchWord} || '%' </when>
+                    </choose>
+                </if>
+                ORDER BY r.report_sid DESC
+            ) A 
+            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
+        ) 
+        WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
+    </select>
 
-	<select id="doRetrieveUserList"
-		parameterType="com.pcwk.ehr.cmn.DTO"
-		resultType="com.pcwk.ehr.user.domain.UserVO">
-		SELECT * FROM (
-		SELECT ROWNUM AS rnum, A.* FROM (
-		SELECT user_id as userId, nickname, admin_chk as adminChk
-		FROM users WHERE 1=1
-		<if test="searchWord != null and searchWord != ''">
-			<choose>
-				<when test="searchDiv == '10'"> AND user_id LIKE '%' || #{searchWord} || '%' </when>
-				<when test="searchDiv == '20'"> AND nickname LIKE '%' || #{searchWord} || '%'
-				</when>
-			</choose>
-		</if>
-		ORDER BY user_id ASC
-		) A WHERE ROWNUM &lt;= #{pageNo} * #{pageSize}
-		) WHERE rnum &gt; (#{pageNo} - 1) * #{pageSize}
-	</select>
+    <select id="getReportTotalCount" parameterType="com.pcwk.ehr.cmn.DTO" resultType="int">
+        SELECT COUNT(*) FROM report r LEFT JOIN diary d ON r.diary_sid = d.diary_sid
+        WHERE 1=1
+        <if test="searchWord != null and searchWord != ''">
+            <choose>
+                <when test="searchDiv == '10'"> AND r.report_content LIKE '%' || #{searchWord} || '%' </when>
+                <when test="searchDiv == '20'"> AND r.reg_id LIKE '%' || #{searchWord} || '%' </when>
+            </choose>
+        </if>
+    </select>
 
-	<select id="getUserTotalCount"
-		parameterType="com.pcwk.ehr.cmn.DTO" resultType="int">
-		SELECT COUNT(*) FROM users WHERE 1=1
-	</select>
+    <select id="doRetrieveUserList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.user.domain.UserVO">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT user_id as userId, nickname, admin_chk as adminChk
+                FROM users WHERE 1=1
+                <if test="searchWord != null and searchWord != ''">
+                    <choose>
+                        <when test="searchDiv == '10'"> AND user_id LIKE '%' || #{searchWord} || '%' </when>
+                        <when test="searchDiv == '20'"> AND nickname LIKE '%' || #{searchWord} || '%' </when>
+                    </choose>
+                </if>
+                ORDER BY user_id ASC
+            ) A WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
+        ) WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
+    </select>
 
-	<select id="doRetrieveDiaryList"
-		parameterType="com.pcwk.ehr.cmn.DTO"
-		resultType="com.pcwk.ehr.diary.domain.DiaryVO">
-		SELECT * FROM (
-		SELECT ROWNUM AS rnum, A.* FROM (
-		SELECT diary_sid as diarySid, reg_id as regId, diary_title as diaryTitle,
-		diary_status as diaryStatus
-		FROM diary WHERE 1=1
-		<if test="searchWord != null and searchWord != ''">
-			<choose>
-				<when test="searchDiv == '10'"> AND diary_title LIKE '%' || #{searchWord} || '%'
-				</when>
-				<when test="searchDiv == '20'"> AND reg_id LIKE '%' || #{searchWord} || '%' </when>
-			</choose>
-		</if>
-		ORDER BY diary_sid DESC
-		) A WHERE ROWNUM &lt;= #{pageNo} * #{pageSize}
-		) WHERE rnum &gt; (#{pageNo} - 1) * #{pageSize}
-	</select>
+    <select id="getUserTotalCount" resultType="int">
+        SELECT COUNT(*) FROM users WHERE 1=1
+    </select>
 
-	<select id="getDiaryTotalCount"
-		parameterType="com.pcwk.ehr.cmn.DTO" resultType="int">
-		SELECT COUNT(*) FROM diary WHERE 1=1
-	</select>
+    <select id="doRetrieveDiaryList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT diary_sid as diarySid, reg_id as regId, diary_title as diaryTitle, diary_status as diaryStatus
+                FROM diary WHERE 1=1
+                <if test="searchWord != null and searchWord != ''">
+                    <choose>
+                        <when test="searchDiv == '10'"> AND diary_title LIKE '%' || #{searchWord} || '%' </when>
+                        <when test="searchDiv == '20'"> AND reg_id LIKE '%' || #{searchWord} || '%' </when>
+                    </choose>
+                </if>
+                ORDER BY diary_sid DESC
+            ) A WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
+        ) WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
+    </select>
 
-	<delete id="doDeleteUser"
-		parameterType="com.pcwk.ehr.user.domain.UserVO">
-		DELETE FROM users WHERE user_id = #{userId}
-	</delete>
-	<delete id="doDeleteReport"
-		parameterType="com.pcwk.ehr.report.domain.ReportVO">
-		DELETE FROM report WHERE report_sid = #{reportSid}
-	</delete>
-	<delete id="doDeleteDiary"
-		parameterType="com.pcwk.ehr.diary.domain.DiaryVO">
-		DELETE FROM diary WHERE diary_sid = #{diarySid}
-	</delete>
+    <select id="getDiaryTotalCount" resultType="int">
+        SELECT COUNT(*) FROM diary WHERE 1=1
+    </select>
+
+    <delete id="doDeleteUser" parameterType="com.pcwk.ehr.user.domain.UserVO">
+        DELETE FROM users WHERE user_id = #{userId}
+    </delete>
+    <delete id="doDeleteReport" parameterType="com.pcwk.ehr.report.domain.ReportVO">
+        DELETE FROM report WHERE report_sid = #{reportSid}
+    </delete>
+    <delete id="doDeleteDiary" parameterType="com.pcwk.ehr.diary.domain.DiaryVO">
+        DELETE FROM diary WHERE diary_sid = #{diarySid}
+    </delete>
 
 </mapper>
