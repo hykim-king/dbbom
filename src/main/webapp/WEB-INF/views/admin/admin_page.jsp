@@ -19,6 +19,23 @@
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 
 <style>
+/* --- 고정 헤더와 컨텐츠 겹침 방지 --- */
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background: white;
+	z-index: 1000;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+main.container {
+	margin-top: 100px; /* 헤더 높이만큼 여백을 주어 겹침 방지 */
+	min-height: calc(100vh - 100px);
+}
+
 /* --- 관리자 레이아웃 --- */
 .admin-header-area {
 	margin-bottom: 2rem;
@@ -37,7 +54,7 @@
 	scroll-margin-top: 100px;
 }
 
-/* --- 검색창: 오른쪽 정렬 및 너비 제한 --- */
+/* --- 검색창 --- */
 .admin-search-box {
 	display: flex;
 	gap: 10px;
@@ -74,6 +91,7 @@ button {
 	padding: 8px 16px;
 	border-radius: 8px;
 	font-weight: 600;
+	text-decoration: none;
 }
 
 .btn-search:hover {
@@ -133,39 +151,6 @@ button {
 	border-radius: 0 12px 12px 0;
 }
 
-.custom-table tr:hover td {
-	background-color: #f1f5f9;
-	color: #3b82f6;
-}
-
-/* --- 페이징 스타일 --- */
-.admin-pagination {
-	display: flex;
-	justify-content: center;
-	gap: 8px;
-	margin-top: 25px;
-}
-
-.page-link {
-	padding: 8px 14px;
-	border-radius: 8px;
-	border: 1px solid #e2e8f0;
-	text-decoration: none;
-	color: #64748b;
-	font-weight: 600;
-}
-
-.page-link:hover {
-	background-color: #f1f5f9;
-	color: #3b82f6;
-}
-
-.page-link.active {
-	background-color: #3b82f6;
-	color: white;
-	border-color: #3b82f6;
-}
-
 /* --- 모달 시스템 --- */
 .modal-overlay {
 	display: none;
@@ -200,11 +185,11 @@ button {
 	overflow-wrap: break-word;
 }
 
-.report-box, .diary-box {
-	width: 100%;
-	box-sizing: border-box;
-	word-break: break-all;
-	margin-bottom: 12px;
+.clickable-reason {
+	color: #2563eb;
+	font-weight: 600;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .type-badge {
@@ -223,21 +208,6 @@ button {
 	text-overflow: ellipsis;
 	margin: 0 auto;
 }
-
-.clickable-reason {
-	color: #2563eb;
-	font-weight: 600;
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.no-data {
-	padding: 50px !important;
-	color: #94a3b8;
-	font-weight: 600;
-	font-size: 1.1rem;
-	text-align: center;
-}
 </style>
 </head>
 <body>
@@ -254,10 +224,11 @@ button {
 	</div>
 
 	<header>
-		<div class="container header-inner flex-between">
+		<div class="container header-inner flex-between"
+			style="display: flex; align-items: center; height: 100%; padding: 0 20px;">
 			<a href="${pageContext.request.contextPath}/main/main.do"
 				class="logo-area" style="text-decoration: none">
-				<h1 class="logo-text">내면의 흔적</h1>
+				<h1 class="logo-text" style="margin: 0;">내면의 흔적</h1>
 			</a>
 			<div class="auth-links">
 				<span class="auth-item" style="color: #3b82f6">관리자님 환영합니다</span> <span
@@ -337,7 +308,12 @@ button {
 											<td>#${vo.reportSid}</td>
 											<td><span class="type-badge">${vo.reportCategory == '10' ? '욕설' : (vo.reportCategory == '20' ? '음란' : (vo.reportCategory == '30' ? '홍보' : '기타'))}</span></td>
 											<td
-												onclick="openReportModal('${fn:escapeXml(vo.reportContent)}', '${fn:escapeXml(vo.diaryContent)}', '${vo.diarySid}')">
+												onclick="openReportModal(
+                          '${fn:escapeXml(vo.reportContent)}', 
+                          '${fn:escapeXml(vo.diaryContent)}', 
+                          '${vo.diarySid == null ? '' : vo.diarySid}', 
+                          '${vo.commentSid == null ? '' : vo.commentSid}', 
+                          '${vo.famousSid == null ? '' : vo.famousSid}')">
 												<div class="text-ellipsis clickable-reason">${vo.reportContent}</div>
 											</td>
 											<td>${vo.regId}</td>
@@ -348,42 +324,13 @@ button {
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="6" class="no-data">조회된 결과가 없습니다.</td>
+										<td colspan="6" class="no-data"
+											style="text-align: center; padding: 50px;">조회된 결과가 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
-					<div class="admin-pagination">
-						<c:if test="${reportMaxPage > 0}">
-							<c:set var="pb" value="5" />
-							<c:set var="cp"
-								value="${empty param.reportPage ? 1 : param.reportPage}" />
-							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
-								integerOnly="true" />
-							<c:set var="sp" value="${cb * pb + 1}" />
-							<c:set var="ep" value="${sp + pb - 1}" />
-							<c:if test="${ep > reportMaxPage}">
-								<c:set var="ep" value="${reportMaxPage}" />
-							</c:if>
-
-							<c:if test="${sp > 1}">
-								<a
-									href="adminPage.do?menu=${menu}&reportPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
-									class="page-link">&lt;</a>
-							</c:if>
-							<c:forEach var="i" begin="${sp}" end="${ep}">
-								<a
-									href="adminPage.do?menu=${menu}&reportPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
-									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
-							</c:forEach>
-							<c:if test="${ep < reportMaxPage}">
-								<a
-									href="adminPage.do?menu=${menu}&reportPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
-									class="page-link">&gt;</a>
-							</c:if>
-						</c:if>
-					</div>
 				</div>
 			</c:if>
 
@@ -421,42 +368,13 @@ button {
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="4" class="no-data">조회된 결과가 없습니다.</td>
+										<td colspan="4" class="no-data"
+											style="text-align: center; padding: 50px;">조회된 결과가 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
-					<div class="admin-pagination">
-						<c:if test="${userMaxPage > 0}">
-							<c:set var="pb" value="5" />
-							<c:set var="cp"
-								value="${empty param.userPage ? 1 : param.userPage}" />
-							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
-								integerOnly="true" />
-							<c:set var="sp" value="${cb * pb + 1}" />
-							<c:set var="ep" value="${sp + pb - 1}" />
-							<c:if test="${ep > userMaxPage}">
-								<c:set var="ep" value="${userMaxPage}" />
-							</c:if>
-
-							<c:if test="${sp > 1}">
-								<a
-									href="adminPage.do?menu=${menu}&userPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
-									class="page-link">&lt;</a>
-							</c:if>
-							<c:forEach var="i" begin="${sp}" end="${ep}">
-								<a
-									href="adminPage.do?menu=${menu}&userPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
-									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
-							</c:forEach>
-							<c:if test="${ep < userMaxPage}">
-								<a
-									href="adminPage.do?menu=${menu}&userPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
-									class="page-link">&gt;</a>
-							</c:if>
-						</c:if>
-					</div>
 				</div>
 			</c:if>
 
@@ -499,129 +417,129 @@ button {
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="5" class="no-data">조회된 결과가 없습니다.</td>
+										<td colspan="5" class="no-data"
+											style="text-align: center; padding: 50px;">조회된 결과가 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
-					<div class="admin-pagination">
-						<c:if test="${diaryMaxPage > 0}">
-							<c:set var="pb" value="5" />
-							<c:set var="cp"
-								value="${empty param.diaryPage ? 1 : param.diaryPage}" />
-							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
-								integerOnly="true" />
-							<c:set var="sp" value="${cb * pb + 1}" />
-							<c:set var="ep" value="${sp + pb - 1}" />
-							<c:if test="${ep > diaryMaxPage}">
-								<c:set var="ep" value="${diaryMaxPage}" />
-							</c:if>
-
-							<c:if test="${sp > 1}">
-								<a
-									href="adminPage.do?menu=${menu}&diaryPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
-									class="page-link">&lt;</a>
-							</c:if>
-							<c:forEach var="i" begin="${sp}" end="${ep}">
-								<a
-									href="adminPage.do?menu=${menu}&diaryPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
-									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
-							</c:forEach>
-							<c:if test="${ep < diaryMaxPage}">
-								<a
-									href="adminPage.do?menu=${menu}&diaryPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
-									class="page-link">&gt;</a>
-							</c:if>
-						</c:if>
-					</div>
 				</div>
 			</c:if>
 		</div>
 	</main>
 
 	<script>
-    const cp = "${pageContext.request.contextPath}";
-    $(document).ready(function() { 
-        if (typeof lucide !== 'undefined') lucide.createIcons(); 
+  var cp = "${pageContext.request.contextPath}";
+
+  $(document).ready(function() { 
+    if (typeof lucide !== 'undefined') lucide.createIcons(); 
+  });
+
+  $(document).on('keydown', function(e) {
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      if ($('#detailModal').is(':visible')) { closeModal(); }
+    }
+  });
+
+  function closeModal() { $('#detailModal').hide(); }
+  function toggleAll(obj, target) { $("." + target).prop("checked", $(obj).is(":checked")); }
+
+  //  데이터 정제 함수 ([1] -> 1 변환)
+  function cleanId(id) {
+    if (!id || id === 'null' || id === 'undefined' || id === '') return '';
+    var val = String(id).replace(/[^0-9]/g, ''); 
+    return (val === '' || val === '0') ? '' : val;
+  }
+
+  //  신고 상세 모달 오픈
+  function openReportModal(reportContent, diaryContent, diarySid, commentSid, famousSid) {
+    var cSid = cleanId(commentSid); // 댓글 ID
+    var dSid = cleanId(diarySid);   // 일기 ID
+    var fSid = cleanId(famousSid);  // 명언 ID
+
+    console.log("--- 데이터 정제 확인 ---");
+    console.log("일기SID:", dSid, "댓글SID:", cSid, "명언SID:", fSid);
+
+    $('#modalTitle').text("신고 상세 확인");
+    var targetTitle = "신고된 내용 본문 :";
+    var detailUrl = "";
+    var buttonText = "";
+
+    // 
+    // 신고 유형 판별 및 이동 경로 설정 (댓글 신고일 경우에도 게시글로 이동)
+    if (cSid !== '') {
+      targetTitle = "신고된 댓글 본문 :";
+      if (dSid !== '') {
+        detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + dSid;
+        buttonText = "댓글이 달린 일기 게시글 보기";
+      } else if (fSid !== '') {
+        detailUrl = cp + "/famous/getFamousDetail.do?famousSid=" + fSid;
+        buttonText = "댓글이 달린 명언 게시글 보기";
+      }
+    } else if (fSid !== '') {
+      targetTitle = "신고된 명언 본문 :";
+      detailUrl = cp + "/famous/getFamousDetail.do?famousSid=" + fSid;
+      buttonText = "원본 명언 게시글 보기";
+    } else if (dSid !== '') {
+      targetTitle = "신고된 일기 본문 :";
+      detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + dSid;
+      buttonText = "원본 일기 게시글 보기";
+    }
+
+    var html = '<div class="report-box" style="padding:13px; background:#fff1f2; border-radius:10px; margin-bottom:15px; box-sizing:border-box;">'
+         + '<b>신고 사유 : </b><br/><span style="color: #ef4444; font-weight: bold; word-break: break-all;">' + (reportContent || "내용 없음") + '</span></div>'
+         + '<div class="diary-box" style="padding:15px; background:#f8fafc; border-radius:10px; box-sizing:border-box; border: 1px solid #e2e8f0; margin-bottom:15px;">'
+         + '<b style="color: #64748b; font-size: 0.9rem;">' + targetTitle + '</b>'
+         + '<pre style="white-space:pre-wrap; word-break: break-all; margin: 0; font-family: inherit; margin-top:8px; line-height: 1.6;">' + (diaryContent || "원본 내용을 불러올 수 없습니다.") + '</pre></div>';
+         
+    if (detailUrl !== "") {
+      html += '<a href="' + detailUrl + '" target="_blank" class="btn-search" style="display:block; text-align:center; padding: 12px; text-decoration:none; font-weight: bold; border-radius: 10px; background-color: #3b82f6; color: white;">'
+         + '<i data-lucide="external-link" style="width: 16px; vertical-align: middle; margin-right: 5px;"></i>' + buttonText + '</a>';
+    }
+
+    $('#modalBody').html(html);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    $('#detailModal').css('display', 'flex');
+  }
+
+  function openDiaryModal(title, subTitle, content, diarySid) {
+    $('#modalTitle').text(subTitle || "게시글 상세 정보");
+    var displayContent = content ? content : "작성된 내용이 없습니다.";
+    var html = '<div style="padding:15px; background:#f8fafc; border-radius:10px; box-sizing:border-box; border:1px solid #e2e8f0;">'
+         + '<pre style="white-space:pre-wrap; word-break: break-all; font-family: inherit; margin: 0; line-height: 1.6;">' + displayContent + '</pre></div>'
+         + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:15px; text-decoration:none;">게시글 바로가기 (새 창)</a>';
+    $('#modalBody').html(html);
+    $('#detailModal').css('display', 'flex');
+  }
+
+  function processDelete(type, id) {
+    var url = cp + "/admin/doDelete" + type.charAt(0).toUpperCase() + type.slice(1) + ".do";
+    var data = (type === 'user') ? { userId: id } : (type === 'diary' ? { diarySid: id } : { reportSid: id });
+    return $.ajax({ type: "POST", url: url, data: data });
+  }
+
+  function deleteOne(type, id) {
+    if (!confirm("정말로 처리하시겠습니까?")) return;
+    processDelete(type, id).done(function(res) { alert(res); location.reload(); });
+  }
+
+  function deleteSelected() {
+    var selected = [];
+    $(".user-chk:checked, .diary-chk:checked, .report-chk:checked").each(function() {
+      selected.push({ id: $(this).val(), type: $(this).attr('class').split('-')[0] });
     });
-
-    // ESC 키 입력 시 모달 닫기 기능 추가
-    $(document).on('keydown', function(e) {
-        if (e.key === 'Escape' || e.keyCode === 27) {
-            // 모달이 표시 중일 때만 닫기 함수 호출
-            if ($('#detailModal').is(':visible')) {
-                closeModal();
-            }
-        }
+    if (selected.length === 0) return alert("선택된 항목이 없습니다.");
+    if (!confirm("일괄 처리하시겠습니까?")) return;
+    var completed = 0;
+    selected.forEach(function(item) {
+      processDelete(item.type, item.id).always(function() {
+        if (++completed === selected.length) { alert("완료되었습니다."); location.reload(); }
+      });
     });
+  }
 
-    function closeModal() { $('#detailModal').hide(); }
-    function toggleAll(obj, target) { $("." + target).prop("checked", $(obj).is(":checked")); }
-
-    function openReportModal(reportContent, diaryContent, diarySid) {
-      $('#modalTitle').text("신고 내용 확인");
-      
-      let html = '<div class="report-box" style="padding:13px; background:#fff1f2; border-radius:10px; box-sizing:border-box;">'
-          +   '<b>신고 내용 : </b><br/>' 
-          +   '<span style="color: #ef4444; font-weight: bold; word-break: break-all;"> ' + (reportContent || "내용 없음") + '</span>'
-          + '</div>'
-          + '<div class="diary-box" style="padding:10px; background:#f8fafc; border-radius:10px; box-sizing:border-box;">'
-          +   '<b>원본 일기 내용 : </b>'
-          +   '<pre style="white-space:pre-wrap; word-break: break-all; margin: 0; font-family: inherit;">' + (diaryContent || "원본 내용을 불러올 수 없습니다.") + '</pre>'
-          + '</div>'
-          + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:10px; text-decoration:none;">원본 보기</a>';
-          
-      $('#modalBody').html(html);
-      $('#detailModal').css('display', 'flex');
-    }
-
-    function openDiaryModal(title, subTitle, content, diarySid) {
-      $('#modalTitle').text(subTitle || "게시글 상세 정보");
-      
-      var displayContent = content ? content : "작성된 내용이 없습니다.";
-      
-      let html = '<div style="padding:15px; background:#f8fafc; border-radius:10px; box-sizing:border-box; border:1px solid #e2e8f0;">'
-          +   '<pre style="white-space:pre-wrap; word-break: break-all; font-family: inherit; margin: 0; line-height: 1.6;">' + displayContent + '</pre>'
-          + '</div>'
-          + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:15px; text-decoration:none;">'
-          +   '게시글 바로가기 (새 창)'
-          + '</a>';
-          
-      $('#modalBody').html(html);
-      $('#detailModal').css('display', 'flex');
-    }
-
-    function processDelete(type, id) {
-      let url = cp + "/admin/doDelete" + type.charAt(0).toUpperCase() + type.slice(1) + ".do";
-      let data = (type === 'user') ? { userId: id } : (type === 'diary' ? { diarySid: id } : { reportSid: id });
-      return $.ajax({ type: "POST", url: url, data: data });
-    }
-
-    function deleteOne(type, id) {
-      if (!confirm("정말로 처리하시겠습니까?")) return;
-      processDelete(type, id).done(function(res) { alert(res); location.reload(); });
-    }
-
-    function deleteSelected() {
-      const selected = [];
-      $(".user-chk:checked, .diary-chk:checked, .report-chk:checked").each(function() {
-        selected.push({ id: $(this).val(), type: $(this).attr('class').split('-')[0] });
-      });
-      if (selected.length === 0) return alert("선택된 항목이 없습니다.");
-      if (!confirm("일괄 처리하시겠습니까?")) return;
-      let completed = 0;
-      selected.forEach(item => {
-        processDelete(item.type, item.id).always(() => {
-          if (++completed === selected.length) { alert("완료되었습니다."); location.reload(); }
-        });
-      });
-    }
-
-    function doLogout() {
-        if (!confirm("로그아웃 하시겠습니까?")) return;
-        location.href = cp + "/user/doLogout.do";
-    }
+  function doLogout() { if (confirm("로그아웃 하시겠습니까?")) location.href = cp + "/user/doLogout.do"; }
 </script>
 </body>
 </html>

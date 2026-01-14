@@ -2,42 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ehr.mapper.AdminMapper">
 
-    <resultMap id="reportMap" type="com.pcwk.ehr.report.domain.ReportVO">
-        <id property="reportSid" column="reportSid" />
-        <result property="reportCategory" column="reportCategory" />
-        <result property="reportContent" column="reportContent" />
-        <result property="regId" column="regId" />
-        <result property="diarySid" column="diarySid" />
-        <result property="diaryContent" column="diaryContent" />
-    </resultMap>
+   <resultMap id="reportMap" type="com.pcwk.ehr.report.domain.ReportVO">
+       <id property="reportSid" column="reportSid" />
+       <result property="reportCategory" column="reportCategory" />
+       <result property="reportContent" column="reportContent" />
+       <result property="regId" column="regId" />
+       <result property="diarySid" column="diarySid" />
+       <result property="commentSid" column="commentSid" />
+       <result property="famousSid" column="famousSid" />
+       <result property="diaryContent" column="diaryContent" />
+   </resultMap>
 
-    <select id="doRetrieveReportList" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="reportMap">
-        SELECT * FROM (
-            SELECT ROWNUM AS rnum, A.* FROM (
-                SELECT
-                    r.report_sid as reportSid,
-                    r.report_category as reportCategory,
-                    r.report_content as reportContent,
-                    r.reg_id as regId,
-                    r.diary_sid as diarySid,
-                    d.diary_content as diaryContent
-                FROM report r LEFT JOIN diary d ON r.diary_sid = d.diary_sid
-                WHERE 1=1
-                <if test="searchWord != null and searchWord != ''">
-                    <choose>
-                        <when test="searchDiv == '10'"> AND r.report_content LIKE '%' || #{searchWord} || '%' </when>
-                        <when test="searchDiv == '20'"> AND r.reg_id LIKE '%' || #{searchWord} || '%' </when>
-                    </choose>
-                </if>
-                ORDER BY r.report_sid DESC
-            ) A 
-            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
-        ) 
-        WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
-    </select>
-
+		<select id="doRetrieveReportList" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="reportMap">
+		    SELECT * FROM (
+		        SELECT ROWNUM AS rnum, A.* FROM (
+		            SELECT
+		                r.report_sid as reportSid,
+		                r.report_category as reportCategory,
+		                r.report_content as reportContent,
+		                r.reg_id as regId,
+		                r.diary_sid as diarySid,
+		                r.comment_sid as commentSid,
+		                r.famous_sid as famousSid,
+		                CASE 
+										    WHEN r.diary_sid IS NOT NULL THEN d.diary_content
+										    WHEN r.comment_sid IS NOT NULL THEN TO_CLOB(c.comment_content)
+										    WHEN r.famous_sid IS NOT NULL THEN TO_CLOB(f.famous_content)
+										    ELSE TO_CLOB('본문 내용 없음') END as diaryContent
+		            FROM report r 
+		            LEFT JOIN diary d ON r.diary_sid = d.diary_sid
+		            LEFT JOIN comments c ON r.comment_sid = c.comment_sid
+		            LEFT JOIN famous_collection f ON r.famous_sid = f.famous_sid
+		            WHERE 1=1
+		            <if test="searchWord != null and searchWord != ''">
+		                <choose>
+		                    <when test="searchDiv == '10'"> AND r.report_content LIKE '%' || #{searchWord} || '%' </when>
+		                    <when test="searchDiv == '20'"> AND r.reg_id LIKE '%' || #{searchWord} || '%' </when>
+		                </choose>
+		            </if>
+		            ORDER BY r.report_sid DESC
+		        ) A 
+		        WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
+		    ) 
+		    WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
+		</select>
     <select id="getReportTotalCount" parameterType="com.pcwk.ehr.cmn.DTO" resultType="int">
-        SELECT COUNT(*) FROM report r LEFT JOIN diary d ON r.diary_sid = d.diary_sid
+        SELECT COUNT(*) FROM report r 
         WHERE 1=1
         <if test="searchWord != null and searchWord != ''">
             <choose>
@@ -67,25 +77,26 @@
         SELECT COUNT(*) FROM users WHERE 1=1
     </select>
 
-		<select id="doRetrieveDiaryList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO">
-		    SELECT * FROM (
-		        SELECT ROWNUM AS rnum, A.* FROM (
-		            SELECT 
-		                diary_sid as diarySid, 
-		                reg_id as regId, 
-		                diary_title as diaryTitle, 
-		                diary_content as diaryContent,  diary_status as diaryStatus
-		            FROM diary WHERE 1=1
-		            <if test="searchWord != null and searchWord != ''">
-		                <choose>
-		                    <when test="searchDiv == '10'"> AND diary_title LIKE '%' || #{searchWord} || '%' </when>
-		                    <when test="searchDiv == '20'"> AND reg_id LIKE '%' || #{searchWord} || '%' </when>
-		                </choose>
-		            </if>
-		            ORDER BY diary_sid DESC
-		        ) A WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
-		    ) WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
-		</select>
+    <select id="doRetrieveDiaryList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO">
+        SELECT * FROM (
+            SELECT ROWNUM AS rnum, A.* FROM (
+                SELECT 
+                    diary_sid as diarySid, 
+                    reg_id as regId, 
+                    diary_title as diaryTitle, 
+                    diary_content as diaryContent,  
+                    diary_status as diaryStatus
+                FROM diary WHERE 1=1
+                <if test="searchWord != null and searchWord != ''">
+                    <choose>
+                        <when test="searchDiv == '10'"> AND diary_title LIKE '%' || #{searchWord} || '%' </when>
+                        <when test="searchDiv == '20'"> AND reg_id LIKE '%' || #{searchWord} || '%' </when>
+                    </choose>
+                </if>
+                ORDER BY diary_sid DESC
+            ) A WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
+        ) WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
+    </select>
 
     <select id="getDiaryTotalCount" resultType="int">
         SELECT COUNT(*) FROM diary WHERE 1=1
