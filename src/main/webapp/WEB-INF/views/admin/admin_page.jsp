@@ -542,7 +542,19 @@ button {
 
 	<script>
     const cp = "${pageContext.request.contextPath}";
-    $(document).ready(function() { if (typeof lucide !== 'undefined') lucide.createIcons(); });
+    $(document).ready(function() { 
+        if (typeof lucide !== 'undefined') lucide.createIcons(); 
+    });
+
+    // ESC 키 입력 시 모달 닫기 기능 추가
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            // 모달이 표시 중일 때만 닫기 함수 호출
+            if ($('#detailModal').is(':visible')) {
+                closeModal();
+            }
+        }
+    });
 
     function closeModal() { $('#detailModal').hide(); }
     function toggleAll(obj, target) { $("." + target).prop("checked", $(obj).is(":checked")); }
@@ -610,6 +622,6 @@ button {
         if (!confirm("로그아웃 하시겠습니까?")) return;
         location.href = cp + "/user/doLogout.do";
     }
-    </script>
+</script>
 </body>
 </html>
