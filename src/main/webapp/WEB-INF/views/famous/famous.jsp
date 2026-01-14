@@ -249,7 +249,7 @@
 					</c:choose>
 				</div>
 
-				<div class="pagination-container">
+<div class="pagination-container">
     <ul class="pagination-list">
         <c:if test="${totalCnt > 0}">
             <%-- 전체 페이지 수 계산: (전체건수 + 페이지사이즈 - 1) / 페이지사이즈 --%>

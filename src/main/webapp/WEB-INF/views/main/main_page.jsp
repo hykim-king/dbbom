@@ -46,58 +46,8 @@ if (loginUser != null) {
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/assets/css/diary_list.css" />
 
-<script>
-    // 마이페이지 이동 로직 (관리자여도 본인 정보를 수정하는 마이페이지로 이동)
-    function moveToManagement() {
-        var isLogin = <%=isLogin%>;
-        
-        if (!isLogin) {
-            alert("로그인이 필요합니다.");
-            location.href = "<%=request.getContextPath()%>/user/signIn.do";
-            return;
-        }
-        
-        // 관리자라도 본인 정보를 수정하는 마이페이지로 연결
-        location.href = "<%=request.getContextPath()%>/user/myPage.do";
-    }
-
-    // 로그아웃 로직
-    function doLogout() {
-        if (!confirm("로그아웃 하시겠습니까?")) return;
-        $.ajax({
-            url: "<%=request.getContextPath()%>/user/doLogoutAjax.do",
-            type: "POST",
-            dataType: "json",
-            success: function(res) {
-                alert(res.message);
-                if (res.flag === 1) location.href = "<%=request.getContextPath()%>/main/main.do";
-            },
-            error: function(xhr, status, err) { alert("오류 발생"); }
-        });
-    }
-
-    // 회원탈퇴 로직 (에러 수정 완료)
-    function doWithdraw() {
-        if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
-        
-        $.ajax({
-            url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
-            type: "POST",
-            dataType: "json",
-            success: function(res) {
-                alert(res.message);
-                // [수정] 줄바꿈을 없애고 따옴표 쌍을 맞추어 한 줄로 연결함 (Syntax Error 해결)
-                if (res.flag === 1) {
-                    location.href = "<%=request.getContextPath()%>
-	/main/main.do";
-						}
-					},
-					error : function(xhr, status, err) {
-						alert("오류 발생");
-					}
-				});
-	}
-</script>
+<!-- ...기존 코드... -->
+<!-- 기존 <script> 태그 삭제 -->
 </head>
 <body>
 	<header>
@@ -130,18 +80,18 @@ if (loginUser != null) {
 				<%
 					}
 				%>
-
+        
 				<a href="javascript:doLogout();" class="auth-item">로그아웃</a>
 
 				<%-- [핵심 수정] 관리자가 아닐 때(!isAdmin)만 회원탈퇴 버튼 노출 --%>
-				<%
+				<%-- <%
 					if (!isAdmin) {
 				%>
 				<span class="divider">|</span> <a href="javascript:doWithdraw();"
 					class="auth-item" style="color: red; font-size: 0.8rem;">회원탈퇴</a>
-				<%
+				<%  
 					}
-				%>
+				%> --%>
 				<%
 					}
 				%>
@@ -314,6 +264,52 @@ if (loginUser != null) {
 
     <script>
       lucide.createIcons();
+      // 마이페이지 이동 로직 (menu.jsp와 동일하게 함수명 통일)
+      function moveToMyPage() {
+        var isLogin = <%=isLogin%>;
+        if (!isLogin) {
+          alert("로그인이 필요합니다.");
+          location.href = "<%=request.getContextPath()%>/user/signIn.do";
+          return;
+        }
+        location.href = "<%=request.getContextPath()%>/user/myPage.do";
+      }
+      // 로그아웃 로직 (menu.jsp와 동일하게 jQuery 활용)
+      function doLogout() {
+        if (!confirm("로그아웃 하시겠습니까?")) return;
+        $.ajax({
+          url: "<%=request.getContextPath()%>/user/doLogoutAjax.do",
+          type: "POST",
+          dataType: "json",
+          success: function(res) {
+            alert(res.message);
+            if (res.flag == 1) {
+              location.href = "<%=request.getContextPath()%>/main/main.do";
+            }
+          },
+          error: function(xhr, status, err) {
+            alert("오류 발생");
+          }
+        });
+      }
+      // 회원탈퇴 로직
+      function doWithdraw() {
+        if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
+        $.ajax({
+          url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
+          type: "POST",
+          dataType: "json",
+          success: function(res) {
+            alert(res.message);
+            if (res.flag === 1) {
+              location.href = "<%=request.getContextPath()%>/main/main.do";
+            }
+          },
+          error: function(xhr, status, err) {
+            alert("오류 발생");
+          }
+        });
+      }
     </script>
 </body>
 </html>

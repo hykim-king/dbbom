@@ -20,6 +20,7 @@
     <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script> --%>
     <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 
+
   </head>
   <body>
 
@@ -237,8 +238,8 @@
             </a>
           </c:forEach>
         </section>
-                <!-- 페이징 UI (공지사항 참고) -->
-        <div class="pagination" style="display: flex; justify-content: center; margin-top: 30px; gap: 5px;">
+                <!-- 페이징 UI  -->
+        <%-- <div class="pagination" style="display: flex; justify-content: center; margin-top: 30px; gap: 5px;">
           <c:if test="${vo.totalCnt > 0}">
             <c:set var="totalPage" value="${(vo.totalCnt + vo.pageSize - 1) / vo.pageSize}" />
             <c:set var="totalPageInt" value="${fn:split(totalPage, '.')[0]}" />
@@ -249,7 +250,48 @@
               </a>
             </c:forEach>
           </c:if>
-        </div>
+        </div> --%>
+
+<%-- 페이징 변수 계산 --%>
+<c:set var="pageBlock" value="5" />
+<c:set var="startPage" value="${((vo.pageNo - 1) / pageBlock) * pageBlock + 1}" />
+<c:set var="endPage" value="${startPage + pageBlock - 1}" />
+<c:if test="${endPage > totalPageNum}">
+  <c:set var="endPage" value="${totalPageNum}" />
+</c:if>
+
+<div class="pagination-container">
+  <ul class="pagination-list">
+    <c:if test="${totalCnt > 0}">
+    
+      <c:if test="${vo.pageNo > 1}">
+        <li>
+          <a href="?pageNo=${vo.pageNo - 1}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}" 
+             class="page-link prev-next">이전</a>
+        </li>
+      </c:if>
+      
+      <c:forEach begin="${startPage}" end="${endPage}" var="i">
+        <li>
+          <a href="?pageNo=${i}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}"
+             class="page-link ${vo.pageNo == i ? 'active' : ''}">${i}</a>
+        </li>
+      </c:forEach>
+      
+      <c:if test="${vo.pageNo < totalPageNum}">
+        <li>
+          <a href="?pageNo=${vo.pageNo + 1}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}" 
+             class="page-link prev-next">다음</a>
+        </li>
+      </c:if>
+    </c:if>
+  </ul>
+</div>
+
+
+
+
+
 
       </div>
     </main>

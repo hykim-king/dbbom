@@ -29,7 +29,7 @@ public class DiaryServiceImpl implements DiaryService
     // @Override
     // public FamousVO assignFamousBySentiment(DiaryVO diary) {
     //     String apiUrl = "https://api.matgim.ai/54edkvw2hn/api-sentiment";
-    //     String apiKey = "a767be11-fdd4-46c5-bf7a-b60df8c3ac90";
+    //     String apiKey = "";  // 여기에 실제 API 키를 입력하세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //     String diaryContent = diary.getDiaryContent();
     //     String jsonInput = String.format("{\"document\": \"%s\"}", diaryContent.replace("\"", "\\\""));
     //     String sentimentResult = "N"; // 기본값: 부정

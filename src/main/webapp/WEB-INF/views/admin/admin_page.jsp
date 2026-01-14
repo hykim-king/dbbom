@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,7 +19,7 @@
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 
 <style>
-/* 관리자 전용 스타일 */
+/* --- 관리자 레이아웃 --- */
 .admin-header-area {
 	margin-bottom: 2rem;
 	display: flex;
@@ -32,8 +34,76 @@
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 	border: 1px solid rgba(0, 0, 0, 0.05);
 	margin-bottom: 3rem;
+	scroll-margin-top: 100px;
 }
 
+/* --- 검색창: 오른쪽 정렬 및 너비 제한 --- */
+.admin-search-box {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+	justify-content: flex-end;
+	width: fit-content;
+	max-width: 40%;
+	margin-left: auto;
+}
+
+.admin-search-select, .admin-search-input {
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1px solid #e2e8f0;
+	outline: none;
+}
+
+.admin-search-input {
+	flex-grow: 1;
+	min-width: 200px;
+}
+
+/* --- 버튼 스타일 --- */
+button {
+	cursor: pointer;
+	border: none;
+	font-family: inherit;
+	transition: all 0.2s;
+}
+
+.btn-search {
+	background: #3b82f6;
+	color: white;
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-weight: 600;
+}
+
+.btn-search:hover {
+	background: #2563eb;
+}
+
+.btn-admin-del {
+	background-color: #fee2e2;
+	color: #ef4444;
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-weight: 600;
+}
+
+.btn-admin-del:hover {
+	background-color: #fecaca;
+}
+
+.btn-batch-del {
+	background-color: #3b82f6;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* --- 테이블 스타일 --- */
 .custom-table {
 	width: 100%;
 	border-collapse: separate;
@@ -66,33 +136,9 @@
 .custom-table tr:hover td {
 	background-color: #f1f5f9;
 	color: #3b82f6;
-	cursor: pointer;
 }
 
-/* 검색창 스타일 */
-.admin-search-box {
-	display: flex;
-	gap: 10px;
-	margin-bottom: 20px;
-	justify-content: flex-end;
-}
-
-.admin-search-select {
-	padding: 8px;
-	border-radius: 8px;
-	border: 1px solid #e2e8f0;
-	outline: none;
-}
-
-.admin-search-input {
-	padding: 8px 12px;
-	border-radius: 8px;
-	border: 1px solid #e2e8f0;
-	width: 250px;
-	outline: none;
-}
-
-/* 페이징 스타일 */
+/* --- 페이징 스타일 --- */
 .admin-pagination {
 	display: flex;
 	justify-content: center;
@@ -107,7 +153,6 @@
 	text-decoration: none;
 	color: #64748b;
 	font-weight: 600;
-	transition: all 0.2s;
 }
 
 .page-link:hover {
@@ -121,22 +166,7 @@
 	border-color: #3b82f6;
 }
 
-/* 모달 및 기타 기존 스타일 유지... */
-.text-ellipsis {
-	max-width: 250px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	margin: 0 auto;
-}
-
-.clickable-reason {
-	color: #2563eb;
-	font-weight: 600;
-	text-decoration: underline;
-	text-underline-offset: 3px;
-}
-
+/* --- 모달 시스템 --- */
 .modal-overlay {
 	display: none;
 	position: fixed;
@@ -152,57 +182,29 @@
 
 .modal-content {
 	background: white;
-	width: 550px;
-	padding: 2rem;
+	width: 90%;
+	max-width: 550px;
+	padding: 2.5rem;
 	border-radius: 20px;
-	position: relative;
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1.5rem;
-	border-bottom: 1px solid #eee;
-	padding-bottom: 1rem;
-}
-
-.modal-close {
-	cursor: pointer;
-	color: #64748b;
+	box-sizing: border-box;
 }
 
 .modal-body {
 	line-height: 1.6;
 	color: #334155;
 	text-align: left;
-	max-height: 500px;
+	max-height: 60vh;
 	overflow-y: auto;
+	word-break: break-all;
+	overflow-wrap: break-word;
 }
 
-.report-box {
-	margin-bottom: 15px;
-	padding: 15px;
-	background: #fff1f2;
-	border-radius: 10px;
-	border: 1px solid #fecaca;
-}
-
-.diary-box {
-	padding: 15px;
-	background: #f8fafc;
-	border-radius: 10px;
-	border: 1px solid #e2e8f0;
-}
-
-.box-label {
-	font-size: 0.85rem;
-	font-weight: 700;
-	margin-bottom: 5px;
-	display: flex;
-	align-items: center;
-	gap: 5px;
+.report-box, .diary-box {
+	width: 100%;
+	box-sizing: border-box;
+	word-break: break-all;
+	margin-bottom: 12px;
 }
 
 .type-badge {
@@ -214,46 +216,38 @@
 	font-weight: 600;
 }
 
-.btn-search {
-	background: #3b82f6;
-	color: white;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 8px;
+.text-ellipsis {
+	max-width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0 auto;
+}
+
+.clickable-reason {
+	color: #2563eb;
 	font-weight: 600;
+	text-decoration: underline;
 	cursor: pointer;
 }
 
-.btn-admin-del {
-	background-color: #fee2e2;
-	color: #ef4444;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 8px;
+.no-data {
+	padding: 50px !important;
+	color: #94a3b8;
 	font-weight: 600;
-	cursor: pointer;
-}
-
-.btn-batch-del {
-	background-color: #3b82f6;
-	color: white;
-	padding: 10px 20px;
-	border-radius: 10px;
-	border: none;
-	font-weight: 700;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	gap: 8px;
+	font-size: 1.1rem;
+	text-align: center;
 }
 </style>
 </head>
 <body>
 	<div id="detailModal" class="modal-overlay">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h3 id="modalTitle">상세 내용</h3>
-				<i data-lucide="x" class="modal-close" onclick="closeModal()"></i>
+			<div class="modal-header"
+				style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+				<h3 id="modalTitle" style="margin: 0; font-weight: 700;">상세 내용</h3>
+				<i data-lucide="x" style="cursor: pointer; color: #64748b;"
+					onclick="closeModal()"></i>
 			</div>
 			<div id="modalBody" class="modal-body"></div>
 		</div>
@@ -276,8 +270,8 @@
 	<main class="container">
 		<div class="tab-list">
 			<a href="${pageContext.request.contextPath}/main/main.do"
-				class="menu-label" style="text-decoration: none; cursor: pointer;">
-				<i data-lucide="home"
+				class="menu-label" style="text-decoration: none;"> <i
+				data-lucide="home"
 				style="width: 16px; margin-right: 4px; vertical-align: middle;"></i>
 				메인으로
 			</a> <a href="adminPage.do?menu=all"
@@ -302,7 +296,6 @@
 				</button>
 			</div>
 
-			<%-- 공통 검색 폼 (상단 고정 또는 각 섹션 내부에 위치 가능) --%>
 			<form action="adminPage.do" method="get" id="searchForm"
 				class="admin-search-box">
 				<input type="hidden" name="menu" value="${menu}"> <select
@@ -317,8 +310,10 @@
 			<%-- 1. 신고 관리 섹션 --%>
 			<c:if test="${menu eq 'section1' || menu eq 'all'}">
 				<div class="admin-table-card" id="section1">
-					<div class="section-title" style="margin-bottom: 1.5rem;">
-						<i data-lucide="flame" style="color: #ef4444"></i> 신고 내역 관리
+					<div class="section-title"
+						style="margin-bottom: 1.5rem; font-weight: 700;">
+						<i data-lucide="flame"
+							style="color: #ef4444; vertical-align: middle;"></i> 신고 내역 관리
 					</div>
 					<table class="custom-table">
 						<thead>
@@ -327,7 +322,7 @@
 									onclick="toggleAll(this, 'report-chk')"></th>
 								<th>번호</th>
 								<th>신고 유형</th>
-								<th>신고 사유 (클릭하여 원본 확인)</th>
+								<th>신고 사유</th>
 								<th>작성자</th>
 								<th>관리</th>
 							</tr>
@@ -340,15 +335,7 @@
 											<td><input type="checkbox" class="report-chk"
 												value="${vo.reportSid}"></td>
 											<td>#${vo.reportSid}</td>
-											<td><span class="type-badge"> <c:choose>
-														<c:when test="${vo.reportCategory == '10'}">욕설</c:when>
-														<c:when test="${vo.reportCategory == '20'}">음란</c:when>
-														<c:when test="${vo.reportCategory == '30'}">홍보</c:when>
-														<c:when test="${vo.reportCategory == '40'}">개인정보</c:when>
-														<c:when test="${vo.reportCategory == '50'}">불법정보</c:when>
-														<c:otherwise>기타</c:otherwise>
-													</c:choose>
-											</span></td>
+											<td><span class="type-badge">${vo.reportCategory == '10' ? '욕설' : (vo.reportCategory == '20' ? '음란' : (vo.reportCategory == '30' ? '홍보' : '기타'))}</span></td>
 											<td
 												onclick="openReportModal('${fn:escapeXml(vo.reportContent)}', '${fn:escapeXml(vo.diaryContent)}', '${vo.diarySid}')">
 												<div class="text-ellipsis clickable-reason">${vo.reportContent}</div>
@@ -361,20 +348,40 @@
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+										<td colspan="6" class="no-data">조회된 결과가 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
-					<%-- 신고 페이징 --%>
 					<div class="admin-pagination">
 						<c:if test="${reportMaxPage > 0}">
-							<c:forEach var="i" begin="1" end="${reportMaxPage}">
+							<c:set var="pb" value="5" />
+							<c:set var="cp"
+								value="${empty param.reportPage ? 1 : param.reportPage}" />
+							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
+								integerOnly="true" />
+							<c:set var="sp" value="${cb * pb + 1}" />
+							<c:set var="ep" value="${sp + pb - 1}" />
+							<c:if test="${ep > reportMaxPage}">
+								<c:set var="ep" value="${reportMaxPage}" />
+							</c:if>
+
+							<c:if test="${sp > 1}">
 								<a
-									href="adminPage.do?menu=${menu}&reportPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}"
-									class="page-link ${param.reportPage == i || (empty param.reportPage && i == 1) ? 'active' : ''}">${i}</a>
+									href="adminPage.do?menu=${menu}&reportPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
+									class="page-link">&lt;</a>
+							</c:if>
+							<c:forEach var="i" begin="${sp}" end="${ep}">
+								<a
+									href="adminPage.do?menu=${menu}&reportPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
+									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
 							</c:forEach>
+							<c:if test="${ep < reportMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&reportPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
+									class="page-link">&gt;</a>
+							</c:if>
 						</c:if>
 					</div>
 				</div>
@@ -383,8 +390,10 @@
 			<%-- 2. 회원 관리 섹션 --%>
 			<c:if test="${menu eq 'section2' || menu eq 'all'}">
 				<div class="admin-table-card" id="section2">
-					<div class="section-title" style="margin-bottom: 1.5rem;">
-						<i data-lucide="users" style="color: #3b82f6"></i> 회원 정보 관리
+					<div class="section-title"
+						style="margin-bottom: 1.5rem; font-weight: 700;">
+						<i data-lucide="users"
+							style="color: #3b82f6; vertical-align: middle;"></i> 회원 정보 관리
 					</div>
 					<table class="custom-table">
 						<thead>
@@ -412,20 +421,40 @@
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+										<td colspan="4" class="no-data">조회된 결과가 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
-					<%-- 회원 페이징 --%>
 					<div class="admin-pagination">
 						<c:if test="${userMaxPage > 0}">
-							<c:forEach var="i" begin="1" end="${userMaxPage}">
+							<c:set var="pb" value="5" />
+							<c:set var="cp"
+								value="${empty param.userPage ? 1 : param.userPage}" />
+							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
+								integerOnly="true" />
+							<c:set var="sp" value="${cb * pb + 1}" />
+							<c:set var="ep" value="${sp + pb - 1}" />
+							<c:if test="${ep > userMaxPage}">
+								<c:set var="ep" value="${userMaxPage}" />
+							</c:if>
+
+							<c:if test="${sp > 1}">
 								<a
-									href="adminPage.do?menu=${menu}&userPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}"
-									class="page-link ${param.userPage == i || (empty param.userPage && i == 1) ? 'active' : ''}">${i}</a>
+									href="adminPage.do?menu=${menu}&userPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
+									class="page-link">&lt;</a>
+							</c:if>
+							<c:forEach var="i" begin="${sp}" end="${ep}">
+								<a
+									href="adminPage.do?menu=${menu}&userPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
+									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
 							</c:forEach>
+							<c:if test="${ep < userMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&userPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
+									class="page-link">&gt;</a>
+							</c:if>
 						</c:if>
 					</div>
 				</div>
@@ -434,8 +463,10 @@
 			<%-- 3. 게시글 관리 섹션 --%>
 			<c:if test="${menu eq 'section3' || menu eq 'all'}">
 				<div class="admin-table-card" id="section3">
-					<div class="section-title" style="margin-bottom: 1.5rem;">
-						<i data-lucide="files" style="color: #10b981"></i> 게시글 내역 관리
+					<div class="section-title"
+						style="margin-bottom: 1.5rem; font-weight: 700;">
+						<i data-lucide="files"
+							style="color: #10b981; vertical-align: middle;"></i> 게시글 내역 관리
 					</div>
 					<table class="custom-table">
 						<thead>
@@ -457,8 +488,8 @@
 												value="${diary.diarySid}"></td>
 											<td>${diary.diarySid}</td>
 											<td
-												onclick="openDiaryModal('게시글 상세', '${fn:escapeXml(diary.diaryTitle)}', '${fn:escapeXml(diary.diaryContent)}', '${diary.diarySid}')">
-												<div class="text-ellipsis">${diary.diaryTitle}</div>
+												onclick="openDiaryModal('상세', '${fn:escapeXml(diary.diaryTitle)}', '${fn:escapeXml(diary.diaryContent)}', '${diary.diarySid}')">
+												<div class="text-ellipsis clickable-reason">${diary.diaryTitle}</div>
 											</td>
 											<td>${diary.nickname}</td>
 											<td><button type="button" class="btn-admin-del"
@@ -468,20 +499,40 @@
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
+										<td colspan="5" class="no-data">조회된 결과가 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
-					<%-- 게시글 페이징 --%>
 					<div class="admin-pagination">
 						<c:if test="${diaryMaxPage > 0}">
-							<c:forEach var="i" begin="1" end="${diaryMaxPage}">
+							<c:set var="pb" value="5" />
+							<c:set var="cp"
+								value="${empty param.diaryPage ? 1 : param.diaryPage}" />
+							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
+								integerOnly="true" />
+							<c:set var="sp" value="${cb * pb + 1}" />
+							<c:set var="ep" value="${sp + pb - 1}" />
+							<c:if test="${ep > diaryMaxPage}">
+								<c:set var="ep" value="${diaryMaxPage}" />
+							</c:if>
+
+							<c:if test="${sp > 1}">
 								<a
-									href="adminPage.do?menu=${menu}&diaryPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}"
-									class="page-link ${param.diaryPage == i || (empty param.diaryPage && i == 1) ? 'active' : ''}">${i}</a>
+									href="adminPage.do?menu=${menu}&diaryPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
+									class="page-link">&lt;</a>
+							</c:if>
+							<c:forEach var="i" begin="${sp}" end="${ep}">
+								<a
+									href="adminPage.do?menu=${menu}&diaryPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
+									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
 							</c:forEach>
+							<c:if test="${ep < diaryMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&diaryPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
+									class="page-link">&gt;</a>
+							</c:if>
 						</c:if>
 					</div>
 				</div>
@@ -490,110 +541,87 @@
 	</main>
 
 	<script>
-        const cp = "${pageContext.request.contextPath}";
+    const cp = "${pageContext.request.contextPath}";
+    $(document).ready(function() { 
+        if (typeof lucide !== 'undefined') lucide.createIcons(); 
+    });
 
-        $(document).ready(function() {
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        });
-
-        function doLogout() {
-            if (!confirm("로그아웃 하시겠습니까?")) return;
-            $.ajax({
-                url: cp + "/user/doLogoutAjax.do",
-                type: "POST",
-                dataType: "json",
-                success: function(res) {
-                    alert(res.message);
-                    if (res.flag === 1) location.href = cp + "/main/main.do";
-                },
-                error: function() { location.href = cp + "/main/main.do"; }
-            });
-        }
-
-        function openReportModal(reportContent, diaryContent, diarySid) {
-            if (!diarySid || diarySid === '0' || diarySid === '' || diarySid === 'null') {
-                alert("해당 신고는 일기와 연결된 식별 번호가 없습니다.");
-                return;
+    // ESC 키 입력 시 모달 닫기 기능 추가
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            // 모달이 표시 중일 때만 닫기 함수 호출
+            if ($('#detailModal').is(':visible')) {
+                closeModal();
             }
-            $('#modalTitle').text("신고 상세 확인");
-            const detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + diarySid;
-            let html = `
-                <div class="report-box">
-                    <div style="font-weight:bold; color:#e11d48;">신고 내용</div>
-                    <div>\${reportContent}</div>
-                </div>
-                <div class="diary-box" style="margin-top:10px;">
-                    <div style="font-weight:bold; color:#475569;">원본 일기 본문</div>
-                    <div style="white-space:pre-wrap; background:#fff; padding:10px; border-radius:5px; margin-bottom:15px; max-height:200px; overflow-y:auto;">
-                        \${diaryContent || "내용을 불러올 수 없습니다."}
-                    </div>
-                    <a href="\${detailUrl}" target="_blank" class="btn-search" 
-                       style="display:block; text-align:center; color:white; background:#3b82f6; padding:10px; text-decoration:none; border-radius:8px; font-weight:bold;">
-                       원본 게시글 바로가기
-                    </a>
-                </div>
-            `;
-            $('#modalBody').html(html);
-            $('#detailModal').css('display', 'flex');
-            lucide.createIcons();
         }
+    });
 
-        function openDiaryModal(title, subTitle, content, diarySid) {
-            $('#modalTitle').text(title);
-            const detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + diarySid;
-            let html = `
-                <div style="margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid #eee;">
-                    <strong>제목:</strong> \${subTitle}
-                </div>
-                <div style="white-space: pre-wrap; line-height:1.8; max-height:250px; overflow-y:auto; margin-bottom:15px;">\${content}</div>
-                <a href="\${detailUrl}" target="_blank" class="btn-search" 
-                   style="display: block; text-align: center; text-decoration: none; color:white;">
-                     실제 게시글 새창보기
-                </a>
-            `;
-            $('#modalBody').html(html);
-            $('#detailModal').css('display', 'flex');
-        }
+    function closeModal() { $('#detailModal').hide(); }
+    function toggleAll(obj, target) { $("." + target).prop("checked", $(obj).is(":checked")); }
 
-        function closeModal() { $('#detailModal').hide(); }
-        $(window).on('click', function(e) { if ($(e.target).is('#detailModal')) closeModal(); });
+    function openReportModal(reportContent, diaryContent, diarySid) {
+      $('#modalTitle').text("신고 내용 확인");
+      
+      let html = '<div class="report-box" style="padding:13px; background:#fff1f2; border-radius:10px; box-sizing:border-box;">'
+          +   '<b>신고 내용 : </b><br/>' 
+          +   '<span style="color: #ef4444; font-weight: bold; word-break: break-all;"> ' + (reportContent || "내용 없음") + '</span>'
+          + '</div>'
+          + '<div class="diary-box" style="padding:10px; background:#f8fafc; border-radius:10px; box-sizing:border-box;">'
+          +   '<b>원본 일기 내용 : </b>'
+          +   '<pre style="white-space:pre-wrap; word-break: break-all; margin: 0; font-family: inherit;">' + (diaryContent || "원본 내용을 불러올 수 없습니다.") + '</pre>'
+          + '</div>'
+          + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:10px; text-decoration:none;">원본 보기</a>';
+          
+      $('#modalBody').html(html);
+      $('#detailModal').css('display', 'flex');
+    }
 
-        function toggleAll(obj, target) { $("." + target).prop("checked", $(obj).is(":checked")); }
+    function openDiaryModal(title, subTitle, content, diarySid) {
+      $('#modalTitle').text(subTitle || "게시글 상세 정보");
+      
+      var displayContent = content ? content : "작성된 내용이 없습니다.";
+      
+      let html = '<div style="padding:15px; background:#f8fafc; border-radius:10px; box-sizing:border-box; border:1px solid #e2e8f0;">'
+          +   '<pre style="white-space:pre-wrap; word-break: break-all; font-family: inherit; margin: 0; line-height: 1.6;">' + displayContent + '</pre>'
+          + '</div>'
+          + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:15px; text-decoration:none;">'
+          +   '게시글 바로가기 (새 창)'
+          + '</a>';
+          
+      $('#modalBody').html(html);
+      $('#detailModal').css('display', 'flex');
+    }
 
-        function processDelete(type, id) {
-            let url = cp + "/admin/doDelete" + type.charAt(0).toUpperCase() + type.slice(1) + ".do";
-            let data = (type === 'user') ? { userId: id } : (type === 'diary' ? { diarySid: id } : { reportSid: id });
-            return $.ajax({ type: "POST", url: url, data: data });
-        }
+    function processDelete(type, id) {
+      let url = cp + "/admin/doDelete" + type.charAt(0).toUpperCase() + type.slice(1) + ".do";
+      let data = (type === 'user') ? { userId: id } : (type === 'diary' ? { diarySid: id } : { reportSid: id });
+      return $.ajax({ type: "POST", url: url, data: data });
+    }
 
-        function deleteOne(type, id) {
-            event.stopPropagation();
-            if (!confirm("정말로 삭제하시겠습니까?")) return;
-            processDelete(type, id).done(function(res) {
-                alert(res);
-                location.reload();
-            }).fail(function() { alert("삭제 실패"); });
-        }
+    function deleteOne(type, id) {
+      if (!confirm("정말로 처리하시겠습니까?")) return;
+      processDelete(type, id).done(function(res) { alert(res); location.reload(); });
+    }
 
-        function deleteSelected() {
-            const selected = [];
-            $(".user-chk:checked, .diary-chk:checked, .report-chk:checked").each(function() {
-                const type = $(this).attr('class').split('-')[0];
-                selected.push({ id: $(this).val(), type: type });
-            });
-            if (selected.length === 0) { alert("항목을 선택해주세요."); return; }
-            if (!confirm("일괄 삭제하시겠습니까?")) return;
-            let completed = 0;
-            selected.forEach(function(item) {
-                processDelete(item.type, item.id).always(function() {
-                    completed++;
-                    if (completed === selected.length) {
-                        alert("처리가 완료되었습니다.");
-                        location.reload();
-                    }
-                });
-            });
-        }
-    </script>
+    function deleteSelected() {
+      const selected = [];
+      $(".user-chk:checked, .diary-chk:checked, .report-chk:checked").each(function() {
+        selected.push({ id: $(this).val(), type: $(this).attr('class').split('-')[0] });
+      });
+      if (selected.length === 0) return alert("선택된 항목이 없습니다.");
+      if (!confirm("일괄 처리하시겠습니까?")) return;
+      let completed = 0;
+      selected.forEach(item => {
+        processDelete(item.type, item.id).always(() => {
+          if (++completed === selected.length) { alert("완료되었습니다."); location.reload(); }
+        });
+      });
+    }
+
+    function doLogout() {
+        if (!confirm("로그아웃 하시겠습니까?")) return;
+        location.href = cp + "/user/doLogout.do";
+    }
+</script>
 </body>
 </html>

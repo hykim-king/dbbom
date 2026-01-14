@@ -67,21 +67,25 @@
         SELECT COUNT(*) FROM users WHERE 1=1
     </select>
 
-    <select id="doRetrieveDiaryList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO"> 
-        SELECT * FROM (
-            SELECT ROWNUM AS rnum, A.* FROM (
-                SELECT diary_sid as diarySid, reg_id as regId, diary_title as diaryTitle, diary_status as diaryStatus
-                FROM diary WHERE 1=1
-                <if test="searchWord != null and searchWord != ''">
-                    <choose>
-                        <when test="searchDiv == '10'"> AND diary_title LIKE '%' || #{searchWord} || '%' </when>
-                        <when test="searchDiv == '20'"> AND reg_id LIKE '%' || #{searchWord} || '%' </when>
-                    </choose>
-                </if>
-                ORDER BY diary_sid DESC
-            ) A WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
-        ) WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
-    </select>
+		<select id="doRetrieveDiaryList" parameterType="com.pcwk.ehr.cmn.DTO" resultType="com.pcwk.ehr.diary.domain.DiaryVO">
+		    SELECT * FROM (
+		        SELECT ROWNUM AS rnum, A.* FROM (
+		            SELECT 
+		                diary_sid as diarySid, 
+		                reg_id as regId, 
+		                diary_title as diaryTitle, 
+		                diary_content as diaryContent,  diary_status as diaryStatus
+		            FROM diary WHERE 1=1
+		            <if test="searchWord != null and searchWord != ''">
+		                <choose>
+		                    <when test="searchDiv == '10'"> AND diary_title LIKE '%' || #{searchWord} || '%' </when>
+		                    <when test="searchDiv == '20'"> AND reg_id LIKE '%' || #{searchWord} || '%' </when>
+		                </choose>
+		            </if>
+		            ORDER BY diary_sid DESC
+		        ) A WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
+		    ) WHERE rnum <![CDATA[ > ]]> ((#{pageNo} - 1) * #{pageSize})
+		</select>
 
     <select id="getDiaryTotalCount" resultType="int">
         SELECT COUNT(*) FROM diary WHERE 1=1

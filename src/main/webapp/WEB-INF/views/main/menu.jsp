@@ -40,7 +40,7 @@
         }
 
         // 회원탈퇴 로직
-        function doWithdraw() {
+        <%-- function doWithdraw() {
             if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
             $.ajax({
                 url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
@@ -52,7 +52,7 @@
                 },
                 error: function(xhr, status, err) { alert("오류 발생"); }
             });
-        }
+        } --%>
     </script>
   <div class="container header-inner flex-between">
     <a href="<%=request.getContextPath()%>/main/main.do" class="logo-area" style="text-decoration: none">
@@ -65,10 +65,12 @@
           <a href="<%=request.getContextPath()%>/user/signUp.do" class="auth-item">회원가입</a>
       <% } else { %>
           <span class="auth-item"><b><%= welcomeName %></b>님 환영합니다</span>
+
+          
           <span class="divider">|</span>
           <a href="javascript:doLogout();" class="auth-item">로그아웃</a>
-          <span class="divider">|</span>
-          <a href="javascript:doWithdraw();" class="auth-item" style="color:red; font-size:0.8rem;">회원탈퇴</a>
+          <%-- <span class="divider">|</span>
+          <a href="javascript:doWithdraw();" class="auth-item" style="color:red; font-size:0.8rem;">회원탈퇴</a> --%>
       <% } %>
     </div>
   </div>
