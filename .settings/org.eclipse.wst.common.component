@@ -30,7 +30,7 @@
         
         
         <property name="context-root" value="ehr"/>
-        <property name="java-output-path" value="/dbb/target/classes"/>
+        <property name="java-output-path" value="/dbbom/target/classes"/>
                                 	
     
     
