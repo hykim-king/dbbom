@@ -1,14 +1,12 @@
 /* --- 기본 설정 (Reset & Variables) --- */
 :root {
-  --primary-blue: #3b82f6; /* 로그인 및 선택 박스 */
-  --primary-hover: #2563eb; /* 로그인 hover */
-  --gradient-start: #eff6ff; /* blue-50 */
-  --gradient-mid: #eef2ff; /* indigo-50 */
-  --gradient-end: #faf5ff; /* purple-50 */
-  --text-main: #1f2937; /* gray-800 */
-  --text-sub: #4b5563; /* gray-600 */
-  --border-color: #dbeafe; /* blue-100 */
-  --white-alpha: rgba(255, 255, 255, 0.8);
+  --primary-blue: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-light: #817bf3; /* 일기 포인트 컬러 */
+  --text-main: #1f2937;
+  --text-sub: #4b5563;
+  --border-color: #e0e7ff;
+  --bg-calendar: #f1f5ff;
 }
 
 * {
@@ -198,22 +196,20 @@ main {
   width: 300px;
 }
 
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
 
 .day {
-  aspect-ratio: 1 / 1; /* 항상 정사각형 */
-  width: 100%; /* 부모 크기에 맞춤 */
-  max-width: 60px; /* 너무 커지지는 않게 */
-  /* height: 60px; */
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  text-align: center;
-  line-height: 36px;
-  cursor: pointer;
+  width: 42px;
+    height: 42px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 /* 일기 있는 날 */
@@ -223,11 +219,6 @@ main {
   font-weight: bold;
 }
 
-/* 선택된 날짜 */
-.day.active {
-  background: #4f46e5;
-  color: white;
-}
 
 /* 오른쪽 리스트 */
 .diary-list {
@@ -243,7 +234,7 @@ main {
   gap: 1px;
 }
 
-.diary-list li {
+/* .diary-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -260,7 +251,7 @@ main {
 
 .diary-list li:hover {
   background: #eef2ff;
-}
+} */
 
 /* 하단 내용 */
 .diary-content {
@@ -288,44 +279,49 @@ main {
   padding: 32px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
 }
+/* --- 3. 달력 디자인 (중복 제거 완료) --- */
+.calendar { width: 100%; }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 14px;
+    grid-template-columns: repeat(7, 1fr); /* 7열 고정 */
+    gap: 14px;
+    margin-top: 10px;
+    min-height: 320px; /* 달력이 줄어들지 않도록 독립된 높이 확보 */
 }
 
-.day {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1.5px solid #e0e7ff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 14px;
-  color: #374151;
-}
 
 .day.has-diary {
-  border: 2px solid #817bf3;
+  border: 2px solid var(--primary-light);
+  background-color: #f5f3ff;
   color: #4f46e5;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .day.active {
-  background: #d1dbff;
-  color: rgb(9, 9, 9);
+  background: var(--primary-light) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 10px rgba(129, 123, 243, 0.3);
+}
+
+/* .day 스타일 정의 아래에 추가 */
+.day.empty {
+  border: none !important;
+  background: transparent !important;
+  pointer-events: none; /* 클릭 안되게 */
 }
 
 /* .day.has-diary.active {
   background: transparent;
   color: #4f46e5;
 } */
+
+.diary-list {
+  border-left: 1px solid #e5e7eb;
+  padding-left: 32px;
+}
 
 /* 오른쪽 리스트 */
 .diary-list h3 {
@@ -355,9 +351,6 @@ main {
 
 /* 하단 내용 카드 */
 .diary-content-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   background: #ffffff;
   padding: 36px;
   border-radius: 24px;
@@ -384,3 +377,147 @@ main {
 .diary-green {
   color: #22c55e; /* 초록 */
 }
+
+
+.diary-item-btn:hover {
+  background-color: #f8fafc;
+  transform: translateX(4px); /* 호버 시 살짝 오른쪽으로 이동 */
+}
+
+/* 안내 문구 스타일 */
+.no-data {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* --- 달력 헤더 & 화살표 버튼 스타일 --- */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.month-btn {
+    background: white;        /* 배경 흰색 */
+    border: none;             /* 테두리 제거 (회색 선 안 보이게) */
+    cursor: pointer;
+    color: var(--text-sub);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    border-radius: 50%;
+    /* 테두리 대신 아주 연한 그림자를 주면 흰색 배경에서도 버튼임이 잘 보입니다 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+}
+
+.month-btn:hover {
+    background-color: #f8fafc; /* 호버 시 아주 살짝 어둡게 */
+    color: var(--primary-light);
+    transform: scale(1.1);      /* 살짝 커지는 효과 */
+}
+
+.month-btn i {
+    width: 20px;
+    height: 20px;
+}
+
+/* 일기 아이템 컨테이너 */
+.diary-item-container {
+    margin-bottom: 12px;
+    list-style: none;
+}
+
+
+/* 일기 리스트 컨테이너 */
+#diaryTypeList {
+    padding: 0;
+    margin: 0;
+}
+
+.diary-item-container {
+    margin-bottom: 12px;
+    list-style: none;
+}
+
+/* 버튼 그룹: 하나의 알약 모양으로 통합 */
+.diary-btn-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1.5px solid #e2e8f0; /* 테두리 살짝 강조 */
+    transition: all 0.2s ease;
+}
+
+/* 호버 시 전체적인 변화 */
+.diary-btn-group:hover {
+    border-color: #6366f1;
+   
+}
+
+/* [왼쪽 70% 영역] 제목 버튼 */
+.diary-item-btn {
+    flex: 7 !important; /* 비율 강제 고정 */
+    padding: 12px 20px;
+    border: none !important; /* 기존 테두리 제거 */
+    background-color: white;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
+
+.diary-item-btn:hover {
+    background-color: #f8fafc;
+}
+
+/* 4. [오른쪽 30%] 상세보기 버튼 */
+.diary-move-btn {
+    flex: 3 !important; /* 비율 강제 고정 */
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #6366f1;
+    color: white !important;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.diary-move-btn:hover {
+    background-color: #4f46e5;
+}
+
+.diary-move-btn i {
+    width: 14px;
+    height: 14px;
+}
+
+/* 제목 버튼 선택 시(미리보기 활성) */
+.diary-item-btn.selected {
+    background-color: #f0f4ff;
+    color: #6366f1;
+    font-weight: 700;
+}
+
+/* 카테고리 포인트 선 (!important 추가로 우선순위 확보) */
+.diary-item-btn.purple { border-left: 8px solid #a855f7 !important; }
+.diary-item-btn.yellow { border-left: 8px solid #eab308 !important; }
+.diary-item-btn.green  { border-left: 8px solid #22c55e !important; }
+.diary-item-btn.blue   { border-left: 8px solid #3b82f6 !important; }

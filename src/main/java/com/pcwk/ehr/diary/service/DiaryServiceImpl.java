@@ -144,4 +144,30 @@ public class DiaryServiceImpl implements DiaryService
     public int updateRecCount(DiaryVO param) {
         return diaryMapper.updateRecCount(param);
     }
+
+
+        @Override
+    public int getDiaryCount(DiaryVO param) {
+        return diaryMapper.getDiaryCount(param);
+    }
+
+    @Override
+    public int getMonthDiaryCount(DiaryVO param) {
+        return diaryMapper.getMonthDiaryCount(param);
+    }
+    
+    @Override
+    public int getUserTotalCount(DiaryVO param) {
+        return diaryMapper.getUserTotalCount(param);
+    }
+
+    @Override
+    public int getUserMonthCount(DiaryVO param) {
+        return diaryMapper.getUserMonthCount(param);
+    }
+    
+    @Override
+    public List<DiaryVO> selectMonthDiary(DiaryVO param) {
+        return diaryMapper.selectMonthDiary(param);
+    }
 }

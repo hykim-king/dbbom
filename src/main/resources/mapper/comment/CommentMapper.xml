@@ -13,7 +13,44 @@
     <result column="diary_sid" property="diarySid"/>
     <result column="famous_sid" property="famousSid"/>
     <result column="reg_id" property="regId"/>
+    <result column="parent_sid" property="parentSid"/>
   </resultMap>
+  
+  
+  <select id="getListByFamousSid" parameterType="int" resultMap="commentMap">
+    SELECT
+        comment_sid,
+        comment_content,
+        comment_reccount,
+        comment_uploaddate,
+        famous_sid,
+        reg_id,
+        parent_sid
+    FROM comments
+    WHERE famous_sid = #{famousSid}
+    /* 오라클 계층형 쿼리: parent_sid를 기준으로 길을 찾음 */
+    START WITH parent_sid IS NULL
+    CONNECT BY PRIOR comment_sid = parent_sid
+    ORDER SIBLINGS BY comment_sid ASC
+</select>
+  
+  <select id="getListByDiarySid" parameterType="int" resultMap="commentMap">
+    SELECT
+      comment_sid,
+      comment_content,
+      comment_reccount,
+      comment_uploaddate,
+      diary_sid,
+      famous_sid,
+      reg_id,
+      parent_sid
+    FROM comments
+    WHERE diary_sid = #{diarySid}
+    START WITH parent_sid IS NULL              /* 최상위 댓글부터 시작 */
+    CONNECT BY PRIOR comment_sid = parent_sid  /* 부모-자식 관계 연결 */
+    ORDER SIBLINGS BY comment_uploaddate ASC   /* 계층 내에서는 시간순 정렬 */
+  </select>
+  
 
   <!-- 댓글 등록 (시퀀스 사용) -->
   <insert id="doSave" parameterType="com.pcwk.ehr.comment.domain.CommentVO">
@@ -27,8 +64,8 @@
       COMMENT_UPLOADDATE,
       DIARY_SID,
       FAMOUS_SID,
-      REG_ID
-    ) VALUES (
+      REG_ID,
+      PARENT_SID ) VALUES (
       #{commentSid},
       #{commentContent},
       #{commentReccount},
@@ -44,10 +81,10 @@
           NULL, NULL
         </otherwise>
       </choose>,
-      #{regId}
-    )
+      #{regId},
+      #{parentSid, jdbcType=INTEGER} )
   </insert>
-
+  
   <!-- 여러 건 댓글 대량 등록 (saveAll) -->
   <insert id="saveAll">
     INSERT INTO COMMENTS (
@@ -57,7 +94,8 @@
       COMMENT_UPLOADDATE,
       DIARY_SID,
       FAMOUS_SID,
-      REG_ID
+      REG_ID,
+      PARENT_SID
     )
     SELECT
       COMMENT_SEQ.NEXTVAL AS comment_sid,
@@ -66,7 +104,8 @@
       SYSDATE AS comment_uploaddate,
       D.DIARY_SID AS diary_sid,
       NULL AS famous_sid,
-      'user01' AS reg_id
+      'user01' AS reg_id,
+      NULL AS parent_sid
     FROM DIARY D
     WHERE ROWNUM <![CDATA[ <= ]]> 1002
   </insert>
@@ -80,7 +119,8 @@
       comment_uploaddate,
       diary_sid,
       famous_sid,
-      reg_id
+      reg_id,
+      parent_sid
     FROM comments
     WHERE comment_sid = #{commentSid}
   </select>
@@ -112,7 +152,8 @@
               tt1.comment_uploaddate,
               tt1.diary_sid,
               tt1.famous_sid,
-              tt1.reg_id
+              tt1.reg_id,
+              tt1.parent_sid
       FROM (
         SELECT ROWNUM AS rnum, t1.*
         FROM (

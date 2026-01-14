@@ -79,6 +79,11 @@
 	font-weight: 800 !important;
 	margin-right: 15px !important;
 }
+
+/* 답글 들여쓰기 스타일 */
+.reply-item { margin-left: 40px; border-left: 2px solid #eee; padding-left: 15px; background-color: #fafafa; }
+.reply-form { display: none; margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+.reply-textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: none; margin-bottom: 5px; }
 </style>
 <script>
       $(document).ready(function() {
@@ -145,7 +150,80 @@
             }
           });
         });
+//--------------------------------------------
+        // --- [답글 기능 로직] 공통 저장 함수 ---
+        function saveComment(formObj) {
+            // 일반 input(text) 혹은 textarea 모두 대응 가능하도록 find 처리
+            const content = formObj.find('input[name="commentContent"], textarea[name="commentContent"]').val();
+            
+            if(!content || content.trim() === '') {
+                alert('내용을 입력해주세요.');
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/comment/addComment.do",
+                data: formObj.serialize(),
+                success: function(res) {
+                    if(typeof res === 'string') { try { res = JSON.parse(res); } catch(e) {} }
+                    if(res.flag === 1) {
+                        alert("등록되었습니다.");
+                        location.reload();
+                    } else {
+                        alert(res.message);
+                    }
+                },
+                error: function() { alert("서버 통신 오류가 발생했습니다."); }
+            });
+        }
+
+        // 1. 일반 댓글 저장
+        $('#btnCommentSave').on('click', function() {
+            saveComment($('#commentForm'));
+        });
+
+        // 2. 답글 버튼 클릭 시 폼 토글
+        $(document).on('click', '.btn-reply-toggle', function() {
+            $(this).closest('.comment-item').find('.reply-form').first().slideToggle();
+        });
+
+        // 3. 답글 저장 버튼
+        $(document).on('click', '.btn-reply-save', function() {
+            const form = $(this).closest('form');
+            saveComment(form);
+        });
+
+
+
+
+
+
+
       });
+
+
+	        // --- [기존 기능] 댓글 삭제 함수 ---
+      function deleteComment(commentSid) {
+          if (confirm("댓글을 삭제하시겠습니까?")) {
+              $.ajax({
+                  type: "POST",
+                  url: "${pageContext.request.contextPath}/comment/doDelete.do",
+                  data: { "commentSid": commentSid },
+                  success: function(res) {
+                      if(typeof res === 'string') res = JSON.parse(res);
+                      if (res.flag === 1) {
+                          alert(res.message);
+                          location.reload();
+                      } else {
+                          alert(res.message);
+                      }
+                  },
+                  error: function() { alert("서버 통신 오류가 발생했습니다."); }
+              });
+          }
+      }
+	  
     </script>
 <%-- <jsp:include page="/WEB-INF/views/main/menu.jsp" /> --%>
 </head>
@@ -210,62 +288,70 @@
 
 				</div>
 
-				<section class="comment-section">
-					<div class="comment-header">
-						<i data-lucide="message-circle" size="20"></i> 댓글 <span
-							id="commentCount">${fn:length(commentList)}</span>
-					</div>
+            <section class="comment-section">
+                <div class="comment-header" style="margin-bottom: 20px; font-weight: bold;">
+                    <i data-lucide="message-circle" size="20"></i> 전체 댓글 
+                    <span id="commentCount" style="color: #6366f1;">${fn:length(commentList)}</span>
+                </div>
 
-					<form class="comment-form" method="post" action="addComment.do">
-						<input type="text" name="commentContent" id="commentInput"
-							class="comment-input" placeholder="따뜻한 댓글로 공감을 나눠주세요.">
-						<button class="btn-comment" type="submit">등록</button>
-					</form>
+                <form id="commentForm" class="comment-form" style="margin-bottom: 30px;">
+                    <input type="hidden" name="diarySid" value="${diaryVO.diarySid}">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" name="commentContent" id="commentInput" 
+                               placeholder="따뜻한 댓글을 남겨주세요." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <button type="button" id="btnCommentSave" style="padding: 10px 20px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer;">등록</button>
+                    </div>
+                </form>
 
-					<div class="comment-list" id="commentList">
-						<c:forEach var="comment" items="${commentList}">
-							<div class="comment-wrapper" id="comment-${comment.commentId}"
-								style="background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 16px; border: none;">
-								<div class="comment-item">
-									<div class="comment-content">
-										<span class="comment-user"
-											style="font-weight: bold; color: #1e293b;">
-											${comment.writer} <small
-											style="font-weight: normal; color: #94a3b8; margin-left: 8px;">${comment.regDate}</small>
-										</span>
-										<p class="comment-text"
-											style="margin: 10px 0; color: #334155;">${comment.content}</p>
-										<div class="edit-form"
-											style="display: none; gap: 8px; margin-top: 8px;">
-											<input type="text" class="edit-input"
-												style="flex: 1; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">
-											<button class="btn-save"
-												style="padding: 4px 12px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer;">저장</button>
-											<button class="btn-cancel"
-												style="padding: 4px 12px; background: #94a3b8; color: white; border: none; border-radius: 4px; cursor: pointer;">취소</button>
-										</div>
-									</div>
-									<div class="comment-actions"
-										style="display: flex; gap: 12px; margin-top: 12px;">
-										<button class="btn-action-text btn-like-comment"
-											onclick="toggleCommentLike(this)"
-											style="font-size: 13px; cursor: pointer; background: none; border: none; color: #64748b; padding: 0;">
-											좋아요 <span class="like-count">${comment.likeCount}</span>
-										</button>
-										<button class="btn-action-text" onclick="showEditForm(this)"
-											style="font-size: 13px; cursor: pointer; background: none; border: none; color: #64748b; padding: 0;">수정</button>
-										<button class="btn-action-text"
-											onclick="reportContent('comment', ${comment.commentId})"
-											style="font-size: 13px; cursor: pointer; background: none; border: none; color: #64748b; padding: 0;">신고</button>
-										<button class="btn-action-text"
-											onclick="deleteComment(${comment.commentId})"
-											style="font-size: 13px; cursor: pointer; background: none; border: none; color: #ef4444; padding: 0;">삭제</button>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</div>
-				</section>
+                <div class="comment-list" id="commentListArea">
+                    <c:choose>
+                        <c:when test="${not empty commentList}">
+                            <c:forEach var="comment" items="${commentList}">
+                                <div class="comment-item ${comment.parentSid != null ? 'reply-item' : ''}" style="padding: 15px 0; border-bottom: 1px solid #f1f5f9;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span class="comment-user" style="font-weight: 600; color: #334155;">
+                                            <c:if test="${comment.parentSid != null}"><i data-lucide="corner-down-right" size="14"></i> </c:if>
+                                            ${comment.regId}
+                                        </span>
+                                        <span class="comment-date" style="font-size: 12px; color: #94a3b8;">
+                                            <fmt:formatDate value="${comment.commentUpdateDate}" pattern="yyyy-MM-dd HH:mm"/>
+                                        </span>
+                                    </div>
+                                    <p class="comment-text" style="color: #475569; margin: 0;">${comment.commentContent}</p>
+
+                                    <div style="text-align: right; margin-top: 10px; display: flex; justify-content: flex-end; gap: 8px;">
+                                        <c:if test="${comment.parentSid == null}">
+                                            <button type="button" class="btn-reply-toggle"
+                                                style="padding: 5px 12px; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                                답글</button>
+                                        </c:if>
+                                        
+                                        <c:if test="${sessionScope.loginUser.userId == comment.regId}">
+                                            <button type="button" onclick="deleteComment(${comment.commentSid})"
+                                                style="padding: 5px 12px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                                삭제</button>
+                                        </c:if>
+                                    </div>
+
+                                    <div class="reply-form">
+                                        <form>
+                                            <input type="hidden" name="diarySid" value="${diaryVO.diarySid}">
+                                            <input type="hidden" name="parentSid" value="${comment.commentSid}">
+                                            <textarea name="commentContent" class="reply-textarea" placeholder="답글을 남겨보세요"></textarea>
+                                            <div style="text-align: right;">
+                                                <button type="button" class="btn-reply-save" style="padding: 5px 12px; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">등록</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p style="text-align: center; color: #94a3b8; padding: 20px;">등록된 댓글이 없습니다.</p>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </section>
 			</article>
 		</div>
 	</main>

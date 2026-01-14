@@ -19,6 +19,18 @@ public interface DiaryService extends WorkDiv<DiaryVO>{
     
     FamousVO assignFamousBySentiment(DiaryVO diary);
 
+    List<DiaryVO> selectMonthDiary(DiaryVO param);
+    
+    int getUserTotalCount(DiaryVO param);
+    
+    int getUserMonthCount(DiaryVO param);
+    
+    /** 특정 사용자의 전체 일기 개수 조회 */
+    int getDiaryCount(DiaryVO param);
+
+    /** 특정 사용자의 이번 달 일기 개수 조회 */
+    int getMonthDiaryCount(DiaryVO param);
+
     
     
 }

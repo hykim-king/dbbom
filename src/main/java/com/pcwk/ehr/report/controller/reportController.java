@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.stream.events.Comment;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
@@ -17,7 +19,9 @@ import com.pcwk.ehr.report.domain.ReportVO;
 import com.pcwk.ehr.report.service.ReportService;
 
 import com.pcwk.ehr.famous.domain.FamousVO;
+import com.pcwk.ehr.comment.service.CommentService;
 import com.pcwk.ehr.diary.domain.DiaryVO;
+import com.pcwk.ehr.comment.domain.CommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
@@ -40,6 +44,9 @@ public class reportController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    CommentService commentService;
 
     @GetMapping(value = "/report/reportPage.do")
     public String reportPage(@RequestParam(value = "id", required = false) Integer diarySid, Model model, HttpSession session) {
@@ -71,6 +78,21 @@ public class reportController {
             model.addAttribute("famousVO", outVO);
         }
         return "report/famous_report_page";
+    }
+
+
+    @GetMapping(value = "/report/commentReportPage.do")
+    public String commentReportPage(@RequestParam(value = "id", required = false) Integer commentSid, Model model, HttpSession session) {
+        Object loginUser = session.getAttribute("loginUser");
+        if (loginUser == null) {
+            model.addAttribute("errorMsg", "로그인 후 이용 가능합니다.");
+            return "report/comment_report_page";
+        }
+        if (commentSid != null) {
+            CommentVO outVO = commentService.doSelectOne(commentSid);
+            model.addAttribute("famousVO", outVO);
+        }
+        return "report/comment_report_page";
     }
 
     @PostMapping(value = "/report/doSave.do", produces = "application/json;charset=UTF-8")

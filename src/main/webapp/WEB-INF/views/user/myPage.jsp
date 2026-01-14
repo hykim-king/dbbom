@@ -59,41 +59,15 @@
 		    margin-top: 5px;
 		    margin-left: 120px; /* 라벨 너비만큼 왼쪽 여백을 주어 인풋 아래에 맞춤 */
 		    font-size: 0.85em;
+					/* 신규 이동 버튼 스타일 */
 		}
 </style>
 </head>
 
 <body>
-    <header>
-        <div class="container header-inner flex-between">
-            <a href="${pageContext.request.contextPath}/main/main.do" class="logo-area" style="text-decoration: none;">
-                <h1 class="logo-text">내면의 흔적</h1>
-            </a>
-            <div class="auth-links">
-                <% if(loginUser == null) { %>
-                <a href="${pageContext.request.contextPath}/user/signIn.do" class="auth-item">로그인</a> <span class="divider">|</span> 
-                <a href="${pageContext.request.contextPath}/user/signUp.do" class="auth-item">회원가입</a>
-                <% } else { %>
-                <span class="auth-item"><strong><%=displayName%></strong>님</span> <span class="divider">|</span> 
-                <a href="${pageContext.request.contextPath}/user/doLogoutAjax.do" class="auth-item">로그아웃</a>
-                <% } %>
-            </div>
-        </div>
-    </header>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 
     <main class="container">
-        <div class="tab-list">
-            <div class="menu-label">메뉴</div>
-            <a href="${pageContext.request.contextPath}/main/main.do" class="tab-btn"> <i data-lucide="sparkles"></i> 개요</a> 
-            <a href="#" class="tab-btn"> <i data-lucide="book-open"></i> 공지사항</a>
-            <div class="dropdown-container">
-                <a href="#" class="tab-btn" style="width: 100%; border: none;"><i data-lucide="pencil"></i> 게시판</a>
-                <div class="dropdown-content">
-                    <a href="#">📖 일기 공개 게시판</a> <a href="#">💬 명언 모음집</a>
-                </div>
-            </div>
-            <a href="${pageContext.request.contextPath}/user/myPage.do" class="tab-btn active"> <i data-lucide="user"></i>마이페이지</a>
-        </div>
 
         <div class="tab-content mypage-content">
             <div class="wf-container">
@@ -108,13 +82,17 @@
                         </div>
                     </div>
                     <div class="wf-stats-group">
-                        <div class="wf-stat-card">
-                            <i data-lucide="book" size="20" color="#4A90E2"></i> <span class="wf-stat-label">총 일기 수</span> <span class="wf-stat-value">123</span>
-                        </div>
-                        <div class="wf-stat-card">
-                            <i data-lucide="calendar-check" size="20" color="#2ECC71"></i> <span class="wf-stat-label">이번 달 작성</span> <span class="wf-stat-value">12</span>
-                        </div>
-                    </div>
+										    <div class="wf-stat-card">
+										        <i data-lucide="book" size="20" color="#4A90E2"></i> 
+										        <span class="wf-stat-label">총 일기 수</span> 
+										        <span class="wf-stat-value">${not empty totalCount ? totalCount : 0}</span>
+										    </div>
+										    <div class="wf-stat-card">
+										        <i data-lucide="calendar-check" size="20" color="#2ECC71"></i> 
+										        <span class="wf-stat-label">이번 달 작성</span> 
+										        <span class="wf-stat-value">${not empty monthCount ? monthCount : 0}</span>
+										    </div>
+										</div>
                 </section>
 
                 <section>
@@ -141,7 +119,17 @@
                             <div class="diary-container">
                                 <div class="diary-top-card">
                                     <div class="calendar">
-                                        <h3>2025년 11월</h3>
+                                        <div class="calendar-header flex-center" style="gap: 20px; margin-bottom: 25px;">
+																				    <button type="button" id="prevMonth" class="month-btn">
+																				        <i data-lucide="chevron-left"></i>
+																				    </button>
+																				    
+																				    <h3 id="currentMonthText">2025년 11월</h3>
+																				    
+																				    <button type="button" id="nextMonth" class="month-btn">
+																				        <i data-lucide="chevron-right"></i>
+																				    </button>
+																				</div>
                                         <div class="calendar-grid" id="calendar"></div>
                                     </div>
                                     <div class="diary-list">

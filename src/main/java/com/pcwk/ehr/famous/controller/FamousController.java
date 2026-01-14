@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.StringUtil;
+import com.pcwk.ehr.comment.domain.CommentVO;
+import com.pcwk.ehr.comment.service.CommentService;
 import com.pcwk.ehr.famous.domain.FamousVO;
 import com.pcwk.ehr.famous.service.FamousService;
 import com.pcwk.ehr.mapper.FamousMapper;
@@ -37,6 +39,9 @@ public class FamousController {
 	
 	@Autowired
 	UserMapper userMapper;
+
+	@Autowired
+	private CommentService commentService;
 
 	/**
 	 * 베스트3 & 페이징
@@ -187,12 +192,15 @@ public class FamousController {
 	    while(names.hasMoreElements()) System.out.println("세션 Key 확인: " + names.nextElement());
 	    */
 
+			    List<CommentVO> commentList = commentService.getListByFamousSid(vo.getFamousSid());
+
 	    if(user != null) {
 	        System.out.println("로그인 유저 세션 확인: " + user.getUserId());
 	    } else {
 	        System.out.println("세션에 유저 정보가 없습니다. Key값을 다시 확인하세요.");
 	    }
 
+			    model.addAttribute("commentList", commentList); // JSP로 전달
 	    model.addAttribute("sessionUser", user); 
 	    return "famous/famous_detail";
 	}

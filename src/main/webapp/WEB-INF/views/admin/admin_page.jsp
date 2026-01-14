@@ -17,7 +17,6 @@
 	href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
-
 <style>
 /* --- 관리자 레이아웃 --- */
 .admin-header-area {

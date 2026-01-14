@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pcwk.ehr.diary.domain.DiaryVO;
+import com.pcwk.ehr.diary.service.DiaryService;
 import com.pcwk.ehr.user.domain.UserVO;
 import com.pcwk.ehr.user.service.UserService;
 
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    DiaryService diaryService; // 일기 통계를 위해 주입 필요
 
     public UserController() {
         super();
@@ -174,15 +179,47 @@ public class UserController {
     /**
      * 마이페이지 화면 이동
      */
+    /**
+     * 마이페이지 화면 이동 (유저 정보 + 일기 통계 데이터)
+     */
     @GetMapping(value="/myPage.do")
     public String myPageView(HttpSession session, Model model) {
+        // 1. 기존 기능: 세션에서 로그인 유저 정보 가져오기
         UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        
+        // 2. 기존 기능: 로그인 안 되어 있으면 로그인 페이지로 리다이렉트
         if (loginUser == null) {
             return "redirect:/user/signIn.do"; 
         }
-        model.addAttribute("user", loginUser);
+
+        // 3. 신규 기능: 일기 통계 데이터(전체 건수, 이번 달 건수) 조회
+        int totalCount = 0;
+        int monthCount = 0;
+        
+        try {
+            // 조회를 위한 파라미터 객체 생성 및 ID 설정
+            DiaryVO diaryParam = new DiaryVO();
+            diaryParam.setRegId(loginUser.getUserId());
+
+            // DiaryService를 통해 DB 데이터 가져오기
+            totalCount = diaryService.getDiaryCount(diaryParam);
+            monthCount = diaryService.getMonthDiaryCount(diaryParam);
+            
+            log.debug("마이페이지 통계 조회 - ID: {}, 전체: {}, 이번달: {}", 
+                      loginUser.getUserId(), totalCount, monthCount);
+        } catch (Exception e) {
+            log.error("마이페이지 통계 데이터 조회 중 오류 발생", e);
+            // 오류가 발생해도 페이지는 열려야 하므로 0으로 유지
+        }
+
+        // 4. 모델에 데이터 담기 (기존 유저 정보 + 신규 통계 정보)
+        model.addAttribute("user", loginUser);      // 기존 유저 정보
+        model.addAttribute("totalCount", totalCount); // 신규: 총 일기 수
+        model.addAttribute("monthCount", monthCount); // 신규: 이번 달 일기 수
+
         return "user/myPage"; 
     }
+
 
     /**
      * 회원탈퇴 처리 - AJAX

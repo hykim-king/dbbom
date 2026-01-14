@@ -16,53 +16,70 @@
     button { padding: 10px 14px; cursor:pointer; }
   </style>
 
-  <script>
-    function isEmpty(v){
-      return v === null || v === undefined || (String(v).trim().length === 0);
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-
-      const doSignInBtn = document.querySelector("#doSignIn");
-      const userId = document.querySelector("#userId");
-      const userPw = document.querySelector("#userPw");
-
-      doSignInBtn.addEventListener("click", function(){
-
-        if(isEmpty(userId.value)){
-          alert("아이디를 입력하세요.");
-          userId.focus();
-          return;
-        }
-        if(isEmpty(userPw.value)){
-          alert("비밀번호를 입력하세요.");
-          userPw.focus();
-          return;
-        }
-
-        let param = $("#signInForm").serialize();
-
-        $.ajax({
-          url: "<%=request.getContextPath()%>/user/doSignInAjax.do",
-          type: "POST",
-          data: param,
-          dataType: "json",
-          success: function(res){
-            if(res.flag === 1){
-              alert(res.message);
-              location.href = "<%=request.getContextPath()%>/main/main.do";
-            }else{
-              alert(res.message);
-            }
-          },
-          error: function(xhr, status, err){
-            alert("통신 오류가 발생했습니다. (status: " + status + ")");
-          }
-        });
-
-      });
-    });
-  </script>
+	  <script>
+	  function isEmpty(v){
+	    return v === null || v === undefined || (String(v).trim().length === 0);
+	  }
+	
+	  document.addEventListener('DOMContentLoaded', function(){
+	    const userId = document.querySelector("#userId");
+	    const userPw = document.querySelector("#userPw");
+	    const doSignInBtn = document.querySelector("#doSignIn");
+	
+	    // 로그인 실행 함수 (중복 방지를 위해 하나로 합침)
+	    function handleSignIn() {
+	      if(isEmpty(userId.value)){
+	        alert("아이디를 입력하세요.");
+	        userId.focus();
+	        return;
+	      }
+	      if(isEmpty(userPw.value)){
+	        alert("비밀번호를 입력하세요.");
+	        userPw.focus();
+	        return;
+	      }
+	
+	      let param = $("#signInForm").serialize();
+	
+	      $.ajax({
+	        url: "<%=request.getContextPath()%>/user/doSignInAjax.do",
+	        type: "POST",
+	        data: param,
+	        dataType: "json",
+	        success: function(res){
+	          if(res.flag === 1){
+	            alert(res.message);
+	            location.href = "<%=request.getContextPath()%>/main/main.do";
+	          } else {
+	            alert(res.message);
+	          }
+	        },
+	        error: function(xhr, status, err){
+	          alert("통신 오류가 발생했습니다. (status: " + status + ")");
+	        }
+	      });
+	    }
+	
+	    // 1. 로그인 버튼 클릭 시 실행
+	    doSignInBtn.addEventListener("click", function() {
+	        handleSignIn();
+	    });
+	
+	    // 2. 비밀번호 입력창에서 엔터키를 눌렀을 때 실행
+	    userPw.addEventListener("keydown", function(e) {
+	      if (e.keyCode === 13) { // 13번이 엔터키의 키코드입니다.
+	        handleSignIn();
+	      }
+	    });
+	    
+	    // 3. (선택사항) 아이디 입력창에서 엔터를 누르면 비밀번호 창으로 이동
+	    userId.addEventListener("keydown", function(e) {
+	      if (e.keyCode === 13) {
+	        userPw.focus();
+	      }
+	    });
+	  });
+	</script>
 </head>
 
 <body>

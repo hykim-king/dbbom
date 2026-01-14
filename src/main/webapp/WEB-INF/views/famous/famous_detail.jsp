@@ -154,6 +154,43 @@
     height: 20px;
     transition: all 0.2s ease;
 }
+
+        /* [수정 시작] 댓글/답글 디자인 보정: 캡쳐화면 2번 스타일에 맞춰 개선 */
+        /* [수정] diary_detail.jsp 스타일 그대로 이식 */
+		.reply-item { 
+		    margin-left: 40px !important; /* 오른쪽으로 들여쓰기 */
+		    background-color: #f9fafb;    /* 일반 댓글과 구분되는 연한 배경색 */
+		    border-left: 2px solid #e5e7eb; /* 왼쪽에 구분선 추가 */
+		    padding-left: 15px !important;
+		    position: relative;
+		}
+		
+		/* 답글 화살표 표시 (ㄴ 모양) */
+		.reply-item::before {
+		    content: "└";
+		    position: absolute;
+		    left: 5px;
+		    top: 15px;
+		    color: #9ca3af;
+		    font-weight: bold;
+		}
+		
+		.reply-form { 
+		    display: none; 
+		    margin-top: 10px; 
+		    padding: 10px; 
+		    background: #f8f9fa; 
+		    border-radius: 5px; 
+		}
+		.reply-textarea { 
+		    width: 100%; 
+		    height: 60px; 
+		    border: 1px solid #ddd; 
+		    border-radius: 4px; 
+		    padding: 8px; 
+		    margin-bottom: 5px; 
+		    resize: none; 
+		}
     </style>
 </head>
 
@@ -177,6 +214,11 @@
                         <span style="margin-left: 15px;"><i data-lucide="calendar" size="14"></i> ${detail.famousTime}</span>
                     </div>
                     <span><i data-lucide="eye" size="14"></i> 조회 ${detail.famousViewcount}</span>
+                    
+                <a class="btn-action-text"
+				href="${pageContext.request.contextPath}/report/famousReportPage.do?type=famous&id=${famousVO.famousSid}"
+				onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
+				style="font-size: 13px; cursor: pointer; background: none; border: none; color: #ef4444; padding: 0; margin-left: 12px; text-decoration: none;">🚨신고</a>
                 </div>
             </header>
 
@@ -197,6 +239,71 @@
                     </div>
                 </c:if>
             </div>
+
+
+            <section class="comments-section" style="margin-top: 50px; border-top: 1px solid #e2e8f0; padding-top: 40px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+                    <i data-lucide="message-square" style="width: 24px; height: 24px; color: #6366f1;"></i>
+                    <h2 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 0;">
+                        전체 댓글 <span style="color: #6366f1;">${fn:length(commentList)}</span>
+                    </h2>
+                </div>
+
+                <div class="comment-form" style="background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 30px; border: 1px solid #f1f5f9;">
+                    <textarea id="commentContent" placeholder="이 명언에 대한 생각을 자유롭게 남겨주세요." style="width: 100%; min-height: 100px; padding: 15px; border: 1px solid #e2e8f0; border-radius: 8px; resize: none; margin-bottom: 12px; font-size: 15px;"></textarea>
+                    <div style="text-align: right;">
+                        <button type="button" id="btnCommentSave" class="btn-reply-save-action" style="padding: 12px 30px; background: #6366f1; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">댓글 등록</button>
+                    </div>
+                </div>
+
+                <div class="comments-list">
+							    <c:choose>
+							        <c:when test="${not empty commentList}">
+							            <c:forEach var="comment" items="${commentList}">
+							                <div class="comment-item ${comment.parentSid > 0 ? 'reply-item' : ''}" 
+							                     style="padding: 15px; border-bottom: 1px solid #f1f5f9;">
+							                    
+							                    <div class="comment-header" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+							                        <span class="comment-author" style="font-weight: 600; color: #1e293b;">
+							                            ${comment.regId}
+							                        </span>
+							                        <span class="comment-date" style="font-size: 12px; color: #94a3b8;">
+							                            ${comment.commentUpdateDate}
+							                        </span>
+							                    </div>
+							
+							                    <div class="comment-content" style="color: #475569; line-height: 1.5; margin-bottom: 10px;">
+							                        ${comment.commentContent}
+							                    </div>
+							
+							                    <div class="comment-actions" style="display: flex; gap: 15px;">
+							                        <button type="button" class="btn-reply-toggle" 
+							                                style="color: #6366f1; cursor: pointer; border: none; background: none; font-size: 13px;">답글</button>
+							                        
+							                        <c:if test="${sessionScope.loginUser.userId == comment.regId}">
+							                            <button type="button" class="btn-comment-delete" data-sid="${comment.commentSid}" 
+							                                    style="color: #ef4444; cursor: pointer; border: none; background: none; font-size: 13px;">삭제</button>
+							                        </c:if>
+							                    </div>
+							                    
+							                    <div class="reply-form" style="display: none; margin-top: 10px;">
+							                        <textarea class="reply-textarea" placeholder="답글을 남겨보세요"></textarea>
+							                        <div style="text-align: right;">
+							                            <button type="button" class="btn-reply-save" data-parent="${comment.commentSid}" 
+							                                    style="padding: 5px 12px; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">등록</button>
+							                        </div>
+							                    </div>
+							                </div>
+							            </c:forEach>
+							        </c:when>
+							        <c:otherwise>
+							            <div style="text-align: center; padding: 60px 0; color: #94a3b8; font-size: 15px;">첫 번째 댓글의 주인공이 되어보세요!</div>
+							        </c:otherwise>
+							    </c:choose>
+							</div>
+            </section>
+
+
         </article>
     </main>
 
@@ -317,6 +424,74 @@ $(document).ready(function() {
         }
     });
 });
+
+
+
+    // 3. 일반 댓글 등록
+    $("#btnCommentSave").on("click", function() {
+        const content = $("#commentContent").val().trim();
+        if(!content) { alert("내용을 입력해주세요."); return; }
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/comment/addComment.do",
+            data: { "famousSid": "${detail.famousSid}", "commentContent": content },
+            success: function(res) {
+                const data = (typeof res === "string") ? JSON.parse(res) : res;
+                if(data.flag == 1) location.reload();
+                else alert(data.message);
+            }
+        });
+    });
+
+    // 4. 답글 폼 토글
+    $(document).on("click", ".btn-reply-toggle", function() {
+        $(this).closest(".comment-item").find(".reply-form").first().slideToggle(200);
+    });
+
+    // 5. 답글 저장
+    $(document).on("click", ".btn-reply-save", function() {
+        const parentSid = $(this).data("parent");
+        const $replyForm = $(this).closest(".reply-form");
+        const content = $replyForm.find(".reply-textarea").val().trim();
+        
+        if(!content) { alert("답글을 입력해주세요."); return; }
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/comment/addComment.do",
+            data: { 
+                "famousSid": "${detail.famousSid}", 
+                "parentSid": parentSid, 
+                "commentContent": content 
+            },
+            success: function(res) {
+                const data = (typeof res === "string") ? JSON.parse(res) : res;
+                if(data.flag == 1) location.reload();
+                else alert(data.message);
+            },
+            error: function() {
+                alert("답글 등록 중 오류가 발생했습니다.");
+            }
+        });
+    }); // <--- 여기서 ajax와 click 이벤트가 정상적으로 닫혀야 함
+
+    // 6. 댓글 삭제
+    $(document).on("click", ".btn-comment-delete", function() {
+        if(!confirm("정말 삭제하시겠습니까?")) return;
+        const commentSid = $(this).data("sid");
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/comment/doDelete.do",
+            data: { "commentSid": commentSid },
+            success: function(res) {
+                const data = (typeof res === "string") ? JSON.parse(res) : res;
+                if(data.flag == 1) location.reload();
+                else alert(data.message);
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

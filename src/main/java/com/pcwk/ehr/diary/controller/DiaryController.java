@@ -1,10 +1,14 @@
 package com.pcwk.ehr.diary.controller;
 
+import com.pcwk.ehr.mapper.CommentMapper;
 import com.pcwk.ehr.mapper.UserMapper;
 import com.pcwk.ehr.user.domain.UserVO;
 import com.pcwk.ehr.user.service.UserService;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.xml.stream.events.Comment;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +23,8 @@ import com.google.gson.Gson;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.cmn.MessageVO;
 import com.pcwk.ehr.cmn.StringUtil;
-
+import com.pcwk.ehr.comment.domain.CommentVO;
+import com.pcwk.ehr.comment.service.CommentService;
 import com.pcwk.ehr.famous.service.FamousService;
 
 
@@ -44,6 +49,9 @@ public class DiaryController {
 	
 	@Autowired
 	UserMapper userMapper;
+
+    @Autowired
+    CommentService commentService;
 
 
     public DiaryController() {
@@ -198,6 +206,11 @@ public class DiaryController {
 
         model.addAttribute("diaryVO", outVO);
 
+             // 2. 해당 게시글의 댓글 목록 조회 (중요: 이 부분이 있어야 목록이 보임)
+        List<CommentVO> commentList = commentService.getListByDiarySid(diarySid);
+        model.addAttribute("commentList", commentList);
+
+
         return "diary/diary_detail";
     }
 
@@ -280,6 +293,43 @@ public class DiaryController {
             // 실패 시 수정 폼으로 다시 이동 (에러 메시지 전달 가능)
             return "redirect:/diary/diaryUpdateForm.do?diarySid=" + param.getDiarySid();
         }
+    }
+
+     @GetMapping(value = "/myPage.do") // 실제 주소: /ehr/diary/myPage.do
+    public String myPageView(HttpSession session, Model model) {
+        // 1. 세션에서 로그인 유저 정보 가져오기
+        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        
+        // 로그인이 안 되어 있으면 로그인 페이지로
+        if (loginUser == null) {
+            return "redirect:/login/loginView.do"; 
+        }
+
+        // 2. 일기 통계 조회 (DiaryVO에 regId 세팅)
+        DiaryVO param = new DiaryVO();
+        param.setRegId(loginUser.getUserId());
+
+        int totalCount = diaryService.getUserTotalCount(param);
+        int monthCount = diaryService.getUserMonthCount(param);
+
+        // 3. JSP로 데이터 전달
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("monthCount", monthCount);
+
+        // 4. 리턴 경로 (WEB-INF/views/user/myPage.jsp 라면 아래와 같이)
+        return "user/myPage"; 
+    }
+    
+    
+    @GetMapping(value = "/selectMonthDiary.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String selectMonthDiary(DiaryVO param, HttpSession session) {
+        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        if (loginUser != null) {
+            param.setRegId(loginUser.getUserId());
+        }
+        List<DiaryVO> list = diaryService.selectMonthDiary(param);
+        return new Gson().toJson(list);
     }
 
     
