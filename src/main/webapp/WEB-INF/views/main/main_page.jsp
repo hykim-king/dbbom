@@ -45,65 +45,9 @@ if (loginUser != null) {
 	href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/assets/css/diary_list.css" />
-<<<<<<< HEAD
-
-<script>
-    // 마이페이지 이동 로직 (관리자여도 본인 정보를 수정하는 마이페이지로 이동)
-    function moveToManagement() {
-        var isLogin = <%=isLogin%>;
-        
-        if (!isLogin) {
-            alert("로그인이 필요합니다.");
-            location.href = "<%=request.getContextPath()%>/user/signIn.do";
-            return;
-        }
-        
-        // 관리자라도 본인 정보를 수정하는 마이페이지로 연결
-        location.href = "<%=request.getContextPath()%>/user/myPage.do";
-    }
-
-    // 로그아웃 로직
-    function doLogout() {
-        if (!confirm("로그아웃 하시겠습니까?")) return;
-        $.ajax({
-            url: "<%=request.getContextPath()%>/user/doLogoutAjax.do",
-            type: "POST",
-            dataType: "json",
-            success: function(res) {
-                alert(res.message);
-                if (res.flag === 1) location.href = "<%=request.getContextPath()%>/main/main.do";
-            },
-            error: function(xhr, status, err) { alert("오류 발생"); }
-        });
-    }
-
-    // 회원탈퇴 로직 (에러 수정 완료)
-    function doWithdraw() {
-        if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
-        
-        $.ajax({
-            url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
-            type: "POST",
-            dataType: "json",
-            success: function(res) {
-                alert(res.message);
-                // [수정] 줄바꿈을 없애고 따옴표 쌍을 맞추어 한 줄로 연결함 (Syntax Error 해결)
-                if (res.flag === 1) {
-                    location.href = "<%=request.getContextPath()%>
-	/main/main.do";
-						}
-					},
-					error : function(xhr, status, err) {
-						alert("오류 발생");
-					}
-				});
-	}
-</script>
-=======
 
 <!-- ...기존 코드... -->
 <!-- 기존 <script> 태그 삭제 -->
->>>>>>> feature/donghan-backup
 </head>
 <body>
 	<header>
@@ -126,8 +70,6 @@ if (loginUser != null) {
 				%>
 				<span class="auth-item"><b><%=welcomeName%></b>님 환영합니다</span> <span
 					class="divider">|</span>
-<<<<<<< HEAD
-=======
 
 				<%
 					if (isAdmin) {
@@ -156,171 +98,170 @@ if (loginUser != null) {
 			</div>
 		</div>
 	</header>
->>>>>>> feature/donghan-backup
 
-				<%
-					if (isAdmin) {
-				%>
-				<a href="<%=request.getContextPath()%>/admin/adminPage.do"
-					class="auth-item" style="color: #2563eb; font-weight: bold;">관리자
-					페이지</a> <span class="divider">|</span>
-				<%
-					}
-				%>
+    <main class="container">
+      <div class="tab-list">
+        <div class="menu-label">메뉴</div>
+        <a href="<%=request.getContextPath()%>/main/outline.do" class="tab-btn"><i data-lucide="sparkles"></i> 개요</a>
+        <a href="<%=request.getContextPath()%>/notice/noticeList.do" class="tab-btn">
+        <i data-lucide="book-open"></i> 공지사항</a>
+        <div class="dropdown-container">
+          <a href="<%=request.getContextPath()%>/diary/diaryList.do" class="tab-btn" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
+          <div class="dropdown-content">
+            <a href="<%=request.getContextPath()%>/diary/diaryList.do">📖 일기 공개 게시판</a>
+            <a href="<%=request.getContextPath()%>/famous/famous.do">💬 명언 모음집</a>
+          </div>
+        </div>
+        <a href="javascript:moveToMyPage();" class="tab-btn"><i data-lucide="user"></i> 마이페이지</a>
+      </div>
 
-				<a href="javascript:doLogout();" class="auth-item">로그아웃</a>
+      <div class="tab-content">
+        <section class="hero-section">
+          <h2>오늘 당신의 마음은 어떤가요?</h2>
+          <p>네 가지 주제로 당신의 하루를 기록해 보세요.</p>
+        </section>
 
-				<%-- [핵심 수정] 관리자가 아닐 때(!isAdmin)만 회원탈퇴 버튼 노출 --%>
-				<%
-					if (!isAdmin) {
-				%>
-				<span class="divider">|</span> <a href="javascript:doWithdraw();"
-					class="auth-item" style="color: red; font-size: 0.8rem;">회원탈퇴</a>
-				<%
-					}
-				%>
-				<%
-					}
-				%>
-			</div>
-		</div>
-	</header>
+        <section class="diary-menu-section">
+          <a href="<%=request.getContextPath()%>/diary/fDiaryStart.do" style="text-decoration: none; color: inherit">
+            <div class="diary-card quote">
+              <div class="icon-circle"><i data-lucide="quote"></i></div>
+              <h3>명언 일기</h3>
+              <p>마음에 울림을 주는 한 문장.</p>
+            </div>
+          </a>
+          <a href="<%=request.getContextPath()%>/diary/tDiaryStart.do" style="text-decoration: none; color: inherit">
+            <div class="diary-card gratitude">
+              <div class="icon-circle"><i data-lucide="flower-2"></i></div>
+              <h3>감사 일기</h3>
+              <p>오늘 하루 감사했던 순간들.</p>
+            </div>
+          </a>
+          <a href="<%=request.getContextPath()%>/diary/lDiaryStart.do" style="text-decoration: none; color: inherit">
+            <div class="diary-card luck">
+              <div class="icon-circle"><i data-lucide="clover"></i></div>
+              <h3>행운 일기</h3>
+              <p>나에게 찾아온 작은 행운.</p>
+            </div>
+          </a>
+          <a href="<%=request.getContextPath()%>/diary/rDiaryStart.do" style="text-decoration: none; color: inherit">
+            <div class="diary-card reflection">
+              <div class="icon-circle"><i data-lucide="moon"></i></div>
+              <h3>성찰 일기</h3>
+              <p>나를 성장시키는 시간.</p>
+            </div>
+          </a>
+        </section>
 
-	<main class="container">
-		<div class="tab-list">
-			<div class="menu-label">메뉴</div>
-			<a href="<%=request.getContextPath()%>/main/outline.do"
-				class="tab-btn"><i data-lucide="sparkles"></i> 개요</a> <a
-				href="<%=request.getContextPath()%>/notice/noticeList.do"
-				class="tab-btn"><i data-lucide="book-open"></i> 공지사항</a>
-			<div class="dropdown-container">
-				<a href="<%=request.getContextPath()%>/diary/diaryList.do"
-					class="tab-btn" style="width: 100%; border: none"><i
-					data-lucide="pencil"></i> 게시판</a>
-				<div class="dropdown-content">
-					<a href="<%=request.getContextPath()%>/diary/diaryList.do">📖
-						일기 공개 게시판</a> <a href="<%=request.getContextPath()%>/famous/famous.do">💬
-						명언 모음집</a>
-				</div>
-			</div>
+        <section class="top-diary-section" style="margin-top: 5rem; margin-bottom: 3rem">
+          <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+            <h3><i data-lucide="flame" style="color: #e11d48"></i> 인기 일기 Top 3</h3>
+          </div>
+                    <div class="posts-grid">
+            <c:set var="best0" value="${bestList[0]}" />
+            <c:set var="best1" value="${bestList[1]}" />
+            <c:set var="best2" value="${bestList[2]}" />
+            <a href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best0.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#d97706;margin-bottom:8px;">🥇 1위</div>
+                <c:choose>
+                  <c:when test="${best0.diaryCategory == 10}">
+                    <div class="post-tag quote">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 20}">
+                    <div class="post-tag luck">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best0.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best0.diaryTitle}</h4>
+                <p class="post-preview">${best0.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best0.nickname}</span>
+                  <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
+                    <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
+                    ${best0.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+            <a href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best1.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#94a3b8;margin-bottom:8px;">🥈 2위</div>
+                <c:choose>
+                  <c:when test="${best1.diaryCategory == 10}">
+                    <div class="post-tag quote">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 20}">
+                    <div class="post-tag luck">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best1.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best1.diaryTitle}</h4>
+                <p class="post-preview">${best1.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best1.nickname}</span>
+                  <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
+                    <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
+                    ${best1.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+            <a href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best2.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
+                <c:choose>
+                  <c:when test="${best2.diaryCategory == 10}">
+                    <div class="post-tag quote">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 20}">
+                    <div class="post-tag luck">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best2.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best2.diaryTitle}</h4>
+                <p class="post-preview">${best2.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best2.nickname}</span>
+                  <div style="display:flex;align-items:center;gap:4px;color:#e11d48;font-weight:bold;">
+                    <i data-lucide="heart" style="width:14px;fill:#e11d48"></i>
+                    ${best2.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
 
-			<%-- 관리자 여부에 관계없이 메뉴바에서는 마이페이지로 텍스트 고정 --%>
-			<a href="javascript:moveToManagement();" class="tab-btn"> <i
-				data-lucide="user"></i> 마이페이지
-			</a>
-		</div>
+    <footer>
+      <div class="container"><p>© 2024 내면의 흔적. All rights reserved.</p></div>
+    </footer>
 
-<<<<<<< HEAD
-		<div class="tab-content">
-			<section class="hero-section">
-				<h2>오늘 당신의 마음은 어떤가요?</h2>
-				<p>네 가지 주제로 당신의 하루를 기록해 보세요.</p>
-			</section>
-
-			<section class="diary-menu-section">
-				<a href="<%=request.getContextPath()%>/diary/fDiaryStart.do"
-					style="text-decoration: none; color: inherit">
-					<div class="diary-card quote">
-						<div class="icon-circle">
-							<i data-lucide="quote"></i>
-						</div>
-						<h3>명언 일기</h3>
-						<p>마음에 울림을 주는 한 문장.</p>
-					</div>
-				</a> <a href="<%=request.getContextPath()%>/diary/tDiaryStart.do"
-					style="text-decoration: none; color: inherit">
-					<div class="diary-card gratitude">
-						<div class="icon-circle">
-							<i data-lucide="flower-2"></i>
-						</div>
-						<h3>감사 일기</h3>
-						<p>오늘 하루 감사했던 순간들.</p>
-					</div>
-				</a> <a href="<%=request.getContextPath()%>/diary/lDiaryStart.do"
-					style="text-decoration: none; color: inherit">
-					<div class="diary-card luck">
-						<div class="icon-circle">
-							<i data-lucide="clover"></i>
-						</div>
-						<h3>행운 일기</h3>
-						<p>나에게 찾아온 작은 행운.</p>
-					</div>
-				</a> <a href="<%=request.getContextPath()%>/diary/rDiaryStart.do"
-					style="text-decoration: none; color: inherit">
-					<div class="diary-card reflection">
-						<div class="icon-circle">
-							<i data-lucide="moon"></i>
-						</div>
-						<h3>성찰 일기</h3>
-						<p>나를 성장시키는 시간.</p>
-					</div>
-				</a>
-			</section>
-
-			<section class="top-diary-section"
-				style="margin-top: 5rem; margin-bottom: 3rem">
-				<div class="section-title"
-					style="text-align: center; margin-bottom: 2rem;">
-					<h3>
-						<i data-lucide="flame" style="color: #e11d48"></i> 인기 일기 Top 3
-					</h3>
-				</div>
-				<div class="posts-grid">
-					<c:forEach var="best" items="${bestList}" varStatus="status">
-						<a
-							href="<%=request.getContextPath()%>/diary/doSelectOne.do?diarySid=${best.diarySid}"
-							class="post-card best-card"
-							style="text-decoration: none; color: inherit;">
-							<article style="all: unset; display: block;">
-								<div
-									style="font-size:0.85rem;font-weight:bold;color:${status.index == 0 ? '#d97706' : status.index == 1 ? '#94a3b8' : '#b45309'};margin-bottom:8px;">
-									${status.index == 0 ? '🥇 1위' : status.index == 1 ? '🥈 2위' : '🥉 3위'}
-								</div>
-								<c:choose>
-									<c:when test="${best.diaryCategory == 10}">
-										<div class="post-tag quote">${best.diaryCategoryName}</div>
-									</c:when>
-									<c:when test="${best.diaryCategory == 20}">
-										<div class="post-tag luck">${best.diaryCategoryName}</div>
-									</c:when>
-									<c:when test="${best.diaryCategory == 30}">
-										<div class="post-tag gratitude">${best.diaryCategoryName}</div>
-									</c:when>
-									<c:when test="${best.diaryCategory == 40}">
-										<div class="post-tag reflection">${best.diaryCategoryName}</div>
-									</c:when>
-									<c:otherwise>
-										<div class="post-tag">${best.diaryCategoryName}</div>
-									</c:otherwise>
-								</c:choose>
-								<h4 class="post-title">${best.diaryTitle}</h4>
-								<p class="post-preview">${best.diaryContent}</p>
-								<div class="post-meta">
-									<span>${best.nickname}</span>
-									<div
-										style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
-										<i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
-										${best.diaryRecCount}
-									</div>
-								</div>
-							</article>
-						</a>
-					</c:forEach>
-				</div>
-			</section>
-		</div>
-	</main>
-
-	<footer>
-		<div class="container">
-			<p>© 2024 내면의 흔적. All rights reserved.</p>
-		</div>
-	</footer>
-
-	<script>
-		lucide.createIcons();
-	</script>
-=======
     <script>
       lucide.createIcons();
       // 마이페이지 이동 로직 (menu.jsp와 동일하게 함수명 통일)
@@ -370,6 +311,5 @@ if (loginUser != null) {
         });
       }
     </script>
->>>>>>> feature/donghan-backup
 </body>
 </html>

@@ -1,19 +1,15 @@
 package com.pcwk.ehr.report.domain;
 
-import com.pcwk.ehr.cmn.DTO;
+public class ReportVO {
 
-public class ReportVO extends DTO { // DTO 상속 확인
+    // REPORT_SID	NUMBER(10,0)
+    // REPORT_CONTENT	NVARCHAR2(2000 CHAR)
+    // REPORT_CATEGORY	NUMBER(2,0)
+    // FAMOUS_SID	NUMBER(10,0)
+    // COMMENT_SID	NUMBER(10,0)
+    // DIARY_SID	NUMBER(10,0)
+    // REG_ID	VARCHAR2(20 BYTE)
 
-<<<<<<< HEAD
-	private int reportSid;
-	private String reportContent;
-	private int reportCategory;
-	private Integer famousSid;
-	private Integer commentSid;
-	private Integer diarySid; // Integer 유지
-	private String regId;
-	private String diaryContent; // 추가된 필드
-=======
     private int reportSid;
     private String reportContent;
     private int reportCategory;
@@ -22,27 +18,11 @@ public class ReportVO extends DTO { // DTO 상속 확인
     private Integer diarySid;
     private String regId;
     private String diaryContent; // 추가된 필드
->>>>>>> feature/donghan-backup
 
-	public ReportVO() {
-		super();
-	}
+    public ReportVO() {
+        super();
+    }
 
-<<<<<<< HEAD
-	// 모든 필드를 포함하는 생성자로 업데이트
-	public ReportVO(int reportSid, String reportContent, int reportCategory, Integer famousSid, Integer commentSid,
-			Integer diarySid, String regId, String diaryContent) {
-		super();
-		this.reportSid = reportSid;
-		this.reportContent = reportContent;
-		this.reportCategory = reportCategory;
-		this.famousSid = famousSid;
-		this.commentSid = commentSid;
-		this.diarySid = diarySid;
-		this.regId = regId;
-		this.diaryContent = diaryContent;
-	}
-=======
     public ReportVO(int reportSid, String reportContent, int reportCategory, Integer famousSid, Integer commentSid,
                     Integer diarySid, String regId,  String diaryContent) {
         super();
@@ -55,70 +35,60 @@ public class ReportVO extends DTO { // DTO 상속 확인
         this.regId = regId;
         this.diaryContent = diaryContent;
     }
->>>>>>> feature/donghan-backup
 
-	// Getter / Setter
-	public int getReportSid() {
-		return reportSid;
-	}
 
-	public void setReportSid(int reportSid) {
-		this.reportSid = reportSid;
-	}
+    public int getReportSid() {
+        return this.reportSid;
+    }
 
-	public String getReportContent() {
-		return reportContent;
-	}
+    public void setReportSid(int reportSid) {
+        this.reportSid = reportSid;
+    }
 
-	public void setReportContent(String reportContent) {
-		this.reportContent = reportContent;
-	}
+    public String getReportContent() {
+        return this.reportContent;
+    }
 
-	public int getReportCategory() {
-		return reportCategory;
-	}
+    public void setReportContent(String reportContent) {
+        this.reportContent = reportContent;
+    }
 
-	public void setReportCategory(int reportCategory) {
-		this.reportCategory = reportCategory;
-	}
+    public int getReportCategory() {
+        return this.reportCategory;
+    }
 
-	public Integer getFamousSid() {
-		return famousSid;
-	}
+    public void setReportCategory(int reportCategory) {
+        this.reportCategory = reportCategory;
+    }
 
-	public void setFamousSid(Integer famousSid) {
-		this.famousSid = famousSid;
-	}
+    public Integer getFamousSid() {
+        return this.famousSid;
+    }
 
-	public Integer getCommentSid() {
-		return commentSid;
-	}
+    public void setFamousSid(Integer famousSid) {
+        this.famousSid = famousSid;
+    }
 
-	public void setCommentSid(Integer commentSid) {
-		this.commentSid = commentSid;
-	}
+    public Integer getCommentSid() {
+        return this.commentSid;
+    }
 
-	public Integer getDiarySid() {
-		return diarySid;
-	}
+    public void setCommentSid(Integer commentSid) {
+        this.commentSid = commentSid;
+    }
 
-	public void setDiarySid(Integer diarySid) {
-		this.diarySid = diarySid;
-	}
+    public Integer getDiarySid() {
+        return this.diarySid;
+    }
 
-	public String getRegId() {
-		return regId;
-	}
+    public void setDiarySid(Integer diarySid) {
+        this.diarySid = diarySid;
+    }
 
-	public void setRegId(String regId) {
-		this.regId = regId;
-	}
+    public String getRegId() {
+        return this.regId;
+    }
 
-<<<<<<< HEAD
-	public String getDiaryContent() {
-		return diaryContent;
-	}
-=======
     public void setRegId(String regId) {
         this.regId = regId;
     }
@@ -129,16 +99,15 @@ public class ReportVO extends DTO { // DTO 상속 확인
 	public void setDiaryContent(String diaryContent) {
 		this.diaryContent = diaryContent;
 	}
->>>>>>> feature/donghan-backup
 
-	public void setDiaryContent(String diaryContent) {
-		this.diaryContent = diaryContent;
-	}
+    @Override
+    public String toString() {
+        return "ReportVO [reportSid=" + reportSid + ", reportContent=" + reportContent + ", reportCategory="
+                + reportCategory + ", famousSid=" + famousSid + ", commentSid=" + commentSid + ", diarySid=" + diarySid
+                + ", regId=" + regId + ", toString()=" + super.toString() + "]";
+    }
 
-	@Override
-	public String toString() {
-		return "ReportVO [reportSid=" + reportSid + ", reportContent=" + reportContent + ", reportCategory="
-				+ reportCategory + ", famousSid=" + famousSid + ", commentSid=" + commentSid + ", diarySid=" + diarySid
-				+ ", regId=" + regId + ", diaryContent=" + diaryContent + ", toString()=" + super.toString() + "]";
-	}
+
+
+    
 }

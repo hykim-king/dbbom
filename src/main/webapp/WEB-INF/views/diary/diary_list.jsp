@@ -1,143 +1,132 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="com.pcwk.ehr.user.domain.UserVO"%>
-<%
-    UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-    String welcomeName = "";
-    boolean isLogin = false;
-    boolean isAdmin = false;
-
-    if (loginUser != null) {
-        isLogin = true;
-        if ("Y".equals(loginUser.getAdminChk())) {
-            isAdmin = true;
-        }
-        welcomeName = (loginUser.getNickname() != null && !loginUser.getNickname().trim().isEmpty())
-                    ? loginUser.getNickname()
-                    : loginUser.getUserId();
-    }
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>내면의 흔적 - 일기 공개 게시판</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내면의 흔적 - 일기 공개 게시판</title>
 
-<script src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_list.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/serch.css" />
-<script src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<script>
-    // ContextPath를 전역 변수로 설정
-    const cp = "${pageContext.request.contextPath}";
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/common.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/diary_list.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/serch.css"/>
+    
+    <script src="<%=request.getContextPath()%>/resources/assets/js/cmn/jquery.js"></script>
+    
+    <%-- <script src="${pageContext.request.contextPath}/resources/assets/js/cmn/common.js"></script> --%>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
 
-<<<<<<< HEAD
-    // 마이페이지 이동
-    function moveToManagement() {
-        const isLogin = <%=isLogin%>;
-        if (!isLogin) {
-            alert("로그인이 필요합니다.");
-            location.href = cp + "/user/signIn.do";
-            return;
-        }
-        location.href = cp + "/user/myPage.do";
-    }
-
-    // 로그아웃
-    function doLogout() {
-        if (!confirm("로그아웃 하시겠습니까?")) return;
-        $.ajax({
-            url: cp + "/user/doLogoutAjax.do",
-            type: "POST",
-            dataType: "json",
-            success: function(res) {
-                alert(res.message);
-                if (res.flag === 1) location.href = cp + "/main/main.do";
-            },
-            error: function(xhr, status, err) { alert("오류 발생"); }
-        });
-    }
-
-    // 회원탈퇴
-    function doWithdraw() {
-        if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
-        $.ajax({
-            url: cp + "/user/doWithdrawAjax.do",
-            type: "POST",
-            dataType: "json",
-            success: function(res) {
-                alert(res.message);
-                if (res.flag === 1) {
-                    location.href = cp + "/main/main.do";
-                }
-            },
-            error: function(xhr, status, err) { alert("오류 발생"); }
-        });
-    }
-
-    // 검색 및 페이지 이동
-    function doRetrieve(pageNo) {
-        const pageNoField = document.getElementById("pageNo");
-        if (pageNoField) pageNoField.value = pageNo;
-        const form = document.getElementById("diaryForm");
-        if (form) form.submit();
-    }
-</script>
-</head>
-<body>
-    <header>
-        <div class="container header-inner flex-between">
-            <a href="${pageContext.request.contextPath}/main/main.do" class="logo-area" style="text-decoration: none">
-                <h1 class="logo-text">내면의 흔적</h1>
-            </a>
-            <div class="auth-links">
-                <% if (!isLogin) { %>
-                    <a href="${pageContext.request.contextPath}/user/signIn.do" class="auth-item">로그인</a>
-                    <span class="divider">|</span>
-                    <a href="${pageContext.request.contextPath}/user/signUp.do" class="auth-item">회원가입</a>
-                <% } else { %>
-                    <span class="auth-item"><b><%=welcomeName%></b>님 환영합니다</span>
-                    <span class="divider">|</span>
-                    <% if (isAdmin) { %>
-                        <a href="${pageContext.request.contextPath}/admin/adminPage.do" class="auth-item" style="color: #2563eb; font-weight: bold;">관리자 페이지</a>
-                        <span class="divider">|</span>
-                    <% } %>
-                    <a href="javascript:doLogout();" class="auth-item">로그아웃</a>
-                    <% if (!isAdmin) { %>
-                        <span class="divider">|</span>
-                        <a href="javascript:doWithdraw();" class="auth-item" style="color: red; font-size: 0.8rem;">회원탈퇴</a>
-                    <% } %>
-                <% } %>
-            </div>
-        </div>
-    </header>
-=======
 
   </head>
   <body>
->>>>>>> feature/donghan-backup
 
     <main class="container">
-        <div class="tab-list">
-            <div class="menu-label">메뉴</div>
-            <a href="${pageContext.request.contextPath}/main/outline.do" class="tab-btn"><i data-lucide="sparkles"></i> 개요</a>
-            <a href="${pageContext.request.contextPath}/notice/noticeList.do" class="tab-btn"><i data-lucide="book-open"></i> 공지사항</a>
-            <div class="dropdown-container">
-                <a href="${pageContext.request.contextPath}/diary/diaryList.do" class="tab-btn active" style="width: 100%; border: none"><i data-lucide="pencil"></i> 게시판</a>
-                <div class="dropdown-content">
-                    <a href="${pageContext.request.contextPath}/diary/diaryList.do">📖 일기 공개 게시판</a>
-                    <a href="${pageContext.request.contextPath}/famous/famous.do">💬 명언 모음집</a>
+
+      <div class="tab-content">
+        <!-- 검색 및 글쓰기 영역 -->
+        <form action="${pageContext.request.contextPath}/diary/diaryList.do" method="get" name="diaryForm" id="diaryForm" style="margin-bottom: 20px;">
+          <div class="search-area">
+            <select name="searchDiv" id="searchDiv" class="search-select">\
+              <option value="10" ${vo.searchDiv == '10' ? 'selected' : ''}>제목</option>
+              <option value="20" ${vo.searchDiv == '20' ? 'selected' : ''}>내용</option>
+              <option value="30" ${vo.searchDiv == '30' ? 'selected' : ''}>제목+내용</option>
+            </select>
+            <input type="text" name="searchWord" id="searchWord" class="search-input" value="${vo.searchWord}" placeholder="검색어를 입력하세요" autocomplete="off">
+            <button type="button" class="btn-search" onclick="doRetrieve(1)"><i data-lucide="search" style="width: 14px;"></i> 검색</button>
+          </div>
+          <input type="hidden" name="pageNo" id="pageNo" value="${vo.pageNo}">
+        </form>
+            <script>
+              // Lucide 아이콘 전체 렌더링 (body 끝에서 한 번만 실행)
+              document.addEventListener('DOMContentLoaded', function() {
+                if (typeof lucide !== 'undefined') {
+                  lucide.createIcons();
+                }
+                // 검색창 커서 끝으로
+                const $searchWord = document.getElementById("searchWord");
+                if($searchWord && $searchWord.value) {
+                  $searchWord.focus();
+                  $searchWord.setSelectionRange($searchWord.value.length, $searchWord.value.length);
+                }
+              });
+
+              // 조회 함수
+              function doRetrieve(pageNo) {
+                const pageNoField = document.getElementById("pageNo");
+                if (pageNoField) {
+                  pageNoField.value = pageNo;
+                }
+                const form = document.getElementById("diaryForm");
+                if (form) {
+                  form.submit();
+                }
+              }
+
+              // 엔터키 검색 지원
+              document.addEventListener("DOMContentLoaded", function() {
+                const $searchWord = document.getElementById("searchWord");
+                if($searchWord) {
+                  $searchWord.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      doRetrieve(1);
+                    }
+                  });
+                }
+              });
+            </script>
+        <section class="board-best-section">
+          <div class="section-title" style="margin-bottom: 1.5rem">
+            <h3>🏆 명예의 전당 (Best 3)</h3>
+            <span
+              style="
+                font-size: 0.9rem;
+                color: #64748b;
+                font-weight: normal;
+                margin-left: 10px;
+              "
+              >가장 많은 공감을 받은 이야기들입니다.</span
+            >
+            
+          </div>
+
+          <div class="posts-grid">
+            <c:set var="best0" value="${bestList[0]}" />
+            <c:set var="best1" value="${bestList[1]}" />
+            <c:set var="best2" value="${bestList[2]}" />
+            <a href="doSelectOne.do?diarySid=${best0.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#d97706;margin-bottom:8px;">🥇 1위</div>
+                <c:choose>
+                  <c:when test="${best0.diaryCategory == 10}">
+                    <div class="post-tag quote">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 20}">
+                    <div class="post-tag luck">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best0.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best0.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best0.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best0.diaryTitle}</h4>
+                <p class="post-preview">${best0.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best0.nickname}</span>
+                  <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
+                    <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
+                    ${best0.diaryRecCount}
+                  </div>
                 </div>
-<<<<<<< HEAD
-            </div>
-            <a href="javascript:moveToManagement();" class="tab-btn"><i data-lucide="user"></i> 마이페이지</a>
-        </div>
-=======
               </article>
             </a>
             <a href="doSelectOne.do?diarySid=${best1.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
@@ -303,110 +292,22 @@
 
 
 
->>>>>>> feature/donghan-backup
 
-        <div class="tab-content">
-            <form action="${pageContext.request.contextPath}/diary/diaryList.do" method="get" name="diaryForm" id="diaryForm" style="margin-bottom: 20px;">
-                <div class="search-area">
-                    <select name="searchDiv" id="searchDiv" class="search-select">
-                        <option value="10" ${vo.searchDiv == '10' ? 'selected' : ''}>제목</option>
-                        <option value="20" ${vo.searchDiv == '20' ? 'selected' : ''}>내용</option>
-                        <option value="30" ${vo.searchDiv == '30' ? 'selected' : ''}>제목+내용</option>
-                    </select>
-                    <input type="text" name="searchWord" id="searchWord" class="search-input" value="${vo.searchWord}" placeholder="검색어를 입력하세요" autocomplete="off">
-                    <button type="button" class="btn-search" onclick="doRetrieve(1)">
-                        <i data-lucide="search" style="width: 14px;"></i> 검색
-                    </button>
-                </div>
-                <input type="hidden" name="pageNo" id="pageNo" value="${vo.pageNo}">
-            </form>
-
-            <%-- 명예의 전당 및 게시판 리스트 섹션 (기존과 동일) --%>
-            <section class="board-best-section">
-                <div class="section-title" style="margin-bottom: 1.5rem">
-                    <h3>🏆 명예의 전당 (Best 3)</h3>
-                </div>
-                <div class="posts-grid">
-                    <c:forEach var="best" items="${bestList}" varStatus="status">
-                        <a href="doSelectOne.do?diarySid=${best.diarySid}" class="post-card best-card" style="text-decoration: none; color: inherit;">
-                            <article style="all: unset; display: block;">
-                                <div style="font-size: 0.85rem; font-weight: bold; color: ${status.index == 0 ? '#d97706' : (status.index == 1 ? '#94a3b8' : '#b45309')}; margin-bottom: 8px;">
-                                    ${status.index == 0 ? '🥇 1위' : (status.index == 1 ? '🥈 2위' : '🥉 3위')}
-                                </div>
-                                <div class="post-tag ${best.diaryCategory == 10 ? 'quote' : (best.diaryCategory == 20 ? 'luck' : (best.diaryCategory == 30 ? 'gratitude' : (best.diaryCategory == 40 ? 'reflection' : '')))}">
-                                    ${best.diaryCategoryName}
-                                </div>
-                                <h4 class="post-title">${best.diaryTitle}</h4>
-                                <p class="post-preview">${best.diaryContent}</p>
-                                <div class="post-meta">
-                                    <span>${best.nickname}</span>
-                                    <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
-                                        <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i> ${best.diaryRecCount}
-                                    </div>
-                                </div>
-                            </article>
-                        </a>
-                    </c:forEach>
-                </div>
-            </section>
-
-            <section class="board-latest-section">
-                <h3 class="section-title">📝 최신 글</h3>
-                <div class="board-list-header">
-                    <span class="th-title">제목</span> <span class="th-author">작성자</span>
-                    <span class="th-date">날짜</span> <span class="th-likes">공감</span> <span class="th-count">조회수</span>
-                </div>
-                <c:forEach var="diary" items="${list}">
-                    <a href="doSelectOne.do?diarySid=${diary.diarySid}" class="board-row" style="display: flex; text-decoration: none; color: inherit;">
-                        <div class="row-content">
-                            <span class="post-tag ${diary.diaryCategory == 10 ? 'quote' : (diary.diaryCategory == 20 ? 'luck' : (diary.diaryCategory == 30 ? 'gratitude' : (diary.diaryCategory == 40 ? 'reflection' : '')))}" style="margin: 0">${diary.diaryCategoryName}</span>
-                            <span class="row-title">${diary.diaryTitle}</span>
-                        </div>
-                        <div class="row-meta">
-                            <span class="row-author">${diary.nickname}</span>
-                            <span class="row-date">${diary.diaryUploadDate}</span>
-                            <span class="row-likes">${diary.diaryRecCount}</span>
-                            <span class="row-count">${diary.diaryViewCount}</span>
-                        </div>
-                    </a>
-                </c:forEach>
-            </section>
-
-            <div class="pagination" style="display: flex; justify-content: center; margin-top: 30px; gap: 5px;">
-                <c:if test="${vo.totalCnt > 0}">
-                    <fmt:parseNumber var="totalPage" value="${Math.ceil(vo.totalCnt / vo.pageSize)}" integerOnly="true" />
-                    <c:forEach var="i" begin="1" end="${totalPage}">
-                        <a href="javascript:doRetrieve(${i});" class="page-item${vo.pageNo == i ? ' active' : ''}">${i}</a>
-                    </c:forEach>
-                </c:if>
-            </div>
-        </div>
+      </div>
     </main>
 
     <footer>
-        <div class="container">
-            <p>© 2024 내면의 흔적. All rights reserved.</p>
-        </div>
+      <div class="container">
+        <p>© 2024 내면의 흔적. All rights reserved.</p>
+      </div>
     </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-
-            const $searchWord = document.getElementById("searchWord");
-            if ($searchWord) {
-                $searchWord.addEventListener("keydown", function(e) {
-                    if (e.key === "Enter") {
-                        e.preventDefault();
-                        doRetrieve(1);
-                    }
-                });
-                if ($searchWord.value) {
-                    $searchWord.focus();
-                    $searchWord.setSelectionRange($searchWord.value.length, $searchWord.value.length);
-                }
-            }
-        });
+      // Lucide 아이콘 전체 렌더링 (body 끝에서 한 번만 실행)
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
