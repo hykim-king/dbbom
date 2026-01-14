@@ -18,6 +18,8 @@ public class CommentVO extends DTO implements Serializable {
     private String regId;
     private Integer parentSid; // 추가: 부모 댓글 번호 (답글일 경우 사용)
 
+    private String nickname;
+
     public CommentVO() {}
 
     public CommentVO(int commentSid, String commentContent, int commentReccount, Date commentUpdateDate,
@@ -57,6 +59,14 @@ public class CommentVO extends DTO implements Serializable {
 
     public Integer getParentSid() { return parentSid; } // 추가
     public void setParentSid(Integer parentSid) { this.parentSid = parentSid; } // 추가
+
+    public String getNickname() {
+        return this.nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     @Override
     public String toString() {

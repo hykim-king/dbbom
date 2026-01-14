@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +17,10 @@
     <!-- 아이콘 라이브러리 (CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <title>개요 | 내면의 흔적</title>
-    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+
   </head>
   <body>
-
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
     <!-- Main Content -->
     <main class="container">
 
@@ -130,6 +131,10 @@
         <p style="font-size: 0.875rem">당신의 감정을 소중히 여기는 공간</p>
       </div>
     </footer>
+
+      <script>
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  </script>
 
     <!-- 외부 스크립트 연결 (같은 폴더의 script.js 파일을 불러옵니다) -->
   </body>

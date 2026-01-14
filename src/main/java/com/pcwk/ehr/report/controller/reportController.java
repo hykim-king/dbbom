@@ -89,8 +89,10 @@ public class reportController {
             return "report/comment_report_page";
         }
         if (commentSid != null) {
+            CommentVO commentVO = new CommentVO();
+            commentVO.setCommentSid(commentSid);
             CommentVO outVO = commentService.doSelectOne(commentSid);
-            model.addAttribute("famousVO", outVO);
+            model.addAttribute("commentVO", outVO);
         }
         return "report/comment_report_page";
     }
