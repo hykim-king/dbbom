@@ -35,5 +35,8 @@ public interface CommentMapper {
 
     // 특정 게시글(=diarySid)의 댓글 목록
     List<CommentVO> getListByDiarySid(@Param("diarySid") int diarySid);
+    
+    //명언 모음집 댓글 목록
+    List<CommentVO> getListByFamousSid(@Param("famousSid") int famousSid);
 
 }

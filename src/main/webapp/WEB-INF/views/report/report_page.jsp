@@ -19,6 +19,7 @@
           <script>alert('${errorMsg}'); window.close();</script>
         </c:if>
         <input type="hidden" name="diarySid" value="${diaryVO.diarySid}" />
+        
         <div class="row">
           <div class="label">제 목</div>
           <div class="value">${diaryVO.diaryTitle}</div>

@@ -4,6 +4,7 @@ import com.pcwk.ehr.cmn.DTO;
 
 public class ReportVO extends DTO { // DTO 상속 확인
 
+<<<<<<< HEAD
 	private int reportSid;
 	private String reportContent;
 	private int reportCategory;
@@ -12,11 +13,22 @@ public class ReportVO extends DTO { // DTO 상속 확인
 	private Integer diarySid; // Integer 유지
 	private String regId;
 	private String diaryContent; // 추가된 필드
+=======
+    private int reportSid;
+    private String reportContent;
+    private int reportCategory;
+    private Integer famousSid;
+    private Integer commentSid;
+    private Integer diarySid;
+    private String regId;
+    private String diaryContent; // 추가된 필드
+>>>>>>> feature/donghan-backup
 
 	public ReportVO() {
 		super();
 	}
 
+<<<<<<< HEAD
 	// 모든 필드를 포함하는 생성자로 업데이트
 	public ReportVO(int reportSid, String reportContent, int reportCategory, Integer famousSid, Integer commentSid,
 			Integer diarySid, String regId, String diaryContent) {
@@ -30,6 +42,20 @@ public class ReportVO extends DTO { // DTO 상속 확인
 		this.regId = regId;
 		this.diaryContent = diaryContent;
 	}
+=======
+    public ReportVO(int reportSid, String reportContent, int reportCategory, Integer famousSid, Integer commentSid,
+                    Integer diarySid, String regId,  String diaryContent) {
+        super();
+        this.reportSid = reportSid;
+        this.reportContent = reportContent;
+        this.reportCategory = reportCategory;
+        this.famousSid = famousSid;
+        this.commentSid = commentSid;
+        this.diarySid = diarySid;
+        this.regId = regId;
+        this.diaryContent = diaryContent;
+    }
+>>>>>>> feature/donghan-backup
 
 	// Getter / Setter
 	public int getReportSid() {
@@ -88,9 +114,22 @@ public class ReportVO extends DTO { // DTO 상속 확인
 		this.regId = regId;
 	}
 
+<<<<<<< HEAD
 	public String getDiaryContent() {
 		return diaryContent;
 	}
+=======
+    public void setRegId(String regId) {
+        this.regId = regId;
+    }
+    public String getDiaryContent() {
+		return diaryContent;
+	}
+
+	public void setDiaryContent(String diaryContent) {
+		this.diaryContent = diaryContent;
+	}
+>>>>>>> feature/donghan-backup
 
 	public void setDiaryContent(String diaryContent) {
 		this.diaryContent = diaryContent;

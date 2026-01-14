@@ -2,27 +2,28 @@ package com.pcwk.ehr.comment.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import com.pcwk.ehr.cmn.DTO;
 
 public class CommentVO extends DTO implements Serializable {
-	
-	private static final long serialVersionUID = 6376437571460344493L;
+    
+    private static final long serialVersionUID = 6376437571460344493L;
 
-    private int commentSid;          // comment_sid
-    private String commentContent;   // comment_content
-    private int commentReccount;     // comment_reccount
-    private Date commentUpdateDate;  // comment_updatedate
+    private int commentSid;
+    private String commentContent;
+    private int commentReccount;
+    private Date commentUpdateDate;
+    
+    private Integer diarySid;
+    private Integer famousSid;
+    private String regId;
+    private Integer parentSid; // 추가: 부모 댓글 번호 (답글일 경우 사용)
 
-    private Integer diarySid;        // diary_sid (nullable)
-    private Integer famousSid;       // famous_sid (nullable)
-
-    private String regId;            // reg_id (작성자 ID)
+    private String nickname;
 
     public CommentVO() {}
 
     public CommentVO(int commentSid, String commentContent, int commentReccount, Date commentUpdateDate,
-                     Integer diarySid, Integer famousSid, String regId) {
+                     Integer diarySid, Integer famousSid, String regId, Integer parentSid) {
         super();
         this.commentSid = commentSid;
         this.commentContent = commentContent;
@@ -31,6 +32,7 @@ public class CommentVO extends DTO implements Serializable {
         this.diarySid = diarySid;
         this.famousSid = famousSid;
         this.regId = regId;
+        this.parentSid = parentSid; // 추가
     }
 
     // getter/setter
@@ -55,10 +57,21 @@ public class CommentVO extends DTO implements Serializable {
     public String getRegId() { return regId; }
     public void setRegId(String regId) { this.regId = regId; }
 
+    public Integer getParentSid() { return parentSid; } // 추가
+    public void setParentSid(Integer parentSid) { this.parentSid = parentSid; } // 추가
+
+    public String getNickname() {
+        return this.nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     @Override
     public String toString() {
         return "CommentVO [commentSid=" + commentSid + ", commentContent=" + commentContent + ", commentReccount="
-                + commentReccount + ", commentUpdateDate=" + commentUpdateDate + ", diarySid=" + diarySid
-                + ", famousSid=" + famousSid + ", regId=" + regId + ", toString()=" + super.toString() + "]";
+                + commentReccount + ", commentUpdateDate=" + commentUpdateDate + ", diarySid=" + diarySid 
+                + ", famousSid=" + famousSid + ", regId=" + regId + ", parentSid=" + parentSid + ", toString()=" + super.toString() + "]";
     }
 }

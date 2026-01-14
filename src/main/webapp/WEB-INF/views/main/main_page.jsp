@@ -45,6 +45,7 @@ if (loginUser != null) {
 	href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/assets/css/diary_list.css" />
+<<<<<<< HEAD
 
 <script>
     // 마이페이지 이동 로직 (관리자여도 본인 정보를 수정하는 마이페이지로 이동)
@@ -98,6 +99,11 @@ if (loginUser != null) {
 				});
 	}
 </script>
+=======
+
+<!-- ...기존 코드... -->
+<!-- 기존 <script> 태그 삭제 -->
+>>>>>>> feature/donghan-backup
 </head>
 <body>
 	<header>
@@ -120,6 +126,37 @@ if (loginUser != null) {
 				%>
 				<span class="auth-item"><b><%=welcomeName%></b>님 환영합니다</span> <span
 					class="divider">|</span>
+<<<<<<< HEAD
+=======
+
+				<%
+					if (isAdmin) {
+				%>
+				<a href="<%=request.getContextPath()%>/admin/adminPage.do"
+					class="auth-item" style="color: #2563eb; font-weight: bold;">관리자
+					페이지</a> <span class="divider">|</span>
+				<%
+					}
+				%>
+        
+				<a href="javascript:doLogout();" class="auth-item">로그아웃</a>
+
+				<%-- [핵심 수정] 관리자가 아닐 때(!isAdmin)만 회원탈퇴 버튼 노출 --%>
+				<%-- <%
+					if (!isAdmin) {
+				%>
+				<span class="divider">|</span> <a href="javascript:doWithdraw();"
+					class="auth-item" style="color: red; font-size: 0.8rem;">회원탈퇴</a>
+				<%  
+					}
+				%> --%>
+				<%
+					}
+				%>
+			</div>
+		</div>
+	</header>
+>>>>>>> feature/donghan-backup
 
 				<%
 					if (isAdmin) {
@@ -173,6 +210,7 @@ if (loginUser != null) {
 			</a>
 		</div>
 
+<<<<<<< HEAD
 		<div class="tab-content">
 			<section class="hero-section">
 				<h2>오늘 당신의 마음은 어떤가요?</h2>
@@ -282,5 +320,56 @@ if (loginUser != null) {
 	<script>
 		lucide.createIcons();
 	</script>
+=======
+    <script>
+      lucide.createIcons();
+      // 마이페이지 이동 로직 (menu.jsp와 동일하게 함수명 통일)
+      function moveToMyPage() {
+        var isLogin = <%=isLogin%>;
+        if (!isLogin) {
+          alert("로그인이 필요합니다.");
+          location.href = "<%=request.getContextPath()%>/user/signIn.do";
+          return;
+        }
+        location.href = "<%=request.getContextPath()%>/user/myPage.do";
+      }
+      // 로그아웃 로직 (menu.jsp와 동일하게 jQuery 활용)
+      function doLogout() {
+        if (!confirm("로그아웃 하시겠습니까?")) return;
+        $.ajax({
+          url: "<%=request.getContextPath()%>/user/doLogoutAjax.do",
+          type: "POST",
+          dataType: "json",
+          success: function(res) {
+            alert(res.message);
+            if (res.flag == 1) {
+              location.href = "<%=request.getContextPath()%>/main/main.do";
+            }
+          },
+          error: function(xhr, status, err) {
+            alert("오류 발생");
+          }
+        });
+      }
+      // 회원탈퇴 로직
+      function doWithdraw() {
+        if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
+        $.ajax({
+          url: "<%=request.getContextPath()%>/user/doWithdrawAjax.do",
+          type: "POST",
+          dataType: "json",
+          success: function(res) {
+            alert(res.message);
+            if (res.flag === 1) {
+              location.href = "<%=request.getContextPath()%>/main/main.do";
+            }
+          },
+          error: function(xhr, status, err) {
+            alert("오류 발생");
+          }
+        });
+      }
+    </script>
+>>>>>>> feature/donghan-backup
 </body>
 </html>

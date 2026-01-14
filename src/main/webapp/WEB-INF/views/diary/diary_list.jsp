@@ -36,6 +36,7 @@
     // ContextPath를 전역 변수로 설정
     const cp = "${pageContext.request.contextPath}";
 
+<<<<<<< HEAD
     // 마이페이지 이동
     function moveToManagement() {
         const isLogin = <%=isLogin%>;
@@ -115,6 +116,11 @@
             </div>
         </div>
     </header>
+=======
+
+  </head>
+  <body>
+>>>>>>> feature/donghan-backup
 
     <main class="container">
         <div class="tab-list">
@@ -127,9 +133,177 @@
                     <a href="${pageContext.request.contextPath}/diary/diaryList.do">📖 일기 공개 게시판</a>
                     <a href="${pageContext.request.contextPath}/famous/famous.do">💬 명언 모음집</a>
                 </div>
+<<<<<<< HEAD
             </div>
             <a href="javascript:moveToManagement();" class="tab-btn"><i data-lucide="user"></i> 마이페이지</a>
         </div>
+=======
+              </article>
+            </a>
+            <a href="doSelectOne.do?diarySid=${best1.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#94a3b8;margin-bottom:8px;">🥈 2위</div>
+                <c:choose>
+                  <c:when test="${best1.diaryCategory == 10}">
+                    <div class="post-tag quote">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 20}">
+                    <div class="post-tag luck">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best1.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best1.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best1.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best1.diaryTitle}</h4>
+                <p class="post-preview">${best1.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best1.nickname}</span>
+                  <div style="display: flex; align-items: center; gap: 4px; color: #e11d48; font-weight: bold;">
+                    <i data-lucide="heart" style="width: 14px; fill: #e11d48"></i>
+                    ${best1.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+            <a href="doSelectOne.do?diarySid=${best2.diarySid}" class="post-card best-card" style="text-decoration:none;color:inherit;">
+              <article style="all:unset;display:block;">
+                <div style="font-size:0.85rem;font-weight:bold;color:#b45309;margin-bottom:8px;">🥉 3위</div>
+                <c:choose>
+                  <c:when test="${best2.diaryCategory == 10}">
+                    <div class="post-tag quote">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 20}">
+                    <div class="post-tag luck">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 30}">
+                    <div class="post-tag gratitude">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:when test="${best2.diaryCategory == 40}">
+                    <div class="post-tag reflection">${best2.diaryCategoryName}</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="post-tag">${best2.diaryCategoryName}</div>
+                  </c:otherwise>
+                </c:choose>
+                <h4 class="post-title">${best2.diaryTitle}</h4>
+                <p class="post-preview">${best2.diaryContent}</p>
+                <div class="post-meta">
+                  <span>${best2.nickname}</span>
+                  <div style="display:flex;align-items:center;gap:4px;color:#e11d48;font-weight:bold;">
+                    <i data-lucide="heart" style="width:14px;fill:#e11d48"></i>
+                    ${best2.diaryRecCount}
+                  </div>
+                </div>
+              </article>
+            </a>
+          </div>
+        </section>
+
+
+        <section class="board-latest-section">
+          <h3 class="section-title">📝 최신 글</h3>
+
+          <div class="board-list-header">
+            <span class="th-title">제목</span>
+            <span class="th-author">작성자</span>
+            <span class="th-date">날짜</span>
+            <span class="th-likes">공감</span>
+            <span class="th-count">조회수</span>
+          </div>
+
+          <c:forEach var="diary" items="${list}">
+            <a href="doSelectOne.do?diarySid=${diary.diarySid}" class="board-row" style="display:flex; text-decoration:none; color:inherit;">
+              <div class="row-content">
+                <c:choose>
+                  <c:when test="${diary.diaryCategory == 10}">
+                    <span class="post-tag quote" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 20}">
+                    <span class="post-tag luck" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 30}">
+                    <span class="post-tag gratitude" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:when test="${diary.diaryCategory == 40}">
+                    <span class="post-tag reflection" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:when>
+                  <c:otherwise>
+                    <span class="post-tag" style="margin: 0">${diary.diaryCategoryName}</span>
+                  </c:otherwise>
+                </c:choose>
+                <span class="row-title">${diary.diaryTitle}</span>
+                <!-- 신규글 표시 등은 필요시 추가 -->
+              </div>
+              <div class="row-meta">
+                <span class="row-author">${diary.nickname}</span>
+                <span class="row-date">${diary.diaryUploadDate}</span>
+                <span class="row-likes">${diary.diaryRecCount}</span>
+                <span class="row-count">${diary.diaryViewCount}</span>
+              </div>
+            </a>
+          </c:forEach>
+        </section>
+                <!-- 페이징 UI  -->
+        <%-- <div class="pagination" style="display: flex; justify-content: center; margin-top: 30px; gap: 5px;">
+          <c:if test="${vo.totalCnt > 0}">
+            <c:set var="totalPage" value="${(vo.totalCnt + vo.pageSize - 1) / vo.pageSize}" />
+            <c:set var="totalPageInt" value="${fn:split(totalPage, '.')[0]}" />
+            <c:forEach var="i" begin="1" end="${totalPageInt}">
+              <a href="diaryList.do?pageNo=${i}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}"
+                 class="page-item${vo.pageNo == i ? ' active' : ''}">
+                ${i}
+              </a>
+            </c:forEach>
+          </c:if>
+        </div> --%>
+
+<%-- 페이징 변수 계산 --%>
+<c:set var="pageBlock" value="5" />
+<c:set var="startPage" value="${((vo.pageNo - 1) / pageBlock) * pageBlock + 1}" />
+<c:set var="endPage" value="${startPage + pageBlock - 1}" />
+<c:if test="${endPage > totalPageNum}">
+  <c:set var="endPage" value="${totalPageNum}" />
+</c:if>
+
+<div class="pagination-container">
+  <ul class="pagination-list">
+    <c:if test="${totalCnt > 0}">
+    
+      <c:if test="${vo.pageNo > 1}">
+        <li>
+          <a href="?pageNo=${vo.pageNo - 1}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}" 
+             class="page-link prev-next">이전</a>
+        </li>
+      </c:if>
+      
+      <c:forEach begin="${startPage}" end="${endPage}" var="i">
+        <li>
+          <a href="?pageNo=${i}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}"
+             class="page-link ${vo.pageNo == i ? 'active' : ''}">${i}</a>
+        </li>
+      </c:forEach>
+      
+      <c:if test="${vo.pageNo < totalPageNum}">
+        <li>
+          <a href="?pageNo=${vo.pageNo + 1}&pageSize=${vo.pageSize}&searchDiv=${vo.searchDiv}&searchWord=${vo.searchWord}" 
+             class="page-link prev-next">다음</a>
+        </li>
+      </c:if>
+    </c:if>
+  </ul>
+</div>
+
+
+
+
+
+>>>>>>> feature/donghan-backup
 
         <div class="tab-content">
             <form action="${pageContext.request.contextPath}/diary/diaryList.do" method="get" name="diaryForm" id="diaryForm" style="margin-bottom: 20px;">

@@ -73,7 +73,7 @@ class ReportDaoTest {
         int flag2 = diaryMapper.doSave(diary01);
         assertEquals(1, flag2, "다이어리 등록 실패!");
 
-        report01 = new ReportVO(seq, "신고내용1", 10, null, null, diary01.getDiarySid(), "user01");
+        report01 = new ReportVO(seq, "신고내용1", 10, null, null, diary01.getDiarySid(), "user01","신고 내용");
         dto = new DTO();      
     }
 

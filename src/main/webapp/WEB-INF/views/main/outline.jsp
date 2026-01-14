@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -26,6 +27,12 @@ if (loginUser != null) {
 request.setAttribute("isLogin", isLogin);
 request.setAttribute("isAdmin", isAdmin);
 %>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+>>>>>>> feature/donghan-backup
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,6 +47,7 @@ request.setAttribute("isAdmin", isAdmin);
 <script
 	src="${pageContext.request.contextPath}/resources/assets/js/cmn/jquery.js"></script>
 
+<<<<<<< HEAD
 <script src="https://unpkg.com/lucide@latest"></script>
 <title>개요 | 내면의 흔적</title>
 
@@ -48,6 +56,17 @@ request.setAttribute("isAdmin", isAdmin);
 	function moveToManagement() {
 		var isLogin = "${isLogin}" === "true";
 		var cp = "${pageContext.request.contextPath}";
+=======
+    <!-- 아이콘 라이브러리 (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>개요 | 내면의 흔적</title>
+
+  </head>
+  <body>
+    <jsp:include page="/WEB-INF/views/main/menu.jsp" />
+    <!-- Main Content -->
+    <main class="container">
+>>>>>>> feature/donghan-backup
 
 		if (!isLogin) {
 			alert("로그인이 필요합니다.");
@@ -108,6 +127,7 @@ request.setAttribute("isAdmin", isAdmin);
 							<span class="divider">|</span>
 						</c:if>
 
+<<<<<<< HEAD
 						<a href="javascript:doLogout();" class="auth-item">로그아웃</a>
 					</c:otherwise>
 				</c:choose>
@@ -213,3 +233,12 @@ request.setAttribute("isAdmin", isAdmin);
 	</script>
 </body>
 </html>
+=======
+      <script>
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  </script>
+
+    <!-- 외부 스크립트 연결 (같은 폴더의 script.js 파일을 불러옵니다) -->
+  </body>
+</html>
+>>>>>>> feature/donghan-backup

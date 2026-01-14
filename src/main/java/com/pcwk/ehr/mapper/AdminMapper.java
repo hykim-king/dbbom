@@ -9,6 +9,7 @@ import com.pcwk.ehr.user.domain.UserVO;
 
 @Mapper
 public interface AdminMapper {
+<<<<<<< HEAD
     List<UserVO> doRetrieveUserList(DTO dto);
     
     List<DiaryVO> doRetrieveDiaryList(DTO dto);
@@ -29,4 +30,28 @@ public interface AdminMapper {
 	int doDeleteReport(ReportVO vo);
 
 	int doDeleteDiary(DiaryVO vo);
+=======
+   List<UserVO> doRetrieveUserList(DTO dto);
+
+   List<DiaryVO> doRetrieveDiaryList(DTO dto);
+
+   List<ReportVO> doRetrieveReportList(DTO dto);
+
+   // 4. 게시글 상태 변경
+   int doUpdateDiaryStatus(DiaryVO vo);
+
+   int getReportTotalCount(DTO dto);
+
+   int getUserTotalCount(DTO dto);
+
+   int getDiaryTotalCount(DTO dto);
+
+   int doDeleteUser(UserVO vo);
+
+   int doDeleteReport(ReportVO vo);
+
+   int doDeleteDiary(DiaryVO vo);
+
+   int doDeleteComment(ReportVO vo);
+>>>>>>> feature/donghan-backup
 }

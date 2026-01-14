@@ -19,7 +19,11 @@
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 
 <style>
+<<<<<<< HEAD
 /* --- 고정 헤더와 컨텐츠 겹침 방지 --- */
+=======
+/* --- 원본 디자인 100% 보존 --- */
+>>>>>>> feature/donghan-backup
 header {
 	position: fixed;
 	top: 0;
@@ -32,11 +36,18 @@ header {
 }
 
 main.container {
+<<<<<<< HEAD
 	margin-top: 100px; /* 헤더 높이만큼 여백을 주어 겹침 방지 */
 	min-height: calc(100vh - 100px);
 }
 
 /* --- 관리자 레이아웃 --- */
+=======
+	margin-top: 100px;
+	min-height: calc(100vh - 100px);
+}
+
+>>>>>>> feature/donghan-backup
 .admin-header-area {
 	margin-bottom: 2rem;
 	display: flex;
@@ -54,7 +65,10 @@ main.container {
 	scroll-margin-top: 100px;
 }
 
+<<<<<<< HEAD
 /* --- 검색창 --- */
+=======
+>>>>>>> feature/donghan-backup
 .admin-search-box {
 	display: flex;
 	gap: 10px;
@@ -77,7 +91,10 @@ main.container {
 	min-width: 200px;
 }
 
+<<<<<<< HEAD
 /* --- 버튼 스타일 --- */
+=======
+>>>>>>> feature/donghan-backup
 button {
 	cursor: pointer;
 	border: none;
@@ -91,7 +108,10 @@ button {
 	padding: 8px 16px;
 	border-radius: 8px;
 	font-weight: 600;
+<<<<<<< HEAD
 	text-decoration: none;
+=======
+>>>>>>> feature/donghan-backup
 }
 
 .btn-search:hover {
@@ -121,11 +141,19 @@ button {
 	gap: 8px;
 }
 
+<<<<<<< HEAD
 /* --- 테이블 스타일 --- */
+=======
+/* --- 테이블 레이아웃 고정 (디자인 깨짐 방지) --- */
+>>>>>>> feature/donghan-backup
 .custom-table {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 0 10px;
+<<<<<<< HEAD
+=======
+	table-layout: fixed;
+>>>>>>> feature/donghan-backup
 }
 
 .custom-table th {
@@ -151,7 +179,67 @@ button {
 	border-radius: 0 12px 12px 0;
 }
 
+<<<<<<< HEAD
 /* --- 모달 시스템 --- */
+=======
+.custom-table tr:hover td {
+	background-color: #f1f5f9;
+	color: #3b82f6;
+}
+
+/* 열 너비 설정 */
+.col-chk {
+	width: 50px;
+}
+
+.col-num {
+	width: 80px;
+}
+
+.col-type {
+	width: 100px;
+}
+
+.col-content {
+	width: auto;
+}
+
+.col-user {
+	width: 120px;
+}
+
+.col-mng {
+	width: 100px;
+}
+
+.admin-pagination {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 25px;
+}
+
+.page-link {
+	padding: 8px 14px;
+	border-radius: 8px;
+	border: 1px solid #e2e8f0;
+	text-decoration: none;
+	color: #64748b;
+	font-weight: 600;
+}
+
+.page-link:hover {
+	background-color: #f1f5f9;
+	color: #3b82f6;
+}
+
+.page-link.active {
+	background-color: #3b82f6;
+	color: white;
+	border-color: #3b82f6;
+}
+
+>>>>>>> feature/donghan-backup
 .modal-overlay {
 	display: none;
 	position: fixed;
@@ -160,7 +248,11 @@ button {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
+<<<<<<< HEAD
 	z-index: 1000;
+=======
+	z-index: 2000;
+>>>>>>> feature/donghan-backup
 	justify-content: center;
 	align-items: center;
 }
@@ -185,6 +277,17 @@ button {
 	overflow-wrap: break-word;
 }
 
+<<<<<<< HEAD
+=======
+.text-ellipsis {
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0 auto;
+}
+
+>>>>>>> feature/donghan-backup
 .clickable-reason {
 	color: #2563eb;
 	font-weight: 600;
@@ -200,6 +303,7 @@ button {
 	font-size: 0.85rem;
 	font-weight: 600;
 }
+<<<<<<< HEAD
 
 .text-ellipsis {
 	max-width: 250px;
@@ -208,6 +312,8 @@ button {
 	text-overflow: ellipsis;
 	margin: 0 auto;
 }
+=======
+>>>>>>> feature/donghan-backup
 </style>
 </head>
 <body>
@@ -227,9 +333,14 @@ button {
 		<div class="container header-inner flex-between"
 			style="display: flex; align-items: center; height: 100%; padding: 0 20px;">
 			<a href="${pageContext.request.contextPath}/main/main.do"
+<<<<<<< HEAD
 				class="logo-area" style="text-decoration: none">
 				<h1 class="logo-text" style="margin: 0;">내면의 흔적</h1>
 			</a>
+=======
+				class="logo-area" style="text-decoration: none"><h1
+					class="logo-text" style="margin: 0;">내면의 흔적</h1></a>
+>>>>>>> feature/donghan-backup
 			<div class="auth-links">
 				<span class="auth-item" style="color: #3b82f6">관리자님 환영합니다</span> <span
 					class="divider">|</span> <a href="javascript:doLogout();"
@@ -270,10 +381,17 @@ button {
 			<form action="adminPage.do" method="get" id="searchForm"
 				class="admin-search-box">
 				<input type="hidden" name="menu" value="${menu}"> <select
+<<<<<<< HEAD
 					name="searchDiv" class="admin-search-select">
 					<option value="10" ${searchDiv == '10' ? 'selected' : ''}>제목/내용</option>
 					<option value="20" ${searchDiv == '20' ? 'selected' : ''}>작성자/ID</option>
 				</select> <input type="text" name="searchWord" class="admin-search-input"
+=======
+					name="searchDiv" class="admin-search-select"><option
+						value="10" ${searchDiv == '10' ? 'selected' : ''}>제목/내용</option>
+					<option value="20" ${searchDiv == '20' ? 'selected' : ''}>작성자/ID</option></select>
+				<input type="text" name="searchWord" class="admin-search-input"
+>>>>>>> feature/donghan-backup
 					value="${searchWord}" placeholder="검색어를 입력하세요">
 				<button type="submit" class="btn-search">검색</button>
 			</form>
@@ -287,6 +405,17 @@ button {
 							style="color: #ef4444; vertical-align: middle;"></i> 신고 내역 관리
 					</div>
 					<table class="custom-table">
+<<<<<<< HEAD
+=======
+						<colgroup>
+							<col class="col-chk">
+							<col class="col-num">
+							<col class="col-type">
+							<col class="col-content">
+							<col class="col-user">
+							<col class="col-mng">
+						</colgroup>
+>>>>>>> feature/donghan-backup
 						<thead>
 							<tr>
 								<th><input type="checkbox"
@@ -304,6 +433,7 @@ button {
 									<c:forEach var="vo" items="${reportList}">
 										<tr>
 											<td><input type="checkbox" class="report-chk"
+<<<<<<< HEAD
 												value="${vo.reportSid}"></td>
 											<td>#${vo.reportSid}</td>
 											<td><span class="type-badge">${vo.reportCategory == '10' ? '욕설' : (vo.reportCategory == '20' ? '음란' : (vo.reportCategory == '30' ? '홍보' : '기타'))}</span></td>
@@ -319,18 +449,66 @@ button {
 											<td>${vo.regId}</td>
 											<td><button type="button" class="btn-admin-del"
 													onclick="deleteOne('report', '${vo.reportSid}')">삭제</button></td>
+=======
+												value="${vo.reportSid}" data-csid="${vo.commentSid}"
+												data-dsid="${vo.diarySid}" data-fsid="${vo.famousSid}"></td>
+											<td>#${vo.reportSid}</td>
+											<td><span class="type-badge">${vo.reportCategory == 10 ? '욕설' : (vo.reportCategory == 20 ? '음란' : (vo.reportCategory == 30 ? '홍보' : '기타'))}</span></td>
+											<td
+												onclick="openReportModal('${fn:escapeXml(vo.reportContent)}', '${fn:escapeXml(vo.diaryContent)}', '${vo.diarySid}', '${vo.commentSid}', '${vo.famousSid}')"><div
+													class="text-ellipsis clickable-reason">${vo.reportContent}</div></td>
+											<td>${vo.regId}</td>
+											<td><button type="button" class="btn-admin-del"
+													onclick="deleteOneReport('${vo.reportSid}', '${vo.commentSid}', '${vo.diarySid}', '${vo.famousSid}')">삭제</button></td>
+>>>>>>> feature/donghan-backup
 										</tr>
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
 									<tr>
+<<<<<<< HEAD
 										<td colspan="6" class="no-data"
 											style="text-align: center; padding: 50px;">조회된 결과가 없습니다.</td>
+=======
+										<td colspan="6" class="no-data">조회된 결과가 없습니다.</td>
+>>>>>>> feature/donghan-backup
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
+<<<<<<< HEAD
+=======
+					<div class="admin-pagination">
+						<c:if test="${reportMaxPage > 0}">
+							<c:set var="pb" value="5" />
+							<c:set var="cp"
+								value="${empty param.reportPage ? 1 : param.reportPage}" />
+							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
+								integerOnly="true" />
+							<c:set var="sp" value="${cb * pb + 1}" />
+							<c:set var="ep" value="${sp + pb - 1}" />
+							<c:if test="${ep > reportMaxPage}">
+								<c:set var="ep" value="${reportMaxPage}" />
+							</c:if>
+							<c:if test="${sp > 1}">
+								<a
+									href="adminPage.do?menu=${menu}&reportPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
+									class="page-link">&lt;</a>
+							</c:if>
+							<c:forEach var="i" begin="${sp}" end="${ep}">
+								<a
+									href="adminPage.do?menu=${menu}&reportPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
+									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
+							</c:forEach>
+							<c:if test="${ep < reportMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&reportPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
+									class="page-link">&gt;</a>
+							</c:if>
+						</c:if>
+					</div>
+>>>>>>> feature/donghan-backup
 				</div>
 			</c:if>
 
@@ -343,6 +521,15 @@ button {
 							style="color: #3b82f6; vertical-align: middle;"></i> 회원 정보 관리
 					</div>
 					<table class="custom-table">
+<<<<<<< HEAD
+=======
+						<colgroup>
+							<col class="col-chk">
+							<col class="col-user">
+							<col class="col-content">
+							<col class="col-mng">
+						</colgroup>
+>>>>>>> feature/donghan-backup
 						<thead>
 							<tr>
 								<th><input type="checkbox"
@@ -368,13 +555,49 @@ button {
 								</c:when>
 								<c:otherwise>
 									<tr>
+<<<<<<< HEAD
 										<td colspan="4" class="no-data"
 											style="text-align: center; padding: 50px;">조회된 결과가 없습니다.</td>
+=======
+										<td colspan="4" class="no-data">조회된 결과가 없습니다.</td>
+>>>>>>> feature/donghan-backup
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
+<<<<<<< HEAD
+=======
+					<div class="admin-pagination">
+						<c:if test="${userMaxPage > 0}">
+							<c:set var="pb" value="5" />
+							<c:set var="cp"
+								value="${empty param.userPage ? 1 : param.userPage}" />
+							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
+								integerOnly="true" />
+							<c:set var="sp" value="${cb * pb + 1}" />
+							<c:set var="ep" value="${sp + pb - 1}" />
+							<c:if test="${ep > userMaxPage}">
+								<c:set var="ep" value="${userMaxPage}" />
+							</c:if>
+							<c:if test="${sp > 1}">
+								<a
+									href="adminPage.do?menu=${menu}&userPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
+									class="page-link">&lt;</a>
+							</c:if>
+							<c:forEach var="i" begin="${sp}" end="${ep}">
+								<a
+									href="adminPage.do?menu=${menu}&userPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
+									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
+							</c:forEach>
+							<c:if test="${ep < userMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&userPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
+									class="page-link">&gt;</a>
+							</c:if>
+						</c:if>
+					</div>
+>>>>>>> feature/donghan-backup
 				</div>
 			</c:if>
 
@@ -387,6 +610,16 @@ button {
 							style="color: #10b981; vertical-align: middle;"></i> 게시글 내역 관리
 					</div>
 					<table class="custom-table">
+<<<<<<< HEAD
+=======
+						<colgroup>
+							<col class="col-chk">
+							<col class="col-num">
+							<col class="col-content">
+							<col class="col-user">
+							<col class="col-mng">
+						</colgroup>
+>>>>>>> feature/donghan-backup
 						<thead>
 							<tr>
 								<th><input type="checkbox"
@@ -406,9 +639,14 @@ button {
 												value="${diary.diarySid}"></td>
 											<td>${diary.diarySid}</td>
 											<td
+<<<<<<< HEAD
 												onclick="openDiaryModal('상세', '${fn:escapeXml(diary.diaryTitle)}', '${fn:escapeXml(diary.diaryContent)}', '${diary.diarySid}')">
 												<div class="text-ellipsis clickable-reason">${diary.diaryTitle}</div>
 											</td>
+=======
+												onclick="openDiaryModal('상세', '${fn:escapeXml(diary.diaryTitle)}', '${fn:escapeXml(diary.diaryContent)}', '${diary.diarySid}')"><div
+													class="text-ellipsis clickable-reason">${diary.diaryTitle}</div></td>
+>>>>>>> feature/donghan-backup
 											<td>${diary.nickname}</td>
 											<td><button type="button" class="btn-admin-del"
 													onclick="deleteOne('diary', '${diary.diarySid}')">삭제</button></td>
@@ -417,19 +655,56 @@ button {
 								</c:when>
 								<c:otherwise>
 									<tr>
+<<<<<<< HEAD
 										<td colspan="5" class="no-data"
 											style="text-align: center; padding: 50px;">조회된 결과가 없습니다.</td>
+=======
+										<td colspan="5" class="no-data">조회된 결과가 없습니다.</td>
+>>>>>>> feature/donghan-backup
 									</tr>
 								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>
+<<<<<<< HEAD
+=======
+					<div class="admin-pagination">
+						<c:if test="${diaryMaxPage > 0}">
+							<c:set var="pb" value="5" />
+							<c:set var="cp"
+								value="${empty param.diaryPage ? 1 : param.diaryPage}" />
+							<fmt:parseNumber var="cb" value="${(cp - 1) / pb}"
+								integerOnly="true" />
+							<c:set var="sp" value="${cb * pb + 1}" />
+							<c:set var="ep" value="${sp + pb - 1}" />
+							<c:if test="${ep > diaryMaxPage}">
+								<c:set var="ep" value="${diaryMaxPage}" />
+							</c:if>
+							<c:if test="${sp > 1}">
+								<a
+									href="adminPage.do?menu=${menu}&diaryPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
+									class="page-link">&lt;</a>
+							</c:if>
+							<c:forEach var="i" begin="${sp}" end="${ep}">
+								<a
+									href="adminPage.do?menu=${menu}&diaryPage=${i}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
+									class="page-link ${cp == i ? 'active' : ''}">${i}</a>
+							</c:forEach>
+							<c:if test="${ep < diaryMaxPage}">
+								<a
+									href="adminPage.do?menu=${menu}&diaryPage=${ep+1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
+									class="page-link">&gt;</a>
+							</c:if>
+						</c:if>
+					</div>
+>>>>>>> feature/donghan-backup
 				</div>
 			</c:if>
 		</div>
 	</main>
 
 	<script>
+<<<<<<< HEAD
   var cp = "${pageContext.request.contextPath}";
 
   $(document).ready(function() { 
@@ -541,5 +816,213 @@ button {
 
   function doLogout() { if (confirm("로그아웃 하시겠습니까?")) location.href = cp + "/user/doLogout.do"; }
 </script>
+=======
+		var cp = "${pageContext.request.contextPath}";
+
+		$(document).ready(function() {
+			if (typeof lucide !== 'undefined')
+				lucide.createIcons();
+		});
+
+		$(document).on('keydown', function(e) {
+			if (e.key === 'Escape' || e.keyCode === 27) {
+				if ($('#detailModal').is(':visible'))
+					closeModal();
+			}
+		});
+
+		function closeModal() {
+			$('#detailModal').hide();
+		}
+		function toggleAll(obj, target) {
+			$("." + target).prop("checked", $(obj).is(":checked"));
+		}
+
+		// [이동 버튼 완벽 복구] 신고 상세 모달
+		function openReportModal(reportContent, diaryContent, dSid, cSid, fSid) {
+			function getValidSid(val) {
+				if (!val || val === 'null' || val === '0' || val === 0
+						|| val === 'undefined')
+					return "";
+				return String(val).trim();
+			}
+
+			var diarySid = getValidSid(dSid);
+			var commentSid = getValidSid(cSid);
+			var famousSid = getValidSid(fSid);
+
+			$('#modalTitle').text("신고 상세 확인");
+			var detailUrl = "";
+			var buttonText = "";
+
+			if (commentSid !== "") {
+				if (diarySid !== "") {
+					detailUrl = cp + "/diary/doSelectOne.do?diarySid="
+							+ diarySid;
+					buttonText = "해당 댓글이 있는 일기 보기";
+				} else if (famousSid !== "") {
+					detailUrl = cp + "/famous/getFamousDetail.do?famousSid="
+							+ famousSid;
+					buttonText = "해당 댓글이 있는 명언 보기";
+				}
+			} else if (famousSid !== "") {
+				detailUrl = cp + "/famous/getFamousDetail.do?famousSid="
+						+ famousSid;
+				buttonText = "원본 명언 게시글 보기";
+			} else if (diarySid !== "") {
+				detailUrl = cp + "/diary/doSelectOne.do?diarySid=" + diarySid;
+				buttonText = "원본 일기 게시글 보기";
+			}
+
+			var html = '<div class="report-box" style="padding:13px; background:#fff1f2; border-radius:10px; margin-bottom:15px;">'
+					+ '<b>신고 사유 : </b><br/><span style="color: #ef4444; font-weight: bold;"> '
+					+ (reportContent || "사유 없음")
+					+ '</span></div>'
+					+ '<div class="diary-box" style="padding:15px; background:#f8fafc; border-radius:10px; border: 1px solid #e2e8f0; margin-bottom:15px;">'
+					+ '<b style="color: #64748b; font-size: 0.9rem;">내용 본문 :</b>'
+					+ '<pre style="white-space:pre-wrap; margin-top:8px; line-height: 1.6;">'
+					+ (diaryContent || "내용 없음") + '</pre></div>';
+
+			if (detailUrl !== "") {
+				html += '<a href="' + detailUrl + '" target="_blank" class="btn-search" style="display:block; text-align:center; padding: 12px; text-decoration:none; font-weight: bold; border-radius: 10px; background-color: #3b82f6; color: white;">'
+						+ buttonText + '</a>';
+			}
+
+			$('#modalBody').html(html);
+			if (typeof lucide !== 'undefined')
+				lucide.createIcons();
+			$('#detailModal').css('display', 'flex');
+		}
+
+		function openDiaryModal(title, sub, content, diarySid) {
+			$('#modalTitle').text(sub || "상세 정보");
+			var html = '<div style="padding:15px; background:#f8fafc; border-radius:10px; border: 1px solid #e2e8f0;"><pre style="white-space:pre-wrap;">'
+					+ (content || "내용 없음")
+					+ '</pre></div>'
+					+ '<a href="'
+					+ cp
+					+ '/diary/doSelectOne.do?diarySid='
+					+ diarySid
+					+ '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:15px; text-decoration:none;">게시글 바로가기</a>';
+			$('#modalBody').html(html);
+			$('#detailModal').css('display', 'flex');
+		}
+
+		// 통합 삭제 통신 (강퇴, 일기삭제용)
+		function processDelete(type, id) {
+			var url = cp + "/admin/doDelete" + type.charAt(0).toUpperCase()
+					+ type.slice(1) + ".do";
+			var data = {
+				"id" : id
+			};
+			if (type === 'user')
+				data.userId = id;
+			else if (type === 'diary')
+				data.diarySid = id;
+
+			return $.ajax({
+				type : "POST",
+				url : url,
+				data : data
+			});
+		}
+
+		// [에러 방지 독립 로직] 신고 전용 삭제
+		function deleteOneReport(rSid, cSid, dSid, fSid) {
+			if (!confirm("원본 데이터와 신고 내역을 모두 처리하시겠습니까?"))
+				return;
+			$.ajax({
+				type : "POST",
+				url : cp + "/admin/doDeleteReport.do",
+				data : {
+					reportSid : rSid,
+					commentSid : (cSid && cSid !== '0') ? cSid : null,
+					diarySid : (dSid && dSid !== '0') ? dSid : null,
+					famousSid : (fSid && fSid !== '0') ? fSid : null
+				},
+				success : function() {
+					alert("정상적으로 처리되었습니다.");
+					location.reload();
+				},
+				error : function() {
+					alert("통신 오류 발생");
+				}
+			});
+		}
+
+		function deleteOne(type, id) {
+			if (!confirm("정말 처리하시겠습니까?"))
+				return;
+			processDelete(type, id).done(function(res) {
+				alert(res);
+				location.reload();
+			}).fail(function(xhr) {
+				alert("서버 오류가 발생했습니다. (에러 코드: " + xhr.status + ")");
+			});
+		}
+
+		// 일괄 삭제 (에러 완벽 차단 및 정확한 결과 체크)
+		function deleteSelected() {
+			var selected = [];
+			$(".user-chk:checked, .diary-chk:checked, .report-chk:checked")
+					.each(function() {
+						var $chk = $(this);
+						var type = $chk.attr('class').split('-')[0];
+						selected.push({
+							type : type,
+							id : $chk.val(),
+							cSid : $chk.data('csid'),
+							dSid : $chk.data('dsid'),
+							fSid : $chk.data('fsid')
+						});
+					});
+
+			if (selected.length === 0)
+				return alert("선택된 항목이 없습니다.");
+			if (!confirm("선택한 항목들을 일괄 처리하시겠습니까?"))
+				return;
+
+			var completed = 0;
+			var hasError = false;
+
+			// 모든 AJAX 요청을 배열에 담습니다.
+			var requests = selected.map(function(item) {
+				var ajaxCall = (item.type === 'report') ? $.ajax({
+					type : "POST",
+					url : cp + "/admin/doDeleteReport.do",
+					data : {
+						reportSid : item.id,
+						commentSid : item.cSid,
+						diarySid : item.dSid,
+						famousSid : item.fSid
+					}
+				}) : processDelete(item.type, item.id);
+
+				// 각 요청이 성공했을 때만 카운트
+				return ajaxCall.done(function(res) {
+					completed++;
+				}).fail(function(xhr) {
+					hasError = true;
+					console.error("삭제 실패 항목 ID: " + item.id, xhr.status);
+				});
+			});
+
+			// 모든 요청이 끝난 후 (성공/실패 상관없이) 실행
+			$.when.apply($, requests).always(function() {
+				if (hasError) {
+					alert("일부 항목 처리 중 서버 에러가 발생했습니다. 콘솔을 확인하세요.");
+				} else {
+					alert(completed + "건의 처리가 완료되었습니다.");
+				}
+				location.reload();
+			});
+		}
+
+		function doLogout() {
+			if (confirm("로그아웃 하시겠습니까?"))
+				location.href = cp + "/user/doLogout.do";
+		}
+	</script>
+>>>>>>> feature/donghan-backup
 </body>
 </html>

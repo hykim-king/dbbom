@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pcwk.ehr.mapper.FamousMapper">
 
+
+
 	<resultMap type="com.pcwk.ehr.famous.domain.FamousVO"
 		id="famousMap">
 		<id column="famous_sid" property="famousSid" />
@@ -14,20 +16,28 @@
 		<result column="famous_reccount" property="famousReccount" />
 		<result column="famous_time" property="famousTime" />
 		<result column="reg_id" property="regId" />
+		<result column="total_cnt" property="totalCnt" />
+
+		<association property="userVO"
+			javaType="com.pcwk.ehr.user.domain.UserVO">
+			<result property="nickname" column="nickname" />
+		</association>
+
 	</resultMap>
 
 
 	<!-- 명언 베스트 3 추출 -->
-	<select id="getBest3" resultMap="famousMap">
-		SELECT *
-		FROM (
-		SELECT *
-		FROM famous_collection
-		WHERE famous_reccount  <![CDATA[> ]]>0
-		ORDER BY famous_reccount DESC, famous_time DESC )
-		WHERE ROWNUM <![CDATA[ <= ]]>
-		3
-	</select>
+<select id="getBest3" resultMap="famousMap">
+    SELECT *
+    FROM (
+        SELECT f.*, m.nickname 
+        FROM famous_collection f
+        LEFT JOIN users m ON f.reg_id = m.user_id 
+        WHERE f.famous_reccount <![CDATA[>]]> 0
+        ORDER BY f.famous_reccount DESC, f.famous_time DESC 
+    )
+    WHERE ROWNUM <![CDATA[<=]]> 3
+</select>
 
 	<!-- 명언 전체 리스트 조회(페이징) -->
 	<sql id="searchCondition">
@@ -43,29 +53,39 @@
 		</where>
 	</sql>
 
-	<select id="allDoRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="famousMap">
+<select id="allDoRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultMap="famousMap">
     SELECT A.*, B.total_cnt
     FROM (
-        SELECT tt1.rnum AS no,
-               tt1.famous_sid,
-               tt1.famous_content,
-               tt1.famous_author,
-               tt1.famous_emotion, 
-               tt1.famous_viewcount,  tt1.famous_reccount,
-               tt1.famous_time,
-               tt1.reg_id
+        SELECT tt1.*
         FROM (
             SELECT ROWNUM AS rnum, t1.* FROM (
-                SELECT * FROM famous_collection
+                SELECT f.*, m.nickname 
+                FROM famous_collection f
+                LEFT JOIN users m ON f.reg_id = m.user_id 
                 WHERE 1=1
-                ORDER BY famous_reccount DESC, famous_time DESC
+                <if test="searchWord != null and searchWord != ''">
+                    <choose>
+                        <when test="searchDiv == '10'"> AND f.famous_content LIKE '%' || #{searchWord} || '%' </when>
+                        <when test="searchDiv == '20'"> AND f.famous_author LIKE '%' || #{searchWord} || '%' </when>
+                    </choose>
+                </if>
+                ORDER BY f.famous_time DESC -- 최신순 정렬
             ) t1
-            WHERE ROWNUM <![CDATA[<=]]> (#{pageSize} * (#{pageNo} - 1) + #{pageSize})
+            WHERE ROWNUM <![CDATA[ <= ]]> (#{pageNo} * #{pageSize})
         ) tt1
-        WHERE tt1.rnum <![CDATA[>=]]> (#{pageSize} * (#{pageNo} - 1) + 1)
+        WHERE tt1.rnum <![CDATA[ >= ]]> ((#{pageNo} - 1) * #{pageSize} + 1)
     ) A
     CROSS JOIN (
-        SELECT COUNT(*) total_cnt FROM famous_collection WHERE 1=1
+        SELECT COUNT(*) total_cnt 
+        FROM famous_collection
+        <where>
+            <if test="searchWord != null and searchWord != ''">
+                <choose>
+                    <when test="searchDiv == '10'"> AND famous_content LIKE '%' || #{searchWord} || '%' </when>
+                    <when test="searchDiv == '20'"> AND famous_author LIKE '%' || #{searchWord} || '%' </when>
+                </choose>
+            </if>
+        </where>
     ) B
 </select>
 
@@ -201,12 +221,12 @@
 		parameterType="com.pcwk.ehr.famous.domain.FamousVO">
 		UPDATE famous_collection
 		SET
-		famous_content =
-		#{famousContent},
+		famous_author = #{famousAuthor},
+		famous_content = #{famousContent},
 		famous_emotion = #{famousEmotion}
-		WHERE famous_sid =
-		#{famousSid}
+		WHERE famous_sid = #{famousSid}
 	</update>
+
 
 
 
@@ -249,10 +269,31 @@
 		#{famousSid}
 	</delete>
 
+	<update id="doUpdateRecTime"
+		parameterType="com.pcwk.ehr.user.domain.UserVO">
+		UPDATE users
+		SET last_rec_time = SYSDATE
+		WHERE user_id = #{userId}
+	</update>
+
+
 	<!-- 전체 삭제 _테스트용 -->
 	<delete id="deleteAll">
 		DELETE FROM famous_collection
 	</delete>
+
+	<!-- 감정(P/N)별 랜덤 명언 1개 조회 -->
+	<select id="getRandomByEmotion" parameterType="string" resultMap="famousMap">
+		SELECT * FROM (
+			SELECT * FROM famous_collection
+			WHERE famous_emotion = #{famousEmotion}
+			ORDER BY dbms_random.value
+		) WHERE ROWNUM = 1
+	</select>
+
+	<select id="getById" parameterType="int" resultType="com.pcwk.ehr.famous.domain.FamousVO">
+  		SELECT * FROM famous_collection WHERE famous_sid = #{famousSid}
+	</select>
 
 
 

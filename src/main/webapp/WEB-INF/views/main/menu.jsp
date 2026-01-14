@@ -60,6 +60,7 @@ request.setAttribute("isDiaryPage", isDiaryPage);
             });
         }
 
+<<<<<<< HEAD
         // 회원탈퇴 (관리자 보호)
         function doWithdraw() {
             var isAdmin = ${isAdmin};
@@ -68,6 +69,11 @@ request.setAttribute("isDiaryPage", isDiaryPage);
                 return;
             }
             if (!confirm("정말 회원탈퇴 하시겠습니까?")) return;
+=======
+        // 회원탈퇴 로직
+        <%-- function doWithdraw() {
+            if (!confirm("정말 회원탈퇴 하시겠습니까?\n(가입 정보가 DB에서 삭제됩니다.)")) return;
+>>>>>>> feature/donghan-backup
             $.ajax({
                 url: cp + "/user/doWithdrawAjax.do",
                 type: "POST",
@@ -78,8 +84,9 @@ request.setAttribute("isDiaryPage", isDiaryPage);
                 },
                 error: function() { alert("오류 발생"); }
             });
-        }
+        } --%>
     </script>
+<<<<<<< HEAD
 
 	<div class="container header-inner flex-between">
 		<a href="<%=request.getContextPath()%>/main/main.do" class="logo-area"
@@ -114,6 +121,28 @@ request.setAttribute("isDiaryPage", isDiaryPage);
 			</c:choose>
 		</div>
 	</div>
+=======
+  <div class="container header-inner flex-between">
+    <a href="<%=request.getContextPath()%>/main/main.do" class="logo-area" style="text-decoration: none">
+      <h1 class="logo-text">내면의 흔적</h1>
+    </a>
+    <div class="auth-links">
+      <% if (!isLogin) { %>
+          <a href="<%=request.getContextPath()%>/user/signIn.do" class="auth-item">로그인</a>
+          <span class="divider">|</span>
+          <a href="<%=request.getContextPath()%>/user/signUp.do" class="auth-item">회원가입</a>
+      <% } else { %>
+          <span class="auth-item"><b><%= welcomeName %></b>님 환영합니다</span>
+
+          
+          <span class="divider">|</span>
+          <a href="javascript:doLogout();" class="auth-item">로그아웃</a>
+          <%-- <span class="divider">|</span>
+          <a href="javascript:doWithdraw();" class="auth-item" style="color:red; font-size:0.8rem;">회원탈퇴</a> --%>
+      <% } %>
+    </div>
+  </div>
+>>>>>>> feature/donghan-backup
 </header>
 
 <div class="container">

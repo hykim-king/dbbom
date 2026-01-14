@@ -35,4 +35,21 @@ public interface DiaryMapper extends WorkDiv<DiaryVO> {
 
     /** 추천수 증가 */
     int updateRecCount(DiaryVO param);
+
+
+        /*특정 월 일기 데이터 가져오기*/
+    List<DiaryVO> selectMonthDiary(DiaryVO param);
+
+        // WorkDiv에 정의된 doSave, doDelete, doUpdate, doSelectOne, doRetrieve는 자동 포함됨
+	/** 사용자별 총 일기 수 조회 */
+	int getUserTotalCount(DiaryVO param);
+
+	/** 사용자별 이번 달 작성 일기 수 조회 */
+	int getUserMonthCount(DiaryVO param);
+	
+	 /** 특정 사용자의 전체 일기 개수 조회 */
+    int getDiaryCount(DiaryVO param);
+
+    /** 특정 사용자의 이번 달 일기 개수 조회 */
+    int getMonthDiaryCount(DiaryVO param);
 }

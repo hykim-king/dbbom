@@ -31,7 +31,11 @@
         
         
         <property name="context-root" value="ehr"/>
+<<<<<<< HEAD
         <property name="java-output-path" value="/ehr/target/classes"/>
+=======
+        <property name="java-output-path" value="/dbbom/target/classes"/>
+>>>>>>> feature/donghan-backup
                                 	
     
     

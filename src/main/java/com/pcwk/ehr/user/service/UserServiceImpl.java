@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pcwk.ehr.mapper.UserMapper;
+import com.pcwk.ehr.user.domain.MailUtil;
 import com.pcwk.ehr.user.domain.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     final Logger log = LogManager.getLogger(getClass());
-
+    
+    @Autowired
+    private MailUtil mailUtil; // 1단계에서 만든 유틸
+    
     @Autowired
     UserMapper userMapper;
 
@@ -99,7 +103,66 @@ public class UserServiceImpl implements UserService {
         log.debug("doFindId() param: {}", param);
         return userMapper.doFindId(param);
     }
+    
+    @Override
+    public String doFindPw(UserVO param) {
+        // 1. DB에서 아이디, 이름, 이메일이 모두 일치하는 사용자가 있는지 확인
+        int count = userMapper.doCheckUserForPw(param);
+        if (count == 0) {
+            return "입력하신 정보와 일치하는 회원이 없습니다.";
+        }
 
+        // 2. 임시 비밀번호 생성
+        String tempPw = java.util.UUID.randomUUID().toString().substring(0, 8);
+
+        // 3. 해당 사용자의 비밀번호를 임시 비밀번호로 업데이트
+        param.setUserPw(tempPw); 
+        int flag = userMapper.doUpdatePw(param);
+
+        if (flag == 1) {
+            // 4. 메일 발송 (param.getUserEmail()이 사용자가 화면에서 입력한 그 이메일입니다!)
+            String title = "[서비스명] 임시 비밀번호 안내";
+            String content = param.getUserName() + "님의 임시 비밀번호는 " + tempPw + " 입니다.";
+            
+            // 여기가 포인트입니다. 사용자가 입력한 이메일 주소로 바로 보냅니다.
+            boolean isSent = mailUtil.sendMail(param.getUserEmail(), title, content);
+            
+            if (isSent) {
+                return "임시 비밀번호가 입력하신 이메일(" + param.getUserEmail() + ")로 발송되었습니다.";
+            } else {
+                return "메일 서버 오류로 발송에 실패했습니다.";
+            }
+        }
+        return "시스템 오류가 발생했습니다.";
+    }
+    
+    @Override
+    public String doUpdatePassword(String userId, String oldPw, String newPw) {
+        UserVO user = new UserVO();
+        user.setUserId(userId);
+        user.setUserPw(oldPw);
+        
+        // 1. 기존 비밀번호 확인
+        int count = userMapper.doCheckPassword(user);
+        if (count == 0) {
+            return "기존 비밀번호가 일치하지 않습니다.";
+        }
+        
+        // 2. 새로운 비밀번호로 업데이트
+        user.setUserPw(newPw);
+        int flag = userMapper.doChangePassword(user);
+        
+        return (flag == 1) ? "1" : "비밀번호 변경 중 오류가 발생했습니다.";
+    }
+    
+    @Override
+    public int doUpdateInfo(UserVO param) {
+        log.debug("doUpdateInfo() param: {}", param);
+        // Mapper의 doUpdate를 재사용합니다. 
+        // Mapper.xml의 doUpdate는 userId를 조건으로 nickname과 userIntro를 포함해 업데이트합니다.
+        return userMapper.doUpdate(param);
+    }
+    
     private boolean isEmpty(String s) {
         return s == null || s.trim().isEmpty();
     }
