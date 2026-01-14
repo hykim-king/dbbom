@@ -316,11 +316,13 @@
                                         </span>
                                         <span class="comment-date" style="font-size: 12px; color: #94a3b8;">
                                             <fmt:formatDate value="${comment.commentUpdateDate}" pattern="yyyy-MM-dd HH:mm"/>
-                                        </span>
-                                        							<a class="btn-action-text"
+
+                                                                                    							<a class="btn-action-text"
 								href="${pageContext.request.contextPath}/report/commentReportPage.do?type=comment&id=${comment.commentSid}"
 								onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
 								style="font-size: 13px; cursor: pointer; background: none; border: none; color: #ef4444; padding: 0; margin-left: 12px; text-decoration: none;">🚨신고</a>
+                                        </span>
+
                                     </div>
                                     <p class="comment-text" style="color: #475569; margin: 0;">${comment.commentContent}</p>
 

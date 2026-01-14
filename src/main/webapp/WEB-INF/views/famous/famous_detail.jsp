@@ -213,12 +213,15 @@
                         <span><i data-lucide="user" size="14"></i> ${detail.regId}</span>
                         <span style="margin-left: 15px;"><i data-lucide="calendar" size="14"></i> ${detail.famousTime}</span>
                     </div>
-                    <span><i data-lucide="eye" size="14"></i> 조회 ${detail.famousViewcount}</span>
+                    <span><i data-lucide="eye" size="14"></i> 조회 ${detail.famousViewcount}
                     
-                <a class="btn-action-text"
+                                    <a class="btn-action-text"
 				href="${pageContext.request.contextPath}/report/famousReportPage.do?type=famous&id=${famousVO.famousSid}"
 				onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
 				style="font-size: 13px; cursor: pointer; background: none; border: none; color: #ef4444; padding: 0; margin-left: 12px; text-decoration: none;">🚨신고</a>
+                    </span>
+                    
+
                 </div>
             </header>
 
@@ -269,6 +272,12 @@
 							                        </span>
 							                        <span class="comment-date" style="font-size: 12px; color: #94a3b8;">
 							                            ${comment.commentUpdateDate}
+
+                                    <a class="btn-action-text"
+				href="${pageContext.request.contextPath}/report/famousReportPage.do?type=famous&id=${famousVO.famousSid}"
+				onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
+				style="font-size: 13px; cursor: pointer; background: none; border: none; color: #ef4444; padding: 0; margin-left: 12px; text-decoration: none;">🚨신고</a>
+
 							                        </span>
 							                    </div>
 							
