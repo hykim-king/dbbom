@@ -37,7 +37,7 @@
 	scroll-margin-top: 100px;
 }
 
-/* --- 검색창: 1/3 크기 및 오른쪽 정렬 --- */
+/* --- 검색창: 오른쪽 정렬 및 너비 제한 --- */
 .admin-search-box {
 	display: flex;
 	gap: 10px;
@@ -60,7 +60,7 @@
 	min-width: 200px;
 }
 
-/* --- 버튼 스타일 디자인 --- */
+/* --- 버튼 스타일 --- */
 button {
 	cursor: pointer;
 	border: none;
@@ -166,7 +166,7 @@ button {
 	border-color: #3b82f6;
 }
 
-/* --- 모달 및 기타 --- */
+/* --- 모달 시스템 --- */
 .modal-overlay {
 	display: none;
 	position: fixed;
@@ -182,10 +182,29 @@ button {
 
 .modal-content {
 	background: white;
-	width: 550px;
-	padding: 2rem;
+	width: 90%;
+	max-width: 550px;
+	padding: 2.5rem;
 	border-radius: 20px;
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+}
+
+.modal-body {
+	line-height: 1.6;
+	color: #334155;
+	text-align: left;
+	max-height: 60vh;
+	overflow-y: auto;
+	word-break: break-all;
+	overflow-wrap: break-word;
+}
+
+.report-box, .diary-box {
+	width: 100%;
+	box-sizing: border-box;
+	word-break: break-all;
+	margin-bottom: 12px;
 }
 
 .type-badge {
@@ -212,12 +231,12 @@ button {
 	cursor: pointer;
 }
 
-/* 결과 없음 스타일 */
 .no-data {
 	padding: 50px !important;
 	color: #94a3b8;
 	font-weight: 600;
 	font-size: 1.1rem;
+	text-align: center;
 }
 </style>
 </head>
@@ -225,9 +244,10 @@ button {
 	<div id="detailModal" class="modal-overlay">
 		<div class="modal-content">
 			<div class="modal-header"
-				style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-				<h3 id="modalTitle" style="margin: 0;">상세 내용</h3>
-				<i data-lucide="x" style="cursor: pointer;" onclick="closeModal()"></i>
+				style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+				<h3 id="modalTitle" style="margin: 0; font-weight: 700;">상세 내용</h3>
+				<i data-lucide="x" style="cursor: pointer; color: #64748b;"
+					onclick="closeModal()"></i>
 			</div>
 			<div id="modalBody" class="modal-body"></div>
 		</div>
@@ -346,6 +366,7 @@ button {
 							<c:if test="${ep > reportMaxPage}">
 								<c:set var="ep" value="${reportMaxPage}" />
 							</c:if>
+
 							<c:if test="${sp > 1}">
 								<a
 									href="adminPage.do?menu=${menu}&reportPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section1"
@@ -418,6 +439,7 @@ button {
 							<c:if test="${ep > userMaxPage}">
 								<c:set var="ep" value="${userMaxPage}" />
 							</c:if>
+
 							<c:if test="${sp > 1}">
 								<a
 									href="adminPage.do?menu=${menu}&userPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section2"
@@ -495,6 +517,7 @@ button {
 							<c:if test="${ep > diaryMaxPage}">
 								<c:set var="ep" value="${diaryMaxPage}" />
 							</c:if>
+
 							<c:if test="${sp > 1}">
 								<a
 									href="adminPage.do?menu=${menu}&diaryPage=${sp-1}&searchDiv=${searchDiv}&searchWord=${searchWord}#section3"
@@ -526,25 +549,33 @@ button {
 
     function openReportModal(reportContent, diaryContent, diarySid) {
       $('#modalTitle').text("신고 내용 확인");
-      let html = '<div style="padding:13px; background:#fff1f2; border-radius:10px; margin-bottom:10px;">'
-          +   '<b>신고 내용 : </b>' 
-          +   '<span style="color: #ef4444; font-weight: bold;"> ' + reportContent + '</span>'
+      
+      let html = '<div class="report-box" style="padding:13px; background:#fff1f2; border-radius:10px; box-sizing:border-box;">'
+          +   '<b>신고 내용 : </b><br/>' 
+          +   '<span style="color: #ef4444; font-weight: bold; word-break: break-all;"> ' + (reportContent || "내용 없음") + '</span>'
           + '</div>'
-          + '<div style="padding:10px; background:#f8fafc; border-radius:10px;">'
+          + '<div class="diary-box" style="padding:10px; background:#f8fafc; border-radius:10px; box-sizing:border-box;">'
           +   '<b>원본 일기 내용 : </b>'
-          +   '<pre style="white-space:pre-wrap;">' + diaryContent + '</pre>'
+          +   '<pre style="white-space:pre-wrap; word-break: break-all; margin: 0; font-family: inherit;">' + (diaryContent || "원본 내용을 불러올 수 없습니다.") + '</pre>'
           + '</div>'
           + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:10px; text-decoration:none;">원본 보기</a>';
+          
       $('#modalBody').html(html);
       $('#detailModal').css('display', 'flex');
     }
 
     function openDiaryModal(title, subTitle, content, diarySid) {
-      $('#modalTitle').text(subTitle);
-      let html = '<div style="padding:10px; background:#f8fafc; border-radius:10px;">'
-          +   '<pre style="white-space:pre-wrap;">' + content + '</pre>'
+      $('#modalTitle').text(subTitle || "게시글 상세 정보");
+      
+      var displayContent = content ? content : "작성된 내용이 없습니다.";
+      
+      let html = '<div style="padding:15px; background:#f8fafc; border-radius:10px; box-sizing:border-box; border:1px solid #e2e8f0;">'
+          +   '<pre style="white-space:pre-wrap; word-break: break-all; font-family: inherit; margin: 0; line-height: 1.6;">' + displayContent + '</pre>'
           + '</div>'
-          + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:15px; text-decoration:none;">게시글 바로가기</a>';
+          + '<a href="' + cp + '/diary/doSelectOne.do?diarySid=' + diarySid + '" target="_blank" class="btn-search" style="display:block; text-align:center; margin-top:15px; text-decoration:none;">'
+          +   '게시글 바로가기 (새 창)'
+          + '</a>';
+          
       $('#modalBody').html(html);
       $('#detailModal').css('display', 'flex');
     }
@@ -574,6 +605,11 @@ button {
         });
       });
     }
-  </script>
+
+    function doLogout() {
+        if (!confirm("로그아웃 하시겠습니까?")) return;
+        location.href = cp + "/user/doLogout.do";
+    }
+    </script>
 </body>
 </html>
