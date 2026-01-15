@@ -83,27 +83,38 @@ public class reportController {
 	}
 
 	@GetMapping(value = "/report/commentReportPage.do")
-	public String commentReportPage(@RequestParam(value = "id", required = false) Integer commentSid, Model model,
-			HttpSession session) {
-		Object loginUser = session.getAttribute("loginUser");
-		if (loginUser == null) {
-			model.addAttribute("errorMsg", "로그인 후 이용 가능합니다.");
-			return "report/famous_report_page"; // 명언 리포트 페이지와 통합해서 사용한다면
-		}
+	public String commentReportPage(@RequestParam(value = "id", required = false) Integer commentSid, Model model, HttpSession session) {
+	    Object loginUser = session.getAttribute("loginUser");
+	    if (loginUser == null) {
+	        model.addAttribute("errorMsg", "로그인 후 이용 가능합니다.");
+	        return "report/comment_report_page";
+	    }
 
-		if (commentSid != null) {
-			// 댓글 정보 조회
-			CommentVO outVO = commentService.doSelectOne(commentSid);
-			model.addAttribute("commentVO", outVO);
+	    if (commentSid != null) {
+	        // 1. 공통 댓글 정보 조회
+	        CommentVO outVO = commentService.doSelectOne(commentSid);
+	        if (outVO == null) {
+	            model.addAttribute("errorMsg", "존재하지 않는 댓글입니다.");
+	            return "report/comment_report_page";
+	        }
+	        model.addAttribute("commentVO", outVO);
 
-			// 만약 댓글이 속한 명언 정보도 필요하다면 여기서 조회해서 famousVO로 담아줍니다.
-			if (outVO != null && outVO.getFamousSid() != 0) {
-				FamousVO famousVO = new FamousVO();
-				famousVO.setFamousSid(outVO.getFamousSid());
-				model.addAttribute("famousVO", famousService.doSelectOne(famousVO));
-			}
-		}
-		return "report/famous_report_page"; // 요청하신 jsp 이름으로 리턴
+	        // 2. [분리 핵심] 부모 게시판이 명언인지 일기인지 판단하여 각자 조회
+	        // 명언 모음집의 댓글인 경우
+	        if (outVO.getFamousSid() != null && outVO.getFamousSid() > 0) {
+	            FamousVO famousVO = new FamousVO();
+	            famousVO.setFamousSid(outVO.getFamousSid());
+	            model.addAttribute("famousVO", famousService.doSelectOne(famousVO));
+	        } 
+	        // 일기 공개 게시판의 댓글인 경우
+	        else if (outVO.getDiarySid() != null && outVO.getDiarySid() > 0) {
+	            DiaryVO diaryVO = new DiaryVO();
+	            diaryVO.setDiarySid(outVO.getDiarySid());
+	            // 조회수 증가 방지를 위해 일반 조회 메서드 사용 권장
+	            model.addAttribute("diaryVO", diaryService.upDoSelectOne(diaryVO));
+	        }
+	    }
+	    return "report/comment_report_page";
 	}
 
 	@PostMapping(value = "/report/doSave.do", produces = "application/json;charset=UTF-8")

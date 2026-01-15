@@ -1,8 +1,6 @@
 package com.pcwk.ehr.notice.noticeController;
 
 import java.util.List;
-
-
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,11 +33,10 @@ public class NoticeController {
 		log.debug("│ updateView()		 	  │");
 		log.debug("└──────────────────────────┘");
 
-		// 상세 조회 서비스를 재활용해서 데이터를 가져옴
 		NoticeVO outVO = noticeService.doSelectOne(inVO);
 		model.addAttribute("vo", outVO);
 
-		return "notice/notice_reg"; // 등록/수정 겸용 페이지
+		return "notice/notice_reg";
 	}
 
 	@PostMapping(value = "/doUpdate.do", produces = "application/json;charset=UTF-8")
@@ -51,13 +48,10 @@ public class NoticeController {
 			return "{\"status\":\"fail\", \"msg\":\"관리자가 아닙니다.\"}";
 		}
 
+		// [보완] 수정 시에도 작성자를 현재 로그인한 관리자의 닉네임으로 강제 설정
+		inVO.setRegId(loginUser.getUserId());
 		int flag = noticeService.doUpdate(inVO);
-		if (flag == 1) {
-			return "{\"status\":\"success\", \"msg\":\"수정되었습니다.\"}";
-		} else {
-			return "{\"status\":\"fail\", \"msg\":\"수정에 실패했습니다.\"}";
-		}
-
+		return flag == 1 ? "{\"status\":\"success\"}" : "{\"status\":\"fail\"}";
 	}
 
 	@RequestMapping(value = "/doDelete.do", produces = "application/json;charset=UTF-8")
@@ -67,15 +61,12 @@ public class NoticeController {
 		log.debug("│ doDelete()               │");
 		log.debug("└──────────────────────────┘");
 
-		// 1. 관리자 정보를 UserVO에서 가져옴 (admin01)
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 
-		// 2. 관리자인지 확인
 		if (loginUser == null || !"Y".equals(loginUser.getAdminChk())) {
 			return "{\"status\":\"fail\", \"msg\":\"관리자만 삭제 가능합니다.\"}";
 		}
 
-		// 3. 삭제
 		int flag = noticeService.doDelete(inVO);
 
 		String resultMessage = "";
@@ -86,14 +77,12 @@ public class NoticeController {
 		}
 
 		return resultMessage;
-
 	}
 
-	// 등록 화면으로 이동하는 메서드 추가
 	@GetMapping("/moveToReg.do")
 	public String moveToReg() {
 		log.debug("moveToReg() - 등록 화면 이동");
-		return "notice/notice_reg"; // WEB-INF/views/notice/notice_reg.jsp를 호출
+		return "notice/notice_reg";
 	}
 
 	@GetMapping("/noticeList.do")
@@ -111,16 +100,13 @@ public class NoticeController {
 		if (inVO.getSearchWord() == null)
 			inVO.setSearchWord("");
 
-		// 서비스 호출하여 DB 데이터 가져오기
 		List<NoticeVO> list = noticeService.doRetrieve(inVO);
 
-		//
 		int totalCnt = 0;
 		if (list != null && list.size() > 0) {
 			totalCnt = list.get(0).getTotalCnt();
 		}
 
-		// 화면(JSP)으로 데이터 전달
 		model.addAttribute("list", list);
 		model.addAttribute("vo", inVO);
 		model.addAttribute("totalCnt", totalCnt);
@@ -134,12 +120,12 @@ public class NoticeController {
 	public String doSave(NoticeVO inVO, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 
-		// 관리자 권한 체크 (isAdmin 필드가 'Y'인 경우)
 		if (loginUser == null || !"Y".equals(loginUser.getAdminChk())) {
 			return "{\"status\":\"fail\", \"msg\":\"관리자만 작성 가능합니다.\"}";
 		}
 
 		inVO.setRegId(loginUser.getUserId());
+
 		int flag = noticeService.doSave(inVO);
 
 		return flag == 1 ? "{\"status\":\"success\"}" : "{\"status\":\"fail\"}";
@@ -151,7 +137,6 @@ public class NoticeController {
 		NoticeVO outVO = noticeService.doSelectOne(inVO);
 		model.addAttribute("vo", outVO);
 
-		// 이 이름이 WEB-INF/views/notice/notice_mng.jsp 파일명과 정확히 일치해야 합니다.
 		return "notice/notice_mng";
 	}
 }
