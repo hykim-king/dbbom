@@ -4,40 +4,40 @@
 
 <mapper namespace="com.pcwk.ehr.mapper.ReportMapper">
 
-    <insert id="doSave" parameterType="ReportVO">
-        <selectKey keyProperty="reportSid" order="BEFORE" resultType="int">
-            SELECT REPORT_SEQ.NEXTVAL FROM DUAL
-        </selectKey>
-
-        INSERT INTO REPORT
-        (REPORT_SID,
-         REPORT_CONTENT,
-         REPORT_CATEGORY,
-         FAMOUS_SID,
-         COMMENT_SID,
-         DIARY_SID,
-         REG_ID)
-        VALUES (
-            #{reportSid},
-            #{reportContent},
-            #{reportCategory},
-            <choose>
-                <when test="famousSid != null">
-                    #{famousSid}, NULL, NULL
-                </when>
-                <when test="commentSid != null">
-                    NULL, #{commentSid}, NULL
-                </when>
-                <when test="diarySid != null">
-                    NULL, NULL, #{diarySid}
-                </when>
-                <otherwise>
-                    NULL, NULL, NULL
-                </otherwise>
-            </choose>,
-            #{regId}
-        )
-    </insert>
+		<insert id="doSave" parameterType="ReportVO">
+		    <selectKey keyProperty="reportSid" order="BEFORE" resultType="int">
+		        SELECT REPORT_SEQ.NEXTVAL FROM DUAL
+		    </selectKey>
+		
+		    INSERT INTO REPORT
+		    (REPORT_SID,
+		     REPORT_CONTENT,
+		     REPORT_CATEGORY,
+		     FAMOUS_SID,
+		     COMMENT_SID,
+		     DIARY_SID,
+		     REG_ID)
+		    VALUES (
+		        #{reportSid},
+		        #{reportContent},
+		        #{reportCategory},
+		        <choose>
+		            <when test="commentSid != null and commentSid > 0">
+		                NULL, #{commentSid}, NULL
+		            </when>
+		            <when test="famousSid != null and famousSid > 0">
+		                #{famousSid}, NULL, NULL
+		            </when>
+		            <when test="diarySid != null and diarySid > 0">
+		                NULL, NULL, #{diarySid}
+		            </when>
+		            <otherwise>
+		                NULL, NULL, NULL
+		            </otherwise>
+		        </choose>,
+		        #{regId}
+		    )
+		</insert>
 
     <delete id ="deleteAll">
     DELETE FROM report
@@ -48,7 +48,7 @@
     </select>
 
     <select id="doSelectOne" parameterType="ReportVO" resultType="ReportVO">
-        SELECT report_sid       AS reportSid,
+        SELECT report_sid        AS reportSid,
                report_content   AS reportContent,
                report_category  AS reportCategory,
                famous_sid       AS famousSid,
@@ -63,7 +63,6 @@
         DELETE FROM report
         WHERE report_sid = #{reportSid}
     </delete>
-
 
     <select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO" resultType="ReportVO">
     SELECT A.*, B.*
