@@ -34,4 +34,7 @@ public interface UserMapper extends WorkDiv<UserVO> {
     int doCheckPassword(UserVO param);
     
     int doChangePassword(UserVO param);
+
+        /** 닉네임 중복 체크 */
+    UserVO doCheckNickname(UserVO param);
 }

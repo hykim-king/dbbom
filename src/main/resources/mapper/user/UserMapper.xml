@@ -18,6 +18,11 @@
     <result column="admin_chk"        property="adminChk"/>
   </resultMap>
 
+    <select id="doCheckNickname" parameterType="UserVO" resultMap="userMap">
+    SELECT * FROM users 
+    WHERE nickname = #{nickname}
+  </select>
+
 	<select id="doCheckPassword" parameterType="UserVO"
 		resultType="int">
 		SELECT COUNT(*)

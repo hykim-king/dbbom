@@ -19,6 +19,8 @@ public interface UserService {
      * @return  로그인 성공 시(UserVO), 실패 시 null
      */
     UserVO doSignIn(UserVO param);
+    
+    UserVO doCheckId(UserVO param);
 
     /**
      * 회원탈퇴(DB 삭제)
@@ -33,4 +35,7 @@ public interface UserService {
     
     /** 회원 정보 수정 (닉네임, 자기소개) */
     int doUpdateInfo(UserVO param);
+    
+    /** 닉네임 중복 체크 */
+    UserVO doCheckNickname(UserVO param);
 }

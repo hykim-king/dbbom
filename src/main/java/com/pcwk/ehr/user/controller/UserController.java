@@ -25,7 +25,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
+    
+ // UserController 내부라면
     @Autowired
     DiaryService diaryService; // 일기 통계를 위해 주입 필요
 
@@ -35,6 +36,9 @@ public class UserController {
         log.debug("│UserController()          │");
         log.debug("└──────────────────────────┘");
     }
+    
+    
+    
 
     /**
      * 회원가입 화면으로 이동
@@ -220,7 +224,6 @@ public class UserController {
         return "user/myPage"; 
     }
 
-
     /**
      * 회원탈퇴 처리 - AJAX
      */
@@ -294,6 +297,46 @@ public class UserController {
         } else {
             return "{\"flag\":0, \"message\":\"정보 수정에 실패했습니다.\"}";
         }
+    }
+    
+    /**
+     * 아이디 중복 확인 - AJAX
+     */
+    @GetMapping(value = "/doCheckIdAjax.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String doCheckIdAjax(UserVO param) {
+        log.debug("아이디 중복 체크: {}", param.getUserId());
+        
+        // UserServiceImpl의 doSignUp 내 로직을 참고하여 조회
+        // 1이면 사용 가능, 0이면 중복
+        int flag = 0;
+        
+        // userId로 단건 조회 (이미 Mapper에 doSelectOne이 정의되어 있음)
+        UserVO outVO = userService.doCheckId(param); 
+        
+        if (outVO == null) {
+            flag = 1; // 사용 가능 (조회 결과 없음)
+        }
+        
+        return "{\"flag\":" + flag + "}";
+    }
+    
+    /**
+     * 닉네임 중복 확인 - AJAX
+     */
+    @GetMapping(value = "/doCheckNicknameAjax.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String doCheckNicknameAjax(UserVO param) {
+        log.debug("닉네임 중복 체크 요청: {}", param.getNickname());
+        
+        int flag = 0;
+        UserVO outVO = userService.doCheckNickname(param);
+        
+        if (outVO == null) {
+            flag = 1; // 중복 없음 (사용 가능)
+        }
+        
+        return "{\"flag\":" + flag + "}";
     }
 
     private String escapeJson(String s) {

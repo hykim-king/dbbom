@@ -163,6 +163,19 @@ public class UserServiceImpl implements UserService {
         return userMapper.doUpdate(param);
     }
     
+    @Override
+    public UserVO doCheckId(UserVO param) {
+        log.debug("service doCheckId: {}", param);
+        // UserMapper.xml에 정의된 doSelectOne을 호출하여 중복 여부 확인
+        return userMapper.doSelectOne(param);
+    }
+    
+    @Override
+    public UserVO doCheckNickname(UserVO param) {
+        log.debug("service doCheckNickname: {}", param);
+        return userMapper.doCheckNickname(param);
+    }
+    
     private boolean isEmpty(String s) {
         return s == null || s.trim().isEmpty();
     }
