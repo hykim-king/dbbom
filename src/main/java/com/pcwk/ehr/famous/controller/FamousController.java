@@ -178,30 +178,34 @@ public class FamousController {
 	
 	@RequestMapping(value = "/getFamousDetail.do")
 	public String getFamousDetail(FamousVO vo, Model model, HttpSession session) {
-		// 1. 조회수 증가와 조회가 포함된 전용 메서드를 호출합니다.
-	    FamousVO outVO = famousService.getFamousDetail(vo);
-	    model.addAttribute("detail", outVO);
-
-	    // 2. 세션 Key 이름을 바꿔가며 테스트 (로그인 컨트롤러에서 사용한 이름과 맞춰야 함)
-	    // "user"가 아니라면 보통 "loginUser"를 가장 많이 사용합니다.
-	    UserVO user = (UserVO) session.getAttribute("loginUser"); 
-	    
-	    // 만약 "loginUser"로도 안된다면 아래 줄을 주석 해제하여 콘솔에 찍히는 이름을 확인하세요.
-	    /*
-	    java.util.Enumeration<String> names = session.getAttributeNames();
-	    while(names.hasMoreElements()) System.out.println("세션 Key 확인: " + names.nextElement());
-	    */
-
-			    List<CommentVO> commentList = commentService.getListByFamousSid(vo.getFamousSid());
-
-	    if(user != null) {
-	        System.out.println("로그인 유저 세션 확인: " + user.getUserId());
-	    } else {
-	        System.out.println("세션에 유저 정보가 없습니다. Key값을 다시 확인하세요.");
+	    // 1. 데이터 유효성 체크
+	    if(vo.getFamousSid() == 0) {
+	        return "redirect:/famous/famous.do"; 
 	    }
 
-			    model.addAttribute("commentList", commentList); // JSP로 전달
+	    // 2. [핵심 수정] 닉네임 조인이 포함된 doSelectOne을 호출합니다.
+	    // getFamousDetail 대신 doSelectOne을 써야 닉네임(T2.nickname)이 담깁니다.
+	    FamousVO outVO = famousService.doSelectOne(vo);
+	    
+	    // 만약 서비스에서 조회수 증가 로직을 getFamousDetail에만 넣어두셨다면 
+	    // 여기서 조회수 증가를 별도로 호출해 주는 것이 좋습니다.
+	    famousService.updateViewCount(vo); 
+
+	    // 3. JSP에서 사용할 이름 "detail"로 데이터 전달
+	    model.addAttribute("detail", outVO);
+
+	    // 4. 세션 유저 정보 처리
+	    UserVO user = (UserVO) session.getAttribute("loginUser"); 
 	    model.addAttribute("sessionUser", user); 
+
+	    // 5. 댓글 리스트 조회
+	    List<CommentVO> commentList = commentService.getListByFamousSid(vo.getFamousSid());
+	    model.addAttribute("commentList", commentList);
+
+	    // 페이징 정보 유지용 (필요시)
+	    model.addAttribute("pageNo", vo.getPageNo()); 
+	    model.addAttribute("pageSize", vo.getPageSize());
+	    
 	    return "famous/famous_detail";
 	}
 	
@@ -295,24 +299,6 @@ public class FamousController {
 	    
 	    // JSON 형태로 리턴 (간단하게 "1" 혹은 "0"만 보내도 JSP에서 res == "1"로 체크 가능)
 	    return String.valueOf(flag);
-	}
-
-		@RequestMapping(value = "/getFamousDetail.do", produces = "application/json;charset=UTF-8")
-	public String getFamousDetail(FamousVO vo, Model model) {
-	    // 데이터 유효성 체크
-	    if(vo.getFamousSid() == 0) {
-	        return "redirect:/famous/famous.do"; 
-	    }
-
-	    // 서비스 호출
-	    FamousVO outVO = famousService.getFamousDetail(vo);
-	    
-	    // JSP에서 사용할 데이터 이름을 "detail"로 지정
-	    model.addAttribute("detail", outVO);
-	    model.addAttribute("pageNo", vo.getPageNo()); 
-	    model.addAttribute("pageSize", vo.getPageSize());
-	    
-	    return "famous/famous_detail"; // 생성한 상세페이지 JSP 경로
 	}
 	
 }

@@ -192,9 +192,9 @@ main.container {
 				<div
 					style="display: flex; justify-content: space-between; color: #94a3b8; font-size: 0.9rem;">
 					<div>
-						<span><i data-lucide="user" size="14"></i> ${detail.regId}</span>
-						<span style="margin-left: 15px;"><i data-lucide="calendar"
-							size="14"></i> ${detail.famousTime}</span>
+						<span><i data-lucide="user" size="14"></i>
+							${detail.nickname}</span> <span style="margin-left: 15px;"><i
+							data-lucide="calendar" size="14"></i> ${detail.famousTime}</span>
 					</div>
 					<span><i data-lucide="eye" size="14"></i> 조회
 						${detail.famousViewcount} <%-- [원문 신고] famousSid 전달 --%> <a
@@ -262,7 +262,7 @@ main.container {
 										style="display: flex; justify-content: space-between; margin-bottom: 8px;">
 										<span class="comment-author"
 											style="font-weight: 600; color: #1e293b;">
-											${comment.regId} </span> <span class="comment-date"
+											${comment.nickname} </span> <span class="comment-date"
 											style="font-size: 12px; color: #94a3b8;">
 											${comment.commentUpdateDate} <%-- [수정] 댓글 신고 시 명언번호가 아닌 댓글번호(comment.commentSid)를 'id' 파라미터로 전달 --%>
 											<a class="btn-action-text"
@@ -309,163 +309,258 @@ main.container {
 			</section>
 		</article>
 	</main>
-<script>
-    $(document).ready(function() {
-      // 1. 초기 UI 및 아이콘 렌더링
-      lucide.createIcons();
+	<script>
+		$(document)
+				.ready(
+						function() {
+							// 1. 초기 UI 및 아이콘 렌더링
+							lucide.createIcons();
 
-      // 2. 주요 변수 설정
-      const famousSid = "${detail.famousSid}";
-      const loginUserId = "${sessionScope.loginUser.userId}";
+							// 2. 주요 변수 설정
+							const famousSid = "${detail.famousSid}";
+							const loginUserId = "${sessionScope.loginUser.userId}";
 
-      // 3. 좋아요 상태 복구 (localStorage 이용)
-      let isRecommended = localStorage.getItem("famous_liked_" + famousSid) === "true";
-      if (isRecommended) {
-        $("#likeBtn").addClass("active");
-        $("#heartIcon").attr({
-          "fill" : "#ef4444",
-          "stroke" : "#ef4444"
-        });
-        $("#likeBtn").css("color", "#ef4444");
-      }
+							// 3. 좋아요 상태 복구 (localStorage 이용)
+							let isRecommended = localStorage
+									.getItem("famous_liked_" + famousSid) === "true";
+							if (isRecommended) {
+								$("#likeBtn").addClass("active");
+								$("#heartIcon").attr({
+									"fill" : "#ef4444",
+									"stroke" : "#ef4444"
+								});
+								$("#likeBtn").css("color", "#ef4444");
+							}
 
-      // 4. 좋아요 클릭 (AJAX) - ID 기반으로 수정
-      $("#likeBtn").on("click", function(e) {
-        e.preventDefault();
-        
-        // 로그인 체크
-        if (!loginUserId || loginUserId === "") {
-          if (confirm("좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
-            location.href = "${pageContext.request.contextPath}/user/signIn.do";
-          }
-          return;
-        }
+							// 4. 좋아요 클릭 (AJAX) - ID 기반으로 수정
+							$("#likeBtn")
+									.on(
+											"click",
+											function(e) {
+												e.preventDefault();
 
-        $.ajax({
-          type: "POST",
-          url: "${pageContext.request.contextPath}/famous/doUpdateLike.do",
-          data: { "famousSid": famousSid },
-          dataType: "text",
-          success: function(res) {
-            if (res === "LOGIN_REQUIRED") {
-              alert("로그인이 필요합니다.");
-            } else if (res.includes("TIME_LIMIT")) {
-              alert("이미 추천하셨습니다. " + res.split(":")[1] + "분 후에 다시 가능합니다.");
-            } else if (res === "ERROR") {
-              alert("처리 중 오류가 발생했습니다.");
-            } else {
-              // 성공 시 카운트 업데이트
-              $("#likeCount").text(res);
-              
-              // UI 상태 변경
-              if (!isRecommended) {
-                $("#likeBtn").addClass("active");
-                $("#heartIcon").attr({"fill": "#ef4444", "stroke": "#ef4444"});
-                $("#likeBtn").css("color", "#ef4444");
-                localStorage.setItem("famous_liked_" + famousSid, "true");
-                isRecommended = true;
-                alert("추천되었습니다!");
-              }
-              lucide.createIcons();
-            }
-          },
-          error: function() { 
-            alert("통신 오류가 발생했습니다."); 
-          }
-        });
-      });
+												// 로그인 체크
+												if (!loginUserId
+														|| loginUserId === "") {
+													if (confirm("좋아요는 로그인 후에 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
+														location.href = "${pageContext.request.contextPath}/user/signIn.do";
+													}
+													return;
+												}
 
-      // 5. 일반 댓글 등록
-      $("#btnCommentSave").on("click", function() {
-        const content = $("#commentContent").val().trim();
-        if (!content) {
-          alert("내용을 입력해주세요.");
-          return;
-        }
-        $.ajax({
-          type : "POST",
-          url : "${pageContext.request.contextPath}/comment/addComment.do",
-          data : {
-            "famousSid" : famousSid,
-            "commentContent" : content
-          },
-          success : function(res) {
-            const data = (typeof res === "string") ? JSON.parse(res) : res;
-            if (data.flag == 1) location.reload();
-            else alert(data.message);
-          }
-        });
-      });
+												$
+														.ajax({
+															type : "POST",
+															url : "${pageContext.request.contextPath}/famous/doUpdateLike.do",
+															data : {
+																"famousSid" : famousSid
+															},
+															dataType : "text",
+															success : function(
+																	res) {
+																if (res === "LOGIN_REQUIRED") {
+																	alert("로그인이 필요합니다.");
+																} else if (res
+																		.includes("TIME_LIMIT")) {
+																	alert("이미 추천하셨습니다. "
+																			+ res
+																					.split(":")[1]
+																			+ "분 후에 다시 가능합니다.");
+																} else if (res === "ERROR") {
+																	alert("처리 중 오류가 발생했습니다.");
+																} else {
+																	// 성공 시 카운트 업데이트
+																	$(
+																			"#likeCount")
+																			.text(
+																					res);
 
-      // 6. 답글 폼 토글
-      $(document).on("click", ".btn-reply-toggle", function() {
-        $(this).closest(".comment-item").find(".reply-form").first().slideToggle(200);
-      });
+																	// UI 상태 변경
+																	if (!isRecommended) {
+																		$(
+																				"#likeBtn")
+																				.addClass(
+																						"active");
+																		$(
+																				"#heartIcon")
+																				.attr(
+																						{
+																							"fill" : "#ef4444",
+																							"stroke" : "#ef4444"
+																						});
+																		$(
+																				"#likeBtn")
+																				.css(
+																						"color",
+																						"#ef4444");
+																		localStorage
+																				.setItem(
+																						"famous_liked_"
+																								+ famousSid,
+																						"true");
+																		isRecommended = true;
+																		alert("추천되었습니다!");
+																	}
+																	lucide
+																			.createIcons();
+																}
+															},
+															error : function() {
+																alert("통신 오류가 발생했습니다.");
+															}
+														});
+											});
 
-      // 7. 답글 저장
-      $(document).on("click", ".btn-reply-save", function() {
-        const parentSid = $(this).data("parent");
-        const $replyForm = $(this).closest(".reply-form");
-        const content = $replyForm.find(".reply-textarea").val().trim();
-        if (!content) {
-          alert("답글을 입력해주세요.");
-          return;
-        }
-        $.ajax({
-          type : "POST",
-          url : "${pageContext.request.contextPath}/comment/addComment.do",
-          data : {
-            "famousSid" : famousSid,
-            "parentSid" : parentSid,
-            "commentContent" : content
-          },
-          success : function(res) {
-            const data = (typeof res === "string") ? JSON.parse(res) : res;
-            if (data.flag == 1) location.reload();
-            else alert(data.message);
-          }
-        });
-      });
+							// 5. 일반 댓글 등록
+							$("#btnCommentSave")
+									.on(
+											"click",
+											function() {
+												const content = $(
+														"#commentContent")
+														.val().trim();
+												if (!content) {
+													alert("내용을 입력해주세요.");
+													return;
+												}
+												$
+														.ajax({
+															type : "POST",
+															url : "${pageContext.request.contextPath}/comment/addComment.do",
+															data : {
+																"famousSid" : famousSid,
+																"commentContent" : content
+															},
+															success : function(
+																	res) {
+																const data = (typeof res === "string") ? JSON
+																		.parse(res)
+																		: res;
+																if (data.flag == 1)
+																	location
+																			.reload();
+																else
+																	alert(data.message);
+															}
+														});
+											});
 
-      // 8. 댓글 삭제
-      $(document).on("click", ".btn-comment-delete", function() {
-        if (!confirm("정말 삭제하시겠습니까?")) return;
-        const commentSid = $(this).data("sid");
-        $.ajax({
-          type : "POST",
-          url : "${pageContext.request.contextPath}/comment/doDelete.do",
-          data : { "commentSid" : commentSid },
-          success : function(res) {
-            const data = (typeof res === "string") ? JSON.parse(res) : res;
-            if (data.flag == 1) location.reload();
-            else alert(data.message);
-          }
-        });
-      });
+							// 6. 답글 폼 토글
+							$(document).on(
+									"click",
+									".btn-reply-toggle",
+									function() {
+										$(this).closest(".comment-item").find(
+												".reply-form").first()
+												.slideToggle(200);
+									});
 
-      // 9. 수정/삭제 버튼 (게시글)
-      $("#btnUpdate").on("click", function() {
-        location.href = "${pageContext.request.contextPath}/famous/moveToUpdate.do?famousSid=" + famousSid;
-      });
+							// 7. 답글 저장
+							$(document)
+									.on(
+											"click",
+											".btn-reply-save",
+											function() {
+												const parentSid = $(this).data(
+														"parent");
+												const $replyForm = $(this)
+														.closest(".reply-form");
+												const content = $replyForm
+														.find(".reply-textarea")
+														.val().trim();
+												if (!content) {
+													alert("답글을 입력해주세요.");
+													return;
+												}
+												$
+														.ajax({
+															type : "POST",
+															url : "${pageContext.request.contextPath}/comment/addComment.do",
+															data : {
+																"famousSid" : famousSid,
+																"parentSid" : parentSid,
+																"commentContent" : content
+															},
+															success : function(
+																	res) {
+																const data = (typeof res === "string") ? JSON
+																		.parse(res)
+																		: res;
+																if (data.flag == 1)
+																	location
+																			.reload();
+																else
+																	alert(data.message);
+															}
+														});
+											});
 
-      $("#btnDelete").on("click", function() {
-        if (confirm("정말 이 명언을 삭제하시겠습니까?")) {
-          $.ajax({
-            type : "POST",
-            url : "${pageContext.request.contextPath}/famous/doDelete.do",
-            data : { "famousSid" : famousSid },
-            success : function(res) {
-              if (res == "1" || res.flag == "1") {
-                alert("삭제되었습니다.");
-                location.href = "${pageContext.request.contextPath}/famous/famous.do";
-              } else {
-                alert("삭제 실패: 권한이 없거나 오류가 발생했습니다.");
-              }
-            }
-          });
-        }
-      });
-    }); // end of ready
-  </script>
+							// 8. 댓글 삭제
+							$(document)
+									.on(
+											"click",
+											".btn-comment-delete",
+											function() {
+												if (!confirm("정말 삭제하시겠습니까?"))
+													return;
+												const commentSid = $(this)
+														.data("sid");
+												$
+														.ajax({
+															type : "POST",
+															url : "${pageContext.request.contextPath}/comment/doDelete.do",
+															data : {
+																"commentSid" : commentSid
+															},
+															success : function(
+																	res) {
+																const data = (typeof res === "string") ? JSON
+																		.parse(res)
+																		: res;
+																if (data.flag == 1)
+																	location
+																			.reload();
+																else
+																	alert(data.message);
+															}
+														});
+											});
+
+							// 9. 수정/삭제 버튼 (게시글)
+							$("#btnUpdate")
+									.on(
+											"click",
+											function() {
+												location.href = "${pageContext.request.contextPath}/famous/moveToUpdate.do?famousSid="
+														+ famousSid;
+											});
+
+							$("#btnDelete")
+									.on(
+											"click",
+											function() {
+												if (confirm("정말 이 명언을 삭제하시겠습니까?")) {
+													$
+															.ajax({
+																type : "POST",
+																url : "${pageContext.request.contextPath}/famous/doDelete.do",
+																data : {
+																	"famousSid" : famousSid
+																},
+																success : function(
+																		res) {
+																	if (res == "1"
+																			|| res.flag == "1") {
+																		alert("삭제되었습니다.");
+																		location.href = "${pageContext.request.contextPath}/famous/famous.do";
+																	} else {
+																		alert("삭제 실패: 권한이 없거나 오류가 발생했습니다.");
+																	}
+																}
+															});
+												}
+											});
+						}); // end of ready
+	</script>
 </body>
 </html>

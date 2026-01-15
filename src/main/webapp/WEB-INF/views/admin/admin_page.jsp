@@ -644,7 +644,7 @@ button {
                 failCount++;
             }
         }
-        alert(`성공: ${successCount}건 / 실패: ${failCount}건`);
+        alert(`삭제 되었습니다`);
         location.reload();
     }
 
