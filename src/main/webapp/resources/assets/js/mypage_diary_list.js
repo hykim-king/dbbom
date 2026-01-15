@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2️⃣ 카테고리 숫자 매핑 (DB 값 기준: 10, 20, 30, 40)
   const diaryTypeClass = {
     "10": "purple", // 명언일기
-    "20": "yellow", // 감사일기
-    "30": "green",  // 행운일기
+    "20": "green", // 행운일기
+    "30": "yellow",  // 감사일기
     "40": "blue"    // 성찰일기 (하늘색)
   };
 

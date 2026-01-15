@@ -147,21 +147,20 @@
 
 
 	<!-- famousSid로 특정 명언 1건 조회 -->
-	<select id="doSelectOne"
-		parameterType="com.pcwk.ehr.famous.domain.FamousVO"
-		resultMap="famousMap">
-		SELECT
-		famous_sid,
-		famous_author,
-		famous_content,
-		famous_emotion,
-		famous_viewcount,
-		famous_reccount,
-		famous_time,
-		reg_id
-		FROM famous_collection
-		WHERE famous_sid = #{famousSid}
-	</select>
+<select id="doSelectOne" resultType="com.pcwk.ehr.famous.domain.FamousVO">
+    SELECT 
+        T1.famous_sid as famousSid,
+        T1.famous_author as famousAuthor,
+        T1.famous_content as famousContent,
+        T1.famous_emotion as famousEmotion,
+        T1.famous_viewcount as famousViewcount,
+        T1.famous_reccount as famousReccount,
+        T1.famous_time as famousTime,
+        T1.reg_id as regId,
+        T2.nickname as nickname  FROM famous_collection T1
+    LEFT OUTER JOIN users T2 ON T1.reg_id = T2.user_id 
+    WHERE T1.famous_sid = #{famousSid}
+</select>
 
 	<select id="doRetrieve" parameterType="com.pcwk.ehr.cmn.DTO"
 		resultMap="famousMap">

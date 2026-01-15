@@ -312,7 +312,7 @@
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                                         <span class="comment-user" style="font-weight: 600; color: #334155;">
                                             <c:if test="${comment.parentSid != null}"><i data-lucide="corner-down-right" size="14"></i> </c:if>
-                                            ${comment.regId}
+                                            ${comment.nickname}
                                         </span>
                                         <span class="comment-date" style="font-size: 12px; color: #94a3b8;">
                                             <fmt:formatDate value="${comment.commentUpdateDate}" pattern="yyyy-MM-dd HH:mm"/>

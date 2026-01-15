@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -192,7 +193,7 @@ main.container {
             <div
                style="display: flex; justify-content: space-between; color: #94a3b8; font-size: 0.9rem;">
                <div>
-                  <span><i data-lucide="user" size="14"></i> ${detail.regId}</span>
+                  <span><i data-lucide="user" size="14"></i> ${detail.nickname}</span>
                   <span style="margin-left: 15px;"><i data-lucide="calendar"
                      size="14"></i> ${detail.famousTime}</span>
                </div>
@@ -262,9 +263,9 @@ main.container {
                               style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                               <span class="comment-author"
                                  style="font-weight: 600; color: #1e293b;">
-                                 ${comment.regId} </span> <span class="comment-date"
+                                 ${comment.nickname} </span> <span class="comment-date"
                                  style="font-size: 12px; color: #94a3b8;">
-                                 ${comment.commentUpdateDate} <%-- [수정] 댓글 신고 시 명언번호가 아닌 댓글번호(comment.commentSid)를 'id' 파라미터로 전달 --%>
+                                 <fmt:formatDate value="${comment.commentUpdateDate}" pattern="yyyy-MM-dd HH:mm"/> <%-- [수정] 댓글 신고 시 명언번호가 아닌 댓글번호(comment.commentSid)를 'id' 파라미터로 전달 --%>
                                  <a class="btn-action-text"
                                  href="${pageContext.request.contextPath}/report/commentReportPage.do?id=${comment.commentSid}"
                                  onclick="window.open(this.href, 'reportPopup', 'width=500,height=700,scrollbars=yes'); return false;"
@@ -468,4 +469,4 @@ main.container {
     }); // end of ready
   </script>
 </body>
-</html>
+</html>	
