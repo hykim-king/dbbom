@@ -618,34 +618,60 @@ button {
     }
 
     async function deleteSelected() {
-        const checkedBoxes = $(".report-chk:checked");
-        if (checkedBoxes.length === 0) return alert("선택된 항목이 없습니다.");
-        if (!confirm(`선택한 ${checkedBoxes.length}건을 일괄 삭제하시겠습니까?`)) return;
+        // 1. 현재 화면에 체크된 모든 체크박스 가져오기 (신고, 유저, 일기 통합)
+        const $checkedReport = $(".report-chk:checked");
+        const $checkedUser = $(".user-chk:checked");
+        const $checkedDiary = $(".diary-chk:checked");
 
-        let successCount = 0;
-        let failCount = 0; // 오타 수정 완료
+        const totalCount = $checkedReport.length + $checkedUser.length + $checkedDiary.length;
 
-        for (let i = 0; i < checkedBoxes.length; i++) {
-            const $chk = $(checkedBoxes[i]);
-            const id = $chk.val();
-            try {
+        if (totalCount === 0) return alert("선택된 항목이 없습니다.");
+        if (!confirm("선택한 " + totalCount + "건을 일괄 삭제하시겠습니까?")) return;
+
+        try {
+            // --- A. 신고 내역 일괄 삭제 처리 ---
+            for (let i = 0; i < $checkedReport.length; i++) {
+                const $chk = $($checkedReport[i]);
                 await $.ajax({
                     type: "POST",
                     url: cp + "/admin/doDeleteReport.do",
                     data: {
-                        reportSid: id,
+                        reportSid: $chk.val(),
                         commentSid: $chk.data('csid') || 0,
                         diarySid: $chk.data('dsid') || 0,
                         famousSid: $chk.data('fsid') || 0
                     }
                 });
-                successCount++;
-            } catch (err) {
-                failCount++;
             }
+
+            // --- B. 회원 강퇴 일괄 처리 ---
+            for (let i = 0; i < $checkedUser.length; i++) {
+                const userId = $($checkedUser[i]).val();
+                await $.ajax({
+                    type: "POST",
+                    url: cp + "/admin/doDeleteUser.do",
+                    data: { userId: userId }
+                });
+            }
+
+            // --- C. 게시글 일괄 삭제 처리 ---
+            for (let i = 0; i < $checkedDiary.length; i++) {
+                const diarySid = $($checkedDiary[i]).val();
+                await $.ajax({
+                    type: "POST",
+                    url: cp + "/admin/doDeleteDiary.do",
+                    data: { diarySid: diarySid }
+                });
+            }
+
+            alert("선택한 항목이 모두 처리되었습니다.");
+            location.reload();
+
+        } catch (err) {
+            console.error(err);
+            alert("일부 항목 처리 중 오류가 발생했습니다. (권한 문제 등)");
+            location.reload();
         }
-        alert(`삭제 되었습니다`);
-        location.reload();
     }
 
     function deleteOneReport(rSid, cSid, dSid, fSid) {
